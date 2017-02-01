@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">DIA_1</string>
+    <string name="action_settings">Settings</string>
+    <string name="text">Book Table</string>
+    <string name="submit">Submit</string>
+    <string name="receive">Get Book(s)</string>
+    <string name="addButton">+</string>
+    <string name="Book_Authors">Book Authors</string>
+    <string name="Clients">Clients</string>
+    <string name="Lessons">Lessons</string>
+
+    <string name="addClient">New Client</string>
+    <string name="addLesson">New Lesson</string>
+
+    <string name="goBack">Back</string>
+    <string name="title_activity_client_info">ClientInfo</string>
+    <string name="title_activity_lesson_info">LessonInfo</string>
+    <string name="title_activity_web_view">WebView</string>
+    <string name="title_activity_routes">Map</string>
+</resources>

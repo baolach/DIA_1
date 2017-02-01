@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+                android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/Lesson_Header"
+        android:text="@string/Lessons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+
+        android:textSize="50dp"
+        android:textColor="@color/black"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView_lesson_name"
+        android:layout_margin="20dp"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageViewL"
+        android:src="@drawable/l"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/Lesson_Header"/>
+
+
+    <ListView
+        android:id="@+id/listView_lessons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/white"
+        android:dividerHeight="0.85px"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/textView_lesson_name"
+        android:layout_alignParentStart="true"
+
+        android:background="@color/grey"
+        android:textColor="@color/white"
+    />
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Lesson"
+        android:id="@+id/new_lesson"
+        android:onClick="listLessonName"
+
+        style="?android:attr/buttonStyleSmall"
+        android:background="@color/grey"
+        android:maxWidth="150dp"
+        android:minHeight="20dp"
+        android:textSize="11dp"
+        android:textColor="@color/white"
+        android:padding="5dp"
+
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        android:layout_below="@+id/Lesson_Header"
+        android:layout_toEndOf="@+id/button"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Client Name"
+        android:textStyle="bold"
+
+        android:id="@+id/textView_lesson_name"
+        android:layout_below="@+id/new_lesson"
+        android:layout_alignStart="@+id/listView_lessons"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Lesson Time"
+        android:textStyle="bold"
+
+        android:id="@+id/TextView_lesson_time"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignTop="@+id/textView_lesson_name"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Lesson Date"
+        android:textStyle="bold"
+
+        android:id="@+id/TextView_lesson_date"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignTop="@+id/TextView_lesson_time"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/goBack"
+        android:textColor="@color/white"
+        android:id="@+id/button"
+        android:onClick="goBackScreen"
+
+        style="?android:attr/buttonStyleSmall"
+        android:textSize="11dp"
+        android:background="@color/grey"
+        android:maxWidth="150dp"
+        android:minHeight="20dp"
+        android:padding="5dp"
+
+
+        android:layout_above="@+id/textView_lesson_name"
+        android:layout_alignParentStart="true"/>
+
+
+</RelativeLayout>

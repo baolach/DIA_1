@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.baolach.driving_app_3.LessonInfo"
+    >
+
+    <TextView
+        android:id="@+id/Lesson_Header"
+        android:text="Lesson Info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+
+        android:textSize="40dp"
+        android:textColor="@color/black"
+
+
+        android:layout_alignTop="@+id/imageViewL"
+        android:layout_alignParentStart="true"
+        android:layout_margin="20dp"
+        android:layout_marginTop="50dp"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageViewL"
+        android:src="@drawable/l"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/thelessondate"
+        android:layout_marginTop="50dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="name"
+        android:id="@+id/thelessonname"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/button"
+        android:layout_alignEnd="@+id/thelessondate"
+        android:layout_alignParentLeft="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="date"
+        android:id="@+id/thelessondate"
+        android:layout_margin="5dp"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/thelessonname"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="time"
+        android:id="@+id/thelessontime"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/thelessondate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="location"
+        android:id="@+id/thelessonlocation"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/thelessontime"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="comments"
+        android:id="@+id/thelessoncomments"
+        android:layout_margin="5dp"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/thelessonlocation"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/goBack"
+        android:id="@+id/button"
+        android:onClick="goBackScreen"
+
+        style="?android:attr/buttonStyleSmall"
+        android:textSize="11dp"
+        android:background="@color/grey"
+        android:maxWidth="100dp"
+        android:minHeight="20dp"
+        android:padding="5dp"
+        android:textColor="@color/white"
+
+
+        android:layout_marginLeft="1dp"
+        android:layout_below="@+id/imageViewL"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name"
+        android:id="@+id/textView"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_above="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/dgrey"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Date"
+        android:id="@+id/textView2"
+        android:layout_alignTop="@+id/thelessondate"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:textColor="@color/dgrey"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Time"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/thelessondate"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:textColor="@color/dgrey"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Location"
+        android:id="@+id/textView4"
+        android:layout_alignTop="@+id/thelessonlocation"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:textColor="@color/dgrey"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Comments"
+        android:id="@+id/textView5"
+        android:layout_alignTop="@+id/thelessoncomments"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:textColor="@color/dgrey"
+        android:textStyle="bold"/>
+
+</RelativeLayout>
