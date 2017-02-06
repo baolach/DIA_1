@@ -27,7 +27,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="List Lessons"
+        android:text="Diary"
         android:id="@+id/list_lessons_btn"
         android:layout_below="@+id/website"
         android:layout_alignParentStart="true"

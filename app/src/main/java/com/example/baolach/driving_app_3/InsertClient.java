@@ -60,7 +60,7 @@ public class InsertClient extends Activity{
                         db.close();
 
                         // return to the main screen
-                        Intent homeScreen = new Intent(InsertClient.this, MainActivity.class);
+                        Intent homeScreen = new Intent(InsertClient.this, AdminActivity.class);
                         startActivity(homeScreen);
                     } catch (Exception e)
                     {

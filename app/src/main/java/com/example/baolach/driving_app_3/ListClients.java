@@ -32,7 +32,7 @@ public class ListClients extends Activity
 
         }
 
-        // When a client is clicked it goe to the ClientInfo activity and displays all info on that client
+        // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
@@ -79,6 +79,7 @@ public class ListClients extends Activity
 
 
     public void goBackScreen(View view) {
+
         try {
             Intent lastScreen = new Intent(this, AdminActivity.class);
             startActivity(lastScreen);

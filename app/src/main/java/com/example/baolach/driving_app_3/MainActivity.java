@@ -59,8 +59,8 @@ public class MainActivity extends Activity
             public void onClick(View v)
             {
 
-                Intent new_client_intent = new Intent(MainActivity.this, Calender.class);
-                startActivity(new_client_intent);
+                Intent finances_intent = new Intent(MainActivity.this, Finances.class);
+                startActivity(finances_intent);
             }
         });
 

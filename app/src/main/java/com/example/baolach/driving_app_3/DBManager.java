@@ -20,6 +20,8 @@ public class DBManager {
     static final String DATABASE_NAME = "My_Database";
     static final String CLIENT_TABLE = "Client";
     static final String LESSON_TABLE = "Lessons";
+    static final String FINANCES_TABLE = "Finances";
+
 
     // Client variables
     static final String KEY_ID = "_id"; // the log_no will deal with unique clients
@@ -38,6 +40,15 @@ public class DBManager {
     static final String KEY_TASK_LESSON_TIME = "Time";
     static final String KEY_TASK_LESSON_LOCATION = "Location";
     static final String KEY_TASK_LESSON_COMMENTS = "Comments";
+
+    // Finances variables
+    //static final String KEY_TASK_CLIENT_NAME = "Client_name";
+    //static final String KEY_TASK_DRIVER_NO = "Driver_No";
+    //static final String KEY_TASK_NO_OF_LESSONS = "No_Of_Lessons";
+    static final String KEY_TASK_LESSONS_TO_BE_PAID = "Lessons_to_be_paid";
+    static final String KEY_TASK_PRICE_PER_LESSON = "Price_per_lesson";
+    static final String KEY_TASK_BALANCE_DUE = "Balance_due";
+
 
     // Database variables
     final Context context;
@@ -60,7 +71,41 @@ public class DBManager {
             "Time  TEXT," +
             "Location    TEXT," +
             "Comments   TEXT);";
+    ///////////////////
 
+    private static final String CREATE_FINANCES_TABLE = "create table Finances(_id integer primary key autoincrement, " +
+            "Client_name  TEXT, " + // FK of client table
+            "Driver_No  TEXT, " + // fk
+            "No_Of_Lessons  INTEGER, " + // fk
+            "Lessons_to_be_paid  INTEGER, " + // Lessons_to_be_paid * price_per_lessons
+            "Price_per_lesson  INTEGER, " +
+            "Balance_due  INTEGER)"; // in euros
+    /*
+    The locationName, for example may be “Difficult Hill-start, Greenhills road”.
+    LocationType would be “hill-start” and the coordinates would be the latitude
+    and longitude coordinates. There would be many different locations of type
+    hill-start, reverse-around the corner, tight corners, roundabouts, three point
+    turns etc.
+    */
+
+    // routes table holds spatial data of the different routes so the instructor can select
+    // at the start of the lesson depending on difficulty
+//    private static final String CREATE_ROUTES_TABLE = "create table Routes(_id integer primary key autoincrement, " +
+//            "Route_name  DATE, " +
+//            "Route_difficulty  TEXT)" +
+//            "coordinates  TEXT)" +
+//            "Polyline_or_something_I_dont_know  TEXT)";
+//
+//    private static final String CREATE_LOCATIONS_TABLE = "create table Locations(_id integer primary key autoincrement, " +
+//            "Location_name  TEXT, " +
+//            "Location_type  TEXT)" +
+//            "Lat  FLOAT)" +
+//            "Lon  FLOAT)" +
+//            "Geo GEOGRAPHY)";
+
+
+
+/////////////////////
     public DBManager(Context ctx) {
         this.context = ctx;
         DBHelper = new MyDatabaseHelper(context); //////////////////////////  ?
@@ -77,6 +122,7 @@ public class DBManager {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(CREATE_CLIENT_TABLE);
             db.execSQL(CREATE_LESSONS_TABLE);
+            db.execSQL(CREATE_FINANCES_TABLE);
 
         }
 
@@ -84,6 +130,8 @@ public class DBManager {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + CLIENT_TABLE);
             db.execSQL("DROP TABLE IF EXISTS " + LESSON_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS " + FINANCES_TABLE);
+
 
             onCreate(db);
         }
@@ -128,6 +176,20 @@ public class DBManager {
         return db.insert(LESSON_TABLE, null, initialValues);
     }
 
+    public long insertPayment(String clientName, String driverNo, Integer noOfLessons, Integer lessonsToBePaid, Integer pricePerLesson, Integer balanceDue) {
+        ContentValues initialValues = new ContentValues();
+
+        initialValues.put(KEY_TASK_CLIENT_NAME, clientName);
+        initialValues.put(KEY_TASK_DRIVER_NO, driverNo);
+        initialValues.put(KEY_TASK_NO_OF_LESSONS, noOfLessons);
+        initialValues.put(KEY_TASK_LESSONS_TO_BE_PAID, lessonsToBePaid);
+        initialValues.put(KEY_TASK_PRICE_PER_LESSON, pricePerLesson);
+        initialValues.put(KEY_TASK_BALANCE_DUE, balanceDue);
+
+        return db.insert(FINANCES_TABLE, null, initialValues);
+    }
+
+
 
     // GETTING ALL THE CLIENT INFO SQL
     public Cursor getAll() {
@@ -149,7 +211,6 @@ public class DBManager {
         }
 
         return mCursor;
-
     }
 
     public void deleteClient(String clientName) {

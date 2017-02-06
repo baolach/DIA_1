@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.baolach.driving_app_3">
+<manifest package="com.example.baolach.driving_app_3"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--<uses-permission android:name="package_name.permission.MAPS_RECEIVE"/>-->
-    <!--<uses-library android:name="com.google.android.maps" />-->
-
-
+    <!-- <uses-permission android:name="package_name.permission.MAPS_RECEIVE"/> -->
+    <!-- <uses-library android:name="com.google.android.maps" /> -->
     <application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="DIA_1"
@@ -21,8 +19,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity
+        </activity>4<activity
             android:name=".ClientInfo"
             android:label="@string/title_activity_client_info"
             android:theme="@style/AppTheme.NoActionBar">
@@ -39,9 +36,17 @@
         <activity android:name=".ListLessons"/>
         <activity android:name=".Calender"/>
         <activity android:name=".WebActivity"/>
-        <activity android:name=".AdminActivity"/>4
-
-
+        <activity android:name=".AdminActivity"/>
+        <activity
+            android:name=".Finances"
+            android:label="@string/title_activity_finances"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".InsertFinances"
+            android:label="@string/title_activity_finances"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

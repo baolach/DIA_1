@@ -17,4 +17,5 @@
     <string name="title_activity_lesson_info">LessonInfo</string>
     <string name="title_activity_web_view">WebView</string>
     <string name="title_activity_routes">Map</string>
+    <string name="title_activity_finances">finances</string>
 </resources>
