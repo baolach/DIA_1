@@ -3,37 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="#ffffff"
-    tools:context="com.example.baolach.driving_app_3.ClientInfo">
+    android:padding="10dp"
 
-    <TextView
-        android:id="@+id/Client_Header"
-        android:text="Client Info"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-
-        android:textSize="45dp"
-        android:textColor="@color/black"
-
-
-        android:layout_alignTop="@+id/imageViewL"
-        android:layout_alignParentStart="true"
-        android:layout_margin="20dp"
-        android:layout_marginTop="50dp"/>
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/imageViewL"
-        android:src="@drawable/l"
-
-        android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/thelessondate"
-        android:layout_marginTop="50dp"/>
+    android:background="@color/dgrey"
+    tools:context=".MainActivity">
 
 
     <TextView
@@ -50,7 +26,9 @@
         android:layout_alignParentLeft="false"
         android:layout_alignWithParentIfMissing="false"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="false"/>
+        android:layout_alignParentTop="false"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,7 +43,9 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentBottom="false"
         android:layout_alignParentTop="false"
-        android:layout_alignWithParentIfMissing="false"/>
+        android:layout_alignWithParentIfMissing="false"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,7 +59,9 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentBottom="false"
         android:layout_alignParentTop="false"
-        android:layout_alignWithParentIfMissing="false"/>
+        android:layout_alignWithParentIfMissing="false"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,7 +75,9 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentBottom="false"
         android:layout_alignParentTop="false"
-        android:layout_alignWithParentIfMissing="false"/>
+        android:layout_alignWithParentIfMissing="false"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -108,7 +92,9 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentBottom="false"
         android:layout_alignParentTop="false"
-        android:layout_alignWithParentIfMissing="false"/>
+        android:layout_alignWithParentIfMissing="false"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -123,7 +109,9 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentBottom="false"
         android:layout_alignParentTop="false"
-        android:layout_alignWithParentIfMissing="false"/>
+        android:layout_alignWithParentIfMissing="false"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -137,7 +125,9 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentBottom="false"
         android:layout_alignParentTop="false"
-        android:layout_alignWithParentIfMissing="false"/>
+        android:layout_alignWithParentIfMissing="false"
+        android:textColor="@color/white"
+        />
 
 
     <TextView
@@ -150,8 +140,9 @@
         android:layout_marginRight="5dp"
         android:layout_above="@+id/textView2"
         android:layout_alignParentStart="true"
-        android:textColor="@color/dgrey"
-        android:textStyle="bold"/>
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -162,7 +153,7 @@
         android:layout_alignTop="@+id/thelessondate"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -174,7 +165,7 @@
         android:layout_below="@+id/thelessondate"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -186,7 +177,7 @@
         android:layout_alignTop="@+id/thelessonlocation"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -198,7 +189,7 @@
         android:layout_alignTop="@+id/thelessoncomments"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -210,7 +201,7 @@
         android:layout_below="@+id/thelessoncomments"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -222,30 +213,9 @@
         android:layout_alignTop="@+id/theclientscomments"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/goBack"
-        android:id="@+id/button"
-        android:onClick="goBackScreen"
-
-        style="?android:attr/buttonStyleSmall"
-        android:textSize="11dp"
-        android:background="@color/grey"
-        android:maxWidth="100dp"
-        android:minHeight="20dp"
-        android:padding="5dp"
-        android:textColor="@color/white"
-
-
-        android:layout_marginLeft="1dp"
-        android:layout_below="@+id/imageViewL"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="5dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -254,7 +224,7 @@
         android:onClick="listBookNames"
 
         style="?android:attr/buttonStyleSmall"
-        android:background="@color/grey"
+        android:background="@color/turq"
         android:maxWidth="100dp"
         android:minHeight="20dp"
         android:textSize="11dp"
@@ -265,5 +235,38 @@
         android:layout_marginLeft="5dp"
         android:layout_alignTop="@+id/button"
         android:layout_toEndOf="@+id/button"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:id="@+id/website"
+        android:src="@drawable/active5"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="48dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/goBack"
+        android:id="@+id/button"
+        android:onClick="goBackScreen"
+
+        style="?android:attr/buttonStyleSmall"
+        android:textSize="11dp"
+        android:background="@color/turq"
+        android:maxWidth="100dp"
+        android:minHeight="20dp"
+        android:padding="5dp"
+        android:textColor="@color/white"
+
+
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/website"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="11dp"/>
+
 
 </RelativeLayout>

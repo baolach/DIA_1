@@ -40,8 +40,8 @@ public class MainActivity extends Activity
         locations_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                Intent new_lesson_intent = new Intent(MainActivity.this, Calender.class); // inserts new lesson
-                startActivity(new_lesson_intent);
+                Intent locations_intent = new Intent(MainActivity.this, MapsActivity.class); // inserts new lesson
+                startActivity(locations_intent);
             }
         });
 

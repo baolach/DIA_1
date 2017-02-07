@@ -9,33 +9,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.baolach.driving_app_3.LessonInfo"
+    android:background="@color/dgrey"
     >
 
-    <TextView
-        android:id="@+id/Lesson_Header"
-        android:text="Lesson Info"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-
-        android:textSize="40dp"
-        android:textColor="@color/black"
-
-
-        android:layout_alignTop="@+id/imageViewL"
-        android:layout_alignParentStart="true"
-        android:layout_margin="20dp"
-        android:layout_marginTop="50dp"/>
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/imageViewL"
-        android:src="@drawable/l"
-
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:id="@+id/website"
+        android:src="@drawable/active5"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/thelessondate"
-        android:layout_marginTop="50dp"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+
+        />
 
 
     <TextView
@@ -43,6 +30,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="name"
+        android:textColor="@color/white"
         android:id="@+id/thelessonname"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
@@ -59,6 +47,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="date"
+        android:textColor="@color/white"
         android:id="@+id/thelessondate"
         android:layout_margin="5dp"
         android:layout_alignParentStart="false"
@@ -74,6 +63,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="time"
+        android:textColor="@color/white"
         android:id="@+id/thelessontime"
         android:layout_alignParentStart="false"
         android:layout_below="@+id/thelessondate"
@@ -88,6 +78,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="location"
+        android:textColor="@color/white"
         android:id="@+id/thelessonlocation"
         android:layout_alignParentStart="false"
         android:layout_below="@+id/thelessontime"
@@ -102,6 +93,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="comments"
+        android:textColor="@color/white"
         android:id="@+id/thelessoncomments"
         android:layout_margin="5dp"
         android:layout_alignParentStart="false"
@@ -121,7 +113,7 @@
 
         style="?android:attr/buttonStyleSmall"
         android:textSize="11dp"
-        android:background="@color/grey"
+        android:background="@color/turq"
         android:maxWidth="100dp"
         android:minHeight="20dp"
         android:padding="5dp"
@@ -129,7 +121,7 @@
 
 
         android:layout_marginLeft="1dp"
-        android:layout_below="@+id/imageViewL"
+        android:layout_below="@+id/website"
         android:layout_alignStart="@+id/textView"
         android:layout_marginTop="20dp"/>
 
@@ -138,12 +130,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name"
+
         android:id="@+id/textView"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_above="@+id/textView2"
         android:layout_alignParentStart="true"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -155,7 +148,7 @@
         android:layout_alignTop="@+id/thelessondate"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -167,7 +160,7 @@
         android:layout_below="@+id/thelessondate"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -179,7 +172,7 @@
         android:layout_alignTop="@+id/thelessonlocation"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
@@ -191,7 +184,8 @@
         android:layout_alignTop="@+id/thelessoncomments"
         android:layout_alignParentStart="true"
         android:layout_margin="5dp"
-        android:textColor="@color/dgrey"
-        android:textStyle="bold"/>
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
 </RelativeLayout>

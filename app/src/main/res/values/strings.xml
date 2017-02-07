@@ -18,4 +18,5 @@
     <string name="title_activity_web_view">WebView</string>
     <string name="title_activity_routes">Map</string>
     <string name="title_activity_finances">finances</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

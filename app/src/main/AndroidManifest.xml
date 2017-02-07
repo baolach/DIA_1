@@ -2,8 +2,18 @@
 <manifest package="com.example.baolach.driving_app_3"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- <uses-permission android:name="package_name.permission.MAPS_RECEIVE"/> -->
-    <!-- <uses-library android:name="com.google.android.maps" /> -->
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/> <!-- GPS Location -->
+    <users-permission android:name="ANDROID.PERMISSION.INTERNET" />
+    <users-permission android:name="ANDROID.PERMISSION.ACCESS_NETWORK_STATE" />
+    <users-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <users-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>  netowkr based location -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,24 +29,25 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>4<activity
+        </activity>4
+        <activity
             android:name=".ClientInfo"
             android:label="@string/title_activity_client_info"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".LessonInfo"
             android:label="@string/title_activity_lesson_info"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name=".Diary"/>
-        <activity android:name=".InsertClient"/>
-        <activity android:name=".ListClients"/>
-        <activity android:name=".InsertLesson"/>
-        <activity android:name=".ListLessons"/>
-        <activity android:name=".Calender"/>
-        <activity android:name=".WebActivity"/>
-        <activity android:name=".AdminActivity"/>
+        <activity android:name=".Diary" />
+        <activity android:name=".InsertClient" />
+        <activity android:name=".ListClients" />
+        <activity android:name=".InsertLesson" />
+        <activity android:name=".ListLessons" />
+        <activity android:name=".Calender" />
+        <activity android:name=".WebActivity" />
+        <activity android:name=".AdminActivity" />
         <activity
             android:name=".Finances"
             android:label="@string/title_activity_finances"
@@ -46,6 +57,22 @@
             android:name=".InsertFinances"
             android:label="@string/title_activity_finances"
             android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps" >
         </activity>
     </application>
 
