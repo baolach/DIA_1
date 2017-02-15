@@ -6,6 +6,7 @@ import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,21 +24,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        setUpMapIfNeeded();
 
 
-//        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+    }
+
+    private void setUpMapIfNeeded() {
+//        if(mMap == null){
+//            mMap((SupportMapFragment).getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 //
-//        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_REFRESH_TIME,
-//                LOCATION_REFRESH_DISTANCE, mLocationListener);
+//            if(mMap !=null){
+//                setUpMap();
+//            }
+//        }
+    }
 
-        LocationManager locationManager = (LocationManager)
-                getSystemService(Context.LOCATION_SERVICE);
-
-
+    private void setUpMap() {
+        mMap.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("Marker"));
     }
 
 
@@ -67,10 +70,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
+} // end class
 
 
-
-
-
-
-}
+//    // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+//    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//            .findFragmentById(R.id.map);
+//mapFragment.getMapAsync(this);
+//
+//
+////        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+////
+////        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_REFRESH_TIME,
+////                LOCATION_REFRESH_DISTANCE, mLocationListener);
+//
+//        LocationManager locationManager = (LocationManager)
+//        getSystemService(Context.LOCATION_SERVICE);
+//
+//        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+//        .enableAutoManage(this /* FragmentActivity */,
+//        this /* OnConnectionFailedListener */)
+//        .addApi(Drive.API)
+//        .addScope(Drive.SCOPE_FILE)
+//        .build();
+//
+//        // Create an instance of GoogleAPIClient.
+//        if (mGoogleApiClient == null) {
+//        mGoogleApiClient = new GoogleApiClient.Builder(this)
+//        .addConnectionCallbacks(this)
+//        .addOnConnectionFailedListener(this)
+//        .addApi(LocationServices.API)
+//        .build();
+//        }
