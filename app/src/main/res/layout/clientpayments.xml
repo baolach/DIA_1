@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/TextView_client_payments"
+            android:id="@+id/TextView_client_name"
             android:textSize="20dp"
             android:textColor="@color/white"
 
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/TextView_log_no"
+            android:id="@+id/TextView_log_nos"
             android:textSize="20dp"
             android:textColor="@color/white"
 

@@ -22,7 +22,7 @@ public class FinancesCursorAdapter extends CursorAdapter {
     // you don't bind any data to the view at this point.
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.clientpayments, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.clientnames, parent, false); // will show client payments
     }
 
 
@@ -32,15 +32,15 @@ public class FinancesCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         // Find fields to populate in inflated template
         TextView clientName = (TextView) view.findViewById(R.id.TextView_client_name); // what is read in here should be displayed
-        TextView clientPayment = (TextView) view.findViewById(R.id.TextView_client_payments);
+        TextView clientPayment = (TextView) view.findViewById(R.id.TextView_log_no);
 
         // Extract properties from cursor
         String names = cursor.getString(cursor.getColumnIndexOrThrow(DBManager.KEY_TASK_CLIENT_NAME));
-        String payments = cursor.getString(cursor.getColumnIndexOrThrow(DBManager.KEY_TASK_BALANCE_DUE)); // I want to do the calculation and return the balance due which should be stored in the db under the clients name
+        String log_nos = cursor.getString(cursor.getColumnIndexOrThrow(DBManager.KEY_TASK_LOG_NO)); // will be KEY_TASK_BALANCE_DUE //  I want to do the calculation and return the balance due which should be stored in the db under the clients name
 
         // Populate fields with extracted properties
         clientName.setText(names);
-        clientPayment.setText(payments);
+        clientPayment.setText(log_nos); // will be payments - log_nos
 
 
     }

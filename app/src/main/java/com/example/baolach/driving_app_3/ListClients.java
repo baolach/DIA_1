@@ -44,7 +44,8 @@ public class ListClients extends Activity
                     String theclientslognumber = myCursor.getString(4);
                     String theclientsdrivernumber = myCursor.getString(5);
                     String theclientsdob = myCursor.getString(6);
-                    String theclientscomments = myCursor.getString(7);
+                    String nooflessons = myCursor.getString(7);
+                    String theclientscomments = myCursor.getString(8);
 
                     Intent i = new Intent(ListClients.this, ClientInfo.class);
 
@@ -54,6 +55,7 @@ public class ListClients extends Activity
                     i.putExtra("theclientslognumber", theclientslognumber);
                     i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
                     i.putExtra("theclientsdob", theclientsdob);
+                    i.putExtra("nooflessons", nooflessons);
                     i.putExtra("theclientscomments", theclientscomments);
 
                     startActivity(i);

@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class DBManager {
 
     // final means the variable name can't be renamed
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 5;
 
     static final String DATABASE_NAME = "My_Database";
     static final String CLIENT_TABLE = "Client";
@@ -42,7 +42,7 @@ public class DBManager {
     static final String KEY_TASK_LESSON_COMMENTS = "Comments";
 
     // Finances variables
-    //static final String KEY_TASK_CLIENT_NAME = "Client_name";
+    // static final String KEY_TASK_CLIENT_NAME = "Client_name";
     //static final String KEY_TASK_DRIVER_NO = "Driver_No";
     //static final String KEY_TASK_NO_OF_LESSONS = "No_Of_Lessons";
     static final String KEY_TASK_LESSONS_TO_BE_PAID = "Lessons_to_be_paid";
@@ -62,7 +62,7 @@ public class DBManager {
             "Log_No    TEXT," +
             "Driver_No   TEXT," +
             "Dob  DATE," + // maybe change to DATE
-            "No_Of_Lessons  INTEGER," +
+            "No_Of_Lessons  TEXT," +
             "Comments TEXT);";
 
     private static final String CREATE_LESSONS_TABLE = "create table Lessons(_id integer primary key autoincrement, " +
@@ -72,14 +72,14 @@ public class DBManager {
             "Location    TEXT," +
             "Comments   TEXT);";
     ///////////////////
-
-    private static final String CREATE_FINANCES_TABLE = "create table Finances(_id integer primary key autoincrement, " +
-            "Client_name  TEXT, " + // FK of client table
-            "Driver_No  TEXT, " + // fk
-            "No_Of_Lessons  INTEGER, " + // fk
-            "Lessons_to_be_paid  INTEGER, " + // Lessons_to_be_paid * price_per_lessons
-            "Price_per_lesson  INTEGER, " +
-            "Balance_due  INTEGER)"; // in euros
+//
+//    private static final String CREATE_FINANCES_TABLE = "create table Finances(_id integer primary key autoincrement, " +
+//            "Client_name  TEXT, " + // FK of client table
+//            "Driver_No  TEXT, " + // fk
+//            "No_Of_Lessons  INTEGER, " + // fk
+//            "Lessons_to_be_paid  INTEGER, " + // Lessons_to_be_paid * price_per_lessons
+//            "Price_per_lesson  INTEGER, " +
+//            "Balance_due  INTEGER)"; // in euros
     /*
     The locationName, for example may be “Difficult Hill-start, Greenhills road”.
     LocationType would be “hill-start” and the coordinates would be the latitude
@@ -122,7 +122,7 @@ public class DBManager {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(CREATE_CLIENT_TABLE);
             db.execSQL(CREATE_LESSONS_TABLE);
-            db.execSQL(CREATE_FINANCES_TABLE);
+            //db.execSQL(CREATE_FINANCES_TABLE);
 
         }
 
@@ -176,18 +176,18 @@ public class DBManager {
         return db.insert(LESSON_TABLE, null, initialValues);
     }
 
-    public long insertPayment(String clientName, String driverNo, Integer noOfLessons, Integer lessonsToBePaid, Integer pricePerLesson, Integer balanceDue) {
-        ContentValues initialValues = new ContentValues();
-
-        initialValues.put(KEY_TASK_CLIENT_NAME, clientName);
-        initialValues.put(KEY_TASK_DRIVER_NO, driverNo);
-        initialValues.put(KEY_TASK_NO_OF_LESSONS, noOfLessons);
-        initialValues.put(KEY_TASK_LESSONS_TO_BE_PAID, lessonsToBePaid);
-        initialValues.put(KEY_TASK_PRICE_PER_LESSON, pricePerLesson);
-        initialValues.put(KEY_TASK_BALANCE_DUE, balanceDue);
-
-        return db.insert(FINANCES_TABLE, null, initialValues);
-    }
+//    public long insertPayment(String clientName, String driverNo, Integer noOfLessons, Integer lessonsToBePaid, Integer pricePerLesson, Integer balanceDue) {
+//        ContentValues initialValues = new ContentValues();
+//
+//        initialValues.put(KEY_TASK_CLIENT_NAME, clientName);
+//        initialValues.put(KEY_TASK_DRIVER_NO, driverNo);
+//        initialValues.put(KEY_TASK_NO_OF_LESSONS, noOfLessons);
+//        initialValues.put(KEY_TASK_LESSONS_TO_BE_PAID, lessonsToBePaid);
+//        initialValues.put(KEY_TASK_PRICE_PER_LESSON, pricePerLesson);
+//        initialValues.put(KEY_TASK_BALANCE_DUE, balanceDue);
+//
+//        return db.insert(FINANCES_TABLE, null, initialValues);
+//    }
 
 
 

@@ -32,6 +32,7 @@ public class ClientInfo extends Activity {
         String TheClientsLogNumber = clientData.getStringExtra("theclientslognumber");
         String TheClientDriverNumber = clientData.getStringExtra("theclientsdrivernumber");
         String TheClientsDob= clientData.getStringExtra("theclientsdob");
+        String NoOfLessons= clientData.getStringExtra("numberoflessons");
         String TheClientsComments = clientData.getStringExtra("theclientscomments");
 
         //create variable which references output field
@@ -41,7 +42,9 @@ public class ClientInfo extends Activity {
         final TextView lognoTextView = (TextView) findViewById(R.id.thelessonlocation);
         final TextView drivernoTextView = (TextView) findViewById(R.id.thelessoncomments);
         final TextView dobTextView = (TextView) findViewById(R.id.theclientsdob);
+        final TextView nooflessonsTextView = (TextView) findViewById(R.id.numberoflessons);
         final TextView commentsTextView = (TextView) findViewById(R.id.theclientscomments);
+
 
         Button deleteButton = (Button)findViewById(R.id.delete_client_btn);
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -73,13 +76,14 @@ public class ClientInfo extends Activity {
         lognoTextView.setText(TheClientsLogNumber);
         drivernoTextView.setText(TheClientDriverNumber);
         dobTextView.setText(TheClientsDob);
+        nooflessonsTextView.setText(NoOfLessons);
         commentsTextView.setText(TheClientsComments);
 
     }
 
     public void goBackScreen(View view) {
         try {
-            Intent lastScreen = new Intent(this, AdminActivity.class);
+            Intent lastScreen = new Intent(this, ListClients.class);
             startActivity(lastScreen);
         } catch(Exception e) {
             e.printStackTrace();

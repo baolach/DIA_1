@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Client Name"
+        android:text="Name"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:id="@+id/textView_lesson_name"
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Lesson Time"
+        android:text="Time"
         android:textStyle="bold"
         android:textColor="@color/white"
 
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Lesson Date"
+        android:text="Date"
         android:textStyle="bold"
         android:textColor="@color/white"
 

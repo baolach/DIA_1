@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.baolach.driving_app_3.FinancesFragment"
-    tools:showIn="@layout/activity_finances">
+    tools:showIn="@layout/list_finances">
 
 
 </RelativeLayout>
