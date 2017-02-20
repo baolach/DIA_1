@@ -39,7 +39,6 @@ public class MainActivity extends Activity
         Button logbook_btn = (Button)findViewById(R.id.logbook_btn);
         Button finances_btn = (Button)findViewById(R.id.finances_btn);
         Button statistics_btn = (Button)findViewById(R.id.statistics_btn);
-        Button camera_btn = (Button)findViewById(R.id.camera_btn);
         Button admin_btn = (Button)findViewById(R.id.admin_btn);
 
 
@@ -84,15 +83,6 @@ public class MainActivity extends Activity
         });
 
         statistics_btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-
-                Intent calender_intent = new Intent(MainActivity.this, Calender.class);
-                startActivity(calender_intent);
-            }
-        });
-
-        camera_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
 

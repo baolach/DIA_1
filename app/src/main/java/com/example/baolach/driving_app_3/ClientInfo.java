@@ -34,6 +34,8 @@ public class ClientInfo extends Activity {
         String TheClientsDob= clientData.getStringExtra("theclientsdob");
         String NoOfLessons= clientData.getStringExtra("numberoflessons");
         String TheClientsComments = clientData.getStringExtra("theclientscomments");
+        String TheClientBalance = clientData.getStringExtra("thebalance");
+
 
         //create variable which references output field
         final TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
@@ -44,6 +46,8 @@ public class ClientInfo extends Activity {
         final TextView dobTextView = (TextView) findViewById(R.id.theclientsdob);
         final TextView nooflessonsTextView = (TextView) findViewById(R.id.numberoflessons);
         final TextView commentsTextView = (TextView) findViewById(R.id.theclientscomments);
+        final TextView balanceTextView = (TextView) findViewById(R.id.thebalance);
+
 
 
         Button deleteButton = (Button)findViewById(R.id.delete_client_btn);
@@ -78,6 +82,8 @@ public class ClientInfo extends Activity {
         dobTextView.setText(TheClientsDob);
         nooflessonsTextView.setText(NoOfLessons);
         commentsTextView.setText(TheClientsComments);
+        balanceTextView.setText(TheClientBalance);
+
 
     }
 

@@ -47,18 +47,6 @@
 
         android:layout_margin="1dp"
        />
-    <EditText
-        android:id="@+id/editText_clientAddress"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-        android:padding="10dp"
-
-        android:hint="Address"
-        android:layout_below="@+id/editText_clientPhone"
-        android:layout_alignParentStart="true"
-        android:layout_margin="1dp"/>
 
     <EditText
         android:id="@+id/editText_clientLogNo"
@@ -121,6 +109,18 @@
         android:layout_below="@+id/editText_clientNoOfLessons"
         android:layout_alignParentStart="true"
         android:layout_margin="1dp"/>
+    <EditText
+        android:id="@+id/editText_clientBalance"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+        android:padding="10dp"
+
+        android:hint="Balance"
+        android:layout_below="@+id/editText_clientComments"
+        android:layout_alignParentStart="true"
+        android:layout_margin="1dp"/>
 
 
     <Button
@@ -128,7 +128,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        android:layout_below="@+id/editText_clientComments"
+        android:layout_below="@+id/editText_clientBalance"
         android:layout_alignParentEnd="true"
         android:layout_margin="1dp"
         android:background="@color/turq"
@@ -153,6 +153,19 @@
         android:layout_below="@+id/website"
         android:layout_alignStart="@+id/editText_clientName"/>
 
+    <EditText
+        android:id="@+id/editText_clientAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+        android:padding="10dp"
+
+        android:hint="Address"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/editText_clientPhone"
+        android:layout_alignParentEnd="true"/>
 
 
 </RelativeLayout>

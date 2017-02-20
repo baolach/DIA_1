@@ -13,18 +13,6 @@
     >
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="112dp"
-        android:id="@+id/website"
-        android:src="@drawable/active5"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"
-
-        />
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -187,5 +175,15 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:id="@+id/website"
+        android:src="@drawable/active5"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginTop="56dp"/>
 
 </RelativeLayout>

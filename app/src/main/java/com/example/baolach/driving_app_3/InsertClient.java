@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,9 +22,11 @@ public class InsertClient extends Activity{
         EditText clientDob;
         EditText clientNoOfLessons;
         EditText clientComments;
+        EditText clientBalance;
 
 
-        protected void onCreate(Bundle savedInstanceState) {
+
+    protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.insert_client_details);
 
@@ -45,6 +48,8 @@ public class InsertClient extends Activity{
                         clientDob = (EditText) findViewById(R.id.editText_clientDob);
                         clientNoOfLessons = (EditText) findViewById(R.id.editText_clientNoOfLessons);
                         clientComments = (EditText) findViewById(R.id.editText_clientComments);
+                        clientBalance = (EditText) findViewById(R.id.editText_clientBalance);
+
 
                         db.insertClient(clientName.getText().toString(),
                                 clientPhone.getText().toString(),
@@ -53,9 +58,10 @@ public class InsertClient extends Activity{
                                 clientDriverNo.getText().toString(),
                                 clientDob.getText().toString(),
                                 clientNoOfLessons.getText().toString(),
-                                clientComments.getText().toString()
-                                );
+                                clientComments.getText().toString(),
+                                clientBalance.getText().toString()
 
+                        );
 
                         db.close();
 

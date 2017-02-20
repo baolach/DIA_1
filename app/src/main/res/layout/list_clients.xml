@@ -58,14 +58,16 @@
     android:layout_toEndOf="@+id/button"/>
 
     <TextView
+        android:id="@+id/textView_client_name"
+        android:text="Name"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Name"
         android:textColor="@color/white"
         android:textStyle="bold"
 
-        android:id="@+id/textView_client_name"
+
         android:layout_below="@+id/new_client"
         android:layout_alignParentStart="true"
         android:layout_margin="10dp"/>

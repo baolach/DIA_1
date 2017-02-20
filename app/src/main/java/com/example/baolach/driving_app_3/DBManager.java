@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class DBManager {
 
     // final means the variable name can't be renamed
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     static final String DATABASE_NAME = "My_Database";
     static final String CLIENT_TABLE = "Client";
@@ -33,6 +33,8 @@ public class DBManager {
     static final String KEY_TASK_DOB = "Dob";
     static final String KEY_TASK_NO_OF_LESSONS = "No_Of_Lessons";
     static final String KEY_TASK_COMMENTS = "Comments";
+    static final String KEY_TASK_BALANCE = "Balance";
+
 
     // Lesson variables
     static final String KEY_TASK_LESSON_NAME = "Lesson_Name";
@@ -47,7 +49,7 @@ public class DBManager {
     //static final String KEY_TASK_NO_OF_LESSONS = "No_Of_Lessons";
     static final String KEY_TASK_LESSONS_TO_BE_PAID = "Lessons_to_be_paid";
     static final String KEY_TASK_PRICE_PER_LESSON = "Price_per_lesson";
-    static final String KEY_TASK_BALANCE_DUE = "Balance_due";
+    //static final String KEY_TASK_BALANCE_DUE = "Balance_due";
 
 
     // Database variables
@@ -60,10 +62,11 @@ public class DBManager {
             "Phone  INTEGER, " +
             "Address  TEXT," +
             "Log_No    TEXT," +
-            "Driver_No   TEXT," +
+            "No_Of_Lessons   TEXT," +
             "Dob  DATE," + // maybe change to DATE
-            "No_Of_Lessons  TEXT," +
-            "Comments TEXT);";
+            "No_Of_Lessons  INTEGER," +
+            "Comments TEXT," +
+            "Balance INTEGER);";
 
     private static final String CREATE_LESSONS_TABLE = "create table Lessons(_id integer primary key autoincrement, " +
             "Lesson_Name  TEXT, " +
@@ -148,7 +151,7 @@ public class DBManager {
     }
 
     public long insertClient(String name, String phone, String address, String log_no,
-                             String driver_no, String dob, String no_of_lessons, String comments) {
+                             String driver_no, String dob, String no_of_lessons, String comments, String balance) {
         ContentValues initialValues = new ContentValues();
 
         initialValues.put(KEY_TASK_CLIENT_NAME, name);
@@ -159,6 +162,8 @@ public class DBManager {
         initialValues.put(KEY_TASK_DOB, dob);
         initialValues.put(KEY_TASK_NO_OF_LESSONS, no_of_lessons);
         initialValues.put(KEY_TASK_COMMENTS, comments);
+        initialValues.put(KEY_TASK_BALANCE, balance);
+
 
         return db.insert(CLIENT_TABLE, null, initialValues);
     }

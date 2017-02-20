@@ -43,6 +43,36 @@
 
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Log Number Finances"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+
+        android:id="@+id/textView_log_number"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_alignBaseline="@+id/textView_client_name"
+        android:layout_alignBottom="@+id/textView_client_name"
+        android:layout_toEndOf="@+id/back_screen_btn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+
+        android:id="@+id/textView_client_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/back_screen_btn"
+        android:layout_alignStart="@+id/back_screen_btn"/>
+
     <ListView
         android:id="@+id/listView_clients"
         android:layout_width="match_parent"
@@ -50,14 +80,14 @@
         android:divider="@android:color/white"
         android:dividerHeight="0.5dp"
 
-        android:layout_below="@+id/back_screen_btn"
-        android:layout_margin="5dp"
-
         android:background="@color/grey"
 
 
-
-        />
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/textView_client_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"/>
 
 
 </RelativeLayout>
