@@ -64,9 +64,10 @@ public class InsertClient extends Activity{
                         );
 
                         db.close();
+                        Toast.makeText(getApplicationContext(), "Client added", Toast.LENGTH_SHORT).show();
 
                         // return to the main screen
-                        Intent homeScreen = new Intent(InsertClient.this, AdminActivity.class);
+                        Intent homeScreen = new Intent(InsertClient.this, ListClients.class);
                         startActivity(homeScreen);
                     } catch (Exception e)
                     {

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.sql.SQLException;
 
 public class ClientInfo extends Activity {
@@ -19,7 +20,8 @@ public class ClientInfo extends Activity {
     String clientsName;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_info);
 
@@ -49,6 +51,18 @@ public class ClientInfo extends Activity {
         final TextView balanceTextView = (TextView) findViewById(R.id.thebalance);
 
 
+        // setting the TextViews to display what the info the user entered
+        nameTextView.setText(clientsName);
+        phoneTextView.setText(TheClientsPhone);
+        addressTextView.setText(TheClientsAddress);
+        lognoTextView.setText(TheClientsLogNumber);
+        drivernoTextView.setText(TheClientDriverNumber);
+        dobTextView.setText(TheClientsDob);
+        nooflessonsTextView.setText(NoOfLessons);
+        commentsTextView.setText(TheClientsComments);
+        balanceTextView.setText(TheClientBalance);
+
+
 
         Button deleteButton = (Button)findViewById(R.id.delete_client_btn);
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +73,10 @@ public class ClientInfo extends Activity {
                 try {
                     dbManager.open();
                     dbManager.deleteClient(clientsName);
+                    Toast.makeText(getApplicationContext(), "Client deleted", Toast.LENGTH_SHORT).show();
+
                 } catch (SQLException e) {
-                    System.out.println("Client could not be deleted");
+                    Toast.makeText(getApplicationContext(), "Client could not be deleted", Toast.LENGTH_SHORT).show();
                 } finally {
                     dbManager.close();
 
@@ -72,17 +88,6 @@ public class ClientInfo extends Activity {
 
             }
         });
-
-        // setting the TextViews to display what the info the user entered
-        nameTextView.setText(clientsName);
-        phoneTextView.setText(TheClientsPhone);
-        addressTextView.setText(TheClientsAddress);
-        lognoTextView.setText(TheClientsLogNumber);
-        drivernoTextView.setText(TheClientDriverNumber);
-        dobTextView.setText(TheClientsDob);
-        nooflessonsTextView.setText(NoOfLessons);
-        commentsTextView.setText(TheClientsComments);
-        balanceTextView.setText(TheClientBalance);
 
 
     }

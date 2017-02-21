@@ -8,9 +8,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.sql.SQLException;
+
+/* DELETE BUTTON DOESNT WORK */
 
 public class LessonInfo extends Activity {
+
+    // these 2 added
+    DBManager db = new DBManager(this);
+    String clientsName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -18,14 +28,17 @@ public class LessonInfo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_info);
 
-        Bundle lessonData = getIntent().getExtras();
+        Intent lessonData = getIntent();
+
+        //Bundle clientData = getIntent().getExtras();
 
         //put data from list clients activity into new string
-        String TheLessonName = lessonData.getString("thelessonname");
-        String TheLessonDate= lessonData.getString("thelessondate");
-        String TheLessonTime = lessonData.getString("thelessontime");
-        String TheLessonLocation = lessonData.getString("thelessonlocation");
-        String TheLessonComments = lessonData.getString("thelessoncomments");
+        clientsName = lessonData.getStringExtra("theclientsname");
+        //clientsName = lessonData.getStringExtra("thelessonname");
+        String TheLessonDate= lessonData.getStringExtra("thelessondate");
+        String TheLessonTime = lessonData.getStringExtra("thelessontime");
+        String TheLessonLocation = lessonData.getStringExtra("thelessonlocation");
+        String TheLessonComments = lessonData.getStringExtra("thelessoncomments");
 
         //create variable which references output field
         final TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
@@ -35,11 +48,37 @@ public class LessonInfo extends Activity {
         final TextView commentsTextView = (TextView) findViewById(R.id.thelessoncomments);
 
         //use setText to change text
-        nameTextView.setText(TheLessonName);
+        nameTextView.setText(clientsName);
         dateTextView.setText(TheLessonDate);
         timeTextView.setText(TheLessonTime);
         locationTextView.setText(TheLessonLocation);
         commentsTextView.setText(TheLessonComments);
+
+
+        Button deleteButton = (Button)findViewById(R.id.delete_client_btn);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                DBManager dbManager = new DBManager(LessonInfo.this);
+                try {
+                    dbManager.open();
+                    dbManager.deleteClient("Test9");
+                    //Toast.makeText(getApplicationContext(), "Client deleted", Toast.LENGTH_SHORT).show();
+
+                } catch (SQLException e) {
+                    Toast.makeText(getApplicationContext(), "Client could not be deleted", Toast.LENGTH_SHORT).show();
+                } finally {
+                    dbManager.close();
+
+                    Intent intent = new Intent(LessonInfo.this, ListLessons.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // clears previous screens
+                    startActivity(intent); // this loads new intent (ListClients
+
+                }
+
+            }
+        });
 
     }
 
@@ -51,6 +90,8 @@ public class LessonInfo extends Activity {
             e.printStackTrace();
         }
     }
+
+
 
 
 }

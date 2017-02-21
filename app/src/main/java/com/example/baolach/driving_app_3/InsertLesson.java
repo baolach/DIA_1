@@ -50,7 +50,7 @@ public class InsertLesson extends Activity {
                     db.close();
 
                     // return to the home screen.
-                    Intent homeScreen = new Intent(InsertLesson.this, AdminActivity.class);
+                    Intent homeScreen = new Intent(InsertLesson.this, ListLessons.class);
                     startActivity(homeScreen);
                 } catch (Exception e) {
 

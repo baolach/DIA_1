@@ -186,4 +186,25 @@
         android:layout_alignStart="@+id/button"
         android:layout_marginTop="56dp"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Lesson"
+        android:id="@+id/delete_client_btn"
+        android:onClick="listBookNames"
+
+        style="?android:attr/buttonStyleSmall"
+        android:background="@color/turq"
+        android:maxWidth="100dp"
+        android:minHeight="20dp"
+        android:textSize="11dp"
+        android:padding="5dp"
+        android:textColor="@color/white"
+
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_alignBaseline="@+id/button"
+        android:layout_alignBottom="@+id/button"
+        android:layout_toEndOf="@+id/textView3"/>
+
 </RelativeLayout>
