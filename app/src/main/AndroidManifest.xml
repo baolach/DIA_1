@@ -24,6 +24,7 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden"
+
             >
 
             <intent-filter>
@@ -60,6 +61,7 @@
             android:label="@string/title_activity_finances"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity android:name=".HttpURLConnectionExample" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -78,6 +80,10 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" >
         </activity>
+        <activity
+            android:name=".AndroidGPSTrackingActivity" >
+        </activity>
+
     </application>
 
 </manifest>

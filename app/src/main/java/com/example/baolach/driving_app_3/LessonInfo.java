@@ -20,7 +20,7 @@ public class LessonInfo extends Activity {
 
     // these 2 added
     DBManager db = new DBManager(this);
-    String clientsName;
+    String lesson_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,7 +33,7 @@ public class LessonInfo extends Activity {
         //Bundle clientData = getIntent().getExtras();
 
         //put data from list clients activity into new string
-        clientsName = lessonData.getStringExtra("theclientsname");
+        lesson_name = lessonData.getStringExtra("thelessonname");
         //clientsName = lessonData.getStringExtra("thelessonname");
         String TheLessonDate= lessonData.getStringExtra("thelessondate");
         String TheLessonTime = lessonData.getStringExtra("thelessontime");
@@ -48,7 +48,7 @@ public class LessonInfo extends Activity {
         final TextView commentsTextView = (TextView) findViewById(R.id.thelessoncomments);
 
         //use setText to change text
-        nameTextView.setText(clientsName);
+        nameTextView.setText(lesson_name);
         dateTextView.setText(TheLessonDate);
         timeTextView.setText(TheLessonTime);
         locationTextView.setText(TheLessonLocation);
@@ -63,7 +63,7 @@ public class LessonInfo extends Activity {
                 DBManager dbManager = new DBManager(LessonInfo.this);
                 try {
                     dbManager.open();
-                    dbManager.deleteClient("Test9");
+                    dbManager.deleteClient(lesson_name);
                     //Toast.makeText(getApplicationContext(), "Client deleted", Toast.LENGTH_SHORT).show();
 
                 } catch (SQLException e) {

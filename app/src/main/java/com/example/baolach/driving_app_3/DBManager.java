@@ -62,7 +62,7 @@ public class DBManager {
             "Phone  INTEGER, " +
             "Address  TEXT," +
             "Log_No    TEXT," +
-            "No_Of_Lessons   TEXT," +
+            "Driver_No   TEXT," +
             "Dob  DATE," + // maybe change to DATE
             "No_Of_Lessons  INTEGER," +
             "Comments TEXT," +

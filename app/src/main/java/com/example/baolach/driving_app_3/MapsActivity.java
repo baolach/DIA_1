@@ -1,10 +1,18 @@
 package com.example.baolach.driving_app_3;
 
+import android.app.AlertDialog;
+import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.IBinder;
+import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -70,6 +78,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
+
+
 } // end class
 
 
@@ -102,3 +112,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        .addApi(LocationServices.API)
 //        .build();
 //        }
+
+

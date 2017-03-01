@@ -45,6 +45,7 @@ public class ClientInfo extends Activity {
         final TextView addressTextView = (TextView) findViewById(R.id.thelessontime);
         final TextView lognoTextView = (TextView) findViewById(R.id.thelessonlocation);
         final TextView drivernoTextView = (TextView) findViewById(R.id.thelessoncomments);
+
         final TextView dobTextView = (TextView) findViewById(R.id.theclientsdob);
         final TextView nooflessonsTextView = (TextView) findViewById(R.id.numberoflessons);
         final TextView commentsTextView = (TextView) findViewById(R.id.theclientscomments);
