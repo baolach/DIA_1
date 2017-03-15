@@ -88,7 +88,7 @@ public class AdminActivity extends Activity {
             public void onClick(View v)
             {
 
-                Intent reminders_intent = new Intent(AdminActivity.this, Calender.class); // lists all lessons
+                Intent reminders_intent = new Intent(AdminActivity.this, Reminders.class); // lists all lessons
                 startActivity(reminders_intent);
             }
         });

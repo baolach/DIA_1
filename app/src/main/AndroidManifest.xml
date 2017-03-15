@@ -13,6 +13,9 @@
     <users-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <users-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>  <!-- network based location -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+
 
     <application
         android:allowBackup="true"
@@ -51,6 +54,10 @@
         <activity android:name=".Calender" />
         <activity android:name=".WebActivity" />
         <activity android:name=".AdminActivity" />
+        <activity android:name=".Bike_Details" />
+        <activity android:name=".View_My_Bikes" />
+
+
         <activity
             android:name=".Finances"
             android:label="@string/title_activity_finances"
@@ -62,6 +69,8 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name=".HttpURLConnectionExample" />
+        <activity android:name=".Reminders" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

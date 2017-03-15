@@ -5,10 +5,15 @@ import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.renderscript.Sampler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -21,12 +26,24 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    // added
+//    private SensorManager sensorManager;
+//    private Sensor accelerometer;
+//    long lastUpdate = 0;
+//    private float last_x, last_y, last_z;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +51,68 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
 
+//        // added - set up accelerometer
+//        // sets up sensorManage declared above
+//        sensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+//        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+//        sensorManager.registerListener((SensorEventListener) this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+//
+//        // register a listener so it knows to listen for accelerometer
+//
 
     }
+
+//    //added
+//    public void onSensorChanged(SensorEvent event){
+//        Sensor mySensor = event.sensor;
+//
+//        if(mySensor.getType() == Sensor.TYPE_ACCELEROMETER){
+//            float x = event.values[0]; // x value
+//            float y = event.values[1];
+//            float z = event.values[2];
+//
+//            long curTime = System.currentTimeMillis();
+//
+//            if(Math.abs(curTime - lastUpdate) >2000){
+//                SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+//                String currentDateTime = date.format(new Date());
+//
+//                lastUpdate = curTime;
+//                if(Math.abs(last_x - x) > 10){
+//                    mMap.addMarker(new MarkerOptions()
+//                    .position(new LatLng(37.23062, -00.42176))
+//                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+//                            .title("Hey x axis"  + currentDateTime));
+//                }
+//
+//                if(Math.abs(last_y - y) > 10){
+//                    mMap.addMarker(new MarkerOptions()
+//                            .position(new LatLng(37.26062, -00.4218))
+//                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+//                            .title("Hey y axis"  + currentDateTime));
+//                }
+//
+//                if(Math.abs(last_z - z) > 10){
+//                    mMap.addMarker(new MarkerOptions()
+//                            .position(new LatLng(37.23062, -00.43176))
+//                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+//                            .title("Hey z axis"  + currentDateTime));
+//                }
+//
+//                last_x = x;
+//                last_y = y;
+//                last_z = z;
+//
+//            }
+//
+//
+//
+//        }
+//    }
+//    public void onAccuracyChanged(Sensor sensor, int accuracy){
+//
+//    }
+
 
     private void setUpMapIfNeeded() {
 //        if(mMap == null){
@@ -48,7 +125,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("Marker"));
+        //mMap.addMarker(new MarkerOptions().position(new LatLng(37.229, -80.424)).title("Marker Test"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.229, -80.424), 14.9f));
     }
 
 
@@ -67,7 +145,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(37.229, -80.424)).title("Marker Test"));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 

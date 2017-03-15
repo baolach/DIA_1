@@ -41,7 +41,9 @@ public class AndroidGPSTrackingActivity extends Activity {
                     double longitude = gps.getLongitude();
 
                     // \n is for new line
-                    Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+                    //setContentView(R.layout.activity_maps);
+
+                    Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_SHORT).show();
                 }else{
                     // can't get location
                     // GPS or Network is not enabled
