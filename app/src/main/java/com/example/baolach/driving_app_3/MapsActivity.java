@@ -2,14 +2,10 @@ package com.example.baolach.driving_app_3;
 // this is the locations tab on the main screen - this will show the hillstart/turns locations etc once clicked
 
 
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.esri.android.map.MapView;
-import com.esri.android.map.ags.ArcGISTiledMapServiceLayer;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.maps.GoogleMap;
 
 
 
@@ -26,13 +22,19 @@ public class MapsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_maps);
-        setUpMapIfNeeded();
+
 
         // this refers to the mapView map1 in the content_maps.xml
         // uses xml to show the map
         mv = (MapView) findViewById(R.id.map1);
+        mv.getLocationDisplayManager().setShowLocation(true);
+        mv.getLocationDisplayManager().start();
 
-        // uses hava to show the map
+
+
+        /*
+         // Adds the different feature layers to the map if you want eg. rivers, roads, mountains
+        // uses java to show the map
         // create layer object to be wrapped with a basemap url
         ArcGISTiledMapServiceLayer baseMap = new ArcGISTiledMapServiceLayer(
                 this.getResources().getString(R.string.basemapUrl));
@@ -44,54 +46,28 @@ public class MapsActivity extends AppCompatActivity {
                 this.getResources().getString(R.string.basemapUrl2));
         mv.addLayer(MapLayer2);
 
+        */
+
+
+
+        // to enable map continuously
+        mv.enableWrapAround(true);
+
+        // creates envelope object to hold two sets of coordinates which form a rectangle map extent
+//        Envelope myEnv = new Envelope(-14029650,3560436,-12627306,5430229); // sets extent to california - 53.33866341,-6.36983871,53.30605714,-6.26083374
+//        mv.setExtent(myEnv);
+
+
+        /*
+        // java way of implementing web map
+        // because the map is set to public anyone can see - may change that
+        mv = new MapView(this, this.getResources().getString(R.string.webUrl),null,null);
+        setContentView(mv);
+        */
+
     }
 
 
-
-
-    private void setUpMapIfNeeded() {
-//        if(mMap == null){
-//            mMap((SupportMapFragment).getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-//
-//            if(mMap !=null){
-//                setUpMap();
-//            }
-//        }
-    }
-
-    private void setUpMap() {
-        //mMap.addMarker(new MarkerOptions().position(new LatLng(37.229, -80.424)).title("Marker Test"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.229, -80.424), 14.9f));
-    }
-
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-//    @Override
-    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
-//
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.addMarker(new MarkerOptions().position(new LatLng(37.229, -80.424)).title("Marker Test"));
-//
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
-
-    private final LocationListener mLocationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(final Location location) {
-            //your code here
-        }
-    };
 
 
 
