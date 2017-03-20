@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -30,7 +29,7 @@ public class MainActivity extends Activity
         if(servicesOK()){
             //setContentView(R.layout.activity_maps);
             setContentView(R.layout.activity_main);
-            Toast.makeText(this, "Ready to map!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Ready to map!", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -38,7 +37,7 @@ public class MainActivity extends Activity
         Button locations_btn = (Button)findViewById(R.id.locations_btn);
         Button logbook_btn = (Button)findViewById(R.id.logbook_btn);
         Button finances_btn = (Button)findViewById(R.id.finances_btn);
-        Button statistics_btn = (Button)findViewById(R.id.statistics_btn);
+        //Button statistics_btn = (Button)findViewById(R.id.statistics_btn);
         Button admin_btn = (Button)findViewById(R.id.admin_btn);
         //Button bikes_btn = (Button)findViewById(R.id.bikes_btn);
 
@@ -60,7 +59,7 @@ public class MainActivity extends Activity
             public void onClick(View v)
             {
                 Intent locations_intent = new Intent(MainActivity.this, MapsActivity.class); // inserts new lesson
-                setContentView(R.layout.activity_main);
+                //setContentView(R.layout.content_maps);
                 startActivity(locations_intent);
             }
         });
@@ -70,8 +69,8 @@ public class MainActivity extends Activity
             public void onClick(View v)
             {
 
-                Intent clients_intent = new Intent(MainActivity.this, HttpURLConnectionExample.class); // goes to diary activity and calls the list clients activity
-                startActivity(clients_intent);
+                //Intent clients_intent = new Intent(MainActivity.this, HttpURLConnectionExample.class); // goes to diary activity and calls the list clients activity
+                //startActivity(clients_intent);
             }
         });
 
@@ -84,14 +83,7 @@ public class MainActivity extends Activity
             }
         });
 
-        statistics_btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
 
-                Intent calender_intent = new Intent(MainActivity.this, Calender.class);
-                startActivity(calender_intent);
-            }
-        });
 
         // I had to put this in a try catch block for some reason but now it works
         try {
@@ -148,13 +140,13 @@ public class MainActivity extends Activity
         return true;
     }
 
-//    public void web_btn(View v)
-//    {
-//        Intent web_intent = new Intent(this, WebActivity.class);
-//        startActivity(web_intent);
-//        //  Half Button for RSA website
-//
-//    }
+    public void web_btn(View v)
+    {
+        Intent web_intent = new Intent(this, WebActivity.class);
+        startActivity(web_intent);
+        //  Half Button for RSA website
+
+    }
 
 //    public boolean onOptionsItemSelected(MenuItem item){
 //        if(item.getItemId() == R.id.action_do_task){

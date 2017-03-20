@@ -25,7 +25,7 @@
     <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Routes"
+    android:text="Maps"
     android:id="@+id/routes_btn"
     android:layout_below="@+id/website"
     android:layout_alignParentStart="true"
@@ -71,25 +71,43 @@
 
         />
 
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Statistics"-->
+        <!--android:id="@+id/statistics_btn"-->
+        <!--android:layout_below="@+id/finances_btn"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignEnd="@+id/admin_btn"-->
+        <!--android:background="@color/turq"-->
+        <!--android:layout_margin="3dp"-->
+
+        <!--/>-->
+
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Statistics"
-        android:id="@+id/statistics_btn"
+        android:text="ActiveSchoolOfMotoring.com"
+        android:id="@+id/web_btn"
+        android:onClick="web_btn"
+
         android:layout_below="@+id/finances_btn"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/admin_btn"
+
         android:background="@color/turq"
-        android:layout_margin="3dp"
-
-        />
-
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/finances_btn"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Admin"
         android:id="@+id/admin_btn"
-        android:layout_below="@+id/statistics_btn"
+        android:layout_below="@+id/web_btn"
         android:layout_alignParentStart="true"
         android:background="@color/dturq"
         android:textColor="@color/white"
@@ -99,7 +117,6 @@
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:layout_alignParentEnd="true"/>
-
     <!--<Button-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
@@ -181,17 +198,7 @@
         <!--android:layout_alignStart="@+id/new_client_btn"-->
         <!--android:background="@color/turq"-->
         <!--/>-->
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="ActiveSchoolOfMotoring.com"-->
-        <!--android:id="@+id/web_btn"-->
-        <!--android:onClick="web_btn"-->
-        <!--android:layout_below="@+id/calender_btn"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignStart="@+id/new_client_btn"-->
-        <!--android:background="@color/turq"-->
-        <!--/>-->
+
 
 
 
