@@ -56,8 +56,6 @@
         <activity android:name=".Calender" />
         <activity android:name=".WebActivity" />
         <activity android:name=".AdminActivity" />
-        <activity android:name=".Bike_Details" />
-        <activity android:name=".View_My_Bikes" />
 
 
         <activity

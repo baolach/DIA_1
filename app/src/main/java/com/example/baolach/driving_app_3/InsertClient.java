@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,7 +14,8 @@ public class InsertClient extends Activity{
 
         DBManager db = new DBManager(this);
 
-        EditText clientName;
+        //EditText clientName;
+        AutoCompleteTextView clientName;
         EditText clientPhone;
         EditText clientAddress;
         EditText clientLogNo;
@@ -40,7 +41,7 @@ public class InsertClient extends Activity{
                     {
                         db.open();
 
-                        clientName = (EditText) findViewById(R.id.editText_clientName);
+                        clientName = (AutoCompleteTextView) findViewById(R.id.editText_clientName);
                         clientPhone = (EditText) findViewById(R.id.editText_clientPhone);
                         clientAddress = (EditText) findViewById(R.id.editText_clientAddress);
                         clientLogNo = (EditText) findViewById(R.id.editText_clientLogNo);

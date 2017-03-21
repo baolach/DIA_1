@@ -4,10 +4,11 @@ package com.example.baolach.driving_app_3;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.esri.android.map.MapView;
-
-
+import com.esri.android.map.event.OnStatusChangedListener;
 
 
 public class MapsActivity extends AppCompatActivity {
@@ -15,7 +16,6 @@ public class MapsActivity extends AppCompatActivity {
     MapView mv;
 
     // /private GoogleMap mMap;
-
 
 
     @Override
@@ -27,8 +27,20 @@ public class MapsActivity extends AppCompatActivity {
         // this refers to the mapView map1 in the content_maps.xml
         // uses xml to show the map
         mv = (MapView) findViewById(R.id.map1);
-        mv.getLocationDisplayManager().setShowLocation(true);
-        mv.getLocationDisplayManager().start();
+
+        // mapview set to the listener
+        mv.setOnStatusChangedListener(new OnStatusChangedListener() {
+            @Override
+            public void onStatusChanged(Object o, STATUS status) {
+                if (OnStatusChangedListener.STATUS.INITIALIZED == status && o == mv) // makes sure map was added
+                {
+                    mv.getLocationDisplayManager().setShowLocation(true);
+                    mv.getLocationDisplayManager().start();
+                }
+            }
+        });
+
+
 
 
 
@@ -49,7 +61,6 @@ public class MapsActivity extends AppCompatActivity {
         */
 
 
-
         // to enable map continuously
         mv.enableWrapAround(true);
 
@@ -65,13 +76,39 @@ public class MapsActivity extends AppCompatActivity {
         setContentView(mv);
         */
 
+
+    } // end onCreate
+
+    // inflates the xml file, the gps image to the view
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.maps, menu);
+
+        return true;
     }
 
+    @Override public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+        // in case I add other menu items later
+        switch (id) {
+            case R.id.my_gps:
+                // turn on/off the gps
+                if (id == R.id.my_gps && mv.getLocationDisplayManager().isStarted()) {
+                    mv.getLocationDisplayManager().setShowLocation(false);
+                    mv.getLocationDisplayManager().stop();
+                    return true;
+                } else {
+                    mv.getLocationDisplayManager().setShowLocation(true);
+                    mv.getLocationDisplayManager().start();
+                }
+                default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+}
 
 
-
-
-} // end class
 
 
 
