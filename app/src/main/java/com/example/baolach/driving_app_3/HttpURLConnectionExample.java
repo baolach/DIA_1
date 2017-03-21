@@ -1,56 +1,43 @@
 package com.example.baolach.driving_app_3;
 
 
-//
-// susans
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
-        import android.content.Context;
-//import android.content.Intent;
-        import android.net.ConnectivityManager;
-        import android.net.NetworkInfo;
-        import android.os.AsyncTask;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.Button;
-//import android.widget.EditText;
-        import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
-
-        import java.io.BufferedReader;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-//import java.io.Reader;
-        import java.io.UnsupportedEncodingException;
-        import java.net.HttpURLConnection;
-        import java.net.URL;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class HttpURLConnectionExample extends AppCompatActivity implements View.OnClickListener {
 
-    private String urlText;
-    private TextView textView;
-    private Button button;
 
-    //    private sqlHandler sql;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.httpurlconnectionexample_activity);
 
-        //urlText = "http://138.68.141.18:8001/clients";//(EditText) findViewById(R.id.editText);
-        //textView = (TextView) findViewById(R.id.textView);
-        //button = (Button) findViewById(R.id.button);
-        //sql = new sqlHandler(this, null, null, 1);
-        //button.setOnClickListener(this);
         System.out.println("TEST");
 
-//        String url = "http://138.68.141.18:8000/clients";
-        String url = "http://138.68.141.18:8000/clients/?format=json"; //urlText.getText().toString();
+        String url = "http://138.68.141.18:8001/clients/?format=json"; //urlText.getText().toString();
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connmgr.getActiveNetworkInfo();
 
@@ -75,12 +62,11 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
         }
     }
 
-//    public void createJSONmethod(View view) {
-//        Intent intent = new Intent(this, json.class);
-//        startActivity (intent);
-//    }
 
-    private class DownloadWebPageTask extends AsyncTask<String, Void, String> {
+    // this is executed first then download url
+
+    private class DownloadWebPageTask extends AsyncTask<String, Void, String>
+    {
 
         @Override
         protected String doInBackground(String... params) {
@@ -92,33 +78,16 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
             }
         }
 
-        protected void onPostExecute(String result) {
-            String text = "";
 
-            try {
-                System.out.println("#####");
-                System.out.println(result);
-                System.out.println("#####");
-
-                JSONArray json = new JSONArray(result);
-                for (int i = 0; i < json.length(); i++) {
-                    JSONObject object = json.getJSONObject(i);
-                    text += "Name: " + object.getString("client_name") + ", The phone is: \"" + object.getString("client_phone") + "\", The address is: " + object.getString("client_address") + "\n\n";
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            System.out.println(text);
-        }
-
-
+        // this is executed second then onPostExectute
         private String downloadURL(String myurl) throws IOException {
             InputStream is = null;
             int len = 500;
 
             try {
                 URL url = new URL(myurl);
+                //System.out.println(" ########### Url: " + url);
+
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000);
                 conn.setConnectTimeout(15000);
@@ -130,8 +99,12 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
                 Log.d("DEBUG", "Response code is " + response);
 
                 is = conn.getInputStream();
+                //System.out.println(" ########### input stream: " + is);
+
 
                 String content = parse(is, len);
+                System.out.println(" ########### content: " + content); // this is the content of the url - ie. the data - this is passed to onPostExectute as result
+
 
                 return content;
             } finally {
@@ -139,6 +112,87 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
                     is.close();
             }
         }
+
+        protected void onPostExecute(String result) {
+            String text = "";
+
+            try {
+                System.out.println("#####");
+                System.out.println(result); // result is the data string
+                System.out.println("#####");
+
+                JSONArray json = new JSONArray(result);
+
+                // this forloop gets the data from the JSONArary json
+                for (int i = 0; i < json.length(); i++) {
+                    JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
+                    text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
+                    String clientname = object.optString("client_name").toString();
+                    String clientphone = object.optString("client_phone").toString();
+                    String clientaddress= object.optString("client_address").toString();
+
+//                    System.out.println("##### client_name = " + clientname);
+//                    System.out.println("##### client_phone = " + clientphone);
+//                    System.out.println("##### client_address = " + clientaddress);
+
+                }
+
+
+                /////////////////
+                final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
+
+                // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
+                        try {
+                            Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
+                            String theclientsname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
+                            String theclientsphone = myCursor.getString(2);
+                            String theclientsaddress = myCursor.getString(3);
+//                            String theclientslognumber = myCursor.getString(4);
+//                            String theclientsdrivernumber = myCursor.getString(5);
+//                            String theclientsdob = myCursor.getString(6);
+//                            String nooflessons = myCursor.getString(7);
+//                            String theclientscomments = myCursor.getString(8);
+//                            String thebalance = myCursor.getString(9);
+
+
+                            Intent i = new Intent(HttpURLConnectionExample.this, ClientInfo.class);
+
+                            i.putExtra("theclientsname", theclientsname);
+                            i.putExtra("theclientsphone", theclientsphone);
+                            i.putExtra("theclientsaddress", theclientsaddress);
+//                            i.putExtra("theclientslognumber", theclientslognumber);
+//                            i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
+//                            i.putExtra("theclientsdob", theclientsdob);
+//                            i.putExtra("nooflessons", nooflessons);
+//                            i.putExtra("theclientscomments", theclientscomments);
+//                            i.putExtra("thebalance", thebalance);
+
+
+                            startActivity(i);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+
+
+
+
+
+                ///////////////////////
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(text);
+        }
+
+
 
         private String parse(InputStream is, int len) throws IOException, UnsupportedEncodingException {
             return readIt(is);
@@ -166,6 +220,48 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
         }
     }
 }
+
+//// i think I need something like this above
+//// GETTING ALL THE CLIENT INFO SQL
+//public Cursor getAll() {
+//    Cursor mCursor = db.rawQuery("SELECT DISTINCT * FROM Client;", null);
+//
+//    if (mCursor != null) {
+//        mCursor.moveToFirst();
+//    }
+//
+//    return mCursor;
+//
+//}
+//
+//    public Cursor getAllLessons() {
+//        Cursor mCursor = db.rawQuery("SELECT DISTINCT * FROM Lessons;", null);
+//
+//        if (mCursor != null) {
+//            mCursor.moveToFirst();
+//        }
+//
+//        return mCursor;
+//    }
+//
+//    public void deleteClient(String clientName) {
+//        Cursor deleteClient = db.rawQuery("DELETE FROM Client WHERE client_name ='"+ clientName + "'",null);
+//
+//        if (deleteClient != null || deleteClient.getCount() > 0) {
+//            deleteClient.moveToFirst();
+//        }
+//    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 //
