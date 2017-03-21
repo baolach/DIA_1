@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.esri.android.map.MapView;
 import com.esri.android.map.event.OnStatusChangedListener;
@@ -34,8 +35,8 @@ public class MapsActivity extends AppCompatActivity {
             public void onStatusChanged(Object o, STATUS status) {
                 if (OnStatusChangedListener.STATUS.INITIALIZED == status && o == mv) // makes sure map was added
                 {
-                    mv.getLocationDisplayManager().setShowLocation(true);
-                    mv.getLocationDisplayManager().start();
+                    // map center set to kevin street using java rather than xml
+                    mv.centerAndZoom(53.337203, -6.267371, 16);
                 }
             }
         });
@@ -89,16 +90,18 @@ public class MapsActivity extends AppCompatActivity {
 
     @Override public boolean onOptionsItemSelected(MenuItem item)
     {
-        int id = item.getItemId();
+        int id = item.getItemId(); // gets menu item id if there are more than 1
         // in case I add other menu items later
         switch (id) {
             case R.id.my_gps:
                 // turn on/off the gps
                 if (id == R.id.my_gps && mv.getLocationDisplayManager().isStarted()) {
+                    Toast.makeText(getApplicationContext(), "GPS is de-activated!", Toast.LENGTH_SHORT).show();
                     mv.getLocationDisplayManager().setShowLocation(false);
                     mv.getLocationDisplayManager().stop();
                     return true;
                 } else {
+                    Toast.makeText(getApplicationContext(), "GPS is activated!", Toast.LENGTH_SHORT).show();
                     mv.getLocationDisplayManager().setShowLocation(true);
                     mv.getLocationDisplayManager().start();
                 }

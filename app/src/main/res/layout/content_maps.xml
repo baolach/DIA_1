@@ -20,8 +20,7 @@
         android:layout_height="fill_parent"
 
         mapoptions.MapType="@string/basemapUrl"
-        mapoptions.center="53.3498, -6.2603"
-        mapoptions.ZoomLevel="15"
+
         />
     <!--url="http://baolach-morrison.maps.arcgis.com/home/webmap/viewer.html?webmap=9ef9e79a4fdd438b93925f9ce142c8e4"-->
     <!--"37.7531, -122.4479"-->

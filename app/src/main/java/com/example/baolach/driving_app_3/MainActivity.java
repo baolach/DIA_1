@@ -33,24 +33,22 @@ public class MainActivity extends Activity
         }
 
 
-        Button routes_btn = (Button)findViewById(R.id.routes_btn);
+        Button maps_btn = (Button)findViewById(R.id.maps_btn);
         Button locations_btn = (Button)findViewById(R.id.locations_btn);
         Button logbook_btn = (Button)findViewById(R.id.logbook_btn);
         Button finances_btn = (Button)findViewById(R.id.finances_btn);
-        //Button statistics_btn = (Button)findViewById(R.id.statistics_btn);
         Button admin_btn = (Button)findViewById(R.id.admin_btn);
-        //Button bikes_btn = (Button)findViewById(R.id.bikes_btn);
 
 
 
         // must change intents to match correct pages/actions
-        routes_btn.setOnClickListener(new View.OnClickListener()
+        maps_btn.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
 
-                Intent routes = new Intent(MainActivity.this, AndroidGPSTrackingActivity.class); // lists all lessons
-                startActivity(routes);
+                Intent maps = new Intent(MainActivity.this, MapsActivity.class); // lists all lessons
+                startActivity(maps);
             }
         });
 
@@ -58,7 +56,7 @@ public class MainActivity extends Activity
         locations_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                Intent locations_intent = new Intent(MainActivity.this, MapsActivity.class); // inserts new lesson
+                Intent locations_intent = new Intent(MainActivity.this, AndroidGPSTrackingActivity.class); // inserts new lesson
                 //setContentView(R.layout.content_maps);
                 startActivity(locations_intent);
             }

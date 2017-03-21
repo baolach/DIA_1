@@ -2,8 +2,6 @@ package com.example.baolach.driving_app_3;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -11,8 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +43,45 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
             System.out.println("No network available");
         }
 
+
+        //setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, this.fetchTwitterPublicTimeline()));
     }
+
+//    public ArrayList<String> fetchTwitterPublicTimeline()
+//    {
+//        ArrayList<String> listItems = new ArrayList<String>();
+//
+//        try {
+//            URL twitter = new URL("http://138.68.141.18:8001/clients/?format=json");
+//            URLConnection tc = twitter.openConnection();
+//            BufferedReader in = new BufferedReader(new InputStreamReader(
+//                    tc.getInputStream()));
+//
+//            String line;
+//            while ((line = in.readLine()) != null) {
+//                JSONArray ja = new JSONArray(line);
+//
+//                for (int i = 0; i < ja.length(); i++) {
+//                    JSONObject jo = (JSONObject) ja.get(i);
+//                    listItems.add(jo.getString("text"));
+//                }
+//            }
+//        } catch (MalformedURLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        return listItems;
+//    }
+
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -103,7 +137,7 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
 
 
                 String content = parse(is, len);
-                System.out.println(" ########### content: " + content); // this is the content of the url - ie. the data - this is passed to onPostExectute as result
+               // System.out.println(" ########### content: " + content); // this is the content of the url - ie. the data - this is passed to onPostExectute as result
 
 
                 return content;
@@ -125,72 +159,86 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
 
                 // this forloop gets the data from the JSONArary json
                 for (int i = 0; i < json.length(); i++) {
-                    JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
-                    text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
-                    String clientname = object.optString("client_name").toString();
-                    String clientphone = object.optString("client_phone").toString();
-                    String clientaddress= object.optString("client_address").toString();
+                    try {
 
-//                    System.out.println("##### client_name = " + clientname);
-//                    System.out.println("##### client_phone = " + clientphone);
-//                    System.out.println("##### client_address = " + clientaddress);
+                        JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
+                        text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
+                        String clientname = object.optString("client_name").toString();
+                        String clientphone = object.optString("client_phone").toString();
+                        String clientaddress = object.optString("client_address").toString();
 
+                        ////////////////
+//                        final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
+//                        try {
+//                            Cursor mCursor = result.getAll();
+//                            ClientCursorAdapter cursorAdapter = new ClientCursorAdapter(HttpURLConnectionExample.this, result);
+//                            listView.setAdapter(cursorAdapter);
+//
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//
+//                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
 
-                /////////////////
-                final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
-
-                // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
-                        try {
-                            Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
-                            String theclientsname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
-                            String theclientsphone = myCursor.getString(2);
-                            String theclientsaddress = myCursor.getString(3);
-//                            String theclientslognumber = myCursor.getString(4);
-//                            String theclientsdrivernumber = myCursor.getString(5);
-//                            String theclientsdob = myCursor.getString(6);
-//                            String nooflessons = myCursor.getString(7);
-//                            String theclientscomments = myCursor.getString(8);
-//                            String thebalance = myCursor.getString(9);
-
-
-                            Intent i = new Intent(HttpURLConnectionExample.this, ClientInfo.class);
-
-                            i.putExtra("theclientsname", theclientsname);
-                            i.putExtra("theclientsphone", theclientsphone);
-                            i.putExtra("theclientsaddress", theclientsaddress);
-//                            i.putExtra("theclientslognumber", theclientslognumber);
-//                            i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
-//                            i.putExtra("theclientsdob", theclientsdob);
-//                            i.putExtra("nooflessons", nooflessons);
-//                            i.putExtra("theclientscomments", theclientscomments);
-//                            i.putExtra("thebalance", thebalance);
-
-
-                            startActivity(i);
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-
-
-
-
-
-                ///////////////////////
-            } catch (JSONException e) {
-                e.printStackTrace();
+                }catch( JSONException e) {
+                    e.printStackTrace();
             }
 
-            System.out.println(text);
-        }
+//
+
+//
+//
+//                /////////////////
+//                final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
+//
+//                // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
+//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
+//                        try {
+//                            Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
+//                            String theclientsname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
+//                            String theclientsphone = myCursor.getString(2);
+//                            String theclientsaddress = myCursor.getString(3);
+////                            String theclientslognumber = myCursor.getString(4);
+////                            String theclientsdrivernumber = myCursor.getString(5);
+////                            String theclientsdob = myCursor.getString(6);
+////                            String nooflessons = myCursor.getString(7);
+////                            String theclientscomments = myCursor.getString(8);
+////                            String thebalance = myCursor.getString(9);
+//
+//
+//                            Intent i = new Intent(HttpURLConnectionExample.this, ClientInfo.class);
+//
+//                            i.putExtra("theclientsname", theclientsname);
+//                            i.putExtra("theclientsphone", theclientsphone);
+//                            i.putExtra("theclientsaddress", theclientsaddress);
+////                            i.putExtra("theclientslognumber", theclientslognumber);
+////                            i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
+////                            i.putExtra("theclientsdob", theclientsdob);
+////                            i.putExtra("nooflessons", nooflessons);
+////                            i.putExtra("theclientscomments", theclientscomments);
+////                            i.putExtra("thebalance", thebalance);
+//
+//
+//                            startActivity(i);
+//
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+                ///////////////////////
+            } // onPostExecute
+
+
+
+        } // Download Web
 
 
 
@@ -218,8 +266,8 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
             }
             return sb.toString();
         }
-    }
 }
+
 
 //// i think I need something like this above
 //// GETTING ALL THE CLIENT INFO SQL
