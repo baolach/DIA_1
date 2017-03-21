@@ -68,7 +68,6 @@
             android:label="@string/title_activity_finances"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <!--<activity android:name=".HttpURLConnectionExample" />-->
         <activity android:name=".Reminders" />
 
 
@@ -92,6 +91,12 @@
         </activity>
         <activity
             android:name=".AndroidGPSTrackingActivity" >
+        </activity>
+        <activity
+            android:name=".HttpURLConnectionExample"
+            android:label="HttpURLConnectionExample"
+            android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
 
     </application>

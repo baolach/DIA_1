@@ -64,10 +64,13 @@ public class MainActivity extends Activity
             }
         });
 
-        // list all clients
+// list all clients
         logbook_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
+                Intent conn_intent = new Intent(MainActivity.this, HttpURLConnectionExample.class);
+                startActivity(conn_intent);
+
 
                 //Intent clients_intent = new Intent(MainActivity.this, HttpURLConnectionExample.class); // goes to diary activity and calls the list clients activity
                 //startActivity(clients_intent);
