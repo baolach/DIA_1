@@ -33,7 +33,6 @@ public class ListClients extends Activity {
     ListView listView;
     ArrayList<Client> list;
     ClientAdapter adapter = null;
-    ClientInfoAdapter infoAdapter = null;
 
 
     @Override

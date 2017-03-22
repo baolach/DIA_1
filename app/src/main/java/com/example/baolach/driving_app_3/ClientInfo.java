@@ -7,7 +7,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,9 +27,11 @@ public class ClientInfo extends Activity {
 //    DBManager db = new DBManager(this);
 //    String clientsName;
     static ArrayList<String> clientsId = new ArrayList<String>();
-    ListView listView;
+    //ListView listView;
     ArrayList<Client> list;
     ClientInfoAdapter infoAdapter = null;
+
+    TextView clientname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,12 +40,16 @@ public class ClientInfo extends Activity {
         setContentView(R.layout.content_client_info);
 
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
-        listView = (ListView) findViewById(R.id.listView_infoclients); // the listview ID in list_clients.xml
+        //listView = (ListView) findViewById(R.id.listView_infoclients); // the listview ID in list_clients.xml
         list = new ArrayList<>(); // makes new arrayList
+
+        //clientname = (TextView) findViewById(R.id.thelessonname);
+        //clientname.setAdapter(infoAdapter);
+
 
         infoAdapter = new ClientInfoAdapter(this, R.layout.clientinfo, list); // this sets adapter to the ClientAdapter which uses client.xml
 
-        listView.setAdapter(infoAdapter = new ClientInfoAdapter(this, R.layout.client, list)); // this sets adapter to the ClientAdapter which uses client.xml
+        //listView.setAdapter(infoAdapter = new ClientInfoAdapter(this, R.layout.client, list)); // this sets adapter to the ClientAdapter which uses client.xml
 
 
 
@@ -210,8 +216,12 @@ public class ClientInfo extends Activity {
                         String clientname = object.optString("client_name").toString();
                         String clientphone = object.optString("client_phone").toString();
                         String clientaddress = object.optString("client_address").toString();
+                        System.out.println(" ########### name: " + clientname);
+                        System.out.println(" ########### phone: " + clientphone);
+                        System.out.println(" ########### address: " + clientaddress);
+
                         clientsId.add(clientname);
-                        list.add(new Client(g, clientname, clientphone, clientaddress));
+                        //list.add(new Client(g, clientname, clientphone, clientaddress));
                         infoAdapter.notifyDataSetChanged();
                         g++;
 

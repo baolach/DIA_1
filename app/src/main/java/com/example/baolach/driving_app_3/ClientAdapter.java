@@ -45,7 +45,7 @@ public class ClientAdapter extends BaseAdapter {
     }
 
     private class ViewHolder{
-        TextView client_name,client_phone;
+        TextView client_name,client_phone, client_address;
     }
 
     @Override
@@ -59,6 +59,8 @@ public class ClientAdapter extends BaseAdapter {
             row = inflater.inflate(layout, null);
             holder.client_name = (TextView) row.findViewById(R.id.client_name);
             holder.client_phone = (TextView) row.findViewById(R.id.client_phone);
+            holder.client_address = (TextView) row.findViewById(R.id.client_address);
+
             row.setTag(holder);
         }
         else
@@ -70,6 +72,9 @@ public class ClientAdapter extends BaseAdapter {
         Client client = clientlist.get(position);
         holder.client_name.setText(client.getName());
         holder.client_phone.setText(client.getPhone());
+        //holder.client_address.setText(client.getAddress());
+
+
         return row;
     }
 }
