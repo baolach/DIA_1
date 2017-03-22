@@ -7,12 +7,13 @@ package com.example.baolach.driving_app_3;
 public class Client {
 
     private int id;
-    private String name, phone;
+    private String name, phone, address;
 
-    public Client(int id, String name, String phone) {
+    public Client(int id, String name, String phone, String address) {
         this.id = id;
         this.name = name;
         this.phone = phone;
+        this.address = address;
 
     }
     public int getId() {
@@ -37,6 +38,14 @@ public class Client {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAdress(String address) {
+        this.address = address;
     }
 
 }

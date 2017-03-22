@@ -3,6 +3,8 @@ package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -11,7 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,18 +34,23 @@ public class ListClients extends Activity {
     ListView listView;
     ArrayList<Client> list;
     ClientAdapter adapter = null;
+    ClientInfoAdapter infoAdapter = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_clients);
+        setContentView(R.layout.list_clients); // shows the listView in ListClients activity
 
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
-        listView = (ListView) findViewById(R.id.listView_clients);
-        list = new ArrayList<>();
-        adapter = new ClientAdapter(this, R.layout.client, list);
-        listView.setAdapter(adapter);
+        listView = (ListView) findViewById(R.id.listView_clients); // the listview ID in list_clients.xml
+        list = new ArrayList<>(); // makes new arrayList
+
+        adapter = new ClientAdapter(this, R.layout.client, list); // this sets adapter to the ClientAdapter which uses client.xml
+        //infoAdapter = new ClientInfoAdapter((this, R.layout.client, list); // for the onClick
+
+        listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
+        //nfoListView
 
 
 
@@ -63,15 +69,15 @@ public class ListClients extends Activity {
 
 
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                int itemId = (int) id;
-                String haha = clientsId.get(itemId);
-                Toast.makeText(getBaseContext(), "Client: " + haha , Toast.LENGTH_LONG).show();
-                return true;
-            }
-        });
+//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//                int itemId = (int) id;
+//                String haha = clientsId.get(itemId);
+//                Toast.makeText(getBaseContext(), "Client: " + haha , Toast.LENGTH_LONG).show();
+//                return true;
+//            }
+//        });
 
         //listView.setOnItemClickListener(this);
 
@@ -87,43 +93,53 @@ public class ListClients extends Activity {
 //
 //        }
 //
-//        // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
-//                try {
-//                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
+        // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    int itemId = (int) id;
+                    //String clientname = clientsId.get(itemId);
+//                    Toast.makeText(getBaseContext(), "Client: " + haha , Toast.LENGTH_LONG).show();
+//
+                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
+                    String clientname = clientsId.get(itemId);
+
 //                    String theclientsname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
 //                    String theclientsphone = myCursor.getString(2);
 //                    String theclientsaddress = myCursor.getString(3);
+                    System.out.println("String: client" + clientname);
+
 //                    String theclientslognumber = myCursor.getString(4);
 //                    String theclientsdrivernumber = myCursor.getString(5);
 //                    String theclientsdob = myCursor.getString(6);
 //                    String nooflessons = myCursor.getString(7);
 //                    String theclientscomments = myCursor.getString(8);
 //                    String thebalance = myCursor.getString(9);
-//
-//
-//                    Intent i = new Intent(ListClients.this, ClientInfo.class);
-//
-//                    i.putExtra("theclientsname", theclientsname);
+
+
+                    Intent i = new Intent(ListClients.this, ClientInfo.class);
+
+                    i.putExtra("theclientsname", clientname);
 //                    i.putExtra("theclientsphone", theclientsphone);
 //                    i.putExtra("theclientsaddress", theclientsaddress);
+                    System.out.println("String being sent through: client" + clientname);
+
 //                    i.putExtra("theclientslognumber", theclientslognumber);
 //                    i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
 //                    i.putExtra("theclientsdob", theclientsdob);
 //                    i.putExtra("nooflessons", nooflessons);
 //                    i.putExtra("theclientscomments", theclientscomments);
 //                    i.putExtra("thebalance", thebalance);
-//
-//
-//                    startActivity(i);
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
+
+
+                    startActivity(i);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
     }
@@ -198,7 +214,7 @@ public class ListClients extends Activity {
                         String clientphone = object.optString("client_phone").toString();
                         String clientaddress = object.optString("client_address").toString();
                         clientsId.add(clientname);
-                        list.add(new Client(g, clientname, clientphone));
+                        list.add(new Client(g, clientname, clientphone, clientaddress));
                         adapter.notifyDataSetChanged();
                         g++;
 
@@ -224,26 +240,7 @@ public class ListClients extends Activity {
                 e.printStackTrace();
             }// end onCreate
 
-//    public void listClientName(View view)
-//    {
-//        try {
-//            Intent client_name_intent = new Intent(this, InsertClient.class);
-//            startActivity(client_name_intent);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//
-//    public void goBackScreen(View view) {
-//
-//        try {
-//            Intent lastScreen = new Intent(this, AdminActivity.class);
-//            startActivity(lastScreen);
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 
 
         }
@@ -272,6 +269,27 @@ public class ListClients extends Activity {
             }
         }
         return sb.toString();
+    }
+
+        public void listClientName(View view)
+    {
+        try {
+            Intent client_name_intent = new Intent(this, InsertClient.class);
+            startActivity(client_name_intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void goBackScreen(View view) {
+
+        try {
+            Intent lastScreen = new Intent(this, AdminActivity.class);
+            startActivity(lastScreen);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
