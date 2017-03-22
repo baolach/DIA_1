@@ -69,7 +69,7 @@ public class ClientInfoAdapter extends BaseAdapter {
         Client client = clientlist.get(position);
         holder.client_name.setText(client.getName());
         holder.client_phone.setText(client.getPhone());
-        holder.client_address.setText(client.getAddress());
+        //holder.client_address.setText(client.getAddress());
 
 
         return row;

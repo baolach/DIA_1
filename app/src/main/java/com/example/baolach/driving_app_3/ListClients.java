@@ -4,7 +4,6 @@ package com.example.baolach.driving_app_3;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -50,7 +49,7 @@ public class ListClients extends Activity {
         //infoAdapter = new ClientInfoAdapter((this, R.layout.client, list); // for the onClick
 
         listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
-        //nfoListView
+
 
 
 
@@ -98,17 +97,17 @@ public class ListClients extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    int itemId = (int) id;
+//                    int itemId = (int) id;
                     //String clientname = clientsId.get(itemId);
 //                    Toast.makeText(getBaseContext(), "Client: " + haha , Toast.LENGTH_LONG).show();
 //
-                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
-                    String clientname = clientsId.get(itemId);
+//                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
+//                    String clientname = clientsId.get(itemId);
 
 //                    String theclientsname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
 //                    String theclientsphone = myCursor.getString(2);
 //                    String theclientsaddress = myCursor.getString(3);
-                    System.out.println("String: client" + clientname);
+//                    System.out.println("String: client" + clientname);
 
 //                    String theclientslognumber = myCursor.getString(4);
 //                    String theclientsdrivernumber = myCursor.getString(5);
@@ -120,10 +119,10 @@ public class ListClients extends Activity {
 
                     Intent i = new Intent(ListClients.this, ClientInfo.class);
 
-                    i.putExtra("theclientsname", clientname);
+//                    i.putExtra("theclientsname", clientname);
 //                    i.putExtra("theclientsphone", theclientsphone);
 //                    i.putExtra("theclientsaddress", theclientsaddress);
-                    System.out.println("String being sent through: client" + clientname);
+//                    System.out.println("String being sent through: client" + clientname);
 
 //                    i.putExtra("theclientslognumber", theclientslognumber);
 //                    i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
@@ -271,7 +270,7 @@ public class ListClients extends Activity {
         return sb.toString();
     }
 
-        public void listClientName(View view)
+    public void listClientName(View view)
     {
         try {
             Intent client_name_intent = new Intent(this, InsertClient.class);
