@@ -22,14 +22,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HttpURLConnectionExample extends AppCompatActivity implements View.OnClickListener {
+public class HttpURLConn extends AppCompatActivity implements View.OnClickListener {
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.httpurlconnectionexample_activity);
+        setContentView(R.layout.httpurlconn_activity);
 
         System.out.println("TEST");
 
@@ -46,41 +46,6 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
 
         //setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, this.fetchTwitterPublicTimeline()));
     }
-
-//    public ArrayList<String> fetchTwitterPublicTimeline()
-//    {
-//        ArrayList<String> listItems = new ArrayList<String>();
-//
-//        try {
-//            URL twitter = new URL("http://138.68.141.18:8001/clients/?format=json");
-//            URLConnection tc = twitter.openConnection();
-//            BufferedReader in = new BufferedReader(new InputStreamReader(
-//                    tc.getInputStream()));
-//
-//            String line;
-//            while ((line = in.readLine()) != null) {
-//                JSONArray ja = new JSONArray(line);
-//
-//                for (int i = 0; i < ja.length(); i++) {
-//                    JSONObject jo = (JSONObject) ja.get(i);
-//                    listItems.add(jo.getString("text"));
-//                }
-//            }
-//        } catch (MalformedURLException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//        return listItems;
-//    }
-
-
-
 
 
     @Override
@@ -266,7 +231,7 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
             }
             return sb.toString();
         }
-}
+} // end httpURLCOnnection.java
 
 
 //// i think I need something like this above
@@ -340,7 +305,7 @@ public class HttpURLConnectionExample extends AppCompatActivity implements View.
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.httpurlconnectionexample_activity);
+//        setContentView(R.layout.httpurlconn_activity);
 //
 //        // get reference to the views
 //        etResponse = (EditText) findViewById(R.id.etResponse);
@@ -580,7 +545,7 @@ method type and must be configured with setDoInput(true).
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.httpurlconnectionexample_activity);
+//        setContentView(R.layout.httpurlconn_activity);
 //
 //        // we then call the sendPostRequest() method to post request - sends and receives data form the server - last step
 //        try{
@@ -726,7 +691,7 @@ method type and must be configured with setDoInput(true).
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.httpurlconnectionexample_activity);
+//        setContentView(R.layout.httpurlconn_activity);
 //
 //        content = (TextView)findViewById(R.id.content);
 //        fname	= (EditText)findViewById(R.id.name);
@@ -786,7 +751,7 @@ method type and must be configured with setDoInput(true).
 //
 //    protected void onCreate(Bundle savedInstanceState){
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.httpurlconnectionexample_activity);
+//        setContentView(R.layout.httpurlconn_activity);
 //        tvJSON = (TextView) findViewById(R.id.tv);
 //        btnget =(Button) findViewById(R.id.bt);
 //        btnget.setOnClickListener(new View.OnClickListener(){
@@ -957,7 +922,7 @@ method type and must be configured with setDoInput(true).
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.httpurlconnectionexample_activity);
+//        setContentView(R.layout.httpurlconn_activity);
 //
 //        // get reference to the views
 //        etResponse = (EditText) findViewById(R.id.etResponse);
@@ -1198,7 +1163,7 @@ method type and must be configured with setDoInput(true).
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.httpurlconnectionexample_activity);
+//        setContentView(R.layout.httpurlconn_activity);
 //
 //        // we then call the sendPostRequest() method to post request - sends and receives data form the server - last step
 //        try{
@@ -1350,7 +1315,7 @@ method type and must be configured with setDoInput(true).
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.httpurlconnectionexample_activity);
+//        setContentView(R.layout.httpurlconn_activity);
 //
 //        content = (TextView)findViewById(R.id.content);
 //        fname	= (EditText)findViewById(R.id.name);
@@ -1410,7 +1375,7 @@ method type and must be configured with setDoInput(true).
 //
 //    protected void onCreate(Bundle savedInstanceState){
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.httpurlconnectionexample_activity);
+//        setContentView(R.layout.httpurlconn_activity);
 //        tvJSON = (TextView) findViewById(R.id.tv);
 //        btnget =(Button) findViewById(R.id.bt);
 //        btnget.setOnClickListener(new View.OnClickListener(){

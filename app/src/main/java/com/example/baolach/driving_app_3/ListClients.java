@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,21 +33,21 @@ public class ListClients extends Activity {
     ListView listView;
     ArrayList<Client> list;
     ClientAdapter adapter = null;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient mClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_clients);
 
+        // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
         listView = (ListView) findViewById(R.id.listView_clients);
         list = new ArrayList<>();
         adapter = new ClientAdapter(this, R.layout.client, list);
         listView.setAdapter(adapter);
+
+
+
 
         String url = "http://138.68.141.18:8001/clients/?format=json"; //urlText.getText().toString();
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -64,6 +58,11 @@ public class ListClients extends Activity {
         } else {
             System.out.println("No network available");
         }
+
+
+
+
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -75,98 +74,62 @@ public class ListClients extends Activity {
         });
 
         //listView.setOnItemClickListener(this);
-/*
-        final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
-        try {
-            db.open();
-            Cursor result = db.getAll();
-            ClientCursorAdapter cursorAdapter = new ClientCursorAdapter(ListClients.this, result);
-            listView.setAdapter(cursorAdapter);
-            db.close();
-        } catch (Exception e) {
-            e.printStackTrace();
 
-        }
+//        final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
+//        try {
+//            db.open();
+//            Cursor result = db.getAll();
+//            ClientCursorAdapter cursorAdapter = new ClientCursorAdapter(ListClients.this, result);
+//            listView.setAdapter(cursorAdapter);
+//            db.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//
+//        }
+//
+//        // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
+//                try {
+//                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
+//                    String theclientsname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
+//                    String theclientsphone = myCursor.getString(2);
+//                    String theclientsaddress = myCursor.getString(3);
+//                    String theclientslognumber = myCursor.getString(4);
+//                    String theclientsdrivernumber = myCursor.getString(5);
+//                    String theclientsdob = myCursor.getString(6);
+//                    String nooflessons = myCursor.getString(7);
+//                    String theclientscomments = myCursor.getString(8);
+//                    String thebalance = myCursor.getString(9);
+//
+//
+//                    Intent i = new Intent(ListClients.this, ClientInfo.class);
+//
+//                    i.putExtra("theclientsname", theclientsname);
+//                    i.putExtra("theclientsphone", theclientsphone);
+//                    i.putExtra("theclientsaddress", theclientsaddress);
+//                    i.putExtra("theclientslognumber", theclientslognumber);
+//                    i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
+//                    i.putExtra("theclientsdob", theclientsdob);
+//                    i.putExtra("nooflessons", nooflessons);
+//                    i.putExtra("theclientscomments", theclientscomments);
+//                    i.putExtra("thebalance", thebalance);
+//
+//
+//                    startActivity(i);
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
-        // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
-                try {
-                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
-                    String theclientsname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
-                    String theclientsphone = myCursor.getString(2);
-                    String theclientsaddress = myCursor.getString(3);
-                    String theclientslognumber = myCursor.getString(4);
-                    String theclientsdrivernumber = myCursor.getString(5);
-                    String theclientsdob = myCursor.getString(6);
-                    String nooflessons = myCursor.getString(7);
-                    String theclientscomments = myCursor.getString(8);
-                    String thebalance = myCursor.getString(9);
 
-
-                    Intent i = new Intent(ListClients.this, ClientInfo.class);
-
-                    i.putExtra("theclientsname", theclientsname);
-                    i.putExtra("theclientsphone", theclientsphone);
-                    i.putExtra("theclientsaddress", theclientsaddress);
-                    i.putExtra("theclientslognumber", theclientslognumber);
-                    i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
-                    i.putExtra("theclientsdob", theclientsdob);
-                    i.putExtra("nooflessons", nooflessons);
-                    i.putExtra("theclientscomments", theclientscomments);
-                    i.putExtra("thebalance", thebalance);
-
-
-                    startActivity(i);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });*/
-
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+//
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("ListClients Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        mClient.connect();
-        AppIndex.AppIndexApi.start(mClient, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(mClient, getIndexApiAction());
-        mClient.disconnect();
-    }
 
     private class DownloadWebPageTask extends AsyncTask<String, Void, String> {
 
@@ -225,7 +188,7 @@ public class ListClients extends Activity {
 
                 JSONArray json = new JSONArray(result);
 
-                // this forloop gets the data from the JSONArary json
+                // this forloop gets the data from the JSONArray json
                 for (int i = 0; i < json.length(); i++) {
                     try {
                         int g = 0;
