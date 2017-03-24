@@ -44,6 +44,11 @@ public class ClientAdapter extends BaseAdapter {
         return position;
     }
 
+
+
+
+
+
     private class ViewHolder{
         TextView client_name,client_phone, client_address;
     }

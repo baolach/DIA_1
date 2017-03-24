@@ -26,14 +26,14 @@ import java.util.ArrayList;
 
 public class ClientInfo extends Activity {
 
-//    DBManager db = new DBManager(this);
+    //    DBManager db = new DBManager(this);
 //    String clientsName;
     static ArrayList<String> clientsId = new ArrayList<String>();
     //ListView listView;
     ArrayList<Client> list;
     ClientInfoAdapter infoAdapter = null;
+    String clientname,clientphone,clientaddress,clientlocation;
 
-    TextView clientName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,8 +41,25 @@ public class ClientInfo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_client_info);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
+        if(bundle != null)
+        {
+            clientname = bundle.getString("thelessonname");
+            clientphone = bundle.getString("theclientphone");
+            clientaddress = bundle.getString("theclientaddress");
+            clientlocation = bundle.getString("thelessonlocation");
+        }
+        TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
+        TextView phoneTextView = (TextView) findViewById(R.id.thelessondate);
+        TextView addressTextView = (TextView) findViewById(R.id.thelessontime);
+        TextView lognoTextView = (TextView) findViewById(R.id.thelessonlocation);
 
+        nameTextView.setText(clientname);
+        phoneTextView.setText(clientphone);
+        addressTextView.setText(clientaddress);
+        lognoTextView.setText(clientlocation);
 
 
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
@@ -190,34 +207,7 @@ public class ClientInfo extends Activity {
             String text = "";
 
             try {
-                  String clientValue = getIntent().getStringExtra("thelessonname");
-
-//                String phoneValue = getIntent().getStringExtra("thelessondate");
-//                String addressValue = getIntent().getStringExtra("thelessontime");
-//                String logNoValue = getIntent().getStringExtra("thelessonlocation");
-
-
-
-
-
-
-                //clientName.setText(value);
-                //System.out.println(clientName);
-
-                //String TheClientsPhone= i.getStringExtra("theclientsphone");
-                //String key = getIntent().getStringExtra("thelessonname");
-
-                TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
-                nameTextView.setText(clientValue);
-//                TextView phoneTextView = (TextView) findViewById(R.id.thelessondate);
-//                nameTextView.setText(phoneValue);
-//                TextView addressTextView = (TextView) findViewById(R.id.thelessontime);
-//                nameTextView.setText(addressValue);
-//                TextView logNoTextView = (TextView) findViewById(R.id.thelessonlocation);
-//                nameTextView.setText(logNoValue);
-
-
-
+                String clientValue = getIntent().getStringExtra("thelessonname");
                 System.out.println("#####");
                 System.out.println(result); // result is the data string
                 System.out.println("#####");
@@ -263,30 +253,30 @@ public class ClientInfo extends Activity {
         }
     }
 
-        private String parse(InputStream is, int len) throws IOException, UnsupportedEncodingException {
-            return readIt(is);
-        }
+    private String parse(InputStream is, int len) throws IOException, UnsupportedEncodingException {
+        return readIt(is);
+    }
 
-        private String readIt(InputStream is) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            StringBuilder sb = new StringBuilder();
+    private String readIt(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
 
-            String line = null;
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append('\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line).append('\n');
-                }
+                is.close();
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
-            return sb.toString();
         }
+        return sb.toString();
+    }
 
 //        public void listClientName(View view)
 //        {
@@ -298,7 +288,7 @@ public class ClientInfo extends Activity {
 //            }
 //        }
 
-        public void goBackScreen(View view) {
+    public void goBackScreen(View view) {
         try {
             Intent lastScreen = new Intent(this, ListClients.class);
             startActivity(lastScreen);

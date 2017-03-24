@@ -29,7 +29,11 @@ import java.util.ArrayList;
 // This class displays the client names in a list to the user. You can press a button for insert, delete client also
 public class ListClients extends Activity {
     // DBManager db = new DBManager(this);
-    static ArrayList<String> clientsId = new ArrayList<String>();
+
+    static ArrayList<String> clientsName = new ArrayList<String>();
+    static ArrayList<String> clientsPhone = new ArrayList<String>();
+    static ArrayList<String> clientsAddress = new ArrayList<String>();
+    static ArrayList<String> clientsLog = new ArrayList<String>();
     ListView listView;
     ArrayList<Client> list;
     ClientAdapter adapter = null;
@@ -49,10 +53,6 @@ public class ListClients extends Activity {
 
         listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
 
-
-
-
-
         String url = "http://138.68.141.18:8001/clients/?format=json"; //urlText.getText().toString();
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connmgr.getActiveNetworkInfo();
@@ -63,31 +63,30 @@ public class ListClients extends Activity {
             System.out.println("No network available");
         }
 
-
-
-
-
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
                 int itemId = (int) id;
-                String name = clientsId.get(itemId);
-                //Toast.makeText(getBaseContext(), "Client: " + name , Toast.LENGTH_SHORT).show();
+                String name = clientsName.get(itemId);
 
-                String clientname = clientsId.get(itemId);
+
+                String clientname = clientsName.get(itemId);
+                String phone = clientsPhone.get(itemId);
+                String address = clientsAddress.get(itemId);
+                String log = clientsLog.get(itemId);
 
                 Intent i = new Intent(ListClients.this, ClientInfo.class);
                 i.putExtra("thelessonname", clientname);
-//                i.putExtra("theclientphone", clientname);
-//                i.putExtra("theclientaddress", clientname);
-//                i.putExtra("thelessonlocation", clientname);
+                i.putExtra("theclientphone", phone);
+                i.putExtra("theclientaddress", address);
+                i.putExtra("thelessonlocation", log);
 
                 startActivity(i);
 
-
-                return true;
             }
         });
+
+
 
         //listView.setOnItemClickListener(this);
 
@@ -111,7 +110,7 @@ public class ListClients extends Activity {
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                try {
 //                    int itemId = (int) id;
- //                   String clientname = clientsId.get(itemId);
+        //                   String clientname = clientsId.get(itemId);
 //                    Toast.makeText(getBaseContext(), "Client: " + haha , Toast.LENGTH_LONG).show();
 //
 //                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
@@ -227,7 +226,11 @@ public class ListClients extends Activity {
                         String clientaddress = object.optString("client_address").toString();
                         String logno = object.optString("log_no").toString();
 
-                        clientsId.add(clientname);
+
+                        clientsName.add(clientname);
+                        clientsPhone.add(clientphone);
+                        clientsAddress.add(clientaddress);
+                        clientsLog.add(logno);
                         list.add(new Client(g, clientname, clientphone, clientaddress, logno));
                         adapter.notifyDataSetChanged();
                         g++;
