@@ -18,12 +18,63 @@
         android:id="@+id/map1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-
+        mapoptions.center="53.351242, -6.260779"
         mapoptions.MapType="@string/basemapUrl"
+        mapoptions.ZoomLevel="16"
 
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation='horizontal'>
+
+        <RadioButton
+            android:text="Hillstart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hillstart_btn"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
+
+        <RadioButton
+            android:text="Reverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/hillstart_btn"
+            android:id="@+id/reverse_btn"/>
+
+        <RadioButton
+            android:text="3-Pnt-Trn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/reverse_btn"
+            android:layout_marginStart="11dp"
+            android:id="@+id/turn_btn"/>
+
+    </RadioGroup>
+
+    <Button
+        android:text="Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/radioGroup"
+        android:layout_marginStart="12dp"
+        android:id="@+id/add_btn"
         />
+    <!--  tje mapoptions above overrides the java code ubt you need it here in the xml    -->
     <!--url="http://baolach-morrison.maps.arcgis.com/home/webmap/viewer.html?webmap=9ef9e79a4fdd438b93925f9ce142c8e4"-->
     <!--"37.7531, -122.4479"-->
+    <!--"53.337203, -6.267371"   limekiln road coordinates-->
+    <!--"53.351242, -6.260779"   - O'Connell street-->
+    <!--mapoptions.center="53.351242, -6.260779"-->
+
 
 
 

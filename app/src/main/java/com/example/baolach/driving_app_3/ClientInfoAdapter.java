@@ -42,7 +42,7 @@ public class ClientInfoAdapter extends BaseAdapter {
     }
 
     private class ViewHolder{
-        TextView client_name,client_phone, client_address;
+        TextView client_name,client_phone, client_address, log_no;
     }
 
     @Override
@@ -57,6 +57,16 @@ public class ClientInfoAdapter extends BaseAdapter {
             holder.client_name = (TextView) row.findViewById(R.id.client_name);
             holder.client_phone = (TextView) row.findViewById(R.id.client_phone);
             holder.client_address = (TextView) row.findViewById(R.id.client_address);
+            holder.log_no = (TextView) row.findViewById(R.id.log_no);
+
+
+            System.out.println(" ClientInfoAdapter: " + holder.client_name);
+
+            System.out.println(" ########### name: " + holder.client_name);
+            System.out.println(" ########### phone: " + holder.client_phone);
+            System.out.println(" ########### address: " +  holder.client_address);
+            System.out.println(" ########### logno: " +  holder.log_no);
+
 
             row.setTag(holder);
         }
@@ -70,11 +80,20 @@ public class ClientInfoAdapter extends BaseAdapter {
         holder.client_name.setText(client.getName());
         holder.client_phone.setText(client.getAddress());
         holder.client_address.setText(client.getAddress());
+        holder.log_no.setText(client.getLogno());
+
 
 
         return row;
     }
 }
+
+
+
+
+
+
+
 
 // I dont have a list so I need to set the values coming in to the TextView values - something like below
 //

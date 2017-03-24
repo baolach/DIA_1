@@ -2,11 +2,13 @@ package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -31,7 +33,7 @@ public class ClientInfo extends Activity {
     ArrayList<Client> list;
     ClientInfoAdapter infoAdapter = null;
 
-    TextView clientname;
+    TextView clientName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,15 +41,19 @@ public class ClientInfo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_client_info);
 
+
+
+
+
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
         //listView = (ListView) findViewById(R.id.listView_infoclients); // the listview ID in list_clients.xml
-        list = new ArrayList<>(); // makes new arrayList
+        // list = new ArrayList<>(); // makes new arrayList
 
         //clientname = (TextView) findViewById(R.id.thelessonname);
         //clientname.setAdapter(infoAdapter);
 
 
-        infoAdapter = new ClientInfoAdapter(this, R.layout.clientinfo, list); // this sets adapter to the ClientAdapter which uses client.xml
+        //infoAdapter = new ClientInfoAdapter(this, R.layout.clientinfo, list); // this sets adapter to the ClientAdapter which uses client.xml
 
         //listView.setAdapter(infoAdapter = new ClientInfoAdapter(this, R.layout.client, list)); // this sets adapter to the ClientAdapter which uses client.xml
 
@@ -62,15 +68,6 @@ public class ClientInfo extends Activity {
         } else {
             System.out.println("No network available");
         }
-
-
-
-
-
-
-
-
-
 
 
 //        Intent clientData = getIntent();
@@ -153,14 +150,6 @@ public class ClientInfo extends Activity {
             }
         }
 
-//    public void goBackScreen(View view) {
-//        try {
-//            Intent lastScreen = new Intent(this, AdminActivity.class);
-//            startActivity(lastScreen);
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
         // this is executed second then onPostExectute
         private String downloadURL(String myurl) throws IOException {
@@ -201,6 +190,34 @@ public class ClientInfo extends Activity {
             String text = "";
 
             try {
+                  String clientValue = getIntent().getStringExtra("thelessonname");
+
+//                String phoneValue = getIntent().getStringExtra("thelessondate");
+//                String addressValue = getIntent().getStringExtra("thelessontime");
+//                String logNoValue = getIntent().getStringExtra("thelessonlocation");
+
+
+
+
+
+
+                //clientName.setText(value);
+                //System.out.println(clientName);
+
+                //String TheClientsPhone= i.getStringExtra("theclientsphone");
+                //String key = getIntent().getStringExtra("thelessonname");
+
+                TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
+                nameTextView.setText(clientValue);
+//                TextView phoneTextView = (TextView) findViewById(R.id.thelessondate);
+//                nameTextView.setText(phoneValue);
+//                TextView addressTextView = (TextView) findViewById(R.id.thelessontime);
+//                nameTextView.setText(addressValue);
+//                TextView logNoTextView = (TextView) findViewById(R.id.thelessonlocation);
+//                nameTextView.setText(logNoValue);
+
+
+
                 System.out.println("#####");
                 System.out.println(result); // result is the data string
                 System.out.println("#####");
@@ -216,26 +233,21 @@ public class ClientInfo extends Activity {
                         String clientname = object.optString("client_name").toString();
                         String clientphone = object.optString("client_phone").toString();
                         String clientaddress = object.optString("client_address").toString();
+                        String logno = object.optString("log_no").toString();
+
+                        System.out.println(" ########### in the clientInfo.java : " + clientname);
                         System.out.println(" ########### name: " + clientname);
                         System.out.println(" ########### phone: " + clientphone);
                         System.out.println(" ########### address: " + clientaddress);
+                        System.out.println(" ########### logno: " + logno);
 
-                        clientsId.add(clientname);
-                        //list.add(new Client(g, clientname, clientphone, clientaddress));
-                        infoAdapter.notifyDataSetChanged();
-                        g++;
 
-                        ////////////////
-//                        final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
-//                        try {
-//                            Cursor mCursor = result.getAll();
-//                            ClientCursorAdapter cursorAdapter = new ClientCursorAdapter(HttpURLConnectionExample.this, result);
-//                            listView.setAdapter(cursorAdapter);
-//
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//
-//                        }
+//                        clientsId.add(clientname);
+//                        list.add(new Client(g, clientname, clientphone, clientaddress));
+//                        infoAdapter.notifyDataSetChanged();
+//                        g++;
+
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -285,6 +297,16 @@ public class ClientInfo extends Activity {
 //                e.printStackTrace();
 //            }
 //        }
+
+        public void goBackScreen(View view) {
+        try {
+            Intent lastScreen = new Intent(this, ListClients.class);
+            startActivity(lastScreen);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 

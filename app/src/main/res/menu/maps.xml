@@ -9,6 +9,12 @@
         android:title="@string/my_gps"
         app:showAsAction = "always">
     </item>
+    <item
+        android:id="@+id/clear"
+        android:icon="@drawable/clear"
+        android:title="clear_pins"
+        app:showAsAction = "always">
+    </item>
 
 
 </menu>

@@ -67,15 +67,27 @@ public class ListClients extends Activity {
 
 
 
-//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                int itemId = (int) id;
-//                String haha = clientsId.get(itemId);
-//                Toast.makeText(getBaseContext(), "Client: " + haha , Toast.LENGTH_LONG).show();
-//                return true;
-//            }
-//        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                int itemId = (int) id;
+                String name = clientsId.get(itemId);
+                //Toast.makeText(getBaseContext(), "Client: " + name , Toast.LENGTH_SHORT).show();
+
+                String clientname = clientsId.get(itemId);
+
+                Intent i = new Intent(ListClients.this, ClientInfo.class);
+                i.putExtra("thelessonname", clientname);
+//                i.putExtra("theclientphone", clientname);
+//                i.putExtra("theclientaddress", clientname);
+//                i.putExtra("thelessonlocation", clientname);
+
+                startActivity(i);
+
+
+                return true;
+            }
+        });
 
         //listView.setOnItemClickListener(this);
 
@@ -91,13 +103,15 @@ public class ListClients extends Activity {
 //
 //        }
 //
+
+
         // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                try {
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                try {
 //                    int itemId = (int) id;
-                    //String clientname = clientsId.get(itemId);
+ //                   String clientname = clientsId.get(itemId);
 //                    Toast.makeText(getBaseContext(), "Client: " + haha , Toast.LENGTH_LONG).show();
 //
 //                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
@@ -116,7 +130,7 @@ public class ListClients extends Activity {
 //                    String thebalance = myCursor.getString(9);
 
 
-                    Intent i = new Intent(ListClients.this, ClientInfo.class);
+//                   Intent i = new Intent(ListClients.this, ClientInfo.class);
 
 //                    i.putExtra("theclientsname", clientname);
 //                    i.putExtra("theclientsphone", theclientsphone);
@@ -131,13 +145,13 @@ public class ListClients extends Activity {
 //                    i.putExtra("thebalance", thebalance);
 
 
-                    startActivity(i);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//                    startActivity(i);
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
 
     }
@@ -211,10 +225,20 @@ public class ListClients extends Activity {
                         String clientname = object.optString("client_name").toString();
                         String clientphone = object.optString("client_phone").toString();
                         String clientaddress = object.optString("client_address").toString();
+                        String logno = object.optString("log_no").toString();
+
                         clientsId.add(clientname);
-                        list.add(new Client(g, clientname, clientphone, clientaddress));
+                        list.add(new Client(g, clientname, clientphone, clientaddress, logno));
                         adapter.notifyDataSetChanged();
                         g++;
+
+                        System.out.println("##### ListClients.java");
+                        System.out.println("##### clientname: " + clientname);
+                        System.out.println("##### clientphone: " + clientphone);
+                        System.out.println("##### clientaddress: " + clientaddress);
+                        System.out.println("##### log no: " + logno);
+
+
 
                         ////////////////
 //                        final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml

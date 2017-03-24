@@ -68,22 +68,6 @@
         android:layout_margin="5dp"
         android:textColor="@color/white"
         android:textStyle="bold"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Phone"
-        android:id="@+id/thelessondate"
-        android:layout_margin="5dp"
-        android:layout_alignParentStart="false"
-        android:layout_below="@+id/thelessonname"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentTop="false"
-        android:layout_alignWithParentIfMissing="false"
-        android:textColor="@color/white"
-        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -234,63 +218,6 @@
         />
 
 
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Comments"
-        android:id="@+id/client_name"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_below="@+id/textView8"
-        android:layout_alignParentStart="true"/>
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="comments"
-        android:id="@+id/theclientscomments"
-        android:layout_alignWithParentIfMissing="false"
-        android:textColor="@color/white"
-        android:layout_below="@+id/textView8"
-        android:layout_alignStart="@+id/thelessonlocation"/>
-
-    <TextView
-        android:text="Balance Due"
-        android:id="@+id/textView10"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_below="@+id/client_name"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:text="balance"
-        android:id="@+id/thebalance"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-
-        android:textColor="@color/white"
-        android:layout_below="@+id/theclientscomments"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/numberoflessons"/>
-
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -334,6 +261,74 @@
         android:layout_below="@+id/website"
         android:layout_alignStart="@+id/textView"
         android:layout_marginTop="11dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="comments"
+        android:id="@+id/theclientscomments"
+        android:layout_alignWithParentIfMissing="false"
+        android:textColor="@color/white"
+        android:layout_below="@+id/textView10"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="13dp"/>
+
+    <TextView
+        android:text="balance"
+        android:id="@+id/thebalance"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+
+        android:textColor="@color/white"
+        android:layout_alignBaseline="@+id/textView10"
+        android:layout_alignBottom="@+id/textView10"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Comments"
+        android:id="@+id/client_name"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignBaseline="@+id/theclientscomments"
+        android:layout_alignBottom="@+id/theclientscomments"
+        android:layout_alignStart="@+id/button"/>
+
+    <TextView
+        android:text="Balance Due"
+        android:id="@+id/textView10"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Phone"
+        android:id="@+id/thelessondate"
+        android:layout_alignWithParentIfMissing="false"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/thelessonname"
+        android:layout_alignEnd="@+id/thelessoncomments"/>
 
     <!--<ListView-->
         <!--android:id="@+id/listView_infoclients"-->
