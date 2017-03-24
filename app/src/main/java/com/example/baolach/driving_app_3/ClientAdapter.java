@@ -45,12 +45,8 @@ public class ClientAdapter extends BaseAdapter {
     }
 
 
-
-
-
-
     private class ViewHolder{
-        TextView client_name,client_phone, client_address;
+        TextView client_name,client_phone, client_address, log_no;
     }
 
     @Override
@@ -65,6 +61,8 @@ public class ClientAdapter extends BaseAdapter {
             holder.client_name = (TextView) row.findViewById(R.id.client_name);
             holder.client_phone = (TextView) row.findViewById(R.id.client_phone);
             holder.client_address = (TextView) row.findViewById(R.id.client_address);
+            holder.log_no = (TextView) row.findViewById(R.id.log_no);
+
 
             row.setTag(holder);
         }

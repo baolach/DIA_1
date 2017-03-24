@@ -44,13 +44,11 @@ public class ListClients extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_clients); // shows the listView in ListClients activity
 
+        // creates variables to be shown and interacted with in the activity
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
         listView = (ListView) findViewById(R.id.listView_clients); // the listview ID in list_clients.xml
-        list = new ArrayList<>(); // makes new arrayList
-
+        list = new ArrayList<>();
         adapter = new ClientAdapter(this, R.layout.client, list); // this sets adapter to the ClientAdapter which uses client.xml
-        //infoAdapter = new ClientInfoAdapter((this, R.layout.client, list); // for the onClick
-
         listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
 
         String url = "http://138.68.141.18:8001/clients/?format=json"; //urlText.getText().toString();
@@ -63,18 +61,18 @@ public class ListClients extends Activity {
             System.out.println("No network available");
         }
 
+        // the list is generated and the variables added in onPostExecuted. Then if items cliked they are sent with the intent
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int itemId = (int) id;
-                String name = clientsName.get(itemId);
-
+                //String name = clientsName.get(itemId);
 
                 String clientname = clientsName.get(itemId);
                 String phone = clientsPhone.get(itemId);
                 String address = clientsAddress.get(itemId);
                 String log = clientsLog.get(itemId);
 
+                // creates new intent and sends over the client information when item is clicked
                 Intent i = new Intent(ListClients.this, ClientInfo.class);
                 i.putExtra("thelessonname", clientname);
                 i.putExtra("theclientphone", phone);
@@ -86,78 +84,9 @@ public class ListClients extends Activity {
             }
         });
 
-
-
-        //listView.setOnItemClickListener(this);
-
-//        final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
-//        try {
-//            db.open();
-//            Cursor result = db.getAll();
-//            ClientCursorAdapter cursorAdapter = new ClientCursorAdapter(ListClients.this, result);
-//            listView.setAdapter(cursorAdapter);
-//            db.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//        }
-//
-
-
-        // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                try {
-//                    int itemId = (int) id;
-        //                   String clientname = clientsId.get(itemId);
-//                    Toast.makeText(getBaseContext(), "Client: " + haha , Toast.LENGTH_LONG).show();
-//
-//                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
-//                    String clientname = clientsId.get(itemId);
-
-//                    String theclientsname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
-//                    String theclientsphone = myCursor.getString(2);
-//                    String theclientsaddress = myCursor.getString(3);
-//                    System.out.println("String: client" + clientname);
-
-//                    String theclientslognumber = myCursor.getString(4);
-//                    String theclientsdrivernumber = myCursor.getString(5);
-//                    String theclientsdob = myCursor.getString(6);
-//                    String nooflessons = myCursor.getString(7);
-//                    String theclientscomments = myCursor.getString(8);
-//                    String thebalance = myCursor.getString(9);
-
-
-//                   Intent i = new Intent(ListClients.this, ClientInfo.class);
-
-//                    i.putExtra("theclientsname", clientname);
-//                    i.putExtra("theclientsphone", theclientsphone);
-//                    i.putExtra("theclientsaddress", theclientsaddress);
-//                    System.out.println("String being sent through: client" + clientname);
-
-//                    i.putExtra("theclientslognumber", theclientslognumber);
-//                    i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
-//                    i.putExtra("theclientsdob", theclientsdob);
-//                    i.putExtra("nooflessons", nooflessons);
-//                    i.putExtra("theclientscomments", theclientscomments);
-//                    i.putExtra("thebalance", thebalance);
-
-
-//                    startActivity(i);
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-
-
     }
-//
 
-
-
+    // works in the background
     private class DownloadWebPageTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -171,6 +100,7 @@ public class ListClients extends Activity {
         }
 
 
+        // connects to send the GET request
         // this is executed second then onPostExectute
         private String downloadURL(String myurl) throws IOException {
             InputStream is = null;
@@ -178,7 +108,6 @@ public class ListClients extends Activity {
 
             try {
                 URL url = new URL(myurl);
-                //System.out.println(" ########### Url: " + url);
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000);
@@ -197,8 +126,8 @@ public class ListClients extends Activity {
                 String content = parse(is, len);
                 // System.out.println(" ########### content: " + content); // this is the content of the url - ie. the data - this is passed to onPostExectute as result
 
-
                 return content;
+
             } finally {
                 if (is != null)
                     is.close();
@@ -215,10 +144,11 @@ public class ListClients extends Activity {
 
                 JSONArray json = new JSONArray(result);
 
-                // this forloop gets the data from the JSONArray json
+                // this forloop gets the data into the JSONArray json
                 for (int i = 0; i < json.length(); i++) {
                     try {
-                        int g = 0;
+
+                        int g = 0;// locates the position in the array for the list item
                         JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
                         text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
                         String clientname = object.optString("client_name").toString();
@@ -227,6 +157,7 @@ public class ListClients extends Activity {
                         String logno = object.optString("log_no").toString();
 
 
+                        // adds to the array list
                         clientsName.add(clientname);
                         clientsPhone.add(clientphone);
                         clientsAddress.add(clientaddress);
@@ -242,19 +173,6 @@ public class ListClients extends Activity {
                         System.out.println("##### log no: " + logno);
 
 
-
-                        ////////////////
-//                        final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
-//                        try {
-//                            Cursor mCursor = result.getAll();
-//                            ClientCursorAdapter cursorAdapter = new ClientCursorAdapter(HttpURLConnectionExample.this, result);
-//                            listView.setAdapter(cursorAdapter);
-//
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//
-//                        }
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -264,9 +182,6 @@ public class ListClients extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }// end onCreate
-
-
-
 
         }
     }
@@ -295,6 +210,12 @@ public class ListClients extends Activity {
         }
         return sb.toString();
     }
+
+
+
+
+
+
 
     public void listClientName(View view)
     {

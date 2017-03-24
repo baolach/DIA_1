@@ -11,10 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,35 +18,36 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class ClientInfo extends Activity {
 
     //    DBManager db = new DBManager(this);
 //    String clientsName;
-    static ArrayList<String> clientsId = new ArrayList<String>();
-    //ListView listView;
-    ArrayList<Client> list;
-    ClientInfoAdapter infoAdapter = null;
-    String clientname,clientphone,clientaddress,clientlocation;
+//    static ArrayList<String> clientsId = new ArrayList<String>();
+//    //ListView listView;
+//    ArrayList<Client> list;
+//    ClientInfoAdapter infoAdapter = null;
 
+
+    String clientname, clientphone, clientaddress, clientlocation;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_client_info);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if(bundle != null)
-        {
+        // bundle captures the parameters form the intent
+        if (bundle != null) {
             clientname = bundle.getString("thelessonname");
             clientphone = bundle.getString("theclientphone");
             clientaddress = bundle.getString("theclientaddress");
             clientlocation = bundle.getString("thelessonlocation");
         }
+
+        // apply to textViews
         TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
         TextView phoneTextView = (TextView) findViewById(R.id.thelessondate);
         TextView addressTextView = (TextView) findViewById(R.id.thelessontime);
@@ -61,21 +58,7 @@ public class ClientInfo extends Activity {
         addressTextView.setText(clientaddress);
         lognoTextView.setText(clientlocation);
 
-
-        // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
-        //listView = (ListView) findViewById(R.id.listView_infoclients); // the listview ID in list_clients.xml
-        // list = new ArrayList<>(); // makes new arrayList
-
-        //clientname = (TextView) findViewById(R.id.thelessonname);
-        //clientname.setAdapter(infoAdapter);
-
-
-        //infoAdapter = new ClientInfoAdapter(this, R.layout.clientinfo, list); // this sets adapter to the ClientAdapter which uses client.xml
-
-        //listView.setAdapter(infoAdapter = new ClientInfoAdapter(this, R.layout.client, list)); // this sets adapter to the ClientAdapter which uses client.xml
-
-
-
+        // connects
         String url = "http://138.68.141.18:8001/clients/?format=json"; //urlText.getText().toString();
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connmgr.getActiveNetworkInfo();
@@ -85,72 +68,6 @@ public class ClientInfo extends Activity {
         } else {
             System.out.println("No network available");
         }
-
-
-//        Intent clientData = getIntent();
-//
-//        //put data from list clients activity into new string so you can delete it
-//        clientsName = clientData.getStringExtra("theclientsname");
-//        String TheClientsPhone= clientData.getStringExtra("theclientsphone");
-//        String TheClientsAddress = clientData.getStringExtra("theclientsaddress");
-//        String TheClientsLogNumber = clientData.getStringExtra("theclientslognumber");
-//        String TheClientDriverNumber = clientData.getStringExtra("theclientsdrivernumber");
-//        String TheClientsDob= clientData.getStringExtra("theclientsdob");
-//        String NoOfLessons= clientData.getStringExtra("numberoflessons");
-//        String TheClientsComments = clientData.getStringExtra("theclientscomments");
-//        String TheClientBalance = clientData.getStringExtra("thebalance");
-//
-//
-//        //create variable which references output field
-//        final TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
-//        final TextView phoneTextView = (TextView) findViewById(R.id.thelessondate);
-//        final TextView addressTextView = (TextView) findViewById(R.id.thelessontime);
-//        final TextView lognoTextView = (TextView) findViewById(R.id.thelessonlocation);
-//        final TextView drivernoTextView = (TextView) findViewById(R.id.thelessoncomments);
-//
-//        final TextView dobTextView = (TextView) findViewById(R.id.theclientsdob);
-//        final TextView nooflessonsTextView = (TextView) findViewById(R.id.numberoflessons);
-//        final TextView commentsTextView = (TextView) findViewById(R.id.theclientscomments);
-//        final TextView balanceTextView = (TextView) findViewById(R.id.thebalance);
-//
-//
-//        // setting the TextViews to display what the info the user entered
-//        nameTextView.setText(clientsName);
-//        phoneTextView.setText(TheClientsPhone);
-//        addressTextView.setText(TheClientsAddress);
-//        lognoTextView.setText(TheClientsLogNumber);
-//        drivernoTextView.setText(TheClientDriverNumber);
-//        dobTextView.setText(TheClientsDob);
-//        nooflessonsTextView.setText(NoOfLessons);
-//        commentsTextView.setText(TheClientsComments);
-//        balanceTextView.setText(TheClientBalance);
-//
-//
-//
-//        Button deleteButton = (Button)findViewById(R.id.delete_client_btn);
-//        deleteButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                DBManager dbManager = new DBManager(ClientInfo.this);
-//                try {
-//                    dbManager.open();
-//                    dbManager.deleteClient(clientsName);
-//                    Toast.makeText(getApplicationContext(), "Client deleted", Toast.LENGTH_SHORT).show();
-//
-//                } catch (SQLException e) {
-//                    Toast.makeText(getApplicationContext(), "Client could not be deleted", Toast.LENGTH_SHORT).show();
-//                } finally {
-//                    dbManager.close();
-//
-//                    Intent intent = new Intent(ClientInfo.this, ListClients.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // clears previous screens
-//                    startActivity(intent); // this loads new intent (ListClients
-//
-//                }
-//
-//            }
-//        });
 
 
     }
@@ -202,102 +119,97 @@ public class ClientInfo extends Activity {
             }
         }
 
+//
+//        protected void onPostExecute(String result) {
+//            String text = "";
+//
+//            try {
+//                //String clientValue = getIntent().getStringExtra("thelessonname");
+//                System.out.println("#####");
+//                System.out.println(result); // result is the data string
+//                System.out.println("#####");
+//
+//                JSONArray json = new JSONArray(result);
+//
+////                // this forloop gets the data from the JSONArray json
+////                for (int i = 0; i < json.length(); i++) {
+////                    try {
+////                        int g = 0;
+////                        JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
+////                        text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
+////                        String clientname = object.optString("client_name").toString();
+////                        String clientphone = object.optString("client_phone").toString();
+////                        String clientaddress = object.optString("client_address").toString();
+////                        String logno = object.optString("log_no").toString();
+////
+////                        System.out.println(" ########### in the clientInfo.java : " + clientname);
+////                        System.out.println(" ########### name: " + clientname);
+////                        System.out.println(" ########### phone: " + clientphone);
+////                        System.out.println(" ########### address: " + clientaddress);
+////                        System.out.println(" ########### logno: " + logno);
+//////
+////
+//////                        clientsId.add(clientname);
+//////                        list.add(new Client(g, clientname, clientphone, clientaddress));
+//////                        infoAdapter.notifyDataSetChanged();
+//////                        g++;
+////
+////
+////
+////                    } catch (JSONException e) {
+////                        e.printStackTrace();
+////                    }
+////                }
+//
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }// end onCreate
+//
+//
+//        }
+//    }
 
-        protected void onPostExecute(String result) {
-            String text = "";
-
-            try {
-                String clientValue = getIntent().getStringExtra("thelessonname");
-                System.out.println("#####");
-                System.out.println(result); // result is the data string
-                System.out.println("#####");
-
-                JSONArray json = new JSONArray(result);
-
-                // this forloop gets the data from the JSONArray json
-                for (int i = 0; i < json.length(); i++) {
-                    try {
-                        int g = 0;
-                        JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
-                        text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
-                        String clientname = object.optString("client_name").toString();
-                        String clientphone = object.optString("client_phone").toString();
-                        String clientaddress = object.optString("client_address").toString();
-                        String logno = object.optString("log_no").toString();
-
-                        System.out.println(" ########### in the clientInfo.java : " + clientname);
-                        System.out.println(" ########### name: " + clientname);
-                        System.out.println(" ########### phone: " + clientphone);
-                        System.out.println(" ########### address: " + clientaddress);
-                        System.out.println(" ########### logno: " + logno);
-
-
-//                        clientsId.add(clientname);
-//                        list.add(new Client(g, clientname, clientphone, clientaddress));
-//                        infoAdapter.notifyDataSetChanged();
-//                        g++;
-
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }// end onCreate
-
-
+        private String parse(InputStream is, int len) throws IOException, UnsupportedEncodingException {
+            return readIt(is);
         }
-    }
 
-    private String parse(InputStream is, int len) throws IOException, UnsupportedEncodingException {
-        return readIt(is);
-    }
+        private String readIt(InputStream is) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
 
-    private String readIt(InputStream is) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-
-        String line = null;
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append('\n');
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
+            String line = null;
             try {
-                is.close();
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line).append('\n');
+                }
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            return sb.toString();
         }
-        return sb.toString();
+
+        public void updateClient(View view)
+        {
+            // update client by sending a post request or something
+        }
+
+
+
+
     }
-
-//        public void listClientName(View view)
-//        {
-//            try {
-//                Intent client_name_intent = new Intent(this, InsertClient.class);
-//                startActivity(client_name_intent);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-
     public void goBackScreen(View view) {
         try {
             Intent lastScreen = new Intent(this, ListClients.class);
             startActivity(lastScreen);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
-
-
 }
