@@ -26,27 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Client Name"
-        android:id="@+id/thelessonname"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_below="@+id/button"
-        android:layout_alignEnd="@+id/thelessondate"
-        android:layout_alignParentLeft="false"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="false"
-        android:textColor="@color/white"
-        />
-
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name"
         android:id="@+id/textView"
         android:layout_marginLeft="5dp"
@@ -173,7 +152,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Dob"
-        android:id="@+id/theclientsdob"
+        android:id="@+id/thedob"
         android:layout_margin="5dp"
         android:layout_alignParentStart="false"
         android:layout_below="@+id/thelessoncomments"
@@ -205,10 +184,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
 
         android:text="No. of lessons"
-        android:id="@+id/numberoflessons"
+        android:id="@+id/thenumberoflessons"
 
         android:layout_alignParentStart="false"
-        android:layout_below="@+id/theclientsdob"
+        android:layout_below="@+id/thedob"
         android:layout_alignParentRight="true"
         android:layout_alignParentLeft="false"
         android:layout_alignParentBottom="false"
@@ -327,7 +306,21 @@
         android:textColor="@color/white"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_below="@+id/thelessonname"
+        android:layout_below="@+id/theclientname"
+        android:layout_alignEnd="@+id/thelessoncomments"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Client Name"
+        android:id="@+id/theclientname"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignWithParentIfMissing="false"
+        android:textColor="@color/white"
+        android:layout_below="@+id/delete_client_btn"
         android:layout_alignEnd="@+id/thelessoncomments"/>
 
     <!--<ListView-->

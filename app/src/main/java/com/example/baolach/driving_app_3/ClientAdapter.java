@@ -46,7 +46,7 @@ public class ClientAdapter extends BaseAdapter {
 
 
     private class ViewHolder{
-        TextView client_name,client_phone, client_address, log_no;
+        TextView client_name,client_phone, client_address, log_no, driver_no, dob, no_of_lessons, balance_due, comments ;
     }
 
     @Override
@@ -62,6 +62,12 @@ public class ClientAdapter extends BaseAdapter {
             holder.client_phone = (TextView) row.findViewById(R.id.client_phone);
             holder.client_address = (TextView) row.findViewById(R.id.client_address);
             holder.log_no = (TextView) row.findViewById(R.id.log_no);
+            holder.driver_no = (TextView) row.findViewById(R.id.driver_no);
+            holder.dob = (TextView) row.findViewById(R.id.dob);
+            holder.no_of_lessons = (TextView) row.findViewById(R.id.no_of_lessons);
+            holder.balance_due = (TextView) row.findViewById(R.id.balance_due);
+            holder.comments = (TextView) row.findViewById(R.id.comments);
+
 
 
             row.setTag(holder);
@@ -74,7 +80,7 @@ public class ClientAdapter extends BaseAdapter {
 
         Client client = clientlist.get(position);
         holder.client_name.setText(client.getName());
-        holder.client_phone.setText(client.getPhone());
+        holder.log_no.setText(client.getLogno());
         //holder.client_address.setText(client.getAddress());
 
 

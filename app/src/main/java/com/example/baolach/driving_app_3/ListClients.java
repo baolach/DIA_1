@@ -33,7 +33,13 @@ public class ListClients extends Activity {
     static ArrayList<String> clientsName = new ArrayList<String>();
     static ArrayList<String> clientsPhone = new ArrayList<String>();
     static ArrayList<String> clientsAddress = new ArrayList<String>();
-    static ArrayList<String> clientsLog = new ArrayList<String>();
+    static ArrayList<String> clientsLogNo = new ArrayList<String>();
+    static ArrayList<String> clientsDriverNo = new ArrayList<String>();
+    static ArrayList<String> dateOfBirth = new ArrayList<String>();
+    static ArrayList<String> noOfLessons = new ArrayList<String>();
+    static ArrayList<String> balanceDue = new ArrayList<String>();
+    static ArrayList<String> clientComments = new ArrayList<String>();
+
     ListView listView;
     ArrayList<Client> list;
     ClientAdapter adapter = null;
@@ -51,7 +57,7 @@ public class ListClients extends Activity {
         adapter = new ClientAdapter(this, R.layout.client, list); // this sets adapter to the ClientAdapter which uses client.xml
         listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
 
-        String url = "http://138.68.141.18:8001/clients/?format=json"; //urlText.getText().toString();
+        String url = "http://138.68.141.18:8006/clients/?format=json"; //urlText.getText().toString();
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connmgr.getActiveNetworkInfo();
 
@@ -70,14 +76,26 @@ public class ListClients extends Activity {
                 String clientname = clientsName.get(itemId);
                 String phone = clientsPhone.get(itemId);
                 String address = clientsAddress.get(itemId);
-                String log = clientsLog.get(itemId);
+                String log = clientsLogNo.get(itemId);
+                String driver = clientsDriverNo.get(itemId);
+                String dob = dateOfBirth.get(itemId);
+                String lessons = noOfLessons.get(itemId);
+                String balance = balanceDue.get(itemId);
+                String comments = clientComments.get(itemId);
+
+
 
                 // creates new intent and sends over the client information when item is clicked
                 Intent i = new Intent(ListClients.this, ClientInfo.class);
-                i.putExtra("thelessonname", clientname);
+                i.putExtra("theclientname", clientname);
                 i.putExtra("theclientphone", phone);
                 i.putExtra("theclientaddress", address);
-                i.putExtra("thelessonlocation", log);
+                i.putExtra("thelognumber", log);
+                i.putExtra("thedriverno", driver);
+                i.putExtra("thedob", dob);
+                i.putExtra("thenumberoflessons", lessons);
+                i.putExtra("thebalance", balance);
+                i.putExtra("theclientscomments", comments);
 
                 startActivity(i);
 
@@ -104,7 +122,7 @@ public class ListClients extends Activity {
         // this is executed second then onPostExectute
         private String downloadURL(String myurl) throws IOException {
             InputStream is = null;
-            int len = 500;
+            int len = 5000;
 
             try {
                 URL url = new URL(myurl);
@@ -155,16 +173,26 @@ public class ListClients extends Activity {
                         String clientphone = object.optString("client_phone").toString();
                         String clientaddress = object.optString("client_address").toString();
                         String logno = object.optString("log_no").toString();
-
+                        String driverno = object.optString("driver_no").toString();
+                        String dob = object.optString("dob").toString();
+                        String nooflessons = object.optString("no_of_lessons").toString();
+                        String balancedue = object.optString("balance_due").toString();
+                        String comments = object.optString("comments").toString();
 
                         // adds to the array list
                         clientsName.add(clientname);
                         clientsPhone.add(clientphone);
                         clientsAddress.add(clientaddress);
-                        clientsLog.add(logno);
-                        list.add(new Client(g, clientname, clientphone, clientaddress, logno));
+                        clientsLogNo.add(logno);
+                        clientsDriverNo .add(driverno);
+                        dateOfBirth.add(dob);
+                        noOfLessons.add(nooflessons);
+                        balanceDue.add(balancedue);
+                        clientComments.add(comments);
+                        list.add(new Client(g, clientname, clientphone, clientaddress, logno, driverno, dob, nooflessons, balancedue, comments ));
                         adapter.notifyDataSetChanged();
                         g++;
+
 
                         System.out.println("##### ListClients.java");
                         System.out.println("##### clientname: " + clientname);

@@ -7,14 +7,61 @@ package com.example.baolach.driving_app_3;
 public class Client {
 
     private int id;
-    private String name, phone, address, logno;
+    private String name, phone, address, logno, driverno, dob, nooflessons, balancedue, comments;
 
-    public Client(int id, String name, String phone, String address, String logno) {
+    public String getDriverno() {
+        return driverno;
+    }
+
+    public void setDriverno(String driverno) {
+        this.driverno = driverno;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getNooflessons() {
+        return nooflessons;
+    }
+
+    public void setNooflessons(String nooflessons) {
+        this.nooflessons = nooflessons;
+    }
+
+    public String getBalancedue() {
+        return balancedue;
+    }
+
+    public void setBalancedue(String balancedue) {
+        this.balancedue = balancedue;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public Client(int id, String name, String phone, String address, String logno, String driverno, String dob, String nooflessons, String balancedue, String comments) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.logno = logno;
+        this.driverno = driverno;
+        this.dob = dob;
+        this.nooflessons = nooflessons;
+        this.balancedue = balancedue;
+        this.comments = comments;
+
+
 
     }
     public int getId() {

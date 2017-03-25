@@ -40,4 +40,45 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="32dp"
         android:id="@+id/log_no"/>
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/log_no"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+
+        android:id="@+id/driver_no"/>
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/driver_no"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+        android:id="@+id/dob"/>
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dob"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+        android:id="@+id/no_of_lessons"/>
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/no_of_lessons"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+        android:id="@+id/balance_due"/>
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/balance_due"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+        android:id="@+id/comments"/>
 </RelativeLayout>
