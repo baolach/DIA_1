@@ -196,8 +196,6 @@ public class ListClients extends Activity {
 
                         System.out.println("##### ListClients.java");
                         System.out.println("##### clientname: " + clientname);
-                        System.out.println("##### clientphone: " + clientphone);
-                        System.out.println("##### clientaddress: " + clientaddress);
                         System.out.println("##### log no: " + logno);
 
 

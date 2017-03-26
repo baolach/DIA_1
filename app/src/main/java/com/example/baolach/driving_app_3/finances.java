@@ -207,11 +207,9 @@ public class Finances extends Activity
                         g++;
 
 
-                        System.out.println("##### ListClients.java");
+                        System.out.println("##### Finances.java");
                         System.out.println("##### clientname: " + clientname);
-                        System.out.println("##### clientphone: " + clientphone);
-                        System.out.println("##### clientaddress: " + clientaddress);
-                        System.out.println("##### log no: " + logno);
+                        System.out.println("##### balance due: " + balancedue);
 
 
                     } catch (JSONException e) {

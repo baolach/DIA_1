@@ -58,7 +58,7 @@ public class ClientAdapter extends BaseAdapter {
         if(row == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
-            holder.client_name = (TextView) row.findViewById(R.id.client_name);
+            holder.client_name = (TextView) row.findViewById(R.id.textView9);
             holder.client_phone = (TextView) row.findViewById(R.id.client_phone);
             holder.client_address = (TextView) row.findViewById(R.id.client_address);
             holder.log_no = (TextView) row.findViewById(R.id.log_no);

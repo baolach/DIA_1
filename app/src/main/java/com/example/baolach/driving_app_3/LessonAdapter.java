@@ -55,7 +55,7 @@ public class LessonAdapter extends BaseAdapter {
         if(row == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
-            holder.lesson_name = (TextView) row.findViewById(R.id.client_name);
+            holder.lesson_name = (TextView) row.findViewById(R.id.textView9);
             holder.lesson_date = (TextView) row.findViewById(R.id.client_phone);
             holder.lesson_time = (TextView) row.findViewById(R.id.client_address);
             holder.lesson_location = (TextView) row.findViewById(R.id.log_no);
