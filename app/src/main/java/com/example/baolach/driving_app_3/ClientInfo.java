@@ -61,6 +61,16 @@ public class ClientInfo extends Activity {
         nooflessonsTextView.setText(clientnooflessons);
         balanceTextView.setText(clientbalancedue);
         commentsTextView.setText(clientcomments);
+
+        nameTextView.setSelected(true);
+        phoneTextView.setSelected(true);
+        addressTextView.setSelected(true);
+        lognoTextView.setSelected(true);
+        drivernoTextView.setSelected(true);
+        nooflessonsTextView.setSelected(true);
+        balanceTextView.setSelected(true);
+        commentsTextView.setSelected(true);
+
     }
 
 
