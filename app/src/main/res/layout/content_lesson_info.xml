@@ -56,7 +56,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Date"
         android:id="@+id/textView2"
-        android:layout_alignTop="@+id/thelessondate"
+        android:layout_alignTop="@+id/theclientphone"
         android:layout_alignParentStart="true"
 
 
@@ -119,7 +119,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="date"
         android:textColor="@color/white"
-        android:id="@+id/thelessondate"
+        android:id="@+id/theclientphone"
         android:layout_alignWithParentIfMissing="false"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -139,8 +139,8 @@
         android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_alignBaseline="@+id/thelessontime"
-        android:layout_alignBottom="@+id/thelessontime"
+        android:layout_alignBaseline="@+id/theclientaddress"
+        android:layout_alignBottom="@+id/theclientaddress"
         />
 
     <TextView
@@ -149,12 +149,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="location"
         android:textColor="@color/white"
-        android:id="@+id/thelessonlocation"
+        android:id="@+id/thelogno"
 
 
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_above="@+id/thelessoncomments"
+        android:layout_above="@+id/thedriverno"
         android:layout_alignParentEnd="true"/>
 
     <TextView
@@ -178,13 +178,13 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="time"
         android:textColor="@color/white"
-        android:id="@+id/thelessontime"
+        android:id="@+id/theclientaddress"
         android:layout_alignWithParentIfMissing="false"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="14dp"
         android:layout_below="@+id/textView2"
-        android:layout_alignEnd="@+id/thelessonlocation"/>
+        android:layout_alignEnd="@+id/thelogno"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -192,7 +192,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="comments"
         android:textColor="@color/white"
-        android:id="@+id/thelessoncomments"
+        android:id="@+id/thedriverno"
         android:layout_alignWithParentIfMissing="false"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -212,8 +212,8 @@
 
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_alignBaseline="@+id/thelessoncomments"
-        android:layout_alignBottom="@+id/thelessoncomments"
+        android:layout_alignBaseline="@+id/thedriverno"
+        android:layout_alignBottom="@+id/thedriverno"
         android:layout_alignParentStart="true"/>
 
 </RelativeLayout>

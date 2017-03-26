@@ -77,7 +77,7 @@ public class FinanceAdapter extends BaseAdapter {
 
         Client client = clientlist.get(position);
         holder.client_name.setText(client.getName());
-        holder.log_no.setText(client.getLogno());
+        holder.balance_due.setText(client.getBalancedue());
         //holder.client_address.setText(client.getAddress());
 
 

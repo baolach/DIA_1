@@ -67,7 +67,7 @@ public class Finances extends Activity
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
         listView = (ListView) findViewById(R.id.listView_clients); // the listview ID in list_clients.xml
         list = new ArrayList<>();
-        adapter = new FinanceAdapter(this, R.layout.client, list); // this sets adapter to the ClientAdapter which uses client.xml
+        adapter = new FinanceAdapter(this, R.layout.finance, list); // this sets adapter to the ClientAdapter which uses client.xml
         listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
 
         String url = "http://138.68.141.18:8006/clients/?format=json"; //urlText.getText().toString();
@@ -253,26 +253,10 @@ public class Finances extends Activity
     }
 
 
-
-
-
-
-
-    public void listClientName(View view)
-    {
-        try {
-            Intent client_name_intent = new Intent(this, InsertClient.class);
-            startActivity(client_name_intent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public void goBackScreen(View view) {
 
         try {
-            Intent lastScreen = new Intent(this, MainActivity.class);
+            Intent lastScreen = new Intent(Finances.this, MainActivity.class);
             startActivity(lastScreen);
         } catch(Exception e) {
             e.printStackTrace();
