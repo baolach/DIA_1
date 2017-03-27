@@ -80,6 +80,7 @@
         android:maxWidth="150dp"
         android:minHeight="20dp"
         android:padding="5dp"
+        android:layout_marginRight="5dp"
 
 
         android:layout_above="@+id/textView_client_name"
@@ -117,6 +118,8 @@
         android:padding="5dp"
 
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+
 
         android:layout_below="@+id/website"
         android:layout_toEndOf="@+id/button"/>
@@ -137,11 +140,10 @@
         android:textColor="@color/white"
         android:padding="5dp"
 
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginRight="10dp"
         android:layout_below="@+id/website"
-        android:layout_alignStart="@+id/TextView_lesson_date"
-        android:layout_marginStart="12dp"/>
+        android:layout_toEndOf="@+id/new_lesson"/>
 
 
 </RelativeLayout>
