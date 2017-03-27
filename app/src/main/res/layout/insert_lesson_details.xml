@@ -18,110 +18,129 @@
         android:layout_marginBottom="20dp"
 
         />
-    <!--<TextView-->
-        <!--android:id="@+id/text_task"-->
-        <!--android:text="@string/addLesson"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:enabled="true"-->
 
-        <!--android:textSize="40dp"-->
-        <!--android:textColor="@color/black"-->
-        <!--android:layout_margin="20dp"-->
-
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginStart="65dp"-->
-        <!--/>-->
-
-    <!--<ImageView-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:id="@+id/imageViewL"-->
-        <!--android:src="@drawable/l"-->
-
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentEnd="true"/>-->
 
     <EditText
         android:id="@+id/editText_lessonDate"
         android:hint="Date"
-        android:layout_width="fill_parent"
-
-        android:layout_height="40dp"
         android:background="@color/turq"
         android:textColorHint="@color/white"
-        android:padding="10dp"
 
         android:layout_below="@+id/editText_lessonName"
-        android:layout_margin="1dp"/>
+        android:layout_margin="1dp"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date">
+        <requestFocus />
+    </EditText>
+
     <EditText
         android:id="@+id/editText_lessonTime"
-        android:layout_width="fill_parent"
 
-        android:layout_height="40dp"
         android:background="@color/turq"
         android:textColorHint="@color/white"
-        android:padding="10dp"
 
         android:hint="Time"
         android:layout_below="@+id/editText_lessonDate"
         android:layout_alignParentStart="true"
-        android:layout_margin="1dp"/>
+        android:layout_margin="1dp"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date">
+    <requestFocus />
+    </EditText>
+
 
     <EditText
         android:id="@+id/editText_lessonLocation"
-        android:layout_width="fill_parent"
 
-        android:layout_height="40dp"
         android:background="@color/turq"
         android:textColorHint="@color/white"
-        android:padding="10dp"
 
         android:hint="Location"
         android:layout_below="@+id/editText_lessonTime"
         android:layout_alignParentStart="true"
-        android:layout_margin="1dp"/>
+        android:layout_margin="1dp"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date"
+        >
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/editText_lessonComments"
-        android:layout_width="fill_parent"
 
-        android:layout_height="40dp"
         android:background="@color/turq"
         android:textColorHint="@color/white"
-        android:padding="10dp"
 
         android:hint="Comments"
         android:layout_below="@+id/editText_lessonLocation"
         android:layout_alignParentStart="true"
-        android:layout_margin="1dp"/>
+        android:layout_margin="1dp"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date"
+
+        >
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/button_submit"
         android:layout_width="fill_parent"
 
         android:layout_height="40dp"
-        android:background="@color/turq"
 
         android:text="@string/submit"
+        android:background="@color/dturq"
+        android:textColor="@color/white"
         android:layout_below="@+id/editText_lessonComments"
-        android:layout_alignStart="@+id/editText_lessonComments"
-        android:layout_margin="1dp"/>
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true"/>
 
     <EditText
         android:id="@+id/editText_lessonName"
         android:hint="Client Name"
-        android:layout_width="200dp"
 
-        android:layout_height="40dp"
         android:background="@color/turq"
         android:textColorHint="@color/white"
-        android:padding="10dp"
+
 
         android:layout_marginTop="14dp"
+        android:layout_marginBottom="1dp"
+
         android:layout_below="@+id/button"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/editText_lessonDate"/>
+        android:layout_alignEnd="@+id/editText_lessonDate"
+        android:layout_alignStart="@+id/editText_lessonDate"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date"
+
+        >
+    <requestFocus />
+    </EditText>
+
 
 
     <Button

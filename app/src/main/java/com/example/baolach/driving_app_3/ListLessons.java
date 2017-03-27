@@ -263,10 +263,10 @@ public class ListLessons extends Activity
     }
 
 
-    public void listClientName(View view)
+    public void newLesson(View view)
     {
         try {
-            Intent client_name_intent = new Intent(this, InsertClient.class);
+            Intent client_name_intent = new Intent(this, InsertLesson.class);
             startActivity(client_name_intent);
         } catch (Exception e) {
             e.printStackTrace();

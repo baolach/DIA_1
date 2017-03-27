@@ -51,9 +51,14 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name=".Diary" />
-        <activity android:name=".InsertClient" />
-        <activity android:name=".ListClients" />
-        <activity android:name=".InsertLesson" />
+        <activity android:name=".InsertClient"
+                  android:windowSoftInputMode="stateVisible"/>
+        <activity
+            android:name=".ListClients"
+            />
+        <activity android:name=".InsertLesson"
+                  android:windowSoftInputMode="stateVisible"
+            />
         <activity android:name=".ListLessons" />
         <activity android:name=".Calender" />
         <activity android:name=".WebActivity" />

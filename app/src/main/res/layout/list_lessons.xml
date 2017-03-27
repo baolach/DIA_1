@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:text="New Lesson"
         android:id="@+id/new_lesson"
-        android:onClick="listLessonName"
+        android:onClick="newLesson"
 
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
@@ -140,10 +140,9 @@
         android:id="@+id/TextView_lesson_time"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginStart="38dp"
         android:layout_above="@+id/listView_lessons"
-        android:layout_toEndOf="@+id/home"
-        android:layout_marginStart="50dp"
-        android:maxLength="4"/>
+        android:layout_toEndOf="@+id/home"/>
 
 
 </RelativeLayout>
