@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                 android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -20,25 +24,6 @@
         />
 
 
-    <AutoCompleteTextView
-        android:id="@+id/editText_clientName"
-        android:hint="Name"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-        android:padding="10dp"
-
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_below="@+id/button"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:nextFocusForward="@+id/editText_clientPhone"
-        android:nextFocusDown="@+id/editText_clientPhone">
-        <requestFocus />
-    </AutoCompleteTextView>
-
     <EditText
         android:id="@+id/editText_clientPhone"
         android:hint="Phone"
@@ -48,7 +33,9 @@
         android:textColorHint="@color/white"
         android:padding="10dp"
 
+
         android:layout_below="@+id/editText_clientName"
+        android:layout_alignStart="@+id/editText_clientName"
 
         android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientLogNo"
@@ -65,9 +52,10 @@
 
         android:hint="Log Number"
         android:layout_below="@+id/editText_clientAddress"
-        android:layout_alignParentStart="true"
         android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientDriverNo"
+        android:layout_alignStart="@+id/editText_clientName"
+
         />
 
     <EditText
@@ -80,9 +68,10 @@
 
         android:hint="Driver Number"
         android:layout_below="@+id/editText_clientLogNo"
-        android:layout_alignParentStart="true"
         android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientDob"
+        android:layout_alignStart="@+id/editText_clientName"
+
         />
     <EditText
         android:id="@+id/editText_clientDob"
@@ -94,10 +83,11 @@
 
         android:hint="Date of Birth"
         android:layout_below="@+id/editText_clientDriverNo"
-        android:layout_alignParentStart="true"
         android:layout_margin="1dp"
 
         android:nextFocusDown="@+id/editText_clientNoOfLessons"
+        android:layout_alignStart="@+id/editText_clientName"
+
         />
     <EditText
         android:id="@+id/editText_clientNoOfLessons"
@@ -111,9 +101,10 @@
 
         android:hint="Number of Lessons"
         android:layout_below="@+id/editText_clientDob"
-        android:layout_alignParentStart="true"
         android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientBalance"
+        android:layout_alignStart="@+id/editText_clientName"
+
         />
     <EditText
         android:id="@+id/editText_clientComments"
@@ -125,7 +116,7 @@
 
         android:hint="Comments"
         android:layout_below="@+id/editText_clientBalance"
-        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/editText_clientName"
         android:layout_margin="1dp"
 
 
@@ -141,8 +132,9 @@
         android:padding="10dp"
         android:hint="Balance"
         android:layout_below="@+id/editText_clientNoOfLessons"
-        android:layout_alignParentStart="true"
         android:layout_margin="1dp"
+        android:layout_alignStart="@+id/editText_clientName"
+
         />
 
 
@@ -155,8 +147,52 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="1dp"
         android:background="@color/turq"
+        android:layout_alignStart="@+id/editText_clientName"
+
 
         />
+
+    <EditText
+        android:id="@+id/editText_clientAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+        android:padding="10dp"
+        android:inputType="number"
+        android:layout_margin="1dp"
+
+
+        android:hint="Address"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/editText_clientPhone"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/editText_clientName"
+        />
+
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:id="@+id/home"
+        android:onClick="home"
+
+        style="?android:attr/buttonStyleSmall"
+        android:background="@color/turq"
+        android:maxWidth="150dp"
+        android:minHeight="20dp"
+        android:textSize="11dp"
+        android:textColor="@color/white"
+        android:padding="5dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_below="@+id/website"
+        android:layout_toEndOf="@+id/button"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -174,22 +210,29 @@
         android:padding="5dp"
 
         android:layout_below="@+id/website"
-        android:layout_alignStart="@+id/editText_clientName"/>
+        android:layout_alignStart="@+id/editText_clientPhone"/>
 
-    <EditText
-        android:id="@+id/editText_clientAddress"
+    <AutoCompleteTextView
+        android:id="@+id/editText_clientName"
+        android:hint="Name"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:background="@color/turq"
         android:textColorHint="@color/white"
         android:padding="10dp"
-        android:inputType="number"
 
-        android:hint="Address"
+
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
-        android:layout_below="@+id/editText_clientPhone"
-        android:layout_alignParentEnd="true"/>
+
+        android:layout_marginTop="14dp"
+        android:nextFocusForward="@+id/editText_clientPhone"
+        android:nextFocusDown="@+id/editText_clientPhone"
+        android:layout_below="@+id/home"
+        android:layout_centerHorizontal="true">
+        <requestFocus />
+    </AutoCompleteTextView>
 
 
 </RelativeLayout>
+

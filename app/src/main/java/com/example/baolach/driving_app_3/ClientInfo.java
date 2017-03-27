@@ -83,4 +83,15 @@ public class ClientInfo extends Activity {
             e.printStackTrace();
         }
     }
+
+    public void home(View view)
+    {
+        try {
+            Intent home_intent = new Intent(this, MainActivity.class);
+            startActivity(home_intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

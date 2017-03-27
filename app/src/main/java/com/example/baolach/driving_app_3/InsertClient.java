@@ -4,7 +4,9 @@ package com.example.baolach.driving_app_3;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class InsertClient extends Activity{// } implements OnClickListener {
 
@@ -216,14 +218,25 @@ public class InsertClient extends Activity{// } implements OnClickListener {
 //
 //    }
 //
-//    // An intent for the user to go back to the main screen
-//        public void goBackScreen(View view) {
-//            try {
-//                Intent lastScreen = new Intent(this, ListClients.class);
-//                startActivity(lastScreen);
-//            } catch(Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
+    // An intent for the user to go back to the main screen
+        public void goBackScreen(View view) {
+            try {
+                Intent lastScreen = new Intent(this, ListClients.class);
+                startActivity(lastScreen);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    public void home(View view)
+    {
+        try {
+            Intent home_intent = new Intent(this, MainActivity.class);
+            startActivity(home_intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 } // end class

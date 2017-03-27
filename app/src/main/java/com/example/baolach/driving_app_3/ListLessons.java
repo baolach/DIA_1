@@ -284,6 +284,15 @@ public class ListLessons extends Activity
         }
     }
 
+    public void home(View view)
+    {
+        try {
+            Intent home_intent = new Intent(this, MainActivity.class);
+            startActivity(home_intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -296,7 +305,9 @@ public class ListLessons extends Activity
 
 
 
- // old sqlite way
+
+
+    // old sqlite way
 //    public void listLessonName(View view) {
 //        try {
 //            Intent lesson_name_intent = new Intent(this, InsertLesson.class);

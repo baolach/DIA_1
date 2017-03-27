@@ -21,48 +21,6 @@
         />
 
 
-    <Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="New Client"
-    android:id="@+id/new_client"
-    android:onClick="listClientName"
-
-
-
-    style="?android:attr/buttonStyleSmall"
-    android:background="@color/turq"
-    android:maxWidth="100dp"
-    android:minHeight="20dp"
-    android:textSize="11dp"
-    android:padding="5dp"
-    android:textColor="@color/white"
-
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_alignTop="@+id/button"
-    android:layout_toEndOf="@+id/button"/>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/goBack"
-        android:id="@+id/button"
-        android:onClick="goBackScreen"
-
-        style="?android:attr/buttonStyleSmall"
-        android:textSize="11dp"
-        android:background="@color/turq"
-        android:maxWidth="100dp"
-        android:minHeight="20dp"
-        android:padding="5dp"
-        android:textColor="@color/white"
-
-        android:layout_below="@+id/website"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"/>
-
     <TextView
         android:id="@+id/textView_client_name"
         android:text="Name"
@@ -111,6 +69,70 @@
         android:layout_marginEnd="24dp"
         android:layout_above="@+id/listView_clients"
         android:layout_alignParentEnd="true"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/goBack"
+        android:id="@+id/button"
+        android:onClick="goBackScreen"
+
+        style="?android:attr/buttonStyleSmall"
+        android:textSize="11dp"
+        android:background="@color/turq"
+        android:maxWidth="100dp"
+        android:minHeight="20dp"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+
+        android:layout_below="@+id/website"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="New Client"
+    android:id="@+id/new_client"
+    android:onClick="listClientName"
+
+
+
+    style="?android:attr/buttonStyleSmall"
+    android:background="@color/turq"
+    android:maxWidth="100dp"
+    android:minHeight="20dp"
+    android:textSize="11dp"
+    android:padding="5dp"
+    android:textColor="@color/white"
+
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_below="@+id/website"
+    android:layout_toEndOf="@+id/button"/>
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:id="@+id/home"
+        android:onClick="home"
+
+        style="?android:attr/buttonStyleSmall"
+        android:background="@color/turq"
+        android:maxWidth="150dp"
+        android:minHeight="20dp"
+        android:textSize="11dp"
+        android:textColor="@color/white"
+        android:padding="5dp"
+
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/website"
+        android:layout_toStartOf="@+id/textView_log_number"/>
 
 
 </RelativeLayout>
