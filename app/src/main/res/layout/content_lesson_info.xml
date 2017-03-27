@@ -50,31 +50,6 @@
         android:layout_margin="10dp"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Date"
-        android:id="@+id/textView2"
-        android:layout_alignTop="@+id/theclientphone"
-        android:layout_alignParentStart="true"
-
-
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_margin="10dp"
-        />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="112dp"
-        android:id="@+id/website"
-        android:src="@drawable/active5"
-
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/button"
-        android:layout_marginTop="56dp"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,35 +72,18 @@
         android:layout_toEndOf="@+id/textView3"/>
 
     <TextView
-        android:id="@+id/theclientname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="name"
-        android:textColor="@color/white"
-
-        android:layout_marginTop="11dp"
-
-
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_below="@+id/delete_client_btn"
-        android:layout_alignParentEnd="true"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="date"
         android:textColor="@color/white"
-        android:id="@+id/theclientphone"
+        android:id="@+id/thelessondate"
         android:layout_alignWithParentIfMissing="false"
-        android:layout_marginLeft="10dp"
+
         android:layout_marginRight="10dp"
         android:layout_marginTop="17dp"
-        android:layout_below="@+id/theclientname"
-        android:layout_alignParentEnd="true"/>
+        android:layout_below="@+id/thelessonname"
+        android:layout_alignStart="@+id/thelessoncomments"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -139,8 +97,8 @@
         android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_alignBaseline="@+id/theclientaddress"
-        android:layout_alignBottom="@+id/theclientaddress"
+        android:layout_alignBaseline="@+id/thelessontime"
+        android:layout_alignBottom="@+id/thelessontime"
         />
 
     <TextView
@@ -149,13 +107,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="location"
         android:textColor="@color/white"
-        android:id="@+id/thelogno"
+        android:id="@+id/thelessonlocation"
 
-
-        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_above="@+id/thedriverno"
-        android:layout_alignParentEnd="true"/>
+        android:layout_above="@+id/thelessoncomments"
+        android:layout_alignStart="@+id/thelessoncomments"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -178,27 +134,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="time"
         android:textColor="@color/white"
-        android:id="@+id/theclientaddress"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_marginLeft="10dp"
+        android:id="@+id/thelessontime"
+
         android:layout_marginRight="10dp"
         android:layout_marginTop="14dp"
         android:layout_below="@+id/textView2"
-        android:layout_alignEnd="@+id/thelogno"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="comments"
-        android:textColor="@color/white"
-        android:id="@+id/thedriverno"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignStart="@+id/thelessoncomments"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -212,8 +153,59 @@
 
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_alignBaseline="@+id/thedriverno"
-        android:layout_alignBottom="@+id/thedriverno"
+        android:layout_alignBaseline="@+id/thelessoncomments"
+        android:layout_alignBottom="@+id/thelessoncomments"
         android:layout_alignParentStart="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:id="@+id/website"
+        android:src="@drawable/active5"
+
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="comments"
+        android:textColor="@color/white"
+        android:id="@+id/thelessoncomments"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/textView4"
+        android:layout_toEndOf="@+id/delete_client_btn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Date"
+        android:id="@+id/textView2"
+
+
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/thelessondate"
+        android:layout_alignBottom="@+id/thelessondate"
+        android:layout_alignStart="@+id/textView"/>
+
+    <TextView
+        android:id="@+id/thelessonname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="name"
+        android:textColor="@color/white"
+
+        android:layout_marginTop="12dp"
+
+
+        android:layout_below="@+id/delete_client_btn"
+        android:layout_alignStart="@+id/thelessondate"/>
 
 </RelativeLayout>

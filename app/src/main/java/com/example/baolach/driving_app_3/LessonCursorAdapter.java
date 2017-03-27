@@ -18,7 +18,7 @@ public class LessonCursorAdapter extends CursorAdapter{
     // you don't bind any data to the view at this point.
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.lessons, parent, false); // the listview to show the lessons
+        return LayoutInflater.from(context).inflate(R.layout.lessoninfo, parent, false); // the listview to show the lessoninfo
     }
 
     // The bindView method is used to bind all data to a given view

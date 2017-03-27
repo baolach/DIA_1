@@ -64,11 +64,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Address"
-        android:id="@+id/theclientaddress"
+        android:id="@+id/thelessontime"
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
-        android:layout_alignStart="@+id/theclientname"
+        android:layout_alignStart="@+id/thelessonname"
 
         android:maxLines="1"
         android:ellipsize="marquee"
@@ -86,11 +86,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Phone"
-        android:id="@+id/theclientphone"
+        android:id="@+id/thelessondate"
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_alignStart="@+id/theclientaddress"
+        android:layout_alignStart="@+id/thelessontime"
 
         android:ellipsize="marquee"
         android:layout_width="fill_parent"
@@ -122,11 +122,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="log number"
-        android:id="@+id/thelogno"
+        android:id="@+id/thelessonlocation"
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView4"
         android:layout_alignBottom="@+id/textView4"
-        android:layout_alignStart="@+id/theclientaddress"
+        android:layout_alignStart="@+id/thelessontime"
         android:maxLines="1"
         />
 
@@ -148,11 +148,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Driver No."
-        android:id="@+id/thedriverno"
+        android:id="@+id/thelessoncomments"
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView5"
         android:layout_alignBottom="@+id/textView5"
-        android:layout_alignStart="@+id/thelogno"
+        android:layout_alignStart="@+id/thelessonlocation"
         android:maxLines="1"
         />
 
@@ -187,7 +187,7 @@
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView6"
         android:layout_alignBottom="@+id/textView6"
-        android:layout_alignStart="@+id/thedriverno"
+        android:layout_alignStart="@+id/thelessoncomments"
         android:maxLines="1"
         />
 
@@ -235,7 +235,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Comments"
-        android:id="@+id/textView9"
+        android:id="@+id/client_name"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
@@ -324,7 +324,7 @@
 
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Client Name"
-        android:id="@+id/theclientname"
+        android:id="@+id/thelessonname"
         android:textColor="@color/white"
         android:layout_width="fill_parent"
 
@@ -378,7 +378,6 @@
         android:textColor="@color/white"
 
 
-        android:layout_marginStart="13dp"
         android:layout_marginTop="22dp"
         android:layout_below="@+id/website"
         android:layout_alignParentStart="true"/>

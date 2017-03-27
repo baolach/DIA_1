@@ -55,9 +55,9 @@ public class LessonAdapter extends BaseAdapter {
         if(row == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
-            holder.lesson_name = (TextView) row.findViewById(R.id.textView9);
-            holder.lesson_date = (TextView) row.findViewById(R.id.client_phone);
-            holder.lesson_time = (TextView) row.findViewById(R.id.client_address);
+            holder.lesson_name = (TextView) row.findViewById(R.id.TextView_lesson_name);
+            holder.lesson_date = (TextView) row.findViewById(R.id.TextView_lesson_date);
+            holder.lesson_time = (TextView) row.findViewById(R.id.TextView_lesson_time);
             holder.lesson_location = (TextView) row.findViewById(R.id.log_no);
             holder.lesson_comments = (TextView) row.findViewById(R.id.driver_no);
 
@@ -74,6 +74,9 @@ public class LessonAdapter extends BaseAdapter {
         holder.lesson_name.setText(lesson.getName());
         holder.lesson_date.setText(lesson.getDate());
         holder.lesson_time.setText(lesson.getTime());
+        //holder.lesson_location.setText(lesson.getLocation());
+       // holder.lesson_comments.setText(lesson.getComments());
+
 
         //holder.client_address.setText(client.getAddress());
 

@@ -39,16 +39,16 @@ public class LessonInfo extends Activity {
         }
 
         // apply to textViews
-        TextView nameTextView = (TextView) findViewById(R.id.theclientname);
-        TextView dateTextView = (TextView) findViewById(R.id.theclientphone);
-        TextView toimeTextView = (TextView) findViewById(R.id.thelogno);
-        TextView locationTextView = (TextView) findViewById(R.id.thelogno);
-        TextView commentsTextView = (TextView) findViewById(R.id.thedriverno);
+        TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
+        TextView dateTextView = (TextView) findViewById(R.id.thelessondate);
+        TextView timeTextView = (TextView) findViewById(R.id.thelessontime);
+        TextView locationTextView = (TextView) findViewById(R.id.thelessonlocation);
+        TextView commentsTextView = (TextView) findViewById(R.id.thelessoncomments);
 
 
         nameTextView.setText(lessonname);
         dateTextView.setText(lessondate);
-        toimeTextView.setText(lessontime);
+        timeTextView.setText(lessontime);
         locationTextView.setText(lessonlocation);
         commentsTextView.setText(lessoncomments);
 

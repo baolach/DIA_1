@@ -12,7 +12,7 @@ import android.widget.Button;
  * Created by Baolach on 28/01/2017.
  */
 //        Admin Page
-//        List lessons
+//        List lessoninfo
 //        New Lesson
 //        List all Client
         // new client
@@ -41,7 +41,7 @@ public class AdminActivity extends Activity {
             public void onClick(View v)
             {
 
-                Intent back_screen_intent = new Intent(AdminActivity.this, MainActivity.class); // lists all lessons
+                Intent back_screen_intent = new Intent(AdminActivity.this, MainActivity.class); // lists all lessoninfo
                 startActivity(back_screen_intent);
             }
         });
@@ -52,7 +52,7 @@ public class AdminActivity extends Activity {
             public void onClick(View v)
             {
 
-                Intent list_lessons_intent = new Intent(AdminActivity.this, ListLessons.class); // lists all lessons
+                Intent list_lessons_intent = new Intent(AdminActivity.this, ListLessons.class); // lists all lessoninfo
                 startActivity(list_lessons_intent);
             }
         });
@@ -61,7 +61,7 @@ public class AdminActivity extends Activity {
             public void onClick(View v)
             {
 
-                Intent new_lesson_intent = new Intent(AdminActivity.this, InsertLesson.class); // lists all lessons
+                Intent new_lesson_intent = new Intent(AdminActivity.this, InsertLesson.class); // lists all lessoninfo
                 startActivity(new_lesson_intent);
             }
         });
@@ -70,7 +70,7 @@ public class AdminActivity extends Activity {
             public void onClick(View v)
             {
 
-                Intent list_clients_intent = new Intent(AdminActivity.this, ListClients.class); // lists all lessons
+                Intent list_clients_intent = new Intent(AdminActivity.this, ListClients.class); // lists all lessoninfo
                 startActivity(list_clients_intent);
             }
         });
@@ -79,7 +79,7 @@ public class AdminActivity extends Activity {
             public void onClick(View v)
             {
 
-                Intent new_client_intent = new Intent(AdminActivity.this, InsertClient.class); // lists all lessons
+                Intent new_client_intent = new Intent(AdminActivity.this, InsertClient.class); // lists all lessoninfo
                 startActivity(new_client_intent);
             }
         });
@@ -88,7 +88,7 @@ public class AdminActivity extends Activity {
             public void onClick(View v)
             {
 
-                Intent reminders_intent = new Intent(AdminActivity.this, Reminders.class); // lists all lessons
+                Intent reminders_intent = new Intent(AdminActivity.this, Reminders.class); // lists all lessoninfo
                 startActivity(reminders_intent);
             }
         });

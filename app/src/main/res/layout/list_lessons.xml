@@ -19,52 +19,6 @@
         />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Name"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:id="@+id/textView_client_name"
-        android:layout_below="@+id/new_lesson"
-        android:layout_alignStart="@+id/listView_lessons"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Time"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-
-        android:id="@+id/TextView_lesson_time"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignTop="@+id/textView_client_name"
-        android:layout_alignParentEnd="true"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Date"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-
-        android:id="@+id/TextView_lesson_date"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignTop="@+id/TextView_lesson_time"
-        android:layout_centerHorizontal="true"
-        />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,13 +46,12 @@
         android:layout_height="wrap_content"
         android:divider="@android:color/white"
         android:dividerHeight="0.85px"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+
 
         android:background="@color/turq"
         android:textColor="@color/white"
         android:layout_below="@+id/textView_client_name"
-        android:layout_alignEnd="@+id/TextView_lesson_time"
+
         android:layout_marginTop="8dp"/>
 
     <Button
@@ -144,6 +97,53 @@
         android:layout_marginRight="10dp"
         android:layout_below="@+id/website"
         android:layout_toEndOf="@+id/new_lesson"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Name"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:id="@+id/textView_client_name"
+
+        android:layout_marginRight="10dp"
+
+        android:layout_marginStart="13dp"
+        android:layout_below="@+id/new_lesson"
+        android:layout_alignStart="@+id/listView_lessons"
+        android:layout_marginTop="14dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+
+        android:id="@+id/TextView_lesson_date"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/listView_lessons"
+        android:layout_alignEnd="@+id/home"
+        android:layout_marginEnd="29dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Time"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+
+        android:id="@+id/TextView_lesson_time"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/listView_lessons"
+        android:layout_toEndOf="@+id/home"
+        android:layout_marginStart="50dp"
+        android:maxLength="4"/>
 
 
 </RelativeLayout>

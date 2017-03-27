@@ -47,7 +47,7 @@ public class MainActivity extends Activity
             public void onClick(View v)
             {
 
-                Intent maps = new Intent(MainActivity.this, MapsActivity.class); // lists all lessons
+                Intent maps = new Intent(MainActivity.this, MapsActivity.class); // lists all lessoninfo
                 startActivity(maps);
             }
         });

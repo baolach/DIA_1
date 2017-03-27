@@ -8,7 +8,7 @@ import android.view.View;
 
 
 /**
- * this activity will list the lessons
+ * this activity will list the lessoninfo
 
  */
 public class Diary extends Activity {

@@ -41,11 +41,11 @@ public class ClientInfo extends Activity {
         }
 
         // apply to textViews
-        TextView nameTextView = (TextView) findViewById(R.id.theclientname);
-        TextView phoneTextView = (TextView) findViewById(R.id.theclientphone);
-        TextView addressTextView = (TextView) findViewById(R.id.theclientaddress);
-        TextView lognoTextView = (TextView) findViewById(R.id.thelogno);
-        TextView drivernoTextView = (TextView) findViewById(R.id.thedriverno);
+        TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
+        TextView phoneTextView = (TextView) findViewById(R.id.thelessondate);
+        TextView addressTextView = (TextView) findViewById(R.id.thelessontime);
+        TextView lognoTextView = (TextView) findViewById(R.id.thelessonlocation);
+        TextView drivernoTextView = (TextView) findViewById(R.id.thelessoncomments);
         TextView dobTextView = (TextView) findViewById(R.id.thedob);
         TextView nooflessonsTextView = (TextView) findViewById(R.id.thenumberoflessons);
         TextView balanceTextView = (TextView) findViewById(R.id.thebalance);

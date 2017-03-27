@@ -50,7 +50,7 @@ public class ListLessons extends Activity
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
         listView = (ListView) findViewById(R.id.listView_lessons); // the listview ID in list_clients.xml
         list = new ArrayList<>();
-        adapter = new LessonAdapter(this, R.layout.lessons, list); // this sets adapter to the ClientAdapter which uses client.xml
+        adapter = new LessonAdapter(this, R.layout.lessoninfo, list); // this sets adapter to the ClientAdapter which uses client.xml
         listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
 
         String url = "http://138.68.141.18:8006/lessons/?format=json"; //urlText.getText().toString();
