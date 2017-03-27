@@ -71,6 +71,8 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name=".Reminders" />
+        <activity android:name=".TrafficActivity" />
+
 
 
         <!--

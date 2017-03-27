@@ -79,8 +79,8 @@ public class AdminActivity extends Activity {
             public void onClick(View v)
             {
 
-                Intent new_client_intent = new Intent(AdminActivity.this, InsertClient.class); // lists all lessons
-                startActivity(new_client_intent);
+//                Intent new_client_intent = new Intent(AdminActivity.this, InsertClient.class); // lists all lessons
+//                startActivity(new_client_intent);
             }
         });
         reminders_btn.setOnClickListener(new View.OnClickListener()

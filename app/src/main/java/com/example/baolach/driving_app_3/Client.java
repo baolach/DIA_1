@@ -9,6 +9,23 @@ public class Client {
     private int id;
     private String name, phone, address, logno, driverno, dob, nooflessons, balancedue, comments;
 
+    public Client(int id, String name, String phone, String address, String logno, String driverno, String dob, String nooflessons, String balancedue, String comments) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.logno = logno;
+        this.driverno = driverno;
+        this.dob = dob;
+        this.nooflessons = nooflessons;
+        this.balancedue = balancedue;
+        this.comments = comments;
+
+
+
+    }
+
+
     public String getDriverno() {
         return driverno;
     }
@@ -49,21 +66,7 @@ public class Client {
         this.comments = comments;
     }
 
-    public Client(int id, String name, String phone, String address, String logno, String driverno, String dob, String nooflessons, String balancedue, String comments) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
-        this.logno = logno;
-        this.driverno = driverno;
-        this.dob = dob;
-        this.nooflessons = nooflessons;
-        this.balancedue = balancedue;
-        this.comments = comments;
 
-
-
-    }
     public int getId() {
         return id;
     }

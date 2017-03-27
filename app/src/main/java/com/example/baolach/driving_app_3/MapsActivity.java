@@ -52,37 +52,21 @@ public class MapsActivity extends AppCompatActivity {
         addListenerOnButton();
 
 
-
-
-
-
-
-
         // mapview set to the listener
         mv.setOnStatusChangedListener(new OnStatusChangedListener() {
             @Override
             public void onStatusChanged(Object o, STATUS status) {
 
+                // this is if you want an automatic pin - maybe to show your current locaion
+                // or maybe you want to output all the stored pins from the db
                 mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
                       String title = "Location";
                       String detail = "Limekiln Road";
 
                 mvHelper.addMarkerGraphic(53.304679, -6.330082,title, detail, "",
-                            ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
+                            ContextCompat.getDrawable(getApplicationContext(), R.drawable.tree40),false,0);
 
 
-//                if (OnStatusChangedListener.STATUS.INITIALIZED == status && o == mv) // makes sure map was added
-//                {
-//                    // map center set to kevin street using java rather than xml
-//                    mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
-//                    String title = "Location";
-//                    String detail = "Limekiln Road";
-//                    mvHelper.removeAllGraphics();
-//
-//
-//                    mvHelper.addMarkerGraphic(53.304679, -6.330082,title, detail, "",
-//                            ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
-//                }
             } // end setOnStatusChangedListener
         });
 
@@ -90,10 +74,11 @@ public class MapsActivity extends AppCompatActivity {
             @Override
             public void onSingleTap(float x, float y) {
 
+                // this is when you're adding new pins
+                // I want these added to the database
                 pt = mv.toMapPoint(x, y);
                 // once a point is tapped, makes a new point calling geometryEngine
                 Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
-
 
 
                 String title = "Reverse";
@@ -164,34 +149,39 @@ public class MapsActivity extends AppCompatActivity {
 
         radioGroup = (RadioGroup) findViewById(R.id.radio);
         add_btn = (Button) findViewById(R.id.add_btn);
-        ;
+
         add_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 System.out.println("selectedId about to run");
+                try {
+                    // get selected radio button from radioGroup
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
 
-                // get selected radio button from radioGroup
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-                System.out.println("selectedId: " + selectedId);
+                    //W/System.err: java.lang.NullPointerException: Attempt to invoke virtual method 'int android.widget.RadioGroup.getCheckedRadioButtonId()' on a null object reference
+                    System.out.println("selectedId: " + selectedId);
 
 
-                // find the radiobutton by returned id
-                radioButton = (RadioButton) findViewById(selectedId);
-                System.out.println("radio button: " + radioButton);
+                    // find the radiobutton by returned id
+                    radioButton = (RadioButton) findViewById(selectedId);
+                    System.out.println("radio button: " + radioButton);
 
-                Toast.makeText(MapsActivity.this,
-                        radioButton.getText(), Toast.LENGTH_SHORT).show();
+                    if(radioButton!=null) {
+                        Toast.makeText(MapsActivity.this,
+                                radioButton.getText(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch(Exception e){
+                    System.out.println("######### radio button not read in as selected");
+                    e.printStackTrace();
+                }
 
             }
 
         });
     }
-
-
-
-
-
 
 
     // inflates the xml file, the gps image to the view
@@ -227,14 +217,6 @@ public class MapsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
-
-
-
-
-
 
 }
 

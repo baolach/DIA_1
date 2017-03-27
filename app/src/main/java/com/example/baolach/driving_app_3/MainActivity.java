@@ -35,7 +35,7 @@ public class MainActivity extends Activity
 
         Button maps_btn = (Button)findViewById(R.id.maps_btn);
         Button locations_btn = (Button)findViewById(R.id.locations_btn);
-        Button logbook_btn = (Button)findViewById(R.id.logbook_btn);
+        Button google_maps_btn = (Button)findViewById(R.id.google_maps_btn);
         Button finances_btn = (Button)findViewById(R.id.finances_btn);
         Button admin_btn = (Button)findViewById(R.id.admin_btn);
 
@@ -63,11 +63,11 @@ public class MainActivity extends Activity
         });
 
 // list all clients
-        logbook_btn.setOnClickListener(new View.OnClickListener() {
+        google_maps_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                Intent conn_intent = new Intent(MainActivity.this, HttpURLConn.class);
-                startActivity(conn_intent);
+                Intent traffic_intent = new Intent(MainActivity.this, TrafficActivity.class);
+                startActivity(traffic_intent);
 
 
                 //Intent clients_intent = new Intent(MainActivity.this, HttpURLConnectionExample.class); // goes to diary activity and calls the list clients activity

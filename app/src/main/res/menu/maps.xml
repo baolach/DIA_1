@@ -13,7 +13,9 @@
         android:id="@+id/clear"
         android:icon="@drawable/clear"
         android:title="clear_pins"
-        app:showAsAction = "always">
+        app:showAsAction = "always"
+
+        >
     </item>
 
 

@@ -113,7 +113,7 @@
         android:layout_below="@+id/editText_clientDob"
         android:layout_alignParentStart="true"
         android:layout_margin="1dp"
-        android:nextFocusDown="@+id/editText_clientComments"
+        android:nextFocusDown="@+id/editText_clientBalance"
         />
     <EditText
         android:id="@+id/editText_clientComments"
@@ -124,10 +124,10 @@
         android:padding="10dp"
 
         android:hint="Comments"
-        android:layout_below="@+id/editText_clientNoOfLessons"
+        android:layout_below="@+id/editText_clientBalance"
         android:layout_alignParentStart="true"
         android:layout_margin="1dp"
-        android:nextFocusDown="@+id/editText_clientBalance"
+
 
         />
     <EditText
@@ -140,7 +140,7 @@
 
         android:padding="10dp"
         android:hint="Balance"
-        android:layout_below="@+id/editText_clientComments"
+        android:layout_below="@+id/editText_clientNoOfLessons"
         android:layout_alignParentStart="true"
         android:layout_margin="1dp"
         />
@@ -151,7 +151,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        android:layout_below="@+id/editText_clientBalance"
+        android:layout_below="@+id/editText_clientComments"
         android:layout_alignParentEnd="true"
         android:layout_margin="1dp"
         android:background="@color/turq"

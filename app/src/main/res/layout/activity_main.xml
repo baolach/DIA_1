@@ -49,8 +49,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logbook"
-        android:id="@+id/logbook_btn"
+        android:text="Directions"
+        android:id="@+id/google_maps_btn"
         android:layout_below="@+id/locations_btn"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/admin_btn"
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:text="Finances"
         android:id="@+id/finances_btn"
-        android:layout_below="@+id/logbook_btn"
+        android:layout_below="@+id/google_maps_btn"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/admin_btn"
         android:background="@color/turq"
@@ -85,23 +85,6 @@
         <!--/>-->
 
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ActiveSchoolOfMotoring.com"
-        android:id="@+id/web_btn"
-        android:onClick="web_btn"
-
-        android:layout_below="@+id/finances_btn"
-
-        android:background="@color/turq"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/finances_btn"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,6 +99,20 @@
         android:layout_marginRight="3dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ActiveSchoolOfMotoring.com"
+        android:id="@+id/web_btn"
+        android:onClick="web_btn"
+
+        android:background="@color/turq"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_below="@+id/finances_btn"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"/>
     <!--<Button-->
         <!--android:layout_width="wrap_content"-->
