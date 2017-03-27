@@ -20,7 +20,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,6 +28,7 @@ import java.util.ArrayList;
 public class ListLessons extends Activity
 {
 
+     // making an array list to put the lesson variables being read in from the database
     static ArrayList<String> lessonName = new ArrayList<String>();
     static ArrayList<String> lessonDate = new ArrayList<String>();
     static ArrayList<String> lessonTime = new ArrayList<String>();
@@ -36,7 +36,7 @@ public class ListLessons extends Activity
     static ArrayList<String> lessonComments = new ArrayList<String>();
 
 
-    ListView listView;
+    ListView listView; // blue listview
     ArrayList<Lesson> list;
     LessonAdapter adapter = null;
 
@@ -47,7 +47,7 @@ public class ListLessons extends Activity
 
 
         // creates variables to be shown and interacted with in the activity
-        // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
+        // sets up listView and Adapter to accept the data from the url
         listView = (ListView) findViewById(R.id.listView_lessons); // the listview ID in list_clients.xml
         list = new ArrayList<>();
         adapter = new LessonAdapter(this, R.layout.lessoninfo, list); // this sets adapter to the ClientAdapter which uses client.xml
@@ -63,7 +63,7 @@ public class ListLessons extends Activity
             System.out.println("No network available");
         }
 
-        // the list is generated and the variables added in onPostExecuted. Then if items cliked they are sent with the intent
+        // the list is declared above and generated and the variables added in onPostExecuted. Then if items clicked they are sent with the intent to the LessonsInfo activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int itemId = (int) id;
@@ -90,45 +90,7 @@ public class ListLessons extends Activity
             }
         });
 
-        // old sqlite
-//        final ListView listView = (ListView) findViewById(R.id.listView_lessons); // listView from the list_lessons.xml
-//        try {
-//            db.open();
-//            Cursor result = db.getAllLessons();
-//            LessonCursorAdapter cursorAdapter = new LessonCursorAdapter(ListLessons.this, result);
-//            listView.setAdapter(cursorAdapter);
-//            db.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//        }
-//
-//        // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
-//                try {
-//                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
-//                    String lessonname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
-//                    String lessondate = myCursor.getString(2);
-//                    String lessontime = myCursor.getString(3);
-//                    String lessonlocation = myCursor.getString(4);
-//                    String lessoncomments = myCursor.getString(5);
-//
-//                    Intent i = new Intent(ListLessons.this, LessonInfo.class);
-//
-//                    i.putExtra("thelessonname", lessonname);
-//                    i.putExtra("thelessondate", lessondate);
-//                    i.putExtra("thelessontime", lessontime);
-//                    i.putExtra("thelessonlocation", lessonlocation);
-//                    i.putExtra("thelessoncomments", lessoncomments);
-//
-//                    startActivity(i);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
+
 
     } // end on create
 
@@ -181,8 +143,7 @@ public class ListLessons extends Activity
         }
 
         protected void onPostExecute(String result) {
-            String text = "";
-
+            // the url is declared in onCreate, here the JSONObject is created and the data form the JSON string from the url is added to the appropriate variable
             try {
                 System.out.println("#####");
                 System.out.println(result); // result is the data string
@@ -190,7 +151,7 @@ public class ListLessons extends Activity
 
                 JSONArray json = new JSONArray(result);
 
-                // this forloop gets the data into the JSONArray json
+                // this forloop gets the data into the JSONArray json for each client lesson
                 for (int i = 0; i < json.length(); i++) {
                     try {
 
@@ -205,6 +166,7 @@ public class ListLessons extends Activity
 
 
                         // adds to the array list
+                        // the adapter then takes this list and loads it into a format in clientinfo.xml which is then displayed
                         lessonName.add(lessonname);
                         lessonDate.add(lessondate);
                         lessonTime.add(lessontime);
@@ -237,7 +199,8 @@ public class ListLessons extends Activity
         }
     }
 
-    private String parse(InputStream is, int len) throws IOException, UnsupportedEncodingException {
+    // parses the url and reads the JSON in as a string which is readable
+    private String parse(InputStream is, int len) throws IOException {
         return readIt(is);
     }
 
