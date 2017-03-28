@@ -4,7 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 /* DELETE BUTTON DOESNT WORK */
 
@@ -51,6 +57,68 @@ public class LessonInfo extends Activity {
         timeTextView.setText(lessontime);
         locationTextView.setText(lessonlocation);
         commentsTextView.setText(lessoncomments);
+
+
+
+        Button btnDelete  = (Button) findViewById(R.id.delete_client_btn);
+
+        // delete button
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+
+                    public void run() {
+                        delete();
+                    }
+
+                }).start();
+            }
+
+            protected void delete() {
+
+                //Connection c = null;
+                Statement deletedb = null;
+                try {
+                    Class.forName("org.postgresql.Driver");
+                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
+                    Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
+                    conn.setAutoCommit(false);
+                    System.out.println("Opened database successfully");
+
+                    deletedb = conn.createStatement();
+                    System.out.println("About to delete: " + lessonname );
+                    // where "table_name_in postgres_db = the_variable_the_intent_sent_over"
+                    String sql = "DELETE from getdata_getlesson where lesson_name = '" + lessonname + "' AND lesson_date= '" + lessondate + "' AND lesson_time = '" + lessontime + "';";
+
+                    //where lesson_name = 'Stephen' AND lesson_date = '2017-01-19' AND lesson_time='14:20';
+                    //Toast.makeText(getBaseContext(), "Client deleted from database! ", Toast.LENGTH_LONG).show();
+
+                    deletedb.executeUpdate(sql);
+                    conn.commit();
+
+
+                    // once inserted into database all the edittexts resert to ""
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getBaseContext(), "Lesson deleted from database! ", Toast.LENGTH_LONG).show();
+                            Intent maps = new Intent(LessonInfo.this, ListLessons.class); // lists all lessoninfo
+                            startActivity(maps);
+
+                        }
+                    });
+
+                    deletedb.close(); // close connection must be done
+                    conn.close();
+
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                System.out.println("Delete successful");
+
+            }
+        });
 
     }
 

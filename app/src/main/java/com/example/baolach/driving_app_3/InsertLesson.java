@@ -1,13 +1,17 @@
 package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  */
@@ -20,53 +24,135 @@ public class InsertLesson extends Activity {
     EditText lessonTime;
     EditText lessonLocation;
     EditText lessonComments;
+    private Button btnPost;
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_lesson_details);
 
-        Button setButton = (Button) findViewById(R.id.button_submit);
 
-        setButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+        lessonName = (EditText) findViewById(R.id.editText_lessonName);
+        lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
+        lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
+        lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
+        lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
+
+        btnPost = (Button) findViewById(R.id.button_submit);
+
+        // submit button
+        btnPost.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View v) {
+                // used for inserting into database
+                new Thread(new Runnable() {
+
+                    public void run() {
+                        insert();
+                    }
+
+                }).start();
+            }
+
+            protected void insert() {
+
                 try {
-                    db.open();
+                    String l_name = lessonName.getText().toString();
+                    String l_phone = lessonDate.getText().toString();
+                    String c_address = lessonTime.getText().toString();
+                    String c_log = lessonLocation.getText().toString();
+                    String c_d_no = lessonComments.getText().toString();
 
-                    lessonName = (EditText) findViewById(R.id.editText_lessonName);
-                    lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
-                    lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
-                    lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
-                    lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
+                    PreparedStatement insertdb = null;
+                    Class.forName("org.postgresql.Driver");
+                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
+                    Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
-                    db.insertLesson(lessonName.getText().toString(),
-                            lessonDate.getText().toString(),
-                            lessonTime.getText().toString(),
-                            lessonLocation.getText().toString(),
-                            lessonComments.getText().toString()
-                    );
+                    // prepares the sql statement
+                    String insert = "insert into getdata_getlesson values (?,?,?,?,?)";
+                    insertdb = conn.prepareStatement(insert);
+                    insertdb.setString(1, l_name);
+                    insertdb.setString(2, l_phone);
+                    insertdb.setString(3, c_address);
+                    insertdb.setString(4,  c_log);
+                    insertdb.setString(5, c_d_no);
 
-                    db.close();
+                    insertdb.execute();
+                    insertdb.close(); // close connection must be done
 
-                    // return to the home screen.
-                    Intent homeScreen = new Intent(InsertLesson.this, ListLessons.class);
-                    startActivity(homeScreen);
-                } catch (Exception e) {
+                    // once inserted into database goes back to listLessons to show it in the db
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getBaseContext(), "Lesson added to database! ", Toast.LENGTH_LONG).show();
+                            Intent l = new Intent(InsertLesson.this, ListLessons.class); // lists all lessoninfo
+                            startActivity(l);
 
+                        }
+                    });
+
+                    insertdb.close();
+                    conn.close();
+
+                } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-
-                    Context context = getApplicationContext();
-                    CharSequence text = "Error opening database";
-                    int duration = Toast.LENGTH_LONG;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-
 
             }
         });
+
+
+
+
+
+
+
+
+
+        // old sqlite way
+//        Button setButton = (Button) findViewById(R.id.button_submit);
+//
+//        setButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    db.open();
+//
+//                    lessonName = (EditText) findViewById(R.id.editText_lessonName);
+//                    lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
+//                    lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
+//                    lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
+//                    lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
+//
+//                    db.insertLesson(lessonName.getText().toString(),
+//                            lessonDate.getText().toString(),
+//                            lessonTime.getText().toString(),
+//                            lessonLocation.getText().toString(),
+//                            lessonComments.getText().toString()
+//                    );
+//
+//                    db.close();
+//
+//                    // return to the home screen.
+//                    Intent homeScreen = new Intent(InsertLesson.this, ListLessons.class);
+//                    startActivity(homeScreen);
+//                } catch (Exception e) {
+//
+//                    e.printStackTrace();
+//
+//                    Context context = getApplicationContext();
+//                    CharSequence text = "Error opening database";
+//                    int duration = Toast.LENGTH_LONG;
+//
+//                    Toast toast = Toast.makeText(context, text, duration);
+//                    toast.show();
+//                }
+//
+//
+//            }
+//        });
 
     }
 

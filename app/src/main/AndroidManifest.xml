@@ -29,7 +29,6 @@
         >
         <activity
             android:name=".MainActivity"
-
             android:windowSoftInputMode="adjustResize|stateHidden"
 
             >
@@ -43,12 +42,12 @@
         <activity
             android:name=".ClientInfo"
             android:label="@string/title_activity_client_info"
-            android:theme="@style/AppTheme.NoActionBar" >
+             >
         </activity>
         <activity
             android:name=".LessonInfo"
             android:label="@string/title_activity_lesson_info"
-            android:theme="@style/AppTheme.NoActionBar" >
+             >
         </activity>
         <activity android:name=".Diary" />
         <activity android:name=".InsertClient"
@@ -68,12 +67,12 @@
         <activity
             android:name=".Finances"
             android:label="@string/title_activity_finances"
-            android:theme="@style/AppTheme.NoActionBar" >
+            >
         </activity>
         <activity
             android:name=".InsertFinances"
             android:label="@string/title_activity_finances"
-            android:theme="@style/AppTheme.NoActionBar" >
+            >
         </activity>
         <activity android:name=".Reminders" />
         <activity android:name=".TrafficActivity" />
