@@ -66,8 +66,8 @@ public class ListLessons extends Activity
         // the list is declared above and generated and the variables added in onPostExecuted. Then if items clicked they are sent with the intent to the LessonsInfo activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // itemId keeps track of where in the list it is
                 int itemId = (int) id;
-                //String name = clientsName.get(itemId);
 
                 String lessonname = lessonName.get(itemId);
                 String lessondate = lessonDate.get(itemId);
@@ -77,6 +77,7 @@ public class ListLessons extends Activity
 
 
                 // creates new intent and sends over the client information when item is clicked
+                // accepted by Bundle is LessonInfo
                 Intent i = new Intent(ListLessons.this, LessonInfo.class);
                 i.putExtra("thelessonname", lessonname);
                 i.putExtra("thelessondate", lessondate);

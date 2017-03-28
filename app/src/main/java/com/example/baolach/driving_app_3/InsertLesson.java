@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 public class InsertLesson extends Activity {
 
-    DBManager db = new DBManager(this);
+    //DBManager db = new DBManager(this);
 
     EditText lessonName;
     EditText lessonDate;
@@ -26,18 +26,62 @@ public class InsertLesson extends Activity {
     EditText lessonComments;
     private Button btnPost;
 
+    String lessonname, lessondate, lessontime, lessonlocation, lessoncomments; // for the intent coming in
+
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_lesson_details);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
-        lessonName = (EditText) findViewById(R.id.editText_lessonName);
-        lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
-        lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
-        lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
-        lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
+        // bundle captures the parameters form the intent
+        if (bundle != null) {
+            // if bundle has data in it - read in the data into these variables eg. lessonname
+            lessonname = bundle.getString("thelessonname");
+            lessondate = bundle.getString("thelessondate");
+            lessontime = bundle.getString("thelessontime");
+            lessonlocation = bundle.getString("thelessonlocation");
+            lessoncomments = bundle.getString("thelessoncomments");
+
+
+
+            // then set the editTexts to these values that just came in
+            lessonName = (EditText) findViewById(R.id.editText_lessonName);
+            lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
+            lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
+            lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
+            lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
+
+//            System.out.println("Insert lesson after intent is sent- lessonName: " + lessonName);
+//            System.out.println("Insert lesson after intent is sent- lessonname: " + lessonName);
+
+            lessonName.setText(lessonname);
+            lessonDate.setText(lessondate);
+            lessonTime.setText(lessontime);
+            lessonLocation.setText(lessonlocation);
+            lessonComments.setText(lessoncomments);
+
+
+
+            System.out.println("data has been entered again");
+
+
+        } else{
+            // else if no data is sent ie. the update button isnt pressed - set t
+            lessonName = (EditText) findViewById(R.id.editText_lessonName);
+            lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
+            lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
+            lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
+            lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
+
+        }
+
+
+
 
         btnPost = (Button) findViewById(R.id.button_submit);
 
@@ -70,6 +114,7 @@ public class InsertLesson extends Activity {
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
                     // prepares the sql statement
+                    
                     String insert = "insert into getdata_getlesson values (?,?,?,?,?)";
                     insertdb = conn.prepareStatement(insert);
                     insertdb.setString(1, l_name);
@@ -159,7 +204,7 @@ public class InsertLesson extends Activity {
     // An intent for the user to go back to the main screen.
     public void goBackScreen(View view) {
         try {
-            Intent lastScreen = new Intent(this, AdminActivity.class);
+            Intent lastScreen = new Intent(this, ListLessons.class);
             startActivity(lastScreen);
         } catch(Exception e) {
             e.printStackTrace();

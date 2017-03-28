@@ -102,8 +102,8 @@ public class LessonInfo extends Activity {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(getBaseContext(), "Lesson deleted from database! ", Toast.LENGTH_LONG).show();
-                            Intent maps = new Intent(LessonInfo.this, ListLessons.class); // lists all lessoninfo
-                            startActivity(maps);
+                            Intent l = new Intent(LessonInfo.this, ListLessons.class); // lists all lessoninfo
+                            startActivity(l);
 
                         }
                     });
@@ -119,6 +119,69 @@ public class LessonInfo extends Activity {
 
             }
         });
+
+//
+//        // update
+//        Button btnUpdate  = (Button) findViewById(R.id.update_client_btn);
+//
+//        // delete button
+//        btnUpdate.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View v) {
+//                new Thread(new Runnable() {
+//
+//                    public void run() {
+//                        update();
+//                    }
+//
+//                }).start();
+//            }
+//
+//            protected void update() {
+//
+//                //Connection c = null;
+//                Statement updatedb = null;
+//                try {
+//                    // uses the JDBC driver to interact with the database
+//                    Class.forName("org.postgresql.Driver");
+//                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database at this url
+//                    Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to postgres
+//                    conn.setAutoCommit(false);
+//                    System.out.println("Opened database successfully");
+//
+//                    updatedb = conn.createStatement();
+//                    System.out.println("About to update: " + lessonname );
+//
+//                    String sql = "Update getdata_getlesson set '" + lessonname + "' AND lesson_date= '" + lessondate + "' AND lesson_time = '" + lessontime + "';";
+//                    UPDATE COMPANY set SALARY = 25000.00 where ID=1;
+//
+//                    updatedb.executeUpdate(sql);
+//                    conn.commit();
+//
+//
+//                    // once inserted into database all the edittexts resert to ""
+//                    runOnUiThread(new Runnable() {
+//                        public void run() {
+//                            Toast.makeText(getBaseContext(), "Lesson updated in database! ", Toast.LENGTH_LONG).show();
+//                            Intent u = new Intent(LessonInfo.this, ListLessons.class); // lists all lessoninfo
+//                            startActivity(u);
+//
+//                        }
+//                    });
+//
+//                    updatedb.close(); // close connection must be done
+//                    conn.close();
+//
+//
+//                }catch(Exception e){
+//                    e.printStackTrace();
+//                }
+//                System.out.println("Delete successful");
+//
+//            }
+//        });
+
+
 
     }
 
@@ -202,6 +265,30 @@ public class LessonInfo extends Activity {
         try {
             Intent home_intent = new Intent(this, MainActivity.class);
             startActivity(home_intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // when clicked brings you to the insertLesson page
+    // passes the inputs in an intent and fills the editTexts with those values
+    // then performs the insert again with those same params
+    public void update(View view)
+    {
+        try{
+            // creates new intent and sends over the client information when update is clicked
+            // this adds these into the editTexts and then you can resave the lesson
+            Intent i = new Intent(this, InsertLesson.class);
+            i.putExtra("thelessonname", lessonname);
+            i.putExtra("thelessondate", lessondate);
+            i.putExtra("thelessontime", lessontime);
+            i.putExtra("thelessonlocation", lessonlocation);
+            i.putExtra("thelessoncomments", lessoncomments);
+
+            System.out.println("update function before intent is sent");
+
+            startActivity(i);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
