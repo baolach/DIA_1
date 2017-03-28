@@ -58,6 +58,7 @@
         android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientDriverNo"
         android:layout_alignStart="@+id/editText_clientName"
+        android:maxLength="5"
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -94,7 +95,7 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
 
-        android:hint="Date of Birth"
+        android:hint="Date of Birth (YYYY-MM-DD)"
         android:layout_below="@+id/editText_clientDriverNo"
         android:layout_margin="1dp"
 
@@ -105,7 +106,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
-        android:inputType="date"
+        android:inputType="number"
         android:nextFocusForward="@+id/lesson_date">
 
         <!--android:onClick="setDate">-->

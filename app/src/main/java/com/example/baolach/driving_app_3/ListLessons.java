@@ -177,13 +177,13 @@ public class ListLessons extends Activity
                         adapter.notifyDataSetChanged();
                         g++;
 
-
-                        System.out.println("##### ListLesson.java");
-                        System.out.println("##### lessonname: " + lessonname);
-                        System.out.println("##### lessondate: " + lessondate);
-                        System.out.println("##### lessontime: " + lessontime);
-                        System.out.println("##### lessonlocation: " + lessonlocation);
-                        System.out.println("##### lessoncomments: " + lessoncomments);
+                        // to test if data is coming through
+//                        System.out.println("##### ListLesson.java");
+//                        System.out.println("##### lessonname: " + lessonname);
+//                        System.out.println("##### lessondate: " + lessondate);
+//                        System.out.println("##### lessontime: " + lessontime);
+//                        System.out.println("##### lessonlocation: " + lessonlocation);
+//                        System.out.println("##### lessoncomments: " + lessoncomments);
 
 
                     } catch (JSONException e) {

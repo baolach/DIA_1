@@ -68,12 +68,11 @@ public class InsertClient extends Activity{// } implements OnClickListener {
 
         btnPost = (Button) findViewById(R.id.button_submit);
 
-
-
+        // submit button
         btnPost.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-
+                // used for inserting into database
                 new Thread(new Runnable() {
 
                     public void run() {
@@ -81,10 +80,6 @@ public class InsertClient extends Activity{// } implements OnClickListener {
                     }
 
                 }).start();
-
-
-
-
             }
 
             protected void insert() {
@@ -99,30 +94,31 @@ public class InsertClient extends Activity{// } implements OnClickListener {
                     String c_no_l = clientNoOfLessons.getText().toString();
                     String c_comm = clientsComments.getText().toString();
                     String c_bal = clientBalance.getText().toString();
-                    PreparedStatement st2 = null;
+
+                    PreparedStatement insertdb = null;
                     Class.forName("org.postgresql.Driver");
-                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2";
-                    Connection c = DriverManager.getConnection(url, "root", "Cassie2007");
+                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
+                    Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
+                    // prepares the sql statement
+                    String insert = "insert into getdata_getclient values (?,?,?,?,?,?,?,?,?)";
+                    insertdb = conn.prepareStatement(insert);
+                    insertdb.setString(1, c_name);
+                    insertdb.setString(2, c_phone);
+                    insertdb.setString(3, c_address);
+                    insertdb.setString(4,  c_log);
+                    insertdb.setString(5, c_d_no);
+                    insertdb.setString(6, c_dob);
+                    insertdb.setString(7, c_no_l);
+                    insertdb.setString(8, c_bal);
+                    insertdb.setString(9, c_comm);
 
-                    String inss = "insert into getdata_getclient values (30,?,?,?,?,?,?,?,?,?)";
-                    st2 = c.prepareStatement(inss);
-                    st2.setString(1, c_name);
-                    st2.setString(2, c_phone);
-                    st2.setString(3, c_address);
-                    st2.setString(4,  c_log);
-                    st2.setString(5, c_d_no);
-                    st2.setString(6, c_dob);
-                    st2.setString(7, c_no_l);
-                    st2.setString(8, c_bal);
-                    st2.setString(9, c_comm);
-                    st2.execute();
-                    st2.close();
+                    insertdb.execute();
+                    insertdb.close(); // close connection must be done
 
 
                     runOnUiThread(new Runnable() {
                         public void run() {
-
                             clientName.setText("");
                             clientPhone.setText("");
                             clientAddress.setText("");
@@ -132,14 +128,14 @@ public class InsertClient extends Activity{// } implements OnClickListener {
                             clientNoOfLessons .setText("");
                             clientsComments .setText("");
                             clientBalance .setText("");
-                            Toast.makeText(getBaseContext(), "Client has been added to the database! ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "Client added to database! ", Toast.LENGTH_LONG).show();
 
                         }
                     });
+                    
+                    insertdb.close();
+                    conn.close();
 
-
-                    st2.close();
-                    c.close();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (SQLException e) {

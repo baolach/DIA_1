@@ -193,10 +193,10 @@ public class ListClients extends Activity {
                         adapter.notifyDataSetChanged();
                         g++;
 
-
-                        System.out.println("##### ListClients.java");
-                        System.out.println("##### clientname: " + clientname);
-                        System.out.println("##### log no: " + logno);
+                        // check if the info is getting through
+//                        System.out.println("##### ListClients.java");
+//                        System.out.println("##### clientname: " + clientname);
+//                        System.out.println("##### log no: " + logno);
 
 
                     } catch (JSONException e) {
