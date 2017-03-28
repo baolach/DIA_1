@@ -106,9 +106,9 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="date"
-        android:nextFocusForward="@+id/lesson_date"
+        android:nextFocusForward="@+id/lesson_date">
 
-        android:onClick="setDate">
+        <!--android:onClick="setDate">-->
         <requestFocus />
     </EditText>
 

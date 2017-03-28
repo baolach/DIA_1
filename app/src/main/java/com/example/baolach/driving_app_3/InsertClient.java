@@ -5,18 +5,19 @@ package com.example.baolach.driving_app_3;
 
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.text.DateFormat;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.Date;
 
 public class InsertClient extends Activity{// } implements OnClickListener {
 
@@ -38,7 +39,8 @@ public class InsertClient extends Activity{// } implements OnClickListener {
 
     private DatePicker datePicker;
     private Calendar calendar;
-    private EditText dob;
+    private EditText clientName,clientPhone,clientAddress,clientLogNo,clientDriverNo,clientDob,clientNoOfLessons, clientsComments, clientBalance;
+    private Button btnPost;
     private int year, month, day;
 
 
@@ -46,98 +48,148 @@ public class InsertClient extends Activity{// } implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_client_details);
 
-        dob = (EditText) findViewById(R.id.editText_clientDob);
-        calendar = Calendar.getInstance();
+//        calendar = Calendar.getInstance();
+//
+//        year = calendar.get(Calendar.YEAR);
+//        month = calendar.get(Calendar.MONTH);
+//        day = calendar.get(Calendar.DAY_OF_MONTH);
+//        showDate(year, month+1, day);
 
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, month+1, day);
+
+        clientName = (EditText) findViewById(R.id.editText_clientName);
+        clientPhone = (EditText) findViewById(R.id.editText_clientPhone);
+        clientAddress = (EditText) findViewById(R.id.editText_clientAddress);
+        clientLogNo = (EditText) findViewById(R.id.editText_clientLogNo);
+        clientDriverNo = (EditText) findViewById(R.id.editText_clientDriverNo);
+        clientDob = (EditText) findViewById(R.id.editText_clientDob);
+        clientNoOfLessons = (EditText) findViewById(R.id.editText_clientNoOfLessons);
+        clientsComments = (EditText) findViewById(R.id.editText_clientComments);
+        clientBalance = (EditText) findViewById(R.id.editText_clientBalance);
+
+        btnPost = (Button) findViewById(R.id.button_submit);
 
 
-//
-//
-//
-//        // connecting to the xml layout
-//        //clientName = (AutoCompleteTextView) findViewById(R.id.editText_clientName);
-//        clientName = (EditText) findViewById(R.id.editText_clientName);
-//        clientPhone = (EditText) findViewById(R.id.editText_clientPhone);
-//        clientAddress = (EditText) findViewById(R.id.editText_clientAddress);
-//        clientLogNo = (EditText) findViewById(R.id.editText_clientLogNo);
-//        clientDriverNo = (EditText) findViewById(R.id.editText_clientDriverNo);
-//        clientDob = (EditText) findViewById(R.id.editText_clientDob);
-//        clientNoOfLessons = (EditText) findViewById(R.id.editText_clientNoOfLessons);
-//        clientsComments = (EditText) findViewById(R.id.editText_clientComments);
-//        clientBalance = (EditText) findViewById(R.id.editText_clientBalance);
-//
-//        btnPost = (Button) findViewById(R.id.button_submit);
-//
-//        // check if you are connected or not
-//        if(isConnected()){
-//            System.out.println("Connected");
-//        }
-//        else{
-//            System.out.println("Not Connected");
-//
-//        }
-//
-//
-////        // check if connected
-////        String url = "http://138.68.141.18:8006/clients/?format=json"; //urlText.getText().toString();
-////        ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-////        NetworkInfo networkInfo = connmgr.getActiveNetworkInfo();
-////
-////        if (networkInfo != null && networkInfo.isConnected()) {
-////            new InsertClient.DownloadWebPageTask().execute(url);
-////        } else {
-////            System.out.println("No network available");
-////        }
-//
-//
-//        // add click listener to Button "POST"
-//        btnPost.setOnClickListener(InsertClient.this);
+
+        btnPost.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                new Thread(new Runnable() {
+
+                    public void run() {
+                        insert();
+                    }
+
+                }).start();
+
+
+
+
+            }
+
+            protected void insert() {
+
+                try {
+                    String c_name = clientName.getText().toString();
+                    String c_phone = clientPhone.getText().toString();
+                    String c_address = clientAddress.getText().toString();
+                    String c_log = clientLogNo.getText().toString();
+                    String c_d_no = clientDriverNo.getText().toString();
+                    String c_dob = clientDob.getText().toString();
+                    String c_no_l = clientNoOfLessons.getText().toString();
+                    String c_comm = clientsComments.getText().toString();
+                    String c_bal = clientBalance.getText().toString();
+                    PreparedStatement st2 = null;
+                    Class.forName("org.postgresql.Driver");
+                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2";
+                    Connection c = DriverManager.getConnection(url, "root", "Cassie2007");
+
+
+                    String inss = "insert into getdata_getclient values (30,?,?,?,?,?,?,?,?,?)";
+                    st2 = c.prepareStatement(inss);
+                    st2.setString(1, c_name);
+                    st2.setString(2, c_phone);
+                    st2.setString(3, c_address);
+                    st2.setString(4,  c_log);
+                    st2.setString(5, c_d_no);
+                    st2.setString(6, c_dob);
+                    st2.setString(7, c_no_l);
+                    st2.setString(8, c_bal);
+                    st2.setString(9, c_comm);
+                    st2.execute();
+                    st2.close();
+
+
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+
+                            clientName.setText("");
+                            clientPhone.setText("");
+                            clientAddress.setText("");
+                            clientLogNo.setText("");
+                            clientDriverNo .setText("");
+                            clientDob .setText("");
+                            clientNoOfLessons .setText("");
+                            clientsComments .setText("");
+                            clientBalance .setText("");
+                            Toast.makeText(getBaseContext(), "Client has been added to the database! ", Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+
+
+                    st2.close();
+                    c.close();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
     } // end on create
 
 
-    @SuppressWarnings("deprecation")
-    public void setDate(View view) {
-        showDialog(999);
-        Toast.makeText(getApplicationContext(), "Pick a date", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        // TODO Auto-generated method stub
-        if (id == 999) {
-            return new DatePickerDialog(this, myDateListener, year, month, day);
-        }
-        return null;
-    }
-
-    private DatePickerDialog.OnDateSetListener myDateListener = new
-            DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-                    // so its getting here - outputting the current date and time correctly but no values
-                    String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                    System.out.println(" ########## date picker -  date: " + currentDateTimeString);
-                    arg1 = year;
-                     arg2 = month;
-                     arg3 = day;
-                    System.out.println(" ########## date picker -  year: " + arg1);
-                    System.out.println(" ########## date picker -  month: " + arg2);
-                    System.out.println(" ########## date picker -  day: " + arg3);
-
-
-                    showDate(arg1, arg2+1, arg3);
-                }
-            };
-
-    private void showDate(int year, int month, int day) {
-        dob.setText("");
-        dob.setText(new StringBuilder().append(day).append("/").append(month).append("/").append(year));
-
-    }
+    //    @SuppressWarnings("deprecation")
+//    public void setDate(View view) {
+//        showDialog(999);
+//        Toast.makeText(getApplicationContext(), "Pick a date", Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    protected Dialog onCreateDialog(int id) {
+//        // TODO Auto-generated method stub
+//        if (id == 999) {
+//            return new DatePickerDialog(this, myDateListener, year, month, day);
+//        }
+//        return null;
+//    }
+//
+//    private DatePickerDialog.OnDateSetListener myDateListener = new
+//            DatePickerDialog.OnDateSetListener() {
+//                @Override
+//                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+//                    // so its getting here - outputting the current date and time correctly but no values
+//                    String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+//                    System.out.println(" ########## date picker -  date: " + currentDateTimeString);
+//                    arg1 = year;
+//                     arg2 = month;
+//                     arg3 = day;
+//                    System.out.println(" ########## date picker -  year: " + arg1);
+//                    System.out.println(" ########## date picker -  month: " + arg2);
+//                    System.out.println(" ########## date picker -  day: " + arg3);
+//
+//
+//                    showDate(arg1, arg2+1, arg3);
+//                }
+//            };
+//
+//    private void showDate(int year, int month, int day) {
+//        clientDob.setText("");
+//        clientDob.setText(new StringBuilder().append(day).append("/").append(month).append("/").append(year));
+//
+//    }
 //
 //    public static String POST(String url, Client client){
 //        InputStream inputStream = null;
@@ -286,14 +338,14 @@ public class InsertClient extends Activity{// } implements OnClickListener {
 //    }
 //
     // An intent for the user to go back to the main screen
-        public void goBackScreen(View view) {
-            try {
-                Intent lastScreen = new Intent(this, ListClients.class);
-                startActivity(lastScreen);
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
+    public void goBackScreen(View view) {
+        try {
+            Intent lastScreen = new Intent(this, ListClients.class);
+            startActivity(lastScreen);
+        } catch(Exception e) {
+            e.printStackTrace();
         }
+    }
 
     public void home(View view)
     {
