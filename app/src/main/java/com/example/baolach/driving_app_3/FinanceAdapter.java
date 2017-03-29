@@ -62,7 +62,7 @@ public class FinanceAdapter extends BaseAdapter {
             holder.driver_no = (TextView) row.findViewById(R.id.driver_no);
             holder.dob = (TextView) row.findViewById(R.id.dob);
             holder.no_of_lessons = (TextView) row.findViewById(R.id.no_of_lessons);
-            holder.balance_due = (TextView) row.findViewById(R.id.balance_due);
+            holder.balance_due = (TextView) row.findViewById(R.id.balance_paid);
             holder.comments = (TextView) row.findViewById(R.id.comments);
 
 
@@ -74,11 +74,13 @@ public class FinanceAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
 
-
+        System.out.println("client nam: " + holder);
         Client client = clientlist.get(position);
         holder.client_name.setText(client.getName());
+
         holder.balance_due.setText(client.getBalancedue());
-        //holder.client_address.setText(client.getAddress());
+        holder.no_of_lessons.setText(client.getNooflessons());
+        System.out.println("client nam: " + holder);
 
 
         return row;

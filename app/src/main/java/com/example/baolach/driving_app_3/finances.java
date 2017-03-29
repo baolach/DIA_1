@@ -99,7 +99,7 @@ public class Finances extends Activity
 
 
                 // creates new intent and sends over the client information when item is clicked
-                Intent i = new Intent(Finances.this, ClientInfo.class);
+                Intent i = new Intent(Finances.this, FinanceInfo.class);
                 i.putExtra("theclientname", clientname);
                 i.putExtra("theclientphone", phone);
                 i.putExtra("theclientaddress", address);
@@ -207,9 +207,9 @@ public class Finances extends Activity
                         g++;
 
 
-                        System.out.println("##### Finances.java");
-                        System.out.println("##### clientname: " + clientname);
-                        System.out.println("##### balance due: " + balancedue);
+//                        System.out.println("##### Finances.java");
+//                        System.out.println("##### clientname: " + clientname);
+//                        System.out.println("##### balance due: " + balancedue);
 
 
                     } catch (JSONException e) {
@@ -260,110 +260,6 @@ public class Finances extends Activity
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
-
-
-
-    // old finances
-//    DBManager db = new DBManager(this);
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState)
-//    {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.list_finances);
-//
-//        final ListView listView = (ListView) findViewById(R.id.listView_clients); // in the list_clients xml
-//        try {
-//            db.open();
-//            Cursor result = db.getAll();
-//            FinancesCursorAdapter cursorAdapter = new FinancesCursorAdapter(Finances.this, result);
-//            listView.setAdapter(cursorAdapter);
-//
-//            db.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//        }
-//
-//        // these below need to be added also
-//
-//        // When a client is clicked it goes to the ClientInfo activity and displays all info on that client
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
-//                try {
-////                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
-////                    String lessonname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
-////                    String lessondate = myCursor.getString(2);
-////                    String lessontime = myCursor.getString(3);
-////                    String lessonlocation = myCursor.getString(4);
-////                    String nooflessons = myCursor.getString(5);
-////                    String lessoncomments = myCursor.getString(6);
-////
-////                    Intent i = new Intent(Finances.this, LessonInfo.class);
-////
-////                    i.putExtra("thelessonname", lessonname);
-////                    i.putExtra("thelessondate", lessondate);
-////                    i.putExtra("thelessontime", lessontime);
-////                    i.putExtra("thelessonlocation", lessonlocation);
-////                    i.putExtra("thelessonlocation", nooflessons);
-////                    i.putExtra("thelessoncomments", lessoncomments);
-//                    Cursor myCursor = (Cursor) parent.getItemAtPosition(position); // where the info is stored on what you clicked
-//                    String theclientsname = myCursor.getString(1); // 4th position in the clients table (LOG NUMBER)
-//                    String theclientsphone = myCursor.getString(2);
-//                    String theclientsaddress = myCursor.getString(3);
-//                    String theclientslognumber = myCursor.getString(4);
-//                    String theclientsdrivernumber = myCursor.getString(5);
-//                    String theclientsdob = myCursor.getString(6);
-//                    String nooflessons = myCursor.getString(7);
-//                    String theclientscomments = myCursor.getString(8);
-//
-//                    Intent i = new Intent(Finances.this, ClientInfo.class);
-//
-//                    i.putExtra("theclientsname", theclientsname);
-//                    i.putExtra("theclientsphone", theclientsphone);
-//                    i.putExtra("theclientsaddress", theclientsaddress);
-//                    i.putExtra("theclientslognumber", theclientslognumber);
-//                    i.putExtra("theclientsdrivernumber", theclientsdrivernumber);
-//                    i.putExtra("theclientsdob", theclientsdob);
-//                    i.putExtra("nooflessons", nooflessons);
-//                    i.putExtra("theclientscomments", theclientscomments);
-//
-//                    startActivity(i);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//
-//    }
-//
-//
-////    public void listLessonName(View view) {
-////        try {
-////            Intent lesson_name_intent = new Intent(this, InsertLesson.class);
-////            startActivity(lesson_name_intent);
-////        } catch (Exception e) {
-////            e.printStackTrace();
-////        }
-////    }
-//
-//
-//    public void back_screen_btn(View view) {
-//        try {
-//            Intent adminActivity = new Intent(this, MainActivity.class);
-//            startActivity(adminActivity);
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
 
 

@@ -72,12 +72,12 @@
         android:layout_below="@+id/no_of_lessons"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="32dp"
-        android:id="@+id/balance_due"/>
+        android:id="@+id/balance_paid"/>
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/balance_due"
+        android:layout_below="@+id/balance_paid"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="32dp"
         android:id="@+id/comments"/>

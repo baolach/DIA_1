@@ -65,7 +65,7 @@ public class ClientAdapter extends BaseAdapter {
             holder.driver_no = (TextView) row.findViewById(R.id.driver_no);
             holder.dob = (TextView) row.findViewById(R.id.dob);
             holder.no_of_lessons = (TextView) row.findViewById(R.id.no_of_lessons);
-            holder.balance_due = (TextView) row.findViewById(R.id.balance_due);
+            holder.balance_due = (TextView) row.findViewById(R.id.balance_paid);
             holder.comments = (TextView) row.findViewById(R.id.comments);
 
 
