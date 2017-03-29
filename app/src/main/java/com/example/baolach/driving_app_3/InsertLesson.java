@@ -28,9 +28,6 @@ public class InsertLesson extends Activity {
 
     String lessonname, lessondate, lessontime, lessonlocation, lessoncomments; // for the intent coming in
 
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_lesson_details);
@@ -38,7 +35,7 @@ public class InsertLesson extends Activity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        // bundle captures the parameters form the intent
+        // bundle captures the parameters form the intent - this is used when updating lessons only
         if (bundle != null) {
             // if bundle has data in it - read in the data into these variables eg. lessonname
             lessonname = bundle.getString("thelessonname");
@@ -80,7 +77,7 @@ public class InsertLesson extends Activity {
 
         }
 
-
+        // posts to database
         btnPost = (Button) findViewById(R.id.button_submit);
 
         // submit button

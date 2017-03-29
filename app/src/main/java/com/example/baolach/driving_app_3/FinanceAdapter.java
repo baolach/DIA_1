@@ -80,7 +80,6 @@ public class FinanceAdapter extends BaseAdapter {
 
         holder.balance_due.setText(client.getBalancedue());
         holder.no_of_lessons.setText(client.getNooflessons());
-        System.out.println("client nam: " + holder);
 
 
         return row;

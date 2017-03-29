@@ -54,7 +54,9 @@
         android:id="@+id/add_btn"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/radioGroup"/>
+        android:layout_alignBottom="@+id/radioGroup"
+
+        android:onClick="addListenerOnButton"/>
 
     <com.esri.android.map.MapView
         android:id="@+id/map1"

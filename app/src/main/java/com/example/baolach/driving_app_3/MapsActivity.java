@@ -2,10 +2,10 @@ package com.example.baolach.driving_app_3;
 // this is the locations tab on the main screen - this will show the hillstart/turns locations etc once clicked
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,17 +23,22 @@ import com.esri.core.geometry.GeometryEngine;
 import com.esri.core.geometry.Point;
 import com.esri.core.geometry.SpatialReference;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 
 public class MapsActivity extends AppCompatActivity {
 
     MapView mv;
     MapViewHelper mvHelper;
     Point pt;
-    // /private GoogleMap mMap;
-    GestureDetector gestureDetector;
+
     private RadioGroup radioGroup;
     private RadioButton radioButton;
-    private Button add_btn;
+    private Button add_btn; // posts to db
+
     EditText title, detail;
 
 
@@ -79,10 +84,16 @@ public class MapsActivity extends AppCompatActivity {
                 pt = mv.toMapPoint(x, y);
                 // once a point is tapped, makes a new point calling geometryEngine
                 Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
+                System.out.println("wgs Point: " + wgsPoint);
+                System.out.println("pt: " + pt);
+                //System.out.println("mv.getSpatialReference: " + mv.getSpatialReference());
 
 
                 String title = "Reverse";
                 String detail = "Reverse around the corner";
+                System.out.println("title: " + title);
+                System.out.println("detail: " + detail);
+
 
                 // adds to the map
                 mvHelper.addMarkerGraphic(wgsPoint.getY(), wgsPoint.getX(),title,detail,R.drawable.car,
@@ -105,41 +116,88 @@ public class MapsActivity extends AppCompatActivity {
 
         });
 
+        // clears check box and outputs what button was click
+        // I was to put this text in a variable and post it to the database in a locations table along with the location of a pin
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup.clearCheck();
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                final RadioButton selected = (RadioButton) group.findViewById(checkedId);
+                // if a button is selected and its in the radioGroup
+                if (null != selected && checkedId > -1)
+                {
+                    // post to the database
+                    Toast.makeText(MapsActivity.this, selected.getText(), Toast.LENGTH_SHORT).show();
+
+                    // posts to database
+                    add_btn = (Button) findViewById(R.id.add_btn);
+
+                    // submit button
+                    add_btn.setOnClickListener(new View.OnClickListener() {
+
+                        public void onClick(View v) {
+                            // used for inserting into database
+                            new Thread(new Runnable() {
+
+                                public void run() {
+                                    insert();
+                                }
+
+                            }).start();
+                        }
+
+                        protected void insert() {
+
+                            try {
+                                String type = selected.getText().toString();
+                                //Point co = pt;
+
+                                PreparedStatement insertdb;
+                                Class.forName("org.postgresql.Driver");
+                                String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
+                                Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
+
+                                // prepares the sql statement
+                                String insert = "insert into getdata_locations values (?)"; // , ?)";
+                                insertdb = conn.prepareStatement(insert);
+                                insertdb.setString(1, type);
+                                //insertdb.set(2, co);
 
 
+                                insertdb.execute();
+                                insertdb.close(); // close connection must be done
 
+                                // once inserted into database goes back to maps to show it in the db
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(getBaseContext(), "Location added to database! ", Toast.LENGTH_LONG).show();
+                                        Intent l = new Intent(MapsActivity.this, MapsActivity.class); //refreshes the map
+                                        startActivity(l);
+
+                                    }
+                                });
+
+                                insertdb.close();
+                                conn.close();
+
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+
+                }
+
+            }
+        });
 
         // to enable map continuously
         mv.enableWrapAround(true);
-
-        // creates envelope object to hold two sets of coordinates which form a rectangle map extent
-//        Envelope myEnv = new Envelope(-14029650,3560436,-12627306,5430229); // sets extent to california - 53.33866341,-6.36983871,53.30605714,-6.26083374
-//        mv.setExtent(myEnv);
-
-
-        /*
-        // java way of implementing web map
-        // because the map is set to public anyone can see - may change that
-        mv = new MapView(this, this.getResources().getString(R.string.webUrl),null,null);
-        setContentView(mv);
-        */
-
-        /*
-         // Adds the different feature layers to the map if you want eg. rivers, roads, mountains
-        // uses java to show the map
-        // create layer object to be wrapped with a basemap url
-        ArcGISTiledMapServiceLayer baseMap = new ArcGISTiledMapServiceLayer(
-                this.getResources().getString(R.string.basemapUrl));
-        // call the function add layer to display the basemap
-        mv.addLayer(baseMap);
-
-        // create another map layer - wrap with url2
-        ArcGISTiledMapServiceLayer MapLayer2 = new ArcGISTiledMapServiceLayer(
-                this.getResources().getString(R.string.basemapUrl2));
-        mv.addLayer(MapLayer2);
-
-        */
-
 
 
     } // end onCreate
@@ -148,7 +206,9 @@ public class MapsActivity extends AppCompatActivity {
     public void addListenerOnButton() {
 
         radioGroup = (RadioGroup) findViewById(R.id.radio);
+        //radioGroup.clearCheck();
         add_btn = (Button) findViewById(R.id.add_btn);
+
 
         add_btn.setOnClickListener(new View.OnClickListener() {
 
