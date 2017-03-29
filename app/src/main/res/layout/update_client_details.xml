@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+                android:padding="10dp"
+                android:background="@color/dgrey">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:id="@+id/website"
+        android:src="@drawable/active5"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+
+        />
+
+
+    <EditText
+        android:id="@+id/editText_clientPhone"
+        android:hint="Phone"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+        android:inputType="number"
+
+
+        android:layout_below="@+id/editText_clientName"
+        android:layout_alignStart="@+id/editText_clientName"
+
+        android:layout_margin="1dp"
+        android:nextFocusDown="@+id/editText_clientAddress"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:nextFocusForward="@+id/lesson_date">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_clientLogNo"
+
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+
+        android:hint="Log Number"
+        android:layout_below="@+id/editText_clientAddress"
+        android:layout_margin="1dp"
+        android:nextFocusDown="@+id/editText_clientDriverNo"
+        android:layout_alignStart="@+id/editText_clientName"
+        android:maxLength="5"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="number"
+        android:nextFocusForward="@+id/lesson_date">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_clientDriverNo"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+
+        android:hint="Driver Number"
+        android:layout_below="@+id/editText_clientLogNo"
+        android:layout_margin="1dp"
+        android:nextFocusDown="@+id/editText_clientDob"
+        android:layout_alignStart="@+id/editText_clientName"
+        android:maxLength="9"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="number"
+        android:nextFocusForward="@+id/lesson_date">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_clientDob"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+        android:hint="Date of Birth (YYYY-MM-DD)"
+        android:layout_below="@+id/editText_clientDriverNo"
+        android:layout_margin="1dp"
+
+        android:nextFocusDown="@+id/editText_clientNoOfLessons"
+        android:layout_alignStart="@+id/editText_clientName"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="number"
+        android:nextFocusForward="@+id/lesson_date">
+
+        <!--android:onClick="setDate">-->
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_clientNoOfLessons"
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+
+        android:hint="Number of Lessons"
+        android:layout_below="@+id/editText_clientDob"
+        android:layout_margin="1dp"
+        android:layout_alignStart="@+id/editText_clientName"
+
+
+        android:maxLength="2"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="number"
+        android:nextFocusForward="@+id/lesson_date">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_clientComments"
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+        android:hint="Comments"
+        android:layout_below="@+id/editText_clientBalance"
+        android:layout_alignStart="@+id/editText_clientName"
+        android:layout_margin="1dp"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date"
+        >
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_clientBalance"
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+        android:hint="Balance"
+        android:layout_below="@+id/editText_clientNoOfLessons"
+        android:layout_margin="1dp"
+        android:layout_alignStart="@+id/editText_clientName"
+
+        android:maxLength="3"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="number"
+        android:nextFocusForward="@+id/lesson_date">
+        <requestFocus />
+    </EditText>
+
+
+    <Button
+        android:id="@+id/button_update"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_below="@+id/editText_clientComments"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="1dp"
+
+        android:background="@color/dturq"
+        android:textColor="@color/white"
+        android:layout_alignStart="@+id/editText_clientName"
+
+
+        />
+
+    <EditText
+        android:id="@+id/editText_clientAddress"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+        android:layout_margin="1dp"
+
+
+        android:hint="Address"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/editText_clientPhone"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/editText_clientName"
+        android:nextFocusDown="@+id/editText_clientLogNo"
+
+
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date"
+        >
+        <requestFocus />
+    </EditText>
+
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:id="@+id/home"
+        android:onClick="home"
+
+        style="?android:attr/buttonStyleSmall"
+        android:background="@color/turq"
+        android:maxWidth="150dp"
+        android:minHeight="20dp"
+        android:textSize="11dp"
+        android:textColor="@color/white"
+        android:padding="5dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_below="@+id/website"
+        android:layout_toEndOf="@+id/button"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/goBack"
+        android:id="@+id/button"
+        android:maxWidth="20dp"
+        android:minHeight="20dp"
+        android:textSize="11dp"
+        android:textColor="@color/white"
+        android:background="@color/turq"
+        android:onClick="goBackScreen"
+        android:layout_marginLeft="1dp"
+        android:padding="5dp"
+
+        android:layout_below="@+id/website"
+        android:layout_alignStart="@+id/editText_clientPhone"/>
+
+    <EditText
+        android:id="@+id/editText_clientName"
+        android:hint="Client Name"
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
+
+
+        android:layout_marginTop="14dp"
+
+
+        android:nextFocusDown="@+id/editText_clientPhone"
+        android:layout_below="@+id/home"
+        android:layout_centerHorizontal="true"
+        android:imeOptions="actionSend|flagNoEnterAction"
+        android:maxLines="4"
+
+
+        android:maxLength="50"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date">
+        <requestFocus />
+    </EditText>
+
+
+</RelativeLayout>
+

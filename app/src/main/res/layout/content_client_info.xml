@@ -64,11 +64,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Address"
-        android:id="@+id/thelessontime"
+        android:id="@+id/theclientaddress"
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
-        android:layout_alignStart="@+id/thelessonname"
+        android:layout_alignStart="@+id/theclientname"
 
         android:maxLines="1"
         android:ellipsize="marquee"
@@ -86,11 +86,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Phone"
-        android:id="@+id/thelessondate"
+        android:id="@+id/theclientphone"
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_alignStart="@+id/thelessontime"
+        android:layout_alignStart="@+id/theclientaddress"
 
         android:ellipsize="marquee"
         android:layout_width="fill_parent"
@@ -122,11 +122,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="log number"
-        android:id="@+id/thelessonlocation"
+        android:id="@+id/thelognumber"
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView4"
         android:layout_alignBottom="@+id/textView4"
-        android:layout_alignStart="@+id/thelessontime"
+        android:layout_alignStart="@+id/theclientaddress"
         android:maxLines="1"
         />
 
@@ -148,11 +148,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Driver No."
-        android:id="@+id/thelessoncomments"
+        android:id="@+id/thedrivernumber"
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView5"
         android:layout_alignBottom="@+id/textView5"
-        android:layout_alignStart="@+id/thelessonlocation"
+        android:layout_alignStart="@+id/thelognumber"
         android:maxLines="1"
         />
 
@@ -187,7 +187,7 @@
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView6"
         android:layout_alignBottom="@+id/textView6"
-        android:layout_alignStart="@+id/thelessoncomments"
+        android:layout_alignStart="@+id/thedrivernumber"
         android:maxLines="1"
         />
 
@@ -239,7 +239,9 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView8"/>
+        android:layout_alignStart="@+id/textView8"
+
+/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -270,7 +272,7 @@
         android:layout_height="wrap_content"
         android:text="Update Client"
         android:id="@+id/update_client_btn"
-
+        android:onClick="update"
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="100dp"
@@ -324,21 +326,14 @@
 
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Client Name"
-        android:id="@+id/thelessonname"
+        android:id="@+id/theclientname"
         android:textColor="@color/white"
         android:layout_width="fill_parent"
 
 
 
         android:maxLines="1"
-        android:ellipsize="marquee"
-
-        android:marqueeRepeatLimit="2"
-        android:scrollHorizontally="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:freezesText="true"
-        android:singleLine="true"
+        android:scrollbars="horizontal"
 
         android:layout_above="@+id/textView2"
         android:layout_alignStart="@+id/update_client_btn"/>
@@ -351,16 +346,13 @@
         android:id="@+id/theclientscomments"
         android:textColor="@color/white"
         android:maxLines="1"
-        android:ellipsize="marquee"
+        android:scrollbars="vertical"
 
-        android:marqueeRepeatLimit="2"
-        android:scrollHorizontally="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:freezesText="true"
-        android:singleLine="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/thebalance"/>
+        android:layout_alignStart="@+id/thebalance"
+
+
+        />
 
     <Button
         android:layout_width="wrap_content"

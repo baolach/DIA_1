@@ -14,10 +14,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * Created by Baolach on 28/03/2017.
  */
-public class InsertLesson extends Activity {
 
-    //DBManager db = new DBManager(this);
+public class UpdateLesson extends Activity {
 
     EditText lessonName;
     EditText lessonDate;
@@ -33,7 +33,7 @@ public class InsertLesson extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.insert_lesson_details);
+        setContentView(R.layout.update_lesson_details);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -70,18 +70,19 @@ public class InsertLesson extends Activity {
             System.out.println("data has been entered again");
 
 
-        } else{
-            // else if no data is sent ie. the update button isnt pressed - set t
-            lessonName = (EditText) findViewById(R.id.editText_lessonName);
-            lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
-            lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
-            lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
-            lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
-
         }
+//        else{
+//            // else if no data is sent ie. the update button isnt pressed - set t
+//            lessonName = (EditText) findViewById(R.id.editText_lessonName);
+//            lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
+//            lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
+//            lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
+//            lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
+//
+//        }
 
 
-        btnPost = (Button) findViewById(R.id.button_submit);
+        btnPost = (Button) findViewById(R.id.button_update);
 
         // submit button
         btnPost.setOnClickListener(new View.OnClickListener() {
@@ -127,8 +128,8 @@ public class InsertLesson extends Activity {
                     // once inserted into database goes back to listLessons to show it in the db
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            Toast.makeText(getBaseContext(), "Lesson added to database! ", Toast.LENGTH_LONG).show();
-                            Intent l = new Intent(InsertLesson.this, ListLessons.class); // lists all lessoninfo
+                            Toast.makeText(getBaseContext(), "Lesson updated in database! ", Toast.LENGTH_LONG).show();
+                            Intent l = new Intent(UpdateLesson.this, ListLessons.class); // lists all lessoninfo
                             startActivity(l);
 
                         }
@@ -166,7 +167,4 @@ public class InsertLesson extends Activity {
             e.printStackTrace();
         }
     }
-
 }
-
-

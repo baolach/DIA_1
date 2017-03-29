@@ -178,6 +178,7 @@ public class ListLessons extends Activity
                         adapter.notifyDataSetChanged();
                         g++;
 
+
                         // to test if data is coming through
 //                        System.out.println("##### ListLesson.java");
 //                        System.out.println("##### lessonname: " + lessonname);

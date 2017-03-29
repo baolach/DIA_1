@@ -3,6 +3,7 @@ package com.example.baolach.driving_app_3;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -45,11 +46,11 @@ public class LessonInfo extends Activity {
         }
 
         // apply to textViews
-        TextView nameTextView = (TextView) findViewById(R.id.thelessonname);
-        TextView dateTextView = (TextView) findViewById(R.id.thelessondate);
-        TextView timeTextView = (TextView) findViewById(R.id.thelessontime);
-        TextView locationTextView = (TextView) findViewById(R.id.thelessonlocation);
-        TextView commentsTextView = (TextView) findViewById(R.id.thelessoncomments);
+        TextView nameTextView = (TextView) findViewById(R.id.theclientname);
+        TextView dateTextView = (TextView) findViewById(R.id.theclientphone);
+        TextView timeTextView = (TextView) findViewById(R.id.theclientaddress);
+        TextView locationTextView = (TextView) findViewById(R.id.thelognumber);
+        TextView commentsTextView = (TextView) findViewById(R.id.thedrivernumber);
 
 
         nameTextView.setText(lessonname);
@@ -57,6 +58,17 @@ public class LessonInfo extends Activity {
         timeTextView.setText(lessontime);
         locationTextView.setText(lessonlocation);
         commentsTextView.setText(lessoncomments);
+
+        // need this for the vertical scroll view
+        nameTextView.setMovementMethod(new ScrollingMovementMethod());
+        commentsTextView.setMovementMethod(new ScrollingMovementMethod());
+
+        // for marquee scroll
+//        nameTextView.setSelected(true);
+//        dateTextView.setSelected(true);
+//        timeTextView.setSelected(true);
+          locationTextView.setSelected(true);
+//        commentsTextView.setSelected(true);
 
 
 
@@ -91,8 +103,7 @@ public class LessonInfo extends Activity {
                     // where "table_name_in postgres_db = the_variable_the_intent_sent_over"
                     String sql = "DELETE from getdata_getlesson where lesson_name = '" + lessonname + "' AND lesson_date= '" + lessondate + "' AND lesson_time = '" + lessontime + "';";
 
-                    //where lesson_name = 'Stephen' AND lesson_date = '2017-01-19' AND lesson_time='14:20';
-                    //Toast.makeText(getBaseContext(), "Client deleted from database! ", Toast.LENGTH_LONG).show();
+
 
                     deletedb.executeUpdate(sql);
                     conn.commit();
@@ -101,7 +112,7 @@ public class LessonInfo extends Activity {
                     // once inserted into database all the edittexts resert to ""
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            Toast.makeText(getBaseContext(), "Lesson deleted from database! ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "Lesson with " + lessonname + " deleted from database! ", Toast.LENGTH_LONG).show();
                             Intent l = new Intent(LessonInfo.this, ListLessons.class); // lists all lessoninfo
                             startActivity(l);
 
@@ -277,8 +288,8 @@ public class LessonInfo extends Activity {
     {
         try{
             // creates new intent and sends over the client information when update is clicked
-            // this adds these into the editTexts and then you can resave the lesson
-            Intent i = new Intent(this, InsertLesson.class);
+            // this adds these into the editTexts and then you can re-save the lesson
+            Intent i = new Intent(this, UpdateLesson.class);
             i.putExtra("thelessonname", lessonname);
             i.putExtra("thelessondate", lessondate);
             i.putExtra("thelessontime", lessontime);
