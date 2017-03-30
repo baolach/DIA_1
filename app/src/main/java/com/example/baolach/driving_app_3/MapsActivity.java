@@ -38,6 +38,7 @@ public class MapsActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button add_btn; // posts to db
+    String insertPoint;
 
     EditText title, detail;
 
@@ -54,7 +55,7 @@ public class MapsActivity extends AppCompatActivity {
         // uses xml to show the map
         mv = (MapView) findViewById(R.id.map1);
         mvHelper = new MapViewHelper(mv);
-        addListenerOnButton();
+        //addListenerOnButton();
 
 
         // mapview set to the listener
@@ -64,6 +65,8 @@ public class MapsActivity extends AppCompatActivity {
 
                 // this is if you want an automatic pin - maybe to show your current locaion
                 // or maybe you want to output all the stored pins from the db
+
+
                 mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
                       String title = "Location";
                       String detail = "Limekiln Road";
@@ -82,20 +85,49 @@ public class MapsActivity extends AppCompatActivity {
                 // this is when you're adding new pins
                 // I want these added to the database
                 pt = mv.toMapPoint(x, y);
-                // once a point is tapped, makes a new point calling geometryEngine
-                Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
-                System.out.println("wgs Point: " + wgsPoint);
-                System.out.println("pt: " + pt);
-                //System.out.println("mv.getSpatialReference: " + mv.getSpatialReference());
-
-
                 String title = "Reverse";
                 String detail = "Reverse around the corner";
-                System.out.println("title: " + title);
-                System.out.println("detail: " + detail);
+
+                // once a point is tapped, makes a new point calling geometryEngine
+                Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
+                System.out.println(wgsPoint);
+                System.out.println("pt: " + pt);
 
 
-                // adds to the map
+                String newPoint = wgsPoint.toString();
+
+                // splits this array in to the part before the "=" and after
+                String[] result = newPoint.split("=");
+                if (result.length != 2)
+                {
+                    // only interested in 1 and 2, result[3] is "com.esri.core.geometry.VertexDescription@7c5d0f85]" which we dont want
+                    for (int i = 0; i < 2; i++)
+                    {
+                        System.out.println("point split:" + result[i]); // prints out to log so we can see whats produced
+                    }
+                }
+
+                //System.out.println("result[1]:" + result[1]); // check that this is just the coordinates
+
+                // now we need to split "[-6.334276974899407, 53.3099229738916], m_description" to just the coodinates
+                String[] co = result[1].split(","); // result[2] is the coordinates plus ... m_description so we need to get rid of that
+                if (co.length != 2)
+                {
+                    // only interested in 1 and 2, result[3] is "com.esri.core.geometry.VertexDescription@7c5d0f85]" which we dont want
+                    for (int i = 0; i < 2; i++)
+                    {
+                        // should print out just the coordinates
+                        System.out.println("co split:" + co[i]); // prints out to log so we can see whats produced
+                    }
+                }
+
+                // concatenate the array points so that they can be added into the database as coordinates (x,y)
+                final String insertPoint = co[0].toString() + "," + co[1].toString();
+                System.out.println("insertPoint:" + insertPoint);
+
+
+
+                // draws to the map
                 mvHelper.addMarkerGraphic(wgsPoint.getY(), wgsPoint.getX(),title,detail,R.drawable.car,
                         ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
 
@@ -125,22 +157,20 @@ public class MapsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 final RadioButton selected = (RadioButton) group.findViewById(checkedId);
+
                 // if a button is selected and its in the radioGroup
                 if (null != selected && checkedId > -1)
                 {
-                    // post to the database
-                    Toast.makeText(MapsActivity.this, selected.getText(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MapsActivity.this, selected.getText(), Toast.LENGTH_SHORT).show(); // post to the screen what was selected
 
                     // posts to database
                     add_btn = (Button) findViewById(R.id.add_btn);
 
-                    // submit button
                     add_btn.setOnClickListener(new View.OnClickListener() {
-
                         public void onClick(View v) {
                             // used for inserting into database
-                            new Thread(new Runnable() {
-
+                            new Thread(new Runnable()
+                            {
                                 public void run() {
                                     insert();
                                 }
@@ -152,7 +182,7 @@ public class MapsActivity extends AppCompatActivity {
 
                             try {
                                 String type = selected.getText().toString();
-                                //Point co = pt;
+                                String insertPoint;
 
                                 PreparedStatement insertdb;
                                 Class.forName("org.postgresql.Driver");
@@ -160,10 +190,10 @@ public class MapsActivity extends AppCompatActivity {
                                 Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
                                 // prepares the sql statement
-                                String insert = "insert into getdata_locations values (?)"; // , ?)";
+                                String insert = "insert into getdata_getlocation values (?, ?)"; // , ?)";
                                 insertdb = conn.prepareStatement(insert);
                                 insertdb.setString(1, type);
-                                //insertdb.set(2, co);
+                                insertdb.setString(2, "coordinate");
 
 
                                 insertdb.execute();
@@ -178,6 +208,8 @@ public class MapsActivity extends AppCompatActivity {
 
                                     }
                                 });
+                                System.out.println("type" + type);
+
 
                                 insertdb.close();
                                 conn.close();
@@ -203,45 +235,7 @@ public class MapsActivity extends AppCompatActivity {
     } // end onCreate
 
 
-    public void addListenerOnButton() {
 
-        radioGroup = (RadioGroup) findViewById(R.id.radio);
-        //radioGroup.clearCheck();
-        add_btn = (Button) findViewById(R.id.add_btn);
-
-
-        add_btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                System.out.println("selectedId about to run");
-                try {
-                    // get selected radio button from radioGroup
-                    int selectedId = radioGroup.getCheckedRadioButtonId();
-
-                    //W/System.err: java.lang.NullPointerException: Attempt to invoke virtual method 'int android.widget.RadioGroup.getCheckedRadioButtonId()' on a null object reference
-                    System.out.println("selectedId: " + selectedId);
-
-
-                    // find the radiobutton by returned id
-                    radioButton = (RadioButton) findViewById(selectedId);
-                    System.out.println("radio button: " + radioButton);
-
-                    if(radioButton!=null) {
-                        Toast.makeText(MapsActivity.this,
-                                radioButton.getText(), Toast.LENGTH_SHORT).show();
-                    }
-
-
-                } catch(Exception e){
-                    System.out.println("######### radio button not read in as selected");
-                    e.printStackTrace();
-                }
-
-            }
-
-        });
-    }
 
 
     // inflates the xml file, the gps image to the view
@@ -252,6 +246,7 @@ public class MapsActivity extends AppCompatActivity {
         return true;
     }
 
+    // whatever menu item is clicked and performs case
     @Override public boolean onOptionsItemSelected(MenuItem item)
     {
         int id = item.getItemId(); // gets menu item id if there are more than 1
