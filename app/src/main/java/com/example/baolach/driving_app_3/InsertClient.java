@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -25,7 +26,18 @@ public class InsertClient extends Activity {
     private Calendar calendar;
     private EditText clientName,clientPhone,clientAddress,clientLogNo,clientDriverNo,clientDob,clientNoOfLessons, clientsComments, clientBalance;
     private Button btnPost;
-    private int year, month, day;
+
+
+    // calendar
+    private TextView tvDisplayDate;
+    private DatePicker dpResult;
+    private Button btnChangeDate;
+
+    private int year;
+    private int month;
+    private int day;
+
+    static final int DATE_DIALOG_ID = 999;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,7 @@ public class InsertClient extends Activity {
 //        showDate(year, month+1, day);
 
 
+
         clientName = (EditText) findViewById(R.id.editText_clientName);
         clientPhone = (EditText) findViewById(R.id.editText_clientPhone);
         clientAddress = (EditText) findViewById(R.id.editText_clientAddress);
@@ -51,6 +64,15 @@ public class InsertClient extends Activity {
         clientBalance = (EditText) findViewById(R.id.editText_clientBalance);
 
         btnPost = (Button) findViewById(R.id.button_submit);
+//        Button btndob = (Button) findViewById(R.id.editText_clientDob);
+//
+//        btndob.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v) {
+//                setCurrentDateOnView();
+//                addListenerOnButton();
+//            }
+//        });
+
 
         // submit button
         btnPost.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +147,87 @@ public class InsertClient extends Activity {
             }
         });
     } // end on create
+
+
+    // calendar stuff
+    // display current date
+//    public void setCurrentDateOnView() {
+
+//        //tvDisplayDate = (TextView) findViewById(R.id.tvDate);
+//        dpResult = (DatePicker) findViewById(R.id.dpResult);
+//
+//        final Calendar c = Calendar.getInstance();
+//        year = c.get(Calendar.YEAR);
+//        month = c.get(Calendar.MONTH);
+//        day = c.get(Calendar.DAY_OF_MONTH);
+//
+//        // set current date into textview
+//        clientDob.setText(new StringBuilder()
+//                // Month is 0 based, just add 1
+//                .append(month + 1).append("-").append(day).append("-")
+//                .append(year).append(" "));
+//
+//        // set current date into datepicker
+//        dpResult.init(year, month, day, null);
+
+ //   }
+
+ //   public void addListenerOnButton() {
+
+//        btnChangeDate = (Button) findViewById(R.id.btnChangeDate);
+//
+//        btnChangeDate.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//                showDialog(DATE_DIALOG_ID);
+//
+//            }
+//
+//        });
+
+//    }
+
+//    @Override
+//    protected Dialog onCreateDialog(int id) {
+//        switch (id) {
+//            case DATE_DIALOG_ID:
+//                // set date picker as current date
+//                return new DatePickerDialog(this, datePickerListener,
+//                        year, month,day);
+//        }
+//        return null;
+//    }
+//
+//    private DatePickerDialog.OnDateSetListener datePickerListener
+//            = new DatePickerDialog.OnDateSetListener() {
+//
+//        // when dialog box is closed, below method will be called.
+//        public void onDateSet(DatePicker view, int selectedYear,
+//                              int selectedMonth, int selectedDay) {
+//            year = selectedYear;
+//            month = selectedMonth;
+//            day = selectedDay;
+//
+//            // set selected date into textview
+//            tvDisplayDate.setText(new StringBuilder().append(month + 1)
+//                    .append("-").append(day).append("-").append(year)
+//                    .append(" "));
+//
+//            // set selected date into datepicker also
+//            dpResult.init(year, month, day, null);
+//
+//        }
+//    };
+
+
+
+
+
+
+
+
 
 
     // An intent for the user to go back to the main screen

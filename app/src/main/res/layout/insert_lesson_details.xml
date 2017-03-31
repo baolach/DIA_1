@@ -123,6 +123,7 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
 
+        android:digits="abcdeghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
 
         android:layout_marginTop="14dp"
         android:layout_marginBottom="1dp"

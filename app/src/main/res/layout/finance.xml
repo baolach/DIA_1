@@ -23,27 +23,27 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/balance_paid"
+
         android:gravity="center"
-
         android:padding="10dp"
+        android:layout_marginRight="20dp"
 
-        android:layout_marginStart="55dp"
+        android:id="@+id/no_of_lessons"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/client_name"/>
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:id="@+id/balance_paid"
         android:gravity="center"
-        android:padding="10dp"
 
-        android:layout_alignBottom="@+id/balance_paid"
-        android:layout_toEndOf="@+id/balance_paid"
-        android:layout_marginStart="45dp"
-        android:id="@+id/no_of_lessons"/>
+        android:elegantTextHeight="false"
+        android:padding="10dp"
+        android:layout_marginEnd="89dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"/>
 
 
 </RelativeLayout>

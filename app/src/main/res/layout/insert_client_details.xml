@@ -25,51 +25,6 @@
 
 
     <EditText
-        android:id="@+id/editText_clientPhone"
-        android:hint="Phone"
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-        android:inputType="number"
-        android:maxLength="10"
-
-
-        android:layout_below="@+id/editText_clientName"
-        android:layout_alignStart="@+id/editText_clientName"
-
-        android:layout_margin="1dp"
-        android:nextFocusDown="@+id/editText_clientAddress"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="7dp"
-        android:nextFocusForward="@+id/lesson_date">
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/editText_clientLogNo"
-
-
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-
-
-        android:hint="Log Number"
-        android:layout_below="@+id/editText_clientAddress"
-        android:layout_margin="1dp"
-        android:nextFocusDown="@+id/editText_clientDriverNo"
-        android:layout_alignStart="@+id/editText_clientName"
-        android:maxLength="5"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="7dp"
-        android:inputType="number"
-        android:nextFocusForward="@+id/lesson_date">
-        <requestFocus />
-    </EditText>
-
-    <EditText
         android:id="@+id/editText_clientDriverNo"
         android:background="@color/turq"
         android:textColorHint="@color/white"
@@ -91,28 +46,30 @@
         <requestFocus />
     </EditText>
 
-    <EditText
-        android:id="@+id/editText_clientDob"
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-
-        android:hint="Date of Birth (DD-MM-YYYY)"
-        android:layout_below="@+id/editText_clientDriverNo"
-        android:layout_margin="1dp"
-
-        android:nextFocusDown="@+id/editText_clientNoOfLessons"
-        android:layout_alignStart="@+id/editText_clientName"
 
 
-        android:layout_width="fill_parent"
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="7dp"
-        android:inputType="text"
-        android:nextFocusForward="@+id/lesson_date">
+        android:text="@string/goBack"
+        android:id="@+id/button"
+        android:maxWidth="20dp"
+        android:minHeight="20dp"
+        android:textSize="11dp"
+        android:textColor="@color/white"
+        android:background="@color/turq"
+        android:onClick="goBackScreen"
+        android:layout_marginLeft="1dp"
+        android:padding="5dp"
 
-        <!--android:onClick="setDate">-->
-        <requestFocus />
-    </EditText>
+        android:layout_below="@+id/website"
+        android:layout_alignStart="@+id/editText_clientPhone"/>
+
+
+
+
+
 
     <EditText
         android:id="@+id/editText_clientNoOfLessons"
@@ -198,6 +155,8 @@
         />
 
     <EditText
+        android:layout_height="wrap_content"
+
         android:id="@+id/editText_clientAddress"
         android:background="@color/turq"
         android:textColorHint="@color/white"
@@ -205,8 +164,7 @@
 
 
         android:hint="Address"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
+
         android:layout_below="@+id/editText_clientPhone"
         android:layout_alignParentEnd="true"
         android:layout_alignStart="@+id/editText_clientName"
@@ -244,23 +202,7 @@
         android:layout_below="@+id/website"
         android:layout_toEndOf="@+id/button"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/goBack"
-        android:id="@+id/button"
-        android:maxWidth="20dp"
-        android:minHeight="20dp"
-        android:textSize="11dp"
-        android:textColor="@color/white"
-        android:background="@color/turq"
-        android:onClick="goBackScreen"
-        android:layout_marginLeft="1dp"
-        android:padding="5dp"
 
-        android:layout_below="@+id/website"
-        android:layout_alignStart="@+id/editText_clientPhone"/>
 
     <EditText
         android:id="@+id/editText_clientName"
@@ -279,7 +221,6 @@
 
         android:nextFocusDown="@+id/editText_clientPhone"
         android:layout_below="@+id/home"
-        android:layout_centerHorizontal="true"
         android:imeOptions="actionSend|flagNoEnterAction"
         android:maxLines="4"
 
@@ -291,10 +232,82 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="textCapSentences|textCapWords"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
         <requestFocus />
     </EditText>
 
+    <Button
+        android:text="Date of birth"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_clientDriverNo"
+        android:id="@+id/editText_clientDob"
+        android:background="@color/turq"
+        android:onClick="dobbtn"
+        android:textColor="@color/white"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/editText_clientDriverNo"/>
+
+    <EditText
+        android:id="@+id/editText_clientLogNo"
+
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+
+        android:hint="Log Number"
+        android:nextFocusDown="@+id/editText_clientDriverNo"
+        android:maxLength="5"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="number"
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/editText_clientAddress"
+        android:layout_alignStart="@+id/editText_clientName">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_clientPhone"
+        android:hint="Phone"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+        android:inputType="number"
+        android:maxLength="10"
+
+
+        android:nextFocusDown="@+id/editText_clientAddress"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/editText_clientName"
+        android:layout_alignParentEnd="true">
+        <requestFocus />
+    </EditText>
+
+    <!--<DatePicker-->
+    <!--android:id="@+id/dpResult"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/lblDate"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Current Date (M-D-YYYY): "-->
+    <!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
 
 </RelativeLayout>
 
