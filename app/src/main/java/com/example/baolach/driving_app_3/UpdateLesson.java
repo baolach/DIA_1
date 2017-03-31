@@ -69,7 +69,7 @@ public class UpdateLesson extends Activity {
                 lessonComments.setText(lessoncomments);
 
 
-                System.out.println("data has been entered again");
+                System.out.println("Data transfered from lesson info to updateLesson successful");
             }
         } catch(Exception e){
             Toast.makeText(getBaseContext(), "Error! Update not successful ", Toast.LENGTH_SHORT).show();

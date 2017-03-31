@@ -43,11 +43,9 @@ public class LessonInfo extends Activity {
             lessonid = bundle.getString("id");
             System.out.println("LessonInfo id: " + lessonid); // should be the id of the lesson
 
-
-
         }
 
-        // apply to textViews in LessonInfo
+        // apply to textViews in LessonInfo but dont need id
         TextView nameTextView = (TextView) findViewById(R.id.theclientname);
         TextView dateTextView = (TextView) findViewById(R.id.theclientphone);
         TextView timeTextView = (TextView) findViewById(R.id.theclientaddress);
@@ -66,13 +64,7 @@ public class LessonInfo extends Activity {
         commentsTextView.setMovementMethod(new ScrollingMovementMethod());
 
         // for marquee scroll
-//        nameTextView.setSelected(true);
-//        dateTextView.setSelected(true);
-//        timeTextView.setSelected(true);
-          locationTextView.setSelected(true);
-//        commentsTextView.setSelected(true);
-
-
+        locationTextView.setSelected(true);
 
         Button btnDelete  = (Button) findViewById(R.id.delete_client_btn);
 
