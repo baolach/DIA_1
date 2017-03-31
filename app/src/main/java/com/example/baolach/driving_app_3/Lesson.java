@@ -13,15 +13,6 @@ public class Lesson {
     private String location;
     private String comments;
 
-    public String getDbid() {
-        return dbid;
-    }
-
-    public void setDbid(String dbid) {
-        this.dbid = dbid;
-    }
-
-    private String dbid;
 
 
     public int getId() {
@@ -80,7 +71,6 @@ public class Lesson {
         this.time = time;
         this.location = location;
         this.comments = comments;
-        this.dbid = dbid;
 
 
     }

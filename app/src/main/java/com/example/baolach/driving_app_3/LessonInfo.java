@@ -110,6 +110,8 @@ public class LessonInfo extends Activity {
                             Toast.makeText(getBaseContext(), "Lesson with " + lessonname + " deleted from database! ", Toast.LENGTH_LONG).show();
                             Intent l = new Intent(LessonInfo.this, ListLessons.class); // lists all lessoninfo
                             startActivity(l);
+                            finish();
+
 
                         }
                     });
@@ -133,6 +135,8 @@ public class LessonInfo extends Activity {
         try {
             Intent lastScreen = new Intent(this, ListLessons.class);
             startActivity(lastScreen);
+            finish();
+
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -143,6 +147,8 @@ public class LessonInfo extends Activity {
         try {
             Intent home_intent = new Intent(this, MainActivity.class);
             startActivity(home_intent);
+            finish();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -168,6 +174,8 @@ public class LessonInfo extends Activity {
             System.out.println("LessonInfo update function before intent is sent to UpdateLesson.java - id: " + lessonid);
 
             startActivity(i);
+            finish();
+
 
         } catch (Exception e) {
             e.printStackTrace();

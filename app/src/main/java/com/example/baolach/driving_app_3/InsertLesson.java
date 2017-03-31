@@ -127,6 +127,7 @@ public class InsertLesson extends Activity {
                             Toast.makeText(getBaseContext(), "Lesson added to database! ", Toast.LENGTH_LONG).show();
                             Intent l = new Intent(InsertLesson.this, ListLessons.class); // lists all lessoninfo
                             startActivity(l);
+                            finish();
 
                         }
                     });
@@ -149,6 +150,7 @@ public class InsertLesson extends Activity {
         try {
             Intent lastScreen = new Intent(this, ListLessons.class);
             startActivity(lastScreen);
+            finish();
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -159,6 +161,7 @@ public class InsertLesson extends Activity {
         try {
             Intent home_intent = new Intent(this, MainActivity.class);
             startActivity(home_intent);
+            finish();
         } catch (Exception e) {
             e.printStackTrace();
         }

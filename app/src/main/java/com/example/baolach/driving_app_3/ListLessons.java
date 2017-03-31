@@ -59,8 +59,10 @@ public class ListLessons extends Activity
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connmgr.getActiveNetworkInfo();
 
-        if (networkInfo != null && networkInfo.isConnected()) {
+        if (networkInfo != null && networkInfo.isConnected())
+        {
             new DownloadWebPageTask().execute(url);
+
         } else {
             System.out.println("No network available");
         }
@@ -69,6 +71,8 @@ public class ListLessons extends Activity
         // Then if items clicked they are sent with the intent to the LessonsInfo activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
                 // itemId keeps track of where in the list it is
                 int itemId = (int) id;
 
@@ -94,6 +98,7 @@ public class ListLessons extends Activity
                 System.out.println("ListLessons.java id: " + lessonid);
 
                 startActivity(i);
+                finish();
 
             }
         });
@@ -131,7 +136,6 @@ public class ListLessons extends Activity
                 conn.setRequestMethod("GET");
                 conn.setDoInput(true);
 
-                conn.connect();
                 int response = conn.getResponseCode();
                 Log.d("DEBUG", "Response code is " + response);
 
@@ -141,7 +145,6 @@ public class ListLessons extends Activity
 
                 String content = parse(is, len);
                 // System.out.println(" ########### content: " + content); // this is the content of the url - ie. the data - this is passed to onPostExectute as result
-
                 return content;
 
             } finally {
@@ -158,13 +161,14 @@ public class ListLessons extends Activity
                 System.out.println("#####");
 
                 JSONArray json = new JSONArray(result);
+                int g=0;
 
                 // this forloop gets the data into the JSONArray json for each client lesson and displays in list
                 // dont need to display id
                 for (int i = 0; i < json.length(); i++) {
                     try {
 
-                        int g = 0;// locates the position in the array for the list item
+                        //int g = 0;// locates the position in the array for the list item
                         JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
                         //text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
                         String lessonname = object.optString("lesson_name").toString();
@@ -189,6 +193,7 @@ public class ListLessons extends Activity
                         list.add(new Lesson(g, lessonname, lessondate, lessontime, lessonlocation, lessoncomments, lessonid));
                         adapter.notifyDataSetChanged();
                         g++;
+                        System.out.println("##### g: " + g);
 
 
                         // to test if data is coming through
@@ -245,6 +250,7 @@ public class ListLessons extends Activity
         try {
             Intent client_name_intent = new Intent(this, InsertLesson.class);
             startActivity(client_name_intent);
+            finish();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -256,6 +262,8 @@ public class ListLessons extends Activity
         try {
             Intent lastScreen = new Intent(this, AdminActivity.class);
             startActivity(lastScreen);
+            finish();
+
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -266,6 +274,8 @@ public class ListLessons extends Activity
         try {
             Intent home_intent = new Intent(this, MainActivity.class);
             startActivity(home_intent);
+            finish();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

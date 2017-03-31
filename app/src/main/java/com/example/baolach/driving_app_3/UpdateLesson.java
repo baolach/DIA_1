@@ -123,7 +123,8 @@ public class UpdateLesson extends Activity {
 
                     // prepares the sql statement
 
-                    String update = "update getdata_getlesson set lesson_name = '" + l_name + "', lesson_date ='" +  l_date + "', lesson_time = '"+ l_time + "', lesson_location = '"+ l_location +"', lesson_comments = '" + l_comments +"' where id='"+ l_id +"';";
+                    String update = "update getdata_getlesson set lesson_name = ?, lesson_date =?, lesson_time = ?, lesson_location = ?, lesson_comments = ? where id='" + l_id + "';";
+                    //String update = "update getdata_getlesson set lesson_name = '" + l_name + "', lesson_date ='" +  l_date + "', lesson_time = '"+ l_time + "', lesson_location = '"+ l_location +"', lesson_comments = '" + l_comments +"' where id='"+ l_id +"';";
 
 
 //                            "update getdata_getlesson set lesson_name = l_name, lesson_date = l_date, lesson_time = l_time, " +
@@ -145,19 +146,23 @@ public class UpdateLesson extends Activity {
 
                     insertdb.execute();
                     insertdb.close(); // close connection must be done
+                    insertdb.close();
+                    conn.close();
 
                     // once inserted into database goes back to listLessons to show it in the db
                     runOnUiThread(new Runnable() {
                         public void run() {
+
                             Toast.makeText(getBaseContext(), "Lesson with " + l_name + " updated in database! ", Toast.LENGTH_LONG).show();
                             Intent l = new Intent(UpdateLesson.this, ListLessons.class); // lists all lessoninfo
                             startActivity(l);
+                            finish();
+
 
                         }
                     });
 
-                    insertdb.close();
-                    conn.close();
+
 
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
@@ -174,6 +179,8 @@ public class UpdateLesson extends Activity {
         try {
             Intent lastScreen = new Intent(this, ListLessons.class);
             startActivity(lastScreen);
+            finish();
+
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -184,6 +191,8 @@ public class UpdateLesson extends Activity {
         try {
             Intent home_intent = new Intent(this, MainActivity.class);
             startActivity(home_intent);
+            finish();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
