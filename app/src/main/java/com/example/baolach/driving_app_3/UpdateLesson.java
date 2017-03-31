@@ -26,7 +26,7 @@ public class UpdateLesson extends Activity {
     EditText lessonComments;
     private Button btnPost;
 
-    String lessonname, lessondate, lessontime, lessonlocation, lessoncomments; // for the intent coming in
+    String lessonname, lessondate, lessontime, lessonlocation, lessoncomments, lessonid;
 
 
 
@@ -37,40 +37,47 @@ public class UpdateLesson extends Activity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
-        // bundle captures the parameters form the intent
-        if (bundle != null) {
-            // if bundle has data in it - read in the data into these variables eg. lessonname
-            lessonname = bundle.getString("thelessonname");
-            lessondate = bundle.getString("thelessondate");
-            lessontime = bundle.getString("thelessontime");
-            lessonlocation = bundle.getString("thelessonlocation");
-            lessoncomments = bundle.getString("thelessoncomments");
+        try {
 
 
-
-            // then set the editTexts to these values that just came in
-            lessonName = (EditText) findViewById(R.id.editText_lessonName);
-            lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
-            lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
-            lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
-            lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
-
-//            System.out.println("Insert lesson after intent is sent- lessonName: " + lessonName);
-//            System.out.println("Insert lesson after intent is sent- lessonname: " + lessonName);
-
-            lessonName.setText(lessonname);
-            lessonDate.setText(lessondate);
-            lessonTime.setText(lessontime);
-            lessonLocation.setText(lessonlocation);
-            lessonComments.setText(lessoncomments);
+            // bundle captures the parameters form the LessonInfo intent
+            if (bundle != null) {
+                // if bundle has data in it - read in the data into these variables eg. lessonname
+                lessonname = bundle.getString("thelessonname");
+                lessondate = bundle.getString("thelessondate");
+                lessontime = bundle.getString("thelessontime");
+                lessonlocation = bundle.getString("thelessonlocation");
+                lessoncomments = bundle.getString("thelessoncomments");
+                lessonid = bundle.getString("id");
 
 
 
-            System.out.println("data has been entered again");
+                // then set the editTexts to these values that just came in
+                lessonName = (EditText) findViewById(R.id.editText_lessonName);
+                lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
+                lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
+                lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
+                lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
+
+                //            System.out.println("Insert lesson after intent is sent- lessonName: " + lessonName);
+                //            System.out.println("Insert lesson after intent is sent- lessonname: " + lessonName);
+
+                lessonName.setText(lessonname);
+                lessonDate.setText(lessondate);
+                lessonTime.setText(lessontime);
+                lessonLocation.setText(lessonlocation);
+                lessonComments.setText(lessoncomments);
+
+
+                System.out.println("data has been entered again");
+            }
+        } catch(Exception e){
+            Toast.makeText(getBaseContext(), "Error! Update not successful ", Toast.LENGTH_SHORT).show();
+            System.out.println("update error");
 
 
         }
+
 //        else{
 //            // else if no data is sent ie. the update button isnt pressed - set t
 //            lessonName = (EditText) findViewById(R.id.editText_lessonName);
@@ -101,26 +108,40 @@ public class UpdateLesson extends Activity {
             protected void insert() {
 
                 try {
-                    String l_name = lessonName.getText().toString();
-                    String l_phone = lessonDate.getText().toString();
-                    String c_address = lessonTime.getText().toString();
-                    String c_log = lessonLocation.getText().toString();
-                    String c_d_no = lessonComments.getText().toString();
+                    final String l_name = lessonName.getText().toString();
+                    String l_date = lessonDate.getText().toString();
+                    String l_time = lessonTime.getText().toString();
+                    String l_location = lessonLocation.getText().toString();
+                    String l_comments = lessonComments.getText().toString();
+                    String l_id = lessonid; // gets lessonid from what is passed over into bundle, not the edit texts like the others
+                    System.out.println("UpdateLesson.java id: " + l_id);
 
-                    PreparedStatement insertdb = null;
+                    PreparedStatement insertdb;
                     Class.forName("org.postgresql.Driver");
                     String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
                     // prepares the sql statement
 
-                    String insert = "insert into getdata_getlesson values (?,?,?,?,?)";
-                    insertdb = conn.prepareStatement(insert);
+                    String update = "update getdata_getlesson set lesson_name = '" + l_name + "', lesson_date ='" +  l_date + "', lesson_time = '"+ l_time + "', lesson_location = '"+ l_location +"', lesson_comments = '" + l_comments +"' where id='"+ l_id +"';";
+
+
+//                            "update getdata_getlesson set lesson_name = l_name, lesson_date = l_date, lesson_time = l_time, " +
+//                            "lesson_location = l_location, lesson_comments = l_comments where l_id='" + l_id + "';";
+
+                    System.out.println("UpdateLesson.java ln 130 - id: " + l_id);
+                    System.out.println("UpdateLesson.java ln 133 - update : " + update);
+
+                    insertdb = conn.prepareStatement(update);
+                    System.out.println("UpdateLesson to be inserted: " + insertdb);
+
                     insertdb.setString(1, l_name);
-                    insertdb.setString(2, l_phone);
-                    insertdb.setString(3, c_address);
-                    insertdb.setString(4,  c_log);
-                    insertdb.setString(5, c_d_no);
+                    insertdb.setString(2, l_date);
+                    insertdb.setString(3, l_time);
+                    insertdb.setString(4,  l_location);
+                    insertdb.setString(5, l_comments);
+                    //insertdb.setString(6, l_id);
+
 
                     insertdb.execute();
                     insertdb.close(); // close connection must be done
@@ -128,7 +149,7 @@ public class UpdateLesson extends Activity {
                     // once inserted into database goes back to listLessons to show it in the db
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            Toast.makeText(getBaseContext(), "Lesson updated in database! ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "Lesson with " + l_name + " updated in database! ", Toast.LENGTH_LONG).show();
                             Intent l = new Intent(UpdateLesson.this, ListLessons.class); // lists all lessoninfo
                             startActivity(l);
 

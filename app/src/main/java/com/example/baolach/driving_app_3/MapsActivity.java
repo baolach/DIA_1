@@ -63,10 +63,7 @@ public class MapsActivity extends AppCompatActivity {
             @Override
             public void onStatusChanged(Object o, STATUS status) {
 
-                // this is if you want an automatic pin - maybe to show your current locaion
-                // or maybe you want to output all the stored pins from the db
-
-
+                // this is for the home pin - need to change to current location
                 mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
                       String title = "Location";
                       String detail = "Limekiln Road";
@@ -78,6 +75,7 @@ public class MapsActivity extends AppCompatActivity {
             } // end setOnStatusChangedListener
         });
 
+        // if map clicked to add a pin
         mv.setOnSingleTapListener(new OnSingleTapListener() {
             @Override
             public void onSingleTap(float x, float y) {
@@ -90,40 +88,47 @@ public class MapsActivity extends AppCompatActivity {
 
                 // once a point is tapped, makes a new point calling geometryEngine
                 Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
-                System.out.println(wgsPoint);
-                System.out.println("pt: " + pt);
+                double e = wgsPoint.getX();
+                double f = wgsPoint.getY();
+                //Point p = wgsPoint.getX();
+
+                System.out.println(e);
+                System.out.println(f);
+                System.out.println(pt);
+                System.out.println(mv);
 
 
-                String newPoint = wgsPoint.toString();
 
-                // splits this array in to the part before the "=" and after
-                String[] result = newPoint.split("=");
-                if (result.length != 2)
-                {
-                    // only interested in 1 and 2, result[3] is "com.esri.core.geometry.VertexDescription@7c5d0f85]" which we dont want
-                    for (int i = 0; i < 2; i++)
-                    {
-                        System.out.println("point split:" + result[i]); // prints out to log so we can see whats produced
-                    }
-                }
-
-                //System.out.println("result[1]:" + result[1]); // check that this is just the coordinates
-
-                // now we need to split "[-6.334276974899407, 53.3099229738916], m_description" to just the coodinates
-                String[] co = result[1].split(","); // result[2] is the coordinates plus ... m_description so we need to get rid of that
-                if (co.length != 2)
-                {
-                    // only interested in 1 and 2, result[3] is "com.esri.core.geometry.VertexDescription@7c5d0f85]" which we dont want
-                    for (int i = 0; i < 2; i++)
-                    {
-                        // should print out just the coordinates
-                        System.out.println("co split:" + co[i]); // prints out to log so we can see whats produced
-                    }
-                }
-
-                // concatenate the array points so that they can be added into the database as coordinates (x,y)
-                final String insertPoint = co[0].toString() + "," + co[1].toString();
-                System.out.println("insertPoint:" + insertPoint);
+//                String newPoint = wgsPoint.toString();
+//
+//                // splits this array in to the part before the "=" and after
+//                String[] result = newPoint.split("=");
+//                if (result.length != 2)
+//                {
+//                    // only interested in 1 and 2, result[3] is "com.esri.core.geometry.VertexDescription@7c5d0f85]" which we dont want
+//                    for (int i = 0; i < 2; i++)
+//                    {
+//                        System.out.println("point split:" + result[i]); // prints out to log so we can see whats produced
+//                    }
+//                }
+//
+//                //System.out.println("result[1]:" + result[1]); // check that this is just the coordinates
+//
+//                // now we need to split "[-6.334276974899407, 53.3099229738916], m_description" to just the coodinates
+//                String[] co = result[1].split(","); // result[2] is the coordinates plus ... m_description so we need to get rid of that
+//                if (co.length != 2)
+//                {
+//                    // only interested in 1 and 2, result[3] is "com.esri.core.geometry.VertexDescription@7c5d0f85]" which we dont want
+//                    for (int i = 0; i < 2; i++)
+//                    {
+//                        // should print out just the coordinates
+//                        System.out.println("co split:" + co[i]); // prints out to log so we can see whats produced
+//                    }
+//                }
+//
+//                // concatenate the array points so that they can be added into the database as coordinates (x,y)
+//                final String insertPoint = co[0].toString() + "," + co[1].toString();
+//                System.out.println("insertPoint:" + insertPoint);
 
 
 

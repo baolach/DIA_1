@@ -34,6 +34,8 @@ public class ListLessons extends Activity
     static ArrayList<String> lessonTime = new ArrayList<String>();
     static ArrayList<String> lessonLocation = new ArrayList<String>();
     static ArrayList<String> lessonComments = new ArrayList<String>();
+    static ArrayList<String> lessonId = new ArrayList<String>();
+
 
 
     ListView listView; // blue listview
@@ -63,7 +65,8 @@ public class ListLessons extends Activity
             System.out.println("No network available");
         }
 
-        // the list is declared above and generated and the variables added in onPostExecuted. Then if items clicked they are sent with the intent to the LessonsInfo activity
+        // the list is declared above and generated and the variables added in onPostExecuted.
+        // Then if items clicked they are sent with the intent to the LessonsInfo activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // itemId keeps track of where in the list it is
@@ -73,7 +76,9 @@ public class ListLessons extends Activity
                 String lessondate = lessonDate.get(itemId);
                 String lessontime = lessonTime.get(itemId);
                 String lessonlocation = lessonLocation.get(itemId);
-                String lessoncoments = lessonComments.get(itemId);
+                String lessoncomments = lessonComments.get(itemId);
+                String lessonid = lessonId.get(itemId);
+
 
 
                 // creates new intent and sends over the client information when item is clicked
@@ -83,8 +88,10 @@ public class ListLessons extends Activity
                 i.putExtra("thelessondate", lessondate);
                 i.putExtra("thelessontime", lessontime);
                 i.putExtra("thelessonlocation", lessonlocation);
-                i.putExtra("thelessoncomments", lessoncoments);
+                i.putExtra("thelessoncomments", lessoncomments);
+                i.putExtra("id", lessonid);
 
+                System.out.println("ListLessons.java id: " + lessonid);
 
                 startActivity(i);
 
@@ -152,7 +159,8 @@ public class ListLessons extends Activity
 
                 JSONArray json = new JSONArray(result);
 
-                // this forloop gets the data into the JSONArray json for each client lesson
+                // this forloop gets the data into the JSONArray json for each client lesson and displays in list
+                // dont need to display id
                 for (int i = 0; i < json.length(); i++) {
                     try {
 
@@ -164,6 +172,8 @@ public class ListLessons extends Activity
                         String lessontime = object.optString("lesson_time").toString();
                         String lessonlocation = object.optString("lesson_location").toString();
                         String lessoncomments = object.optString("lesson_comments").toString();
+                        String lessonid = object.optString("id").toString(); // id from the db is sent to keep unique
+
 
 
                         // adds to the array list
@@ -173,8 +183,10 @@ public class ListLessons extends Activity
                         lessonTime.add(lessontime);
                         lessonLocation.add(lessonlocation);
                         lessonComments .add(lessoncomments);
+                        lessonId.add(lessonid);
 
-                        list.add(new Lesson(g, lessonname, lessondate, lessontime, lessonlocation, lessoncomments ));
+
+                        list.add(new Lesson(g, lessonname, lessondate, lessontime, lessonlocation, lessoncomments, lessonid));
                         adapter.notifyDataSetChanged();
                         g++;
 
@@ -259,37 +271,6 @@ public class ListLessons extends Activity
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // old sqlite way
-//    public void listLessonName(View view) {
-//        try {
-//            Intent lesson_name_intent = new Intent(this, InsertLesson.class);
-//            startActivity(lesson_name_intent);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public void goBackScreen(View view) {
-//        try {
-//            Intent lastScreen = new Intent(this, AdminActivity.class);
-//            startActivity(lastScreen);
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
 }
 

@@ -64,7 +64,7 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
 
-        android:hint="Location"
+        android:hint="Meeting location"
         android:layout_below="@+id/editText_lessonTime"
         android:layout_alignParentStart="true"
         android:layout_margin="1dp"
@@ -72,7 +72,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:inputType="textCapSentences"
+        android:inputType="textCapSentences|textCapWords|textAutoComplete"
         android:nextFocusForward="@+id/lesson_date"
         >
         <requestFocus />
@@ -84,7 +84,7 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
 
-        android:hint="Comments"
+        android:hint="Lesson Plan / Comments"
         android:layout_below="@+id/editText_lessonLocation"
         android:layout_alignParentStart="true"
         android:layout_margin="1dp"
@@ -134,7 +134,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:inputType="textCapSentences"
+        android:inputType="textCapSentences|textCapWords"
         android:nextFocusForward="@+id/lesson_date"
 
         >

@@ -13,6 +13,17 @@ public class Lesson {
     private String location;
     private String comments;
 
+    public String getDbid() {
+        return dbid;
+    }
+
+    public void setDbid(String dbid) {
+        this.dbid = dbid;
+    }
+
+    private String dbid;
+
+
     public int getId() {
         return id;
     }
@@ -62,13 +73,15 @@ public class Lesson {
     }
 
 
-    public Lesson(int id, String name, String date, String time, String location, String comments) {
+    public Lesson(int id, String name, String date, String time, String location, String comments, String dbid) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.time = time;
         this.location = location;
         this.comments = comments;
+        this.dbid = dbid;
+
 
     }
 }

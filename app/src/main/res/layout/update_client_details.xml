@@ -30,14 +30,13 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
         android:inputType="number"
-
+        android:maxLength="10"
 
         android:layout_below="@+id/editText_clientName"
         android:layout_alignStart="@+id/editText_clientName"
 
         android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientAddress"
-
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
@@ -278,6 +277,7 @@
 
         android:layout_marginTop="14dp"
 
+        android:inputType="textCapSentences|textCapWords"
 
         android:nextFocusDown="@+id/editText_clientPhone"
         android:layout_below="@+id/home"
@@ -292,7 +292,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
-        android:inputType="textCapSentences"
         android:nextFocusForward="@+id/lesson_date">
         <requestFocus />
     </EditText>

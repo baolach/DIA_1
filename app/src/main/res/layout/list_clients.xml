@@ -21,24 +21,6 @@
         />
 
 
-    <TextView
-        android:id="@+id/textView_client_name"
-        android:text="Name"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-
-
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/new_client"
-        android:layout_alignStart="@+id/button"
-        android:layout_marginStart="21dp"/>
-
     <ListView
         android:id="@+id/listView_clients"
         android:layout_width="match_parent"
@@ -132,6 +114,24 @@
         android:layout_marginRight="5dp"
         android:layout_below="@+id/website"
         android:layout_toEndOf="@+id/new_client"/>
+
+    <TextView
+        android:id="@+id/textView_client_name"
+        android:text="Name"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="38dp"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true"/>
 
 
 </RelativeLayout>

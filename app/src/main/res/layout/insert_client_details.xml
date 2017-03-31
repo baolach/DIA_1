@@ -96,7 +96,7 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
 
-        android:hint="Date of Birth (YYYY-MM-DD)"
+        android:hint="Date of Birth (DD-MM-YYYY)"
         android:layout_below="@+id/editText_clientDriverNo"
         android:layout_margin="1dp"
 
@@ -107,7 +107,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
-        android:inputType="number"
+        android:inputType="text"
         android:nextFocusForward="@+id/lesson_date">
 
         <!--android:onClick="setDate">-->
@@ -164,7 +164,7 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
 
-        android:hint="Balance"
+        android:hint="Amount paid overall"
         android:layout_below="@+id/editText_clientNoOfLessons"
         android:layout_margin="1dp"
         android:layout_alignStart="@+id/editText_clientName"
@@ -212,13 +212,10 @@
         android:layout_alignStart="@+id/editText_clientName"
         android:nextFocusDown="@+id/editText_clientLogNo"
 
-
-
+        android:inputType="textCapSentences|textCapWords"
 
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:padding="7dp"
-        android:inputType="textCapSentences"
         android:nextFocusForward="@+id/lesson_date"
         >
         <requestFocus />
@@ -293,7 +290,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
-        android:inputType="textCapSentences"
+        android:inputType="textCapSentences|textCapWords"
         android:nextFocusForward="@+id/lesson_date">
         <requestFocus />
     </EditText>

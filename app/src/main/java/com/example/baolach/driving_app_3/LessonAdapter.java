@@ -43,7 +43,7 @@ public class LessonAdapter extends BaseAdapter {
 
 
     private class ViewHolder{
-        TextView lesson_name,lesson_date, lesson_time, lesson_location, lesson_comments ;
+        TextView lesson_name,lesson_date, lesson_time, lesson_location, lesson_comments, id ;
     }
 
     @Override
@@ -60,6 +60,8 @@ public class LessonAdapter extends BaseAdapter {
             holder.lesson_time = (TextView) row.findViewById(R.id.TextView_lesson_time);
             holder.lesson_location = (TextView) row.findViewById(R.id.log_no);
             holder.lesson_comments = (TextView) row.findViewById(R.id.driver_no);
+
+            // doesnt need to show the id
 
 
             row.setTag(holder);

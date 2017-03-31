@@ -17,11 +17,10 @@ import java.sql.Statement;
 
 public class LessonInfo extends Activity {
 
-    // these 2 added
-//    DBManager db = new DBManager(this);
-//    String lesson_name;
 
-    String lessonname, lessondate, lessontime, lessonlocation, lessoncomments;
+
+
+    String lessonname, lessondate, lessontime, lessonlocation, lessoncomments, lessonid;
 
 
     @Override
@@ -34,18 +33,21 @@ public class LessonInfo extends Activity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        // bundle captures the parameters form the intent
+        // bundle captures the parameters form the intent from listLessons.java from onItemClickListener
         if (bundle != null) {
             lessonname = bundle.getString("thelessonname");
             lessondate = bundle.getString("thelessondate");
             lessontime = bundle.getString("thelessontime");
             lessonlocation = bundle.getString("thelessonlocation");
             lessoncomments = bundle.getString("thelessoncomments");
+            lessonid = bundle.getString("id");
+            System.out.println("LessonInfo id: " + lessonid); // should be the id of the lesson
+
 
 
         }
 
-        // apply to textViews
+        // apply to textViews in LessonInfo
         TextView nameTextView = (TextView) findViewById(R.id.theclientname);
         TextView dateTextView = (TextView) findViewById(R.id.theclientphone);
         TextView timeTextView = (TextView) findViewById(R.id.theclientaddress);
@@ -100,6 +102,7 @@ public class LessonInfo extends Activity {
 
                     deletedb = conn.createStatement();
                     System.out.println("About to delete: " + lessonname );
+
                     // where "table_name_in postgres_db = the_variable_the_intent_sent_over"
                     String sql = "DELETE from getdata_getlesson where lesson_name = '" + lessonname + "' AND lesson_date= '" + lessondate + "' AND lesson_time = '" + lessontime + "';";
 
@@ -131,136 +134,8 @@ public class LessonInfo extends Activity {
             }
         });
 
-//
-//        // update
-//        Button btnUpdate  = (Button) findViewById(R.id.update_client_btn);
-//
-//        // delete button
-//        btnUpdate.setOnClickListener(new View.OnClickListener() {
-//
-//            public void onClick(View v) {
-//                new Thread(new Runnable() {
-//
-//                    public void run() {
-//                        update();
-//                    }
-//
-//                }).start();
-//            }
-//
-//            protected void update() {
-//
-//                //Connection c = null;
-//                Statement updatedb = null;
-//                try {
-//                    // uses the JDBC driver to interact with the database
-//                    Class.forName("org.postgresql.Driver");
-//                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database at this url
-//                    Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to postgres
-//                    conn.setAutoCommit(false);
-//                    System.out.println("Opened database successfully");
-//
-//                    updatedb = conn.createStatement();
-//                    System.out.println("About to update: " + lessonname );
-//
-//                    String sql = "Update getdata_getlesson set '" + lessonname + "' AND lesson_date= '" + lessondate + "' AND lesson_time = '" + lessontime + "';";
-//                    UPDATE COMPANY set SALARY = 25000.00 where ID=1;
-//
-//                    updatedb.executeUpdate(sql);
-//                    conn.commit();
-//
-//
-//                    // once inserted into database all the edittexts resert to ""
-//                    runOnUiThread(new Runnable() {
-//                        public void run() {
-//                            Toast.makeText(getBaseContext(), "Lesson updated in database! ", Toast.LENGTH_LONG).show();
-//                            Intent u = new Intent(LessonInfo.this, ListLessons.class); // lists all lessoninfo
-//                            startActivity(u);
-//
-//                        }
-//                    });
-//
-//                    updatedb.close(); // close connection must be done
-//                    conn.close();
-//
-//
-//                }catch(Exception e){
-//                    e.printStackTrace();
-//                }
-//                System.out.println("Delete successful");
-//
-//            }
-//        });
-
-
 
     }
-
-
-
-
-
-
-
-
-
-        // old sqlite way
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_lesson_info);
-//
-//        Intent lessonData = getIntent();
-//
-//        //Bundle clientData = getIntent().getExtras();
-//
-//        //put data from list clients activity into new string
-//        lesson_name = lessonData.getStringExtra("thelessonname");
-//        //clientsName = lessonData.getStringExtra("thelessonname");
-//        String TheLessonDate= lessonData.getStringExtra("thelessondate");
-//        String TheLessonTime = lessonData.getStringExtra("thelessontime");
-//        String TheLessonLocation = lessonData.getStringExtra("thelessonlocation");
-//        String TheLessonComments = lessonData.getStringExtra("thelessoncomments");
-//
-//        //create variable which references output field
-//        final TextView nameTextView = (TextView) findViewById(R.id.theclientname);
-//        final TextView dateTextView = (TextView) findViewById(R.id.theclientphone);
-//        final TextView timeTextView = (TextView) findViewById(R.id.theclientaddress);
-//        final TextView locationTextView = (TextView) findViewById(R.id.thelognumber);
-//        final TextView commentsTextView = (TextView) findViewById(R.id.thedriverno);
-//
-//        //use setText to change text
-//        nameTextView.setText(lesson_name);
-//        dateTextView.setText(TheLessonDate);
-//        timeTextView.setText(TheLessonTime);
-//        locationTextView.setText(TheLessonLocation);
-//        commentsTextView.setText(TheLessonComments);
-//
-//
-//        Button deleteButton = (Button)findViewById(R.id.delete_client_btn);
-//        deleteButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                DBManager dbManager = new DBManager(LessonInfo.this);
-//                try {
-//                    dbManager.open();
-//                    dbManager.deleteClient(lesson_name);
-//                    //Toast.makeText(getApplicationContext(), "Client deleted", Toast.LENGTH_SHORT).show();
-//
-//                } catch (SQLException e) {
-//                    Toast.makeText(getApplicationContext(), "Client could not be deleted", Toast.LENGTH_SHORT).show();
-//                } finally {
-//                    dbManager.close();
-//
-//                    Intent intent = new Intent(LessonInfo.this, ListLessons.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // clears previous screens
-//                    startActivity(intent); // this loads new intent (ListClients
-//
-//                }
-//
-//            }
-//        });
-
-
 
     public void goBackScreen(View view) {
         try {
@@ -295,8 +170,10 @@ public class LessonInfo extends Activity {
             i.putExtra("thelessontime", lessontime);
             i.putExtra("thelessonlocation", lessonlocation);
             i.putExtra("thelessoncomments", lessoncomments);
+            i.putExtra("id", lessonid);
 
-            System.out.println("update function before intent is sent");
+
+            System.out.println("LessonInfo update function before intent is sent to UpdateLesson.java - id: " + lessonid);
 
             startActivity(i);
 
@@ -304,9 +181,6 @@ public class LessonInfo extends Activity {
             e.printStackTrace();
         }
     }
-
-
-
 
 
 }
