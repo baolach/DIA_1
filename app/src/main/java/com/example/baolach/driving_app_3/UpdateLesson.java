@@ -78,15 +78,6 @@ public class UpdateLesson extends Activity {
 
         }
 
-//        else{
-//            // else if no data is sent ie. the update button isnt pressed - set t
-//            lessonName = (EditText) findViewById(R.id.editText_lessonName);
-//            lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
-//            lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
-//            lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
-//            lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
-//
-//        }
 
 
         btnPost = (Button) findViewById(R.id.button_update);
@@ -123,8 +114,8 @@ public class UpdateLesson extends Activity {
 
                     // prepares the sql statement
 
-                    String update = "update getdata_getlesson set lesson_name = ?, lesson_date =?, lesson_time = ?, lesson_location = ?, lesson_comments = ? where id='" + l_id + "';";
-                    //String update = "update getdata_getlesson set lesson_name = '" + l_name + "', lesson_date ='" +  l_date + "', lesson_time = '"+ l_time + "', lesson_location = '"+ l_location +"', lesson_comments = '" + l_comments +"' where id='"+ l_id +"';";
+                    String update = "update getdata_getlesson set lesson_name = ?, lesson_date =?, lesson_time = ?, " +
+                            "lesson_location = ?, lesson_comments = ? where id='" + l_id + "';";
 
 
 //                            "update getdata_getlesson set lesson_name = l_name, lesson_date = l_date, lesson_time = l_time, " +

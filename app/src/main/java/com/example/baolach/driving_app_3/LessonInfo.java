@@ -13,12 +13,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-/* DELETE BUTTON DOESNT WORK */
 
 public class LessonInfo extends Activity {
-
-
-
 
     String lessonname, lessondate, lessontime, lessonlocation, lessoncomments, lessonid;
 
@@ -96,7 +92,8 @@ public class LessonInfo extends Activity {
                     System.out.println("About to delete: " + lessonname );
 
                     // where "table_name_in postgres_db = the_variable_the_intent_sent_over"
-                    String sql = "DELETE from getdata_getlesson where lesson_name = '" + lessonname + "' AND lesson_date= '" + lessondate + "' AND lesson_time = '" + lessontime + "';";
+                    String sql = "DELETE from getdata_getlesson where lesson_name = '" + lessonname +
+                            "' AND lesson_date= '" + lessondate + "' AND lesson_time = '" + lessontime + "';";
 
 
 

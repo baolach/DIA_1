@@ -52,6 +52,8 @@ public class Finances extends Activity
     static ArrayList<String> noOfLessons = new ArrayList<String>();
     static ArrayList<String> balanceDue = new ArrayList<String>();
     static ArrayList<String> clientComments = new ArrayList<String>();
+    static ArrayList<String> clientId = new ArrayList<String>();
+
 
     ListView listView;
     ArrayList<Client> list;
@@ -62,6 +64,19 @@ public class Finances extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_finances); // shows the listView in ListClients activity
+
+        clientsName.clear();
+        clientsPhone.clear();
+        clientsAddress.clear();
+        clientsLogNo.clear();
+        clientsDriverNo.clear();
+        dateOfBirth.clear();
+        noOfLessons.clear();
+        balanceDue.clear();
+        clientComments.clear();
+        clientId.clear();
+
+
 
         // creates variables to be shown and interacted with in the activity
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
@@ -95,6 +110,7 @@ public class Finances extends Activity
                 String lessons = noOfLessons.get(itemId);
                 String balance = balanceDue.get(itemId);
                 String comments = clientComments.get(itemId);
+                String clientid = clientId.get(itemId);
 
 
 
@@ -109,6 +125,7 @@ public class Finances extends Activity
                 i.putExtra("thenumberoflessons", lessons);
                 i.putExtra("thebalance", balance);
                 i.putExtra("theclientscomments", comments);
+                i.putExtra("id", clientid);
 
                 startActivity(i);
 
@@ -191,6 +208,7 @@ public class Finances extends Activity
                         String nooflessons = object.optString("no_of_lessons").toString();
                         String balancedue = object.optString("balance_due").toString();
                         String comments = object.optString("comments").toString();
+                        String clientid = object.optString("id").toString(); // id from the db is sent to keep unique
 
                         // adds to the array list
                         clientsName.add(clientname);
@@ -202,9 +220,10 @@ public class Finances extends Activity
                         noOfLessons.add(nooflessons);
                         balanceDue.add(balancedue);
                         clientComments.add(comments);
-                        list.add(new Client(g, clientname, clientphone, clientaddress, logno, driverno, dob, nooflessons, balancedue, comments ));
+                        clientId.add(clientid);
+
+                        list.add(new Client(g, clientname, clientphone, clientaddress, logno, driverno, dob, nooflessons, balancedue, comments, clientid ));
                         adapter.notifyDataSetChanged();
-                        g++;
 
 
 //                        System.out.println("##### Finances.java");

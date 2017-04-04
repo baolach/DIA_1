@@ -118,26 +118,21 @@
 
     <EditText
         android:id="@+id/editText_lessonName"
-        android:hint="Client Name"
-
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-
-        android:digits="abcdeghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
-
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="1dp"
-
-        android:layout_below="@+id/button"
-        android:layout_alignEnd="@+id/editText_lessonDate"
-        android:layout_alignStart="@+id/editText_lessonDate"
-
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/client_name"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignEnd="@+id/editText_lessonDate"
+        android:layout_alignStart="@+id/editText_lessonDate"
+        android:layout_below="@+id/button"
         android:padding="10dp"
-        android:inputType="textCapSentences|textCapWords"
         android:nextFocusForward="@+id/lesson_date"
 
+        android:digits="abcdeghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
+        android:inputType="textCapWords"
         >
     <requestFocus />
     </EditText>

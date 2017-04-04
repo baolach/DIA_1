@@ -39,6 +39,8 @@ public class ListClients extends Activity {
     static ArrayList<String> noOfLessons = new ArrayList<String>();
     static ArrayList<String> balanceDue = new ArrayList<String>();
     static ArrayList<String> clientComments = new ArrayList<String>();
+    static ArrayList<String> clientId = new ArrayList<String>();
+
 
     ListView listView;
     ArrayList<Client> list;
@@ -49,6 +51,19 @@ public class ListClients extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_clients); // shows the listView in ListClients activity
+
+
+        clientsName.clear();
+        clientsPhone.clear();
+        clientsAddress.clear();
+        clientsLogNo.clear();
+        clientsDriverNo.clear();
+        dateOfBirth.clear();
+        noOfLessons.clear();
+        balanceDue.clear();
+        clientComments.clear();
+        clientId.clear();
+
 
         // creates variables to be shown and interacted with in the activity
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
@@ -82,6 +97,7 @@ public class ListClients extends Activity {
                 String lessons = noOfLessons.get(itemId);
                 String balance = balanceDue.get(itemId);
                 String comments = clientComments.get(itemId);
+                String clientid = clientId.get(itemId);
 
 
 
@@ -96,6 +112,8 @@ public class ListClients extends Activity {
                 i.putExtra("thenumberoflessons", lessons);
                 i.putExtra("thebalance", balance);
                 i.putExtra("theclientscomments", comments);
+                i.putExtra("id", clientid);
+
 
                 startActivity(i);
 
@@ -138,7 +156,6 @@ public class ListClients extends Activity {
                 Log.d("DEBUG", "Response code is " + response);
 
                 is = conn.getInputStream();
-                //System.out.println(" ########### input stream: " + is);
 
 
                 String content = parse(is, len);
@@ -168,7 +185,7 @@ public class ListClients extends Activity {
 
                         int g = 0;// locates the position in the array for the list item
                         JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
-                        text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
+                        //text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
                         String clientname = object.optString("client_name").toString();
                         String clientphone = object.optString("client_phone").toString();
                         String clientaddress = object.optString("client_address").toString();
@@ -178,6 +195,8 @@ public class ListClients extends Activity {
                         String nooflessons = object.optString("no_of_lessons").toString();
                         String balancedue = object.optString("balance_due").toString();
                         String comments = object.optString("comments").toString();
+                        String clientid = object.optString("id").toString(); // id from the db is sent to keep unique
+
 
                         // adds to the array list
                         clientsName.add(clientname);
@@ -189,14 +208,24 @@ public class ListClients extends Activity {
                         noOfLessons.add(nooflessons);
                         balanceDue.add(balancedue);
                         clientComments.add(comments);
-                        list.add(new Client(g, clientname, clientphone, clientaddress, logno, driverno, dob, nooflessons, balancedue, comments ));
+                        clientId.add(clientid);
+
+                        list.add(new Client(g, clientname, clientphone, clientaddress, logno, driverno, dob, nooflessons, balancedue, comments, clientid));
                         adapter.notifyDataSetChanged();
-                        g++;
+
+
+//                        private void sortAscending () {
+//                            List<String> sortedMonthsList = Arrays.asList(months);
+//                            Collections.sort(sortedMonthsList);
+//
+//                            months = (String[]) sortedMonthsList.toArray();
+//                        }
 
                         // check if the info is getting through
 //                        System.out.println("##### ListClients.java");
 //                        System.out.println("##### clientname: " + clientname);
 //                        System.out.println("##### log no: " + logno);
+
 
 
                     } catch (JSONException e) {
@@ -210,6 +239,7 @@ public class ListClients extends Activity {
             }// end onCreate
 
         }
+
     }
 
     private String parse(InputStream is, int len) throws IOException, UnsupportedEncodingException {
@@ -256,6 +286,16 @@ public class ListClients extends Activity {
         try {
             Intent client_name_intent = new Intent(this, InsertClient.class);
             startActivity(client_name_intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void newClient(View view)
+    {
+        try {
+            Intent new_client_intent = new Intent(this, InsertClient.class);
+            startActivity(new_client_intent);
         } catch (Exception e) {
             e.printStackTrace();
         }

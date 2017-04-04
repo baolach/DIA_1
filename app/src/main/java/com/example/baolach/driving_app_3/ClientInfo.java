@@ -23,7 +23,7 @@ public class ClientInfo extends Activity {
 //    ClientInfoAdapter infoAdapter = null;
 
     private Button btnDelete;
-    String clientname, clientphone, clientaddress, clientlogno, clientdriverno, clientdob, clientnooflessons, clientbalancedue, clientcomments;
+    String clientname, clientphone, clientaddress, clientlogno, clientdriverno, clientdob, clientnooflessons, clientbalancedue, clientcomments, clientid; // ocming from the intent from listClients
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,10 @@ public class ClientInfo extends Activity {
             clientnooflessons = bundle.getString("thenumberoflessons");
             clientbalancedue = bundle.getString("thebalance");
             clientcomments = bundle.getString("theclientscomments");
+            clientid= bundle.getString("id");
+            System.out.println("ClientInfo id: " + clientid); // should be the id of the lesson
+
+
 
         }
 
@@ -76,14 +80,8 @@ public class ClientInfo extends Activity {
         commentsTextView.setMovementMethod(new ScrollingMovementMethod());
 
         // needed for marquee scroll
-//        nameTextView.setSelected(true);
-//        phoneTextView.setSelected(true);
         addressTextView.setSelected(true);
-//        lognoTextView.setSelected(true);
-//        drivernoTextView.setSelected(true);
-//        nooflessonsTextView.setSelected(true);
-//        balanceTextView.setSelected(true);
-//        commentsTextView.setSelected(true);
+
 
 
 
@@ -166,8 +164,14 @@ public class ClientInfo extends Activity {
             i.putExtra("thenumberoflessons", clientnooflessons);
             i.putExtra("thebalance", clientbalancedue);
             i.putExtra("theclientscomments", clientcomments);
+            i.putExtra("theclientscomments", clientid);
+            i.putExtra("id", clientid);
+
+
 
             startActivity(i);
+            finish();
+
 
         } catch (Exception e) {
             e.printStackTrace();

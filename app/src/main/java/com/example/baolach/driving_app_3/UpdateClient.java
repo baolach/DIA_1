@@ -28,7 +28,7 @@ public class UpdateClient extends Activity {
     private Button btnPost;
     private int year, month, day;
 
-    String clientname, clientphone, clientaddress, lognumber, drivernumber, dob, numberoflessons, balancedue, comments; // for the intent coming in
+    String clientname, clientphone, clientaddress, lognumber, drivernumber, dob, numberoflessons, balancedue, comments, clientid; // for the intent coming in
 
 
 
@@ -61,6 +61,7 @@ public class UpdateClient extends Activity {
             numberoflessons = bundle.getString("thenumberoflessons");
             balancedue = bundle.getString("thebalance");
             comments = bundle.getString("theclientscomments");
+            clientid = bundle.getString("id");
 
 
 
@@ -97,27 +98,6 @@ public class UpdateClient extends Activity {
 
 
         }
-        // dont think I need this as I have separated the update and insert activities
-//        else{
-//            // else if no data is sent ie. the update button isnt pressed - ask the user for data
-//            clientName = (EditText) findViewById(R.id.editText_clientName);
-//            clientPhone = (EditText) findViewById(R.id.editText_clientPhone);
-//            clientAddress = (EditText) findViewById(R.id.editText_clientAddress);
-//            clientLogNo = (EditText) findViewById(R.id.editText_clientLogNo);
-//            clientDriverNo = (EditText) findViewById(R.id.editText_clientDriverNo);
-//            clientDob = (EditText) findViewById(R.id.editText_clientDob);
-//            clientNoOfLessons = (EditText) findViewById(R.id.editText_clientNoOfLessons);
-//            clientBalance = (EditText) findViewById(R.id.editText_clientBalance);
-//            clientsComments = (EditText) findViewById(R.id.editText_clientComments);
-//
-//        }
-
-
-
-
-
-
-
 
 
 
@@ -142,7 +122,7 @@ public class UpdateClient extends Activity {
             protected void insert() {
 
                 try {
-                    String c_name = clientName.getText().toString();
+                    final String c_name = clientName.getText().toString();
                     String c_phone = clientPhone.getText().toString();
                     String c_address = clientAddress.getText().toString();
                     String c_log = clientLogNo.getText().toString();
@@ -151,6 +131,7 @@ public class UpdateClient extends Activity {
                     String c_no_l = clientNoOfLessons.getText().toString();
                     String c_comm = clientsComments.getText().toString();
                     String c_bal = clientBalance.getText().toString();
+                    String c_id = clientid;
 
                     PreparedStatement insertdb = null;
                     Class.forName("org.postgresql.Driver");
@@ -158,8 +139,13 @@ public class UpdateClient extends Activity {
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
                     // prepares the sql statement
-                    String insert = "insert into getdata_getclient values (?,?,?,?,?,?,?,?,?)";
-                    insertdb = conn.prepareStatement(insert);
+                    //String insert = "insert into getdata_getclient values (?,?,?,?,?,?,?,?,?)";
+                    String update = "update getdata_getclient set client_name = ?, client_phone =?, client_address = ?, " +
+                            "log_no = ?, driver_no = ?, dob = ?, no_of_lessons = ?, balance_due = ?, comments = ?" +
+                            "where id='" + c_id + "';";
+
+
+                    insertdb = conn.prepareStatement(update);
                     insertdb.setString(1, c_name);
                     insertdb.setString(2, c_phone);
                     insertdb.setString(3, c_address);
@@ -177,7 +163,7 @@ public class UpdateClient extends Activity {
                     runOnUiThread(new Runnable() {
                         public void run() {
 
-                            Toast.makeText(getBaseContext(), "Client updated in database! ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), c_name + "'s details are updated!", Toast.LENGTH_LONG).show();
                             Intent c = new Intent(UpdateClient.this, ListClients.class); // lists all lessoninfo
                             startActivity(c);
 

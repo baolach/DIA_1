@@ -24,6 +24,8 @@
     <string name="basemapUrl2">http://services.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer</string>
     <string name="webUrl">http://baolach-morrison.maps.arcgis.com/home/webmap/viewer.html?webmap=9ef9e79a4fdd438b93925f9ce142c8e4</string>
     <string name="my_gps">gps</string>
+    <string name="client_name">Client Name</string>
+    <string name="phone">Phone</string>
 
 
 </resources>

@@ -109,7 +109,6 @@ public class InsertLesson extends Activity {
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
                     // prepares the sql statement
-
                     String insert = "insert into getdata_getlesson values (?,?,?,?,?)";
                     insertdb = conn.prepareStatement(insert);
                     insertdb.setString(1, l_name);

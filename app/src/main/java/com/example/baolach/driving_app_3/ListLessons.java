@@ -64,7 +64,7 @@ public class ListLessons extends Activity
         adapter = new LessonAdapter(this, R.layout.lessoninfo, list); // this sets adapter to the ClientAdapter which uses client.xml
         listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
 
-        String url = "http://138.68.141.18:8006/lessons/?format=json"; //urlText.getText().toString();
+        String url = "http://138.68.141.18:8006/lessons/?format=json";
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connmgr.getActiveNetworkInfo();
 
@@ -169,20 +169,17 @@ public class ListLessons extends Activity
                 JSONArray json = new JSONArray(result);
 
                 // this forloop gets the data into the JSONArray json for each client lesson and displays in list
-                // dont need to display id
                 for (int i = 0; i < json.length(); i++) {
                     try {
 
                         int g = 0;// locates the position in the array for the list item
                         JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
-                        //text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
                         String lessonname = object.optString("lesson_name").toString();
                         String lessondate = object.optString("lesson_date").toString();
                         String lessontime = object.optString("lesson_time").toString();
                         String lessonlocation = object.optString("lesson_location").toString();
                         String lessoncomments = object.optString("lesson_comments").toString();
                         String lessonid = object.optString("id").toString(); // id from the db is sent to keep unique
-
 
 
                         // adds to the array list
@@ -197,17 +194,6 @@ public class ListLessons extends Activity
 
                         list.add(new Lesson(g, lessonname, lessondate, lessontime, lessonlocation, lessoncomments, lessonid));
                         adapter.notifyDataSetChanged();
-                        g++;
-
-
-                        // to test if data is coming through
-//                        System.out.println("##### ListLesson.java");
-//                        System.out.println("##### lessonname: " + lessonname);
-//                        System.out.println("##### lessondate: " + lessondate);
-//                        System.out.println("##### lessontime: " + lessontime);
-//                        System.out.println("##### lessonlocation: " + lessonlocation);
-//                        System.out.println("##### lessoncomments: " + lessoncomments);
-
 
                     } catch (JSONException e) {
                         e.printStackTrace();
