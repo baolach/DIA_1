@@ -168,6 +168,10 @@ public class ClientInfo extends Activity {
             i.putExtra("id", clientid);
 
 
+            System.out.println("lognumber is: " +clientlogno );
+            System.out.println("driver number is: " +clientdriverno );
+
+
 
             startActivity(i);
             finish();

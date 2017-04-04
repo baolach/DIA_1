@@ -1,12 +1,15 @@
 package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -21,28 +24,32 @@ import java.util.Calendar;
 
 public class UpdateClient extends Activity {
 
-
-    private DatePicker datePicker;
-    private Calendar calendar;
-    private EditText clientName,clientPhone,clientAddress,clientLogNo,clientDriverNo,clientDob,clientNoOfLessons, clientsComments, clientBalance;
+    private EditText clientName,clientPhone,clientAddress,clientLogNo,clientDriverNo,clientNoOfLessons, clientsComments, clientBalance;
+    private TextView clientDob;
     private Button btnPost;
-    private int year, month, day;
 
     String clientname, clientphone, clientaddress, lognumber, drivernumber, dob, numberoflessons, balancedue, comments, clientid; // for the intent coming in
 
+    // calendar
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
+    private String mon;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_client_details);
 
-//        calendar = Calendar.getInstance();
-//
-//        year = calendar.get(Calendar.YEAR);
-//        month = calendar.get(Calendar.MONTH);
-//        day = calendar.get(Calendar.DAY_OF_MONTH);
-//        showDate(year, month+1, day);
+        clientDob = (TextView) findViewById(R.id.editText_clientDob);
+        calendar = Calendar.getInstance();
 
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH); // defaults to 4 = April instead of defaulting to null
+        mon = "Apr";
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        showDate(year, mon, day); // default is current date
 
 
         Intent intent = getIntent();
@@ -63,6 +70,7 @@ public class UpdateClient extends Activity {
             comments = bundle.getString("theclientscomments");
             clientid = bundle.getString("id");
 
+            System.out.println("lognumber before its set to the editText: " + lognumber);
 
 
 
@@ -72,10 +80,12 @@ public class UpdateClient extends Activity {
             clientAddress = (EditText) findViewById(R.id.editText_clientAddress);
             clientLogNo = (EditText) findViewById(R.id.editText_clientLogNo);
             clientDriverNo = (EditText) findViewById(R.id.editText_clientDriverNo);
-            clientDob = (EditText) findViewById(R.id.editText_clientDob);
+            //clientDob = (EditText) findViewById(R.id.editText_clientDob);
             clientNoOfLessons = (EditText) findViewById(R.id.editText_clientNoOfLessons);
             clientBalance = (EditText) findViewById(R.id.editText_clientBalance);
             clientsComments = (EditText) findViewById(R.id.editText_clientComments);
+
+            System.out.println("lognumber after its set to the editText: " + clientLogNo);
 
 //            System.out.println("Insert lesson after intent is sent- lessonName: " + lessonName);
 //            System.out.println("Insert lesson after intent is sent- lessonname: " + lessonName);
@@ -94,7 +104,7 @@ public class UpdateClient extends Activity {
 
 
 
-            System.out.println("data has been entered again");
+            System.out.println("data successfully entered again");
 
 
         }
@@ -182,6 +192,72 @@ public class UpdateClient extends Activity {
             }
         });
     } // end on create
+
+
+    @SuppressWarnings("deprecation")
+    public void setDate(View view) {
+        showDialog(999);
+        Toast.makeText(getApplicationContext(), "Update the client's DOB", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this, myDateListener, year, month, day);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+
+                    String mon;
+                    System.out.println("arg1: " + arg1);
+                    System.out.println("arg2: " + arg2);
+                    System.out.println("arg3: " + arg3);
+                    System.out.println(clientDob.getText().toString());
+
+                    // this is used to display a better DOB format to the instructor
+                    if(arg2 == 0)
+                        mon = "Jan";
+                    else if(arg2 == 1)
+                        mon = "Feb";
+                    else if(arg2 == 2)
+                        mon = "Mar";
+                    else if(arg2 == 3)
+                        mon = "Apr";
+                    else if(arg2 == 4)
+                        mon = "May";
+                    else if(arg2 == 5)
+                        mon = "June";
+                    else if(arg2 == 6)
+                        mon = "July";
+                    else if(arg2 == 7)
+                        mon = "Aug";
+                    else if(arg2 == 8)
+                        mon = "Sep";
+                    else if(arg2 == 9)
+                        mon = "Oct";
+                    else if(arg2 == 10)
+                        mon = "Nov";
+                    else if(arg2 == 11)
+                        mon = "Dec";
+                    else
+                        mon = "month";
+
+                    showDate(arg1, mon, arg3);
+                }
+            };
+
+    private void showDate(int year, String mon, int day) {
+        // sets textView of CLient dob to the calendar input
+        clientDob.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
+
+    }
 
 
     // An intent for the user to go back to the main screen

@@ -25,9 +25,8 @@ public class InsertClient extends Activity {
 
 
     private EditText clientName,clientPhone,clientAddress,clientLogNo,clientDriverNo,clientNoOfLessons, clientsComments, clientBalance;
-    private TextView clientDob;
     private Button btnPost;
-
+    private TextView clientDob;
 
     // calendar
     private DatePicker datePicker;
@@ -36,40 +35,19 @@ public class InsertClient extends Activity {
     private String mon;
 
 
-
-
-
-
-
-//    private TextView tvDisplayDate;
-//    private DatePicker dpResult;
-//    private Button btnChangeDate;
-//
-//    private int year;
-//    private int month;
-//    private int day;
-//
-//    static final int DATE_DIALOG_ID = 999;
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_client_details);
 
-        //sample = (TextView) findViewById(R.id.sample);
         clientDob = (TextView) findViewById(R.id.editText_clientDob);
-
-
-
         calendar = Calendar.getInstance();
+
         year = calendar.get(Calendar.YEAR);
-
-        month = calendar.get(Calendar.MONTH);
+        month = calendar.get(Calendar.MONTH); // defaults to 4 = April instead of defaulting to null
+        mon = "Apr";
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, mon, day);
-        //clientDob.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
 
-
+        showDate(year, mon, day); // default is current date
 
 
         clientName = (EditText) findViewById(R.id.editText_clientName);
@@ -77,24 +55,13 @@ public class InsertClient extends Activity {
         clientAddress = (EditText) findViewById(R.id.editText_clientAddress);
         clientLogNo = (EditText) findViewById(R.id.editText_clientLogNo);
         clientDriverNo = (EditText) findViewById(R.id.editText_clientDriverNo);
-        //clientDob.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
-        //clientDob = (TextView) findViewById(R.id.sample);
+
         clientNoOfLessons = (EditText) findViewById(R.id.editText_clientNoOfLessons);
         clientsComments = (EditText) findViewById(R.id.editText_clientComments);
         clientBalance = (EditText) findViewById(R.id.editText_clientBalance);
 
+        // insert client button
         btnPost = (Button) findViewById(R.id.button_submit);
-//        Button btndob = (Button) findViewById(R.id.editText_clientDob);
-//
-//        btndob.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v) {
-//                setCurrentDateOnView();
-//                addListenerOnButton();
-//            }
-//        });
-
-
-        // submit button
         btnPost.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -107,8 +74,6 @@ public class InsertClient extends Activity {
 
                 }).start();
             }
-
-
 
             protected void insert() {
 
@@ -151,7 +116,6 @@ public class InsertClient extends Activity {
                             Toast.makeText(getBaseContext(), "Client added to database! ", Toast.LENGTH_LONG).show();
                             Intent c = new Intent(InsertClient.this, ListClients.class); // lists all lessoninfo
                             startActivity(c);
-
                         }
                     });
 
@@ -163,8 +127,6 @@ public class InsertClient extends Activity {
                     e.printStackTrace();
 
                 }
-
-
 
             }
 
@@ -180,7 +142,7 @@ public class InsertClient extends Activity {
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
-        Toast.makeText(getApplicationContext(), "setDate function", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Select the DOB of the client", Toast.LENGTH_SHORT).show();
     }
 
     @Override

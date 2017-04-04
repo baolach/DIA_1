@@ -97,7 +97,6 @@
         android:textColorHint="@color/white"
 
         android:layout_below="@+id/editText_clientDriverNo"
-
         android:nextFocusDown="@+id/editText_clientNoOfLessons"
         android:layout_alignStart="@+id/editText_clientName"
 
@@ -115,6 +114,26 @@
         <!--android:onClick="setDate">-->
         <requestFocus />
     </TextView>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:id="@+id/date"
+
+        android:textSize="11dp"
+        android:textColor="@color/white"
+        android:background="@color/turq"
+        android:onClick="setDate"
+        android:layout_marginLeft="1dp"
+
+        android:layout_alignEnd="@+id/editText_clientDriverNo"
+        android:layout_alignTop="@+id/editText_clientDob"
+        android:layout_alignBottom="@+id/editText_clientDob"/>
+
 
     <EditText
         android:id="@+id/editText_clientNoOfLessons"
@@ -298,24 +317,6 @@
         android:layout_below="@+id/website"
         android:layout_toEndOf="@+id/button"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calendar"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:id="@+id/date"
-
-        android:textSize="11dp"
-        android:textColor="@color/white"
-        android:background="@color/turq"
-        android:onClick="setDate"
-        android:layout_marginLeft="1dp"
-
-        android:layout_alignEnd="@+id/editText_clientDriverNo"
-        android:layout_alignTop="@+id/editText_clientDob"
-        android:layout_alignBottom="@+id/editText_clientDob"/>
 
     <!--<TextView-->
         <!--android:text="TextView"-->
