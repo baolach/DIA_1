@@ -149,7 +149,7 @@ public class InsertClient extends Activity {
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
         if (id == 999) {
-            return new DatePickerDialog(this, myDateListener, year, month, day);
+            return new DatePickerDialog(this,android.R.style.Theme_DeviceDefault_Light_Dialog_Alert, myDateListener, year, month, day);
         }
         return null;
     }

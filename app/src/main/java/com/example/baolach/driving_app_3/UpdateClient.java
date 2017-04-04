@@ -80,7 +80,7 @@ public class UpdateClient extends Activity {
             clientAddress = (EditText) findViewById(R.id.editText_clientAddress);
             clientLogNo = (EditText) findViewById(R.id.editText_clientLogNo);
             clientDriverNo = (EditText) findViewById(R.id.editText_clientDriverNo);
-            //clientDob = (EditText) findViewById(R.id.editText_clientDob);
+
             clientNoOfLessons = (EditText) findViewById(R.id.editText_clientNoOfLessons);
             clientBalance = (EditText) findViewById(R.id.editText_clientBalance);
             clientsComments = (EditText) findViewById(R.id.editText_clientComments);
@@ -204,7 +204,7 @@ public class UpdateClient extends Activity {
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
         if (id == 999) {
-            return new DatePickerDialog(this, myDateListener, year, month, day);
+            return new DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert, myDateListener, year, month, day);
         }
         return null;
     }

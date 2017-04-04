@@ -20,23 +20,7 @@
         />
 
 
-    <EditText
-        android:id="@+id/editText_lessonDate"
-        android:hint="Date"
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
 
-        android:layout_below="@+id/editText_lessonName"
-        android:layout_margin="1dp"
-
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:inputType="textCapSentences"
-        android:nextFocusForward="@+id/lesson_date">
-        <requestFocus />
-    </EditText>
 
     <EditText
         android:id="@+id/editText_lessonTime"
@@ -46,37 +30,19 @@
 
         android:hint="Time"
         android:layout_below="@+id/editText_lessonDate"
-        android:layout_alignParentStart="true"
-        android:layout_margin="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:inputType="textCapSentences"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_alignStart="@+id/editText_lessonLocation">
     <requestFocus />
     </EditText>
 
-
-    <EditText
-        android:id="@+id/editText_lessonLocation"
-
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-
-        android:hint="Meeting location"
-        android:layout_below="@+id/editText_lessonTime"
-        android:layout_alignParentStart="true"
-        android:layout_margin="1dp"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:inputType="textCapSentences|textCapWords|textAutoComplete"
-        android:nextFocusForward="@+id/lesson_date"
-        >
-        <requestFocus />
-    </EditText>
 
     <EditText
         android:id="@+id/editText_lessonComments"
@@ -87,7 +53,6 @@
         android:hint="Lesson Plan / Comments"
         android:layout_below="@+id/editText_lessonLocation"
         android:layout_alignParentStart="true"
-        android:layout_margin="1dp"
 
 
         android:layout_width="fill_parent"
@@ -96,7 +61,11 @@
         android:inputType="textCapSentences"
         android:nextFocusForward="@+id/lesson_date"
 
-        >
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentEnd="true">
         <requestFocus />
     </EditText>
 
@@ -125,15 +94,14 @@
         android:textColorHint="@color/white"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="1dp"
-        android:layout_alignEnd="@+id/editText_lessonDate"
-        android:layout_alignStart="@+id/editText_lessonDate"
         android:layout_below="@+id/button"
         android:padding="10dp"
         android:nextFocusForward="@+id/lesson_date"
 
         android:digits="abcdeghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
         android:inputType="textCapWords"
-        >
+        android:layout_alignEnd="@+id/editText_lessonTime"
+        android:layout_alignStart="@+id/editText_lessonTime">
     <requestFocus />
     </EditText>
 
@@ -176,6 +144,61 @@
         android:padding="5dp"
         android:layout_below="@+id/website"
         android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/editText_lessonDate"
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/editText_lessonName"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/date">
+        <requestFocus />
+    </TextView>
+
+    <EditText
+        android:id="@+id/editText_lessonLocation"
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+        android:hint="Meeting location"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:inputType="textCapSentences|textCapWords|textAutoComplete"
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/editText_lessonTime"
+        android:layout_alignParentEnd="true">
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date"
+
+        android:text="Calendar"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:textSize="11dp"
+        android:textColor="@color/white"
+        android:background="@color/turq"
+        android:onClick="setDate"
+        android:layout_marginLeft="1dp"
+        android:layout_below="@+id/editText_lessonName"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/editText_lessonTime"/>
 
 
 </RelativeLayout>

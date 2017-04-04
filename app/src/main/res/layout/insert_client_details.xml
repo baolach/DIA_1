@@ -134,7 +134,6 @@
         android:layout_alignTop="@+id/editText_clientDob"
         android:layout_alignBottom="@+id/editText_clientDob"/>
 
-
     <EditText
         android:id="@+id/editText_clientNoOfLessons"
 
@@ -279,7 +278,6 @@
 
         android:nextFocusDown="@+id/editText_clientPhone"
         android:layout_below="@+id/home"
-        android:layout_centerHorizontal="true"
         android:imeOptions="actionSend|flagNoEnterAction"
         android:maxLines="4"
 
@@ -291,7 +289,8 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="textCapSentences|textCapWords"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 

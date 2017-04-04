@@ -1,17 +1,22 @@
 package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 /**
  * Created by Baolach on 28/03/2017.
@@ -20,20 +25,35 @@ import java.sql.SQLException;
 public class UpdateLesson extends Activity {
 
     EditText lessonName;
-    EditText lessonDate;
     EditText lessonTime;
     EditText lessonLocation;
     EditText lessonComments;
+    private TextView lessonDate;
     private Button btnPost;
 
     String lessonname, lessondate, lessontime, lessonlocation, lessoncomments, lessonid;
 
-
+    // calendar
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
+    private String mon;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_lesson_details);
+
+        lessonDate = (TextView) findViewById(R.id.editText_lessonDate);
+        calendar = Calendar.getInstance();
+
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH); // defaults to 4 = April instead of defaulting to null
+        mon = "Apr";
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        showDate(year, mon, day); // default is current date
+
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -54,13 +74,10 @@ public class UpdateLesson extends Activity {
 
                 // then set the editTexts to these values that just came in
                 lessonName = (EditText) findViewById(R.id.editText_lessonName);
-                lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
+
                 lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
                 lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
                 lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
-
-                //            System.out.println("Insert lesson after intent is sent- lessonName: " + lessonName);
-                //            System.out.println("Insert lesson after intent is sent- lessonname: " + lessonName);
 
                 lessonName.setText(lessonname);
                 lessonDate.setText(lessondate);
@@ -164,6 +181,74 @@ public class UpdateLesson extends Activity {
             }
         });
     }
+
+    @SuppressWarnings("deprecation")
+    public void setDate(View view) {
+        showDialog(999);
+        Toast.makeText(getApplicationContext(), "Update the date for this lesson", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert, myDateListener, year, month, day);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+
+                    String mon;
+                    System.out.println("arg1: " + arg1);
+                    System.out.println("arg2: " + arg2);
+                    System.out.println("arg3: " + arg3);
+                    System.out.println(lessonDate.getText().toString());
+
+                    // this is used to display a better DOB format to the instructor
+                    if(arg2 == 0)
+                        mon = "Jan";
+                    else if(arg2 == 1)
+                        mon = "Feb";
+                    else if(arg2 == 2)
+                        mon = "Mar";
+                    else if(arg2 == 3)
+                        mon = "Apr";
+                    else if(arg2 == 4)
+                        mon = "May";
+                    else if(arg2 == 5)
+                        mon = "June";
+                    else if(arg2 == 6)
+                        mon = "July";
+                    else if(arg2 == 7)
+                        mon = "Aug";
+                    else if(arg2 == 8)
+                        mon = "Sep";
+                    else if(arg2 == 9)
+                        mon = "Oct";
+                    else if(arg2 == 10)
+                        mon = "Nov";
+                    else if(arg2 == 11)
+                        mon = "Dec";
+                    else
+                        mon = "month";
+
+                    showDate(arg1, mon, arg3);
+                }
+            };
+
+    private void showDate(int year, String mon, int day) {
+        lessonDate.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
+
+    }
+
+
+
+
 
     // An intent for the user to go back to the main screen.
     public void goBackScreen(View view) {

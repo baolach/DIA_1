@@ -1,86 +1,69 @@
 package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 /**
  */
 public class InsertLesson extends Activity {
 
-    //DBManager db = new DBManager(this);
-
     EditText lessonName;
-    EditText lessonDate;
+    //EditText lessonDate;
     EditText lessonTime;
     EditText lessonLocation;
     EditText lessonComments;
+    private TextView lessonDate;
     private Button btnPost;
 
     String lessonname, lessondate, lessontime, lessonlocation, lessoncomments; // for the intent coming in
+
+    // calendar
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
+    private String mon;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_lesson_details);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
+        lessonDate = (TextView) findViewById(R.id.editText_lessonDate);
+        calendar = Calendar.getInstance();
 
-        // bundle captures the parameters form the intent - this is used when updating lessons only
-        if (bundle != null) {
-            // if bundle has data in it - read in the data into these variables eg. lessonname
-            lessonname = bundle.getString("thelessonname");
-            lessondate = bundle.getString("thelessondate");
-            lessontime = bundle.getString("thelessontime");
-            lessonlocation = bundle.getString("thelessonlocation");
-            lessoncomments = bundle.getString("thelessoncomments");
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH); // defaults to 4 = April instead of defaulting to null
+        mon = "Apr";
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        showDate(year, mon, day); // default is current date
 
 
+        // then set the editTexts to these values that just came in
+        lessonName = (EditText) findViewById(R.id.editText_lessonName);
+//      lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
+        lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
+        lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
+        lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
 
-            // then set the editTexts to these values that just came in
-            lessonName = (EditText) findViewById(R.id.editText_lessonName);
-            lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
-            lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
-            lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
-            lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
-
-//            System.out.println("Insert lesson after intent is sent- lessonName: " + lessonName);
-//            System.out.println("Insert lesson after intent is sent- lessonname: " + lessonName);
-
-            lessonName.setText(lessonname);
-            lessonDate.setText(lessondate);
-            lessonTime.setText(lessontime);
-            lessonLocation.setText(lessonlocation);
-            lessonComments.setText(lessoncomments);
-
-
-
-            System.out.println("data has been entered again");
-
-
-        } else{
-            // else if no data is sent ie. the update button isnt pressed - set t
-            lessonName = (EditText) findViewById(R.id.editText_lessonName);
-            lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
-            lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
-            lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
-            lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
-
-        }
 
         // posts to database
         btnPost = (Button) findViewById(R.id.button_submit);
-
-        // submit button
         btnPost.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -109,7 +92,6 @@ public class InsertLesson extends Activity {
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
                     // prepares the sql statement
-
                     String insert = "insert into getdata_getlesson values (?,?,?,?,?)";
                     insertdb = conn.prepareStatement(insert);
                     insertdb.setString(1, l_name);
@@ -144,6 +126,75 @@ public class InsertLesson extends Activity {
             }
         });
     }
+
+    @SuppressWarnings("deprecation")
+    public void setDate(View view) {
+        showDialog(999);
+        Toast.makeText(getApplicationContext(), "Select the date of the lesson", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert,  myDateListener, year, month, day); // Theme_DeviceDefault_Dialog_Alert
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+
+                    String mon;
+                    System.out.println("arg1: " + arg1);
+                    System.out.println("arg2: " + arg2);
+                    System.out.println("arg3: " + arg3);
+                    System.out.println(lessonDate.getText().toString());
+
+                    // this is used to display a better DOB format to the instructor
+                    if(arg2 == 0)
+                        mon = "Jan";
+                    else if(arg2 == 1)
+                        mon = "Feb";
+                    else if(arg2 == 2)
+                        mon = "Mar";
+                    else if(arg2 == 3)
+                        mon = "Apr";
+                    else if(arg2 == 4)
+                        mon = "May";
+                    else if(arg2 == 5)
+                        mon = "June";
+                    else if(arg2 == 6)
+                        mon = "July";
+                    else if(arg2 == 7)
+                        mon = "Aug";
+                    else if(arg2 == 8)
+                        mon = "Sep";
+                    else if(arg2 == 9)
+                        mon = "Oct";
+                    else if(arg2 == 10)
+                        mon = "Nov";
+                    else if(arg2 == 11)
+                        mon = "Dec";
+                    else
+                        mon = "month";
+
+                    showDate(arg1, mon, arg3);
+                }
+            };
+
+    private void showDate(int year, String mon, int day) {
+        // sets textView of CLient dob to the calendar input
+        lessonDate.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
+
+    }
+
+
+
+
+
 
     // An intent for the user to go back to the main screen.
     public void goBackScreen(View view) {
