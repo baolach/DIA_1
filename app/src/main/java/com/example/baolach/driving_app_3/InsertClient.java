@@ -5,6 +5,8 @@ package com.example.baolach.driving_app_3;
 
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,39 +19,56 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Calendar;
 
 public class InsertClient extends Activity {
 
-    private DatePicker datePicker;
-    private Calendar calendar;
-    private EditText clientName,clientPhone,clientAddress,clientLogNo,clientDriverNo,clientDob,clientNoOfLessons, clientsComments, clientBalance;
+
+    private EditText clientName,clientPhone,clientAddress,clientLogNo,clientDriverNo,clientNoOfLessons, clientsComments, clientBalance;
+    private TextView clientDob;
     private Button btnPost;
 
 
     // calendar
-    private TextView tvDisplayDate;
-    private DatePicker dpResult;
-    private Button btnChangeDate;
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
+    private String mon;
 
-    private int year;
-    private int month;
-    private int day;
 
-    static final int DATE_DIALOG_ID = 999;
+
+
+
+
+
+//    private TextView tvDisplayDate;
+//    private DatePicker dpResult;
+//    private Button btnChangeDate;
+//
+//    private int year;
+//    private int month;
+//    private int day;
+//
+//    static final int DATE_DIALOG_ID = 999;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_client_details);
 
-//        calendar = Calendar.getInstance();
-//
-//        year = calendar.get(Calendar.YEAR);
-//        month = calendar.get(Calendar.MONTH);
-//        day = calendar.get(Calendar.DAY_OF_MONTH);
-//        showDate(year, month+1, day);
+        //sample = (TextView) findViewById(R.id.sample);
+        clientDob = (TextView) findViewById(R.id.editText_clientDob);
+
+
+
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        showDate(year, mon, day);
+        //clientDob.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
+
 
 
 
@@ -58,7 +77,8 @@ public class InsertClient extends Activity {
         clientAddress = (EditText) findViewById(R.id.editText_clientAddress);
         clientLogNo = (EditText) findViewById(R.id.editText_clientLogNo);
         clientDriverNo = (EditText) findViewById(R.id.editText_clientDriverNo);
-        clientDob = (EditText) findViewById(R.id.editText_clientDob);
+        //clientDob.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
+        //clientDob = (TextView) findViewById(R.id.sample);
         clientNoOfLessons = (EditText) findViewById(R.id.editText_clientNoOfLessons);
         clientsComments = (EditText) findViewById(R.id.editText_clientComments);
         clientBalance = (EditText) findViewById(R.id.editText_clientBalance);
@@ -138,96 +158,89 @@ public class InsertClient extends Activity {
                     insertdb.close();
                     conn.close();
 
-                } catch (ClassNotFoundException e) {
+                } catch (Exception e) {
+//                    Helper.displayExceptionMessage(this);
                     e.printStackTrace();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+
                 }
 
+
+
             }
+
+
         });
     } // end on create
 
-
-    // calendar stuff
-    // display current date
-//    public void setCurrentDateOnView() {
-
-//        //tvDisplayDate = (TextView) findViewById(R.id.tvDate);
-//        dpResult = (DatePicker) findViewById(R.id.dpResult);
-//
-//        final Calendar c = Calendar.getInstance();
-//        year = c.get(Calendar.YEAR);
-//        month = c.get(Calendar.MONTH);
-//        day = c.get(Calendar.DAY_OF_MONTH);
-//
-//        // set current date into textview
-//        clientDob.setText(new StringBuilder()
-//                // Month is 0 based, just add 1
-//                .append(month + 1).append("-").append(day).append("-")
-//                .append(year).append(" "));
-//
-//        // set current date into datepicker
-//        dpResult.init(year, month, day, null);
-
- //   }
-
- //   public void addListenerOnButton() {
-
-//        btnChangeDate = (Button) findViewById(R.id.btnChangeDate);
-//
-//        btnChangeDate.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//
-//                showDialog(DATE_DIALOG_ID);
-//
-//            }
-//
-//        });
-
+// helper class to send a toast
+//    public static void displayExceptionMessage(Context context) {
+//        Toast.makeText(context, "Driver Number or Log Number already in the database!" , Toast.LENGTH_LONG).show();
 //    }
 
-//    @Override
-//    protected Dialog onCreateDialog(int id) {
-//        switch (id) {
-//            case DATE_DIALOG_ID:
-//                // set date picker as current date
-//                return new DatePickerDialog(this, datePickerListener,
-//                        year, month,day);
-//        }
-//        return null;
-//    }
-//
-//    private DatePickerDialog.OnDateSetListener datePickerListener
-//            = new DatePickerDialog.OnDateSetListener() {
-//
-//        // when dialog box is closed, below method will be called.
-//        public void onDateSet(DatePicker view, int selectedYear,
-//                              int selectedMonth, int selectedDay) {
-//            year = selectedYear;
-//            month = selectedMonth;
-//            day = selectedDay;
-//
-//            // set selected date into textview
-//            tvDisplayDate.setText(new StringBuilder().append(month + 1)
-//                    .append("-").append(day).append("-").append(year)
-//                    .append(" "));
-//
-//            // set selected date into datepicker also
-//            dpResult.init(year, month, day, null);
-//
-//        }
-//    };
+    @SuppressWarnings("deprecation")
+    public void setDate(View view) {
+        showDialog(999);
+        Toast.makeText(getApplicationContext(), "setDate function", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this, myDateListener, year, month, day);
+        }
+        return null;
+    }
 
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
 
+                    String mon;
+                    System.out.println("arg1: " + arg1);
+                    System.out.println("arg2: " + arg2);
+                    System.out.println("arg3: " + arg3);
+                    System.out.println(clientDob.getText().toString());
 
+                    // this is used to display a better DOB format to the instructor
+                    if(arg2 == 0)
+                        mon = "Jan";
+                    else if(arg2 == 1)
+                        mon = "Feb";
+                    else if(arg2 == 2)
+                        mon = "Mar";
+                    else if(arg2 == 3)
+                        mon = "Apr";
+                    else if(arg2 == 4)
+                        mon = "May";
+                    else if(arg2 == 5)
+                        mon = "June";
+                    else if(arg2 == 6)
+                        mon = "July";
+                    else if(arg2 == 7)
+                        mon = "Aug";
+                    else if(arg2 == 8)
+                        mon = "Sep";
+                    else if(arg2 == 9)
+                        mon = "Oct";
+                    else if(arg2 == 10)
+                        mon = "Nov";
+                    else if(arg2 == 11)
+                        mon = "Dec";
+                    else
+                        mon = "month";
 
+                    showDate(arg1, mon, arg3);
+                }
+            };
 
+    private void showDate(int year, String mon, int day) {
+        // sets textView of CLient dob to the calendar input
+        clientDob.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
 
-
+    }
 
 
     // An intent for the user to go back to the main screen

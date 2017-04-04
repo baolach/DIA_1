@@ -235,17 +235,6 @@
 />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Address"
-        android:id="@+id/textView3"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/textView2"/>
-
-    <TextView
         android:text="balance"
         android:id="@+id/thebalance"
 
@@ -365,13 +354,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Address"
+        android:id="@+id/textView3"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/textView2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name"
         android:id="@+id/textView"
         android:textStyle="bold"
 
         android:textColor="@color/white"
 
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_below="@+id/delete_client_btn"
         android:layout_alignStart="@+id/button"/>
 
