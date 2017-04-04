@@ -80,6 +80,7 @@
         android:text="Phone"
         android:id="@+id/theclientphone"
         android:textColor="@color/white"
+        android:textStyle="bold|italic"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignStart="@+id/theclientaddress"

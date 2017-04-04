@@ -80,7 +80,7 @@ public class ClientAdapter extends BaseAdapter {
 
         Client client = clientlist.get(position);
         holder.client_name.setText(client.getName());
-        holder.log_no.setText(client.getLogno());
+        holder.client_phone.setText(client.getPhone());
         //holder.client_address.setText(client.getAddress());
 
 

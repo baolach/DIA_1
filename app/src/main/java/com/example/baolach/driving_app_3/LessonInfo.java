@@ -1,6 +1,8 @@
 package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -16,12 +18,12 @@ import java.sql.Statement;
 
 public class LessonInfo extends Activity {
 
+    private Button btnDelete;
     String lessonname, lessondate, lessontime, lessonlocation, lessoncomments, lessonid;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_lesson_info);
@@ -62,24 +64,30 @@ public class LessonInfo extends Activity {
         // for marquee scroll
         locationTextView.setSelected(true);
 
-        Button btnDelete  = (Button) findViewById(R.id.delete_client_btn);
 
-        // delete button
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        btnDelete = (Button) findViewById(R.id.delete_client_btn);
 
-            public void onClick(View v) {
-                new Thread(new Runnable() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure you want to delete this lesson with " + lessonname + "?;");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-                    public void run() {
+
+                new Thread(new Runnable(){
+
+                    public void run()
+                    {
                         delete();
                     }
 
                 }).start();
+
+                finish();
             }
 
             protected void delete() {
 
-                //Connection c = null;
                 Statement deletedb = null;
                 try {
                     Class.forName("org.postgresql.Driver");
@@ -89,13 +97,10 @@ public class LessonInfo extends Activity {
                     System.out.println("Opened database successfully");
 
                     deletedb = conn.createStatement();
-                    System.out.println("About to delete: " + lessonname );
+                    System.out.println("About to delete: " + lessonname);
 
-                    // where "table_name_in postgres_db = the_variable_the_intent_sent_over"
                     String sql = "DELETE from getdata_getlesson where lesson_name = '" + lessonname +
                             "' AND lesson_date= '" + lessondate + "' AND lesson_time = '" + lessontime + "';";
-
-
 
                     deletedb.executeUpdate(sql);
                     conn.commit();
@@ -109,7 +114,6 @@ public class LessonInfo extends Activity {
                             startActivity(l);
                             finish();
 
-
                         }
                     });
 
@@ -122,11 +126,32 @@ public class LessonInfo extends Activity {
                 }
                 System.out.println("Delete successful");
 
+
+
+
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Do nothing
+                dialog.dismiss();
             }
         });
 
 
-    }
+
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                builder.show();
+
+            }
+        }); // end onClickListener for delete
+    } // end onCreate
 
     public void goBackScreen(View view) {
         try {

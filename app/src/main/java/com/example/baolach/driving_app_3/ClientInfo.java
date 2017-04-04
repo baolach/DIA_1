@@ -2,10 +2,13 @@ package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,8 +30,6 @@ public class ClientInfo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_client_info);
 
-
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
@@ -44,7 +45,7 @@ public class ClientInfo extends Activity {
             clientbalancedue = bundle.getString("thebalance");
             clientcomments = bundle.getString("theclientscomments");
             clientid= bundle.getString("id");
-            System.out.println("ClientInfo id: " + clientid); // should be the id of the lesson
+            System.out.println("ClientInfo id: " + clientid);
 
 
 
@@ -52,7 +53,7 @@ public class ClientInfo extends Activity {
 
         // apply to textViews
         TextView nameTextView = (TextView) findViewById(R.id.theclientname);
-        TextView phoneTextView = (TextView) findViewById(R.id.theclientphone);
+        final TextView phoneTextView = (TextView) findViewById(R.id.theclientphone);
         TextView addressTextView = (TextView) findViewById(R.id.theclientaddress);
         TextView lognoTextView = (TextView) findViewById(R.id.thelognumber);
         TextView drivernoTextView = (TextView) findViewById(R.id.thedrivernumber);
@@ -79,14 +80,10 @@ public class ClientInfo extends Activity {
         // needed for marquee scroll
         addressTextView.setSelected(true);
 
-
-
-
         btnDelete  = (Button) findViewById(R.id.delete_client_btn);
 
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Are you sure you want to delete client?");
+        builder.setTitle("Are you sure you want to delete this client?");
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -163,6 +160,22 @@ public class ClientInfo extends Activity {
             public void onClick(View v) {
                 builder.show();
             }});
+
+
+        phoneTextView.setOnClickListener(new View.OnClickListener(){
+          public void onClick(View v){
+              //System.out.println("Hello");
+              try {
+                  Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                  callIntent.setData(Uri.parse("tel:" + phoneTextView.getText().toString()));
+                  startActivity(callIntent);
+              } catch (ActivityNotFoundException activityException) {
+                  Log.e("Calling a Phone Number", "Call failed", activityException);
+              } catch(SecurityException e){
+                  e.printStackTrace();
+              }
+
+        }});
     } // end onCreate
 
 
