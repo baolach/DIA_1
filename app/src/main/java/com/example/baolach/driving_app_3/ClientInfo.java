@@ -1,6 +1,8 @@
 package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -15,12 +17,7 @@ import java.sql.Statement;
 
 public class ClientInfo extends Activity {
 
-    //    DBManager db = new DBManager(this);
-//    String clientsName;
-//    static ArrayList<String> clientsId = new ArrayList<String>();
-//    //ListView listView;
-//    ArrayList<Client> list;
-//    ClientInfoAdapter infoAdapter = null;
+
 
     private Button btnDelete;
     String clientname, clientphone, clientaddress, clientlogno, clientdriverno, clientdob, clientnooflessons, clientbalancedue, clientcomments, clientid; // ocming from the intent from listClients
@@ -87,22 +84,28 @@ public class ClientInfo extends Activity {
 
         btnDelete  = (Button) findViewById(R.id.delete_client_btn);
 
-        // delete button
-        btnDelete.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
-                new Thread(new Runnable() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure you want to delete client?");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-                    public void run() {
+
+                new Thread(new Runnable(){
+
+                    public void run()
+                    {
                         delete();
                     }
 
                 }).start();
+
+                finish();
             }
 
             protected void delete() {
 
-                //Connection c = null;
                 Statement deletedb = null;
                 try {
                     Class.forName("org.postgresql.Driver");
@@ -140,8 +143,26 @@ public class ClientInfo extends Activity {
                 }
                 System.out.println("Delete successful");
 
+
+
+
             }
         });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                builder.show();
+            }});
     } // end onCreate
 
 

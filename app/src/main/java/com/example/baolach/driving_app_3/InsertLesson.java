@@ -199,7 +199,7 @@ public class InsertLesson extends Activity {
     // An intent for the user to go back to the main screen.
     public void goBackScreen(View view) {
         try {
-            Intent lastScreen = new Intent(this, ListLessons.class);
+            Intent lastScreen = new Intent(this, AdminActivity.class);
             startActivity(lastScreen);
             finish();
         } catch(Exception e) {

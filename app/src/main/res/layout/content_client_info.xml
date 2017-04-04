@@ -28,6 +28,7 @@
         android:textSize="11dp"
         android:padding="5dp"
         android:textColor="@color/white"
+        android:onClick="Delete"
 
         android:layout_marginRight="5dp"
         android:layout_marginLeft="10dp"

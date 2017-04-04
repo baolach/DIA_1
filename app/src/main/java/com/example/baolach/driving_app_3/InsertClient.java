@@ -208,7 +208,7 @@ public class InsertClient extends Activity {
     // An intent for the user to go back to the main screen
     public void goBackScreen(View view) {
         try {
-            Intent lastScreen = new Intent(this, ListClients.class);
+            Intent lastScreen = new Intent(this, AdminActivity.class);
             startActivity(lastScreen);
         } catch(Exception e) {
             e.printStackTrace();
