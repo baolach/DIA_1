@@ -45,7 +45,6 @@ public class ClientInfo extends Activity {
             clientbalancedue = bundle.getString("thebalance");
             clientcomments = bundle.getString("theclientscomments");
             clientid= bundle.getString("id");
-            System.out.println("ClientInfo id: " + clientid);
 
 
 
@@ -54,7 +53,7 @@ public class ClientInfo extends Activity {
         // apply to textViews
         TextView nameTextView = (TextView) findViewById(R.id.theclientname);
         final TextView phoneTextView = (TextView) findViewById(R.id.theclientphone);
-        TextView addressTextView = (TextView) findViewById(R.id.theclientaddress);
+        final TextView addressTextView = (TextView) findViewById(R.id.theclientaddress);
         TextView lognoTextView = (TextView) findViewById(R.id.thelognumber);
         TextView drivernoTextView = (TextView) findViewById(R.id.thedrivernumber);
         TextView dobTextView = (TextView) findViewById(R.id.thedob);
@@ -176,6 +175,35 @@ public class ClientInfo extends Activity {
               }
 
         }});
+
+/////////////////////////////////////////////////////////////////////////////////////
+        addressTextView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                //System.out.println("Hello");
+                try {
+                    String addr = addressTextView.getText().toString();
+//                    String webURL = "";
+//                    webURL += website;
+//                    Log.d("location", webURL);
+                    Uri uri = Uri.parse(addr);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(mapIntent);
+
+
+
+
+//                    Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+//                    mapIntent.setData(Uri.parse("daddr:" + addressTextView.getText().toString())); // destination address
+//                    startActivity(mapIntent);
+
+                } catch (Exception e) {
+                    Log.e("Loading map", "map failed", e);
+                }
+
+            }});
+
+
+/////////////////////////////////////////////////////////////////////////////////////
     } // end onCreate
 
 
@@ -202,9 +230,9 @@ public class ClientInfo extends Activity {
             i.putExtra("id", clientid);
 
 
-            System.out.println("lognumber is: " +clientlogno );
-            System.out.println("driver number is: " +clientdriverno );
-
+//            System.out.println("lognumber is: " +clientlogno );
+//            System.out.println("driver number is: " +clientdriverno );
+//
 
 
             startActivity(i);

@@ -1,9 +1,14 @@
 package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,14 +24,13 @@ import java.sql.Statement;
 
 public class FinanceInfo extends Activity {
     private Button btnDelete;
-    String clientname, clientphone, clientaddress, clientlogno, clientdriverno, clientdob, clientnooflessons, clientbalancedue, clientcomments;
+    String clientname, clientphone, clientaddress, clientlogno, clientdriverno, clientdob, clientnooflessons, clientbalancedue, clientcomments, clientid; // coming from the intent from Finances;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_finances_info);
 
-        System.out.println("Now in the content finance info .xml rather than the content client xml");
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -42,13 +46,15 @@ public class FinanceInfo extends Activity {
             clientnooflessons = bundle.getString("thenumberoflessons");
             clientbalancedue = bundle.getString("thebalance");
             clientcomments = bundle.getString("theclientscomments");
+            clientid= bundle.getString("id");
+
 
         }
 
         // apply to textViews
         TextView nameTextView = (TextView) findViewById(R.id.theclientname);
-        TextView phoneTextView = (TextView) findViewById(R.id.theclientphone);
-        TextView addressTextView = (TextView) findViewById(R.id.theclientaddress);
+        final TextView phoneTextView = (TextView) findViewById(R.id.theclientphone);
+        final TextView addressTextView = (TextView) findViewById(R.id.theclientaddress);
         TextView lognoTextView = (TextView) findViewById(R.id.thelognumber);
         TextView drivernoTextView = (TextView) findViewById(R.id.thedrivernumber);
         TextView dobTextView = (TextView) findViewById(R.id.thedob);
@@ -72,35 +78,31 @@ public class FinanceInfo extends Activity {
         commentsTextView.setMovementMethod(new ScrollingMovementMethod());
 
         // needed for marquee scroll
-//        nameTextView.setSelected(true);
-//        phoneTextView.setSelected(true);
         addressTextView.setSelected(true);
-//        lognoTextView.setSelected(true);
-//        drivernoTextView.setSelected(true);
-//        nooflessonsTextView.setSelected(true);
-//        balanceTextView.setSelected(true);
-//        commentsTextView.setSelected(true);
-
-
 
         btnDelete  = (Button) findViewById(R.id.delete_client_btn);
 
-        // delete button
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure you want to delete this client?");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-            public void onClick(View v) {
-                new Thread(new Runnable() {
 
-                    public void run() {
+                new Thread(new Runnable(){
+
+                    public void run()
+                    {
                         delete();
                     }
 
                 }).start();
+
+                finish();
             }
 
             protected void delete() {
 
-                //Connection c = null;
                 Statement deletedb = null;
                 try {
                     Class.forName("org.postgresql.Driver");
@@ -123,7 +125,7 @@ public class FinanceInfo extends Activity {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(getBaseContext(), "Client deleted from database! ", Toast.LENGTH_LONG).show();
-                            Intent maps = new Intent(FinanceInfo.this, Finances.class); // lists all lessoninfo
+                            Intent maps = new Intent(FinanceInfo.this, ListClients.class); // lists all lessoninfo
                             startActivity(maps);
 
                         }
@@ -140,6 +142,39 @@ public class FinanceInfo extends Activity {
 
             }
         });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                builder.show();
+            }});
+
+
+        phoneTextView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                //System.out.println("Hello");
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + phoneTextView.getText().toString()));
+                    startActivity(callIntent);
+                } catch (ActivityNotFoundException activityException) {
+                    Log.e("Calling a Phone Number", "Call failed", activityException);
+                } catch(SecurityException e){
+                    e.printStackTrace();
+                }
+
+            }});
+
+
     } // end onCreate
 
 
@@ -162,6 +197,8 @@ public class FinanceInfo extends Activity {
             i.putExtra("thenumberoflessons", clientnooflessons);
             i.putExtra("thebalance", clientbalancedue);
             i.putExtra("theclientscomments", clientcomments);
+            i.putExtra("id", clientid);
+
 
             startActivity(i);
 

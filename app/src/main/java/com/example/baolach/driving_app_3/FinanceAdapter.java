@@ -77,7 +77,6 @@ public class FinanceAdapter extends BaseAdapter {
         System.out.println("client nam: " + holder);
         Client client = clientlist.get(position);
         holder.client_name.setText(client.getName());
-
         holder.balance_due.setText(client.getBalancedue());
         holder.no_of_lessons.setText(client.getNooflessons());
 

@@ -280,17 +280,6 @@ public class ListClients extends Activity {
 
 
 
-
-    public void listClientName(View view)
-    {
-        try {
-            Intent client_name_intent = new Intent(this, InsertClient.class);
-            startActivity(client_name_intent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void newClient(View view)
     {
         try {

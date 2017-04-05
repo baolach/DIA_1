@@ -47,7 +47,7 @@ public class InsertClient extends Activity {
         mon = "Apr";
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        showDate(year, mon, day); // default is current date
+        //showDate(year, mon, day); // default is current date
 
 
         clientName = (EditText) findViewById(R.id.editText_clientName);
@@ -158,8 +158,6 @@ public class InsertClient extends Activity {
             DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-                    // TODO Auto-generated method stub
-
                     String mon;
                     System.out.println("arg1: " + arg1);
                     System.out.println("arg2: " + arg2);

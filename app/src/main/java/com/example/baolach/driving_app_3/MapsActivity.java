@@ -278,6 +278,16 @@ public class MapsActivity extends AppCompatActivity {
         }
     }
 
+    public void goBackScreen(View view) {
+        try {
+            Intent lastScreen = new Intent(this, MainActivity.class);
+            startActivity(lastScreen);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
 
 
