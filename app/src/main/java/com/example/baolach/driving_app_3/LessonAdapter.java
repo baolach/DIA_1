@@ -61,9 +61,6 @@ public class LessonAdapter extends BaseAdapter {
             holder.lesson_location = (TextView) row.findViewById(R.id.log_no);
             holder.lesson_comments = (TextView) row.findViewById(R.id.driver_no);
 
-            // doesnt need to show the id
-
-
             row.setTag(holder);
         }
         else
@@ -76,12 +73,6 @@ public class LessonAdapter extends BaseAdapter {
         holder.lesson_name.setText(lesson.getName());
         holder.lesson_date.setText(lesson.getDate());
         holder.lesson_time.setText(lesson.getTime());
-        //holder.lesson_location.setText(lesson.getLocation());
-       // holder.lesson_comments.setText(lesson.getComments());
-
-
-        //holder.client_address.setText(client.getAddress());
-
 
         return row;
     }

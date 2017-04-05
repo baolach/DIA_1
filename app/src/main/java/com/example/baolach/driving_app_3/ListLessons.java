@@ -36,8 +36,6 @@ public class ListLessons extends Activity
     static ArrayList<String> lessonComments = new ArrayList<String>();
     static ArrayList<String> lessonId = new ArrayList<String>();
 
-
-
     ListView listView; // blue listview
     ArrayList<Lesson> list;
     LessonAdapter adapter = null;
@@ -62,8 +60,9 @@ public class ListLessons extends Activity
         listView = (ListView) findViewById(R.id.listView_lessons); // the listview ID in list_clients.xml
         list = new ArrayList<>();
         adapter = new LessonAdapter(this, R.layout.lessoninfo, list); // this sets adapter to the ClientAdapter which uses client.xml
-        listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
+        listView.setAdapter(adapter); // sets the listview in ListLesson activity output the adapter within the listView
 
+        // connects to the url containing the lessons in the database
         String url = "http://138.68.141.18:8006/lessons/?format=json";
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connmgr.getActiveNetworkInfo();
@@ -76,6 +75,8 @@ public class ListLessons extends Activity
 
         // the list is declared above and generated and the variables added in onPostExecuted.
         // Then if items clicked they are sent with the intent to the LessonsInfo activity
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // itemId keeps track of where in the list it is
@@ -88,10 +89,8 @@ public class ListLessons extends Activity
                 String lessoncomments = lessonComments.get(itemId);
                 String lessonid = lessonId.get(itemId);
 
-
-
-                // creates new intent and sends over the client information when item is clicked
-                // accepted by Bundle is LessonInfo
+                // creates new intent and sends over the lesson information when item is clicked
+                // accepted by Bundle in LessonInfo
                 Intent i = new Intent(ListLessons.this, LessonInfo.class);
                 i.putExtra("thelessonname", lessonname);
                 i.putExtra("thelessondate", lessondate);
@@ -99,8 +98,6 @@ public class ListLessons extends Activity
                 i.putExtra("thelessonlocation", lessonlocation);
                 i.putExtra("thelessoncomments", lessoncomments);
                 i.putExtra("id", lessonid);
-
-                System.out.println("ListLessons.java id: " + lessonid);
 
                 startActivity(i);
 
@@ -143,16 +140,9 @@ public class ListLessons extends Activity
                 conn.connect();
                 int response = conn.getResponseCode();
                 Log.d("DEBUG", "Response code is " + response);
-
                 is = conn.getInputStream();
-                //System.out.println(" ########### input stream: " + is);
-
-
                 String content = parse(is, len);
-                // System.out.println(" ########### content: " + content); // this is the content of the url - ie. the data - this is passed to onPostExectute as result
-
                 return content;
-
             } finally {
                 if (is != null)
                     is.close();
@@ -160,12 +150,8 @@ public class ListLessons extends Activity
         }
 
         protected void onPostExecute(String result) {
-            // the url is declared in onCreate, here the JSONObject is created and the data form the JSON string from the url is added to the appropriate variable
+            // the url is declared in onCreate, here the JSONObject is created and the data from the JSON string from the url is added to the appropriate variable
             try {
-                System.out.println("#####");
-                System.out.println(result); // result is the data string
-                System.out.println("#####");
-
                 JSONArray json = new JSONArray(result);
 
                 // this forloop gets the data into the JSONArray json for each client lesson and displays in list
@@ -181,9 +167,8 @@ public class ListLessons extends Activity
                         String lessoncomments = object.optString("lesson_comments").toString();
                         String lessonid = object.optString("id").toString(); // id from the db is sent to keep unique
 
-
                         // adds to the array list
-                        // the adapter then takes this list and loads it into a format in clientinfo.xml which is then displayed
+                        // the adapter then takes this list and loads it into a format in LessonInfo.xml which is then displayed
                         lessonName.add(lessonname);
                         lessonDate.add(lessondate);
                         lessonTime.add(lessontime);

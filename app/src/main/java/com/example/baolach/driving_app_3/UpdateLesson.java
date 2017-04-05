@@ -37,7 +37,9 @@ public class UpdateLesson extends Activity {
     private DatePicker datePicker;
     private Calendar calendar;
     private int year, month, day;
-    private String mon;
+    private int dayofweek;
+//    private String mon;
+//    private String dayofwk; // used for displaying date in better format
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +48,20 @@ public class UpdateLesson extends Activity {
 
         lessonDate = (TextView) findViewById(R.id.editText_lessonDate);
         calendar = Calendar.getInstance();
-
         year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH); // defaults to 4 = April instead of defaulting to null
-        mon = "Apr";
+        month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
+        dayofweek = calendar.get(Calendar.DAY_OF_WEEK);
 
-        showDate(year, mon, day); // default is current date
+//        mon = "Apr";
+//        dayofwk = "";
+
+
+
+        //dayofweek = (String) android.text.format.DateFormat.format("EEEE", calendar); //calendar.get(Calendar.DAY_OF_WEEK);
+        //android.text.format.DateFormat.format("EEEE", calendar);
+
+        //System.out.println("day of week: " + android.text.format.DateFormat.format("EEEE", calendar));
 
 
         Intent intent = getIntent();
@@ -70,11 +79,8 @@ public class UpdateLesson extends Activity {
                 lessoncomments = bundle.getString("thelessoncomments");
                 lessonid = bundle.getString("id");
 
-
-
                 // then set the editTexts to these values that just came in
                 lessonName = (EditText) findViewById(R.id.editText_lessonName);
-
                 lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
                 lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
                 lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
@@ -85,7 +91,6 @@ public class UpdateLesson extends Activity {
                 lessonLocation.setText(lessonlocation);
                 lessonComments.setText(lessoncomments);
 
-
                 System.out.println("Data transfered from lesson info to updateLesson successful");
             }
         } catch(Exception e){
@@ -95,25 +100,20 @@ public class UpdateLesson extends Activity {
 
         }
 
-
-
+        // update button to push to database
         btnPost = (Button) findViewById(R.id.button_update);
-
-        // submit button
         btnPost.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 // used for inserting into database
                 new Thread(new Runnable() {
-
                     public void run() {
                         insert();
                     }
-
                 }).start();
             }
 
-            protected void insert() {
+            void insert() {
 
                 try {
                     final String l_name = lessonName.getText().toString();
@@ -122,7 +122,6 @@ public class UpdateLesson extends Activity {
                     String l_location = lessonLocation.getText().toString();
                     String l_comments = lessonComments.getText().toString();
                     String l_id = lessonid; // gets lessonid from what is passed over into bundle, not the edit texts like the others
-                    System.out.println("UpdateLesson.java id: " + l_id);
 
                     PreparedStatement insertdb;
                     Class.forName("org.postgresql.Driver");
@@ -130,31 +129,18 @@ public class UpdateLesson extends Activity {
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
                     // prepares the sql statement
-
                     String update = "update getdata_getlesson set lesson_name = ?, lesson_date =?, lesson_time = ?, " +
                             "lesson_location = ?, lesson_comments = ? where id='" + l_id + "';";
 
-
-//                            "update getdata_getlesson set lesson_name = l_name, lesson_date = l_date, lesson_time = l_time, " +
-//                            "lesson_location = l_location, lesson_comments = l_comments where l_id='" + l_id + "';";
-
-                    System.out.println("UpdateLesson.java ln 130 - id: " + l_id);
-                    System.out.println("UpdateLesson.java ln 133 - update : " + update);
-
                     insertdb = conn.prepareStatement(update);
-                    System.out.println("UpdateLesson to be inserted: " + insertdb);
-
                     insertdb.setString(1, l_name);
                     insertdb.setString(2, l_date);
                     insertdb.setString(3, l_time);
                     insertdb.setString(4,  l_location);
                     insertdb.setString(5, l_comments);
-                    //insertdb.setString(6, l_id);
-
 
                     insertdb.execute();
                     insertdb.close(); // close connection must be done
-                    insertdb.close();
                     conn.close();
 
                     // once inserted into database goes back to listLessons to show it in the db
@@ -165,8 +151,6 @@ public class UpdateLesson extends Activity {
                             Intent l = new Intent(UpdateLesson.this, ListLessons.class); // lists all lessoninfo
                             startActivity(l);
                             finish();
-
-
                         }
                     });
 
@@ -188,6 +172,7 @@ public class UpdateLesson extends Activity {
         Toast.makeText(getApplicationContext(), "Update the date for this lesson", Toast.LENGTH_SHORT).show();
     }
 
+    // calendar methods
     @Override
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
@@ -201,15 +186,30 @@ public class UpdateLesson extends Activity {
             DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-                    // TODO Auto-generated method stub
-
+                    
                     String mon;
-                    System.out.println("arg1: " + arg1);
-                    System.out.println("arg2: " + arg2);
-                    System.out.println("arg3: " + arg3);
-                    System.out.println(lessonDate.getText().toString());
+                    String dayofwk;
 
-                    // this is used to display a better DOB format to the instructor
+                    // day of week
+                    if(arg3 == 3)
+                        dayofwk = "Mon";
+                    else if(arg3 == 4)
+                        dayofwk = "Tue";
+                    else if(arg3 == 5)
+                        dayofwk = "Wed";
+                    else if(arg3 == 6)
+                        dayofwk = "Thur";
+                    else if(arg3 == 7)
+                        dayofwk = "Fri";
+                    else if(arg3 == 8)
+                        dayofwk = "Sat";
+                    else if(arg3 == 9)
+                        dayofwk = "Sun";
+                    else
+                        dayofwk = "test";
+
+
+                    // month
                     if(arg2 == 0)
                         mon = "Jan";
                     else if(arg2 == 1)
@@ -237,12 +237,14 @@ public class UpdateLesson extends Activity {
                     else
                         mon = "month";
 
-                    showDate(arg1, mon, arg3);
+                    showDate(arg1, mon, dayofwk);
                 }
             };
 
-    private void showDate(int year, String mon, int day) {
-        lessonDate.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
+    private void showDate(int year, String mon, String dayofwk) {
+        lessonDate.setText(new StringBuilder().append(dayofwk).append("-").append(mon).append("-").append(year));
+        System.out.println("line 251: actual day: " + dayofwk);
+
 
     }
 

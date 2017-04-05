@@ -49,7 +49,7 @@ public class UpdateClient extends Activity {
         mon = "Apr";
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        showDate(year, mon, day); // default is current date
+        //showDate(year, mon, day); // default is current date
 
 
         Intent intent = getIntent();

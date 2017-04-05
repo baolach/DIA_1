@@ -7,18 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-
-/**
- * Created by Baolach on 28/01/2017.
- */
-//        Admin Page
-//        List lessoninfo
-//        New Lesson
-//        List all Client
-        // new client
-//        Reminders - set reminders or have them automatic for each lesson
-
-    // admin page showing the different admin options
+// admin page showing the different admin options
 public class AdminActivity extends Activity {
 
     @Override
@@ -33,7 +22,6 @@ public class AdminActivity extends Activity {
         Button new_client_btn = (Button)findViewById(R.id.new_client_btn);
         Button reminders_btn = (Button)findViewById(R.id.reminders_btn);
         Button back_screen_btn = (Button)findViewById(R.id.back_screen_btn);
-
 
 
         back_screen_btn.setOnClickListener(new View.OnClickListener()
@@ -92,11 +80,6 @@ public class AdminActivity extends Activity {
                 startActivity(reminders_intent);
             }
         });
-
-
-
-
-
 
     }
 }

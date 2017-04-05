@@ -23,14 +23,12 @@ import java.util.Calendar;
 public class InsertLesson extends Activity {
 
     EditText lessonName;
-    //EditText lessonDate;
     EditText lessonTime;
     EditText lessonLocation;
     EditText lessonComments;
     private TextView lessonDate;
     private Button btnPost;
 
-    String lessonname, lessondate, lessontime, lessonlocation, lessoncomments; // for the intent coming in
 
     // calendar
     private DatePicker datePicker;
@@ -51,12 +49,11 @@ public class InsertLesson extends Activity {
         mon = "Apr";
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        showDate(year, mon, day); // default is current date
+        //showDate(year, mon, day); // default is current date
 
 
         // then set the editTexts to these values that just came in
         lessonName = (EditText) findViewById(R.id.editText_lessonName);
-//      lessonDate = (EditText) findViewById(R.id.editText_lessonDate);
         lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
         lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
         lessonComments = (EditText) findViewById(R.id.editText_lessonComments);

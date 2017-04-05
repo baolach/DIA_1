@@ -39,8 +39,6 @@ public class LessonInfo extends Activity {
             lessonlocation = bundle.getString("thelessonlocation");
             lessoncomments = bundle.getString("thelessoncomments");
             lessonid = bundle.getString("id");
-            System.out.println("LessonInfo id: " + lessonid); // should be the id of the lesson
-
         }
 
         // apply to textViews in LessonInfo but dont need id
@@ -49,7 +47,6 @@ public class LessonInfo extends Activity {
         TextView timeTextView = (TextView) findViewById(R.id.theclientaddress);
         TextView locationTextView = (TextView) findViewById(R.id.thelognumber);
         TextView commentsTextView = (TextView) findViewById(R.id.thedrivernumber);
-
 
         nameTextView.setText(lessonname);
         dateTextView.setText(lessondate);
@@ -68,12 +65,10 @@ public class LessonInfo extends Activity {
         btnDelete = (Button) findViewById(R.id.delete_client_btn);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Are you sure you want to delete this lesson with " + lessonname + "?;");
+        builder.setTitle("Are you sure you want to delete " + lessonname + "'s lesson?");
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-
                 new Thread(new Runnable(){
 
                     public void run()
@@ -94,10 +89,7 @@ public class LessonInfo extends Activity {
                     String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
                     conn.setAutoCommit(false);
-                    System.out.println("Opened database successfully");
-
                     deletedb = conn.createStatement();
-                    System.out.println("About to delete: " + lessonname);
 
                     String sql = "DELETE from getdata_getlesson where lesson_name = '" + lessonname +
                             "' AND lesson_date= '" + lessondate + "' AND lesson_time = '" + lessontime + "';";
@@ -106,7 +98,6 @@ public class LessonInfo extends Activity {
                     conn.commit();
 
 
-                    // once inserted into database all the edittexts resert to ""
                     runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(getBaseContext(), "Lesson with " + lessonname + " deleted from database! ", Toast.LENGTH_LONG).show();
@@ -120,28 +111,21 @@ public class LessonInfo extends Activity {
                     deletedb.close(); // close connection must be done
                     conn.close();
 
-
                 }catch(Exception e){
                     e.printStackTrace();
                 }
+
                 System.out.println("Delete successful");
-
-
-
-
             }
         });
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 // Do nothing
                 dialog.dismiss();
             }
         });
-
-
 
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +167,7 @@ public class LessonInfo extends Activity {
     {
         try{
             // creates new intent and sends over the client information when update is clicked
-            // this adds these into the editTexts and then you can re-save the lesson
+            // this adds these into the editTexts and then you can update the lesson
             Intent i = new Intent(this, UpdateLesson.class);
             i.putExtra("thelessonname", lessonname);
             i.putExtra("thelessondate", lessondate);
@@ -192,12 +176,8 @@ public class LessonInfo extends Activity {
             i.putExtra("thelessoncomments", lessoncomments);
             i.putExtra("id", lessonid);
 
-
-            System.out.println("LessonInfo update function before intent is sent to UpdateLesson.java - id: " + lessonid);
-
             startActivity(i);
             finish();
-
 
         } catch (Exception e) {
             e.printStackTrace();

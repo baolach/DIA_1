@@ -149,6 +149,7 @@
         android:id="@+id/editText_lessonDate"
         android:background="@color/turq"
         android:textColorHint="@color/white"
+        android:hint="Date of Lesson"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
