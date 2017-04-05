@@ -30,15 +30,10 @@ when finances button is clicked on mainActivity - the FinancesCursorAdapter is l
 the clients (ListClients activity) but still in the FinancesActivity
 Then you must select the client and ContentFinancesInfo.xml shows the client's payment history when the client is pressed
 I need another button on the Finances activity to bring you to the payments section
-
 insert_finance_details.xml - maybe should be UPDATE finance details and be a button option on the ContentFinancesInfo.xml
-
 So maybe it arrives at the client table exactly the same as if the listClients>ClientInfo was selected
 But there will be a paymentsActivity which shows just the payment history rather than all the client info
-
-
 list_finances.xml is connect to Finances.java Activity but lists the clientnames.xml which shows the client name and log number
-
 */
 public class Finances extends Activity
 {
