@@ -49,7 +49,7 @@ public class UpdateClient extends Activity {
         mon = "Apr";
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        //showDate(year, mon, day); // default is current date
+        showDate(year, mon, day); // default is current date
 
 
         Intent intent = getIntent();
@@ -213,13 +213,6 @@ public class UpdateClient extends Activity {
             DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-                    // TODO Auto-generated method stub
-
-                    String mon;
-                    System.out.println("arg1: " + arg1);
-                    System.out.println("arg2: " + arg2);
-                    System.out.println("arg3: " + arg3);
-                    System.out.println(clientDob.getText().toString());
 
                     // this is used to display a better DOB format to the instructor
                     if(arg2 == 0)
@@ -247,7 +240,7 @@ public class UpdateClient extends Activity {
                     else if(arg2 == 11)
                         mon = "Dec";
                     else
-                        mon = "month";
+                        mon = "jan";
 
                     showDate(arg1, mon, arg3);
                 }

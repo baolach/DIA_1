@@ -36,32 +36,19 @@ public class UpdateLesson extends Activity {
     // calendar
     private DatePicker datePicker;
     private Calendar calendar;
-    private int year, month, day;
-    private int dayofweek;
-//    private String mon;
-//    private String dayofwk; // used for displaying date in better format
-
+    private int year, month, day, dayofweek;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_lesson_details);
 
         lessonDate = (TextView) findViewById(R.id.editText_lessonDate);
+
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         dayofweek = calendar.get(Calendar.DAY_OF_WEEK);
-
-//        mon = "Apr";
-//        dayofwk = "";
-
-
-
-        //dayofweek = (String) android.text.format.DateFormat.format("EEEE", calendar); //calendar.get(Calendar.DAY_OF_WEEK);
-        //android.text.format.DateFormat.format("EEEE", calendar);
-
-        //System.out.println("day of week: " + android.text.format.DateFormat.format("EEEE", calendar));
 
 
         Intent intent = getIntent();
@@ -167,9 +154,10 @@ public class UpdateLesson extends Activity {
     }
 
     @SuppressWarnings("deprecation")
+
     public void setDate(View view) {
         showDialog(999);
-        Toast.makeText(getApplicationContext(), "Update the date for this lesson", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Update this lesson", Toast.LENGTH_SHORT).show();
     }
 
     // calendar methods
@@ -186,7 +174,7 @@ public class UpdateLesson extends Activity {
             DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-                    
+
                     String mon;
                     String dayofwk;
 
@@ -206,7 +194,7 @@ public class UpdateLesson extends Activity {
                     else if(arg3 == 9)
                         dayofwk = "Sun";
                     else
-                        dayofwk = "test";
+                        dayofwk = "mon";
 
 
                     // month
@@ -237,19 +225,14 @@ public class UpdateLesson extends Activity {
                     else
                         mon = "month";
 
-                    showDate(arg1, mon, dayofwk);
+                    showDate(arg3, mon, dayofwk);
                 }
             };
 
-    private void showDate(int year, String mon, String dayofwk) {
-        lessonDate.setText(new StringBuilder().append(dayofwk).append("-").append(mon).append("-").append(year));
-        System.out.println("line 251: actual day: " + dayofwk);
-
-
+    private void showDate(int arg3, String mon, String dayofwk) {
+        Toast.makeText(getApplicationContext(), "Lesson date has been updated", Toast.LENGTH_SHORT).show();
+        lessonDate.setText(new StringBuilder().append(dayofwk).append(" - ").append(arg3).append(" - ").append(mon));
     }
-
-
-
 
 
     // An intent for the user to go back to the main screen.

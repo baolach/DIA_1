@@ -29,35 +29,28 @@ public class InsertLesson extends Activity {
     private TextView lessonDate;
     private Button btnPost;
 
-
     // calendar
     private DatePicker datePicker;
     private Calendar calendar;
-    private int year, month, day;
-    private String mon;
-
+    private int year, month, day, dayofweek;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_lesson_details);
 
         lessonDate = (TextView) findViewById(R.id.editText_lessonDate);
-        calendar = Calendar.getInstance();
 
+        calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH); // defaults to 4 = April instead of defaulting to null
-        mon = "Apr";
         day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        //showDate(year, mon, day); // default is current date
-
+        dayofweek = calendar.get(Calendar.DAY_OF_WEEK);
 
         // then set the editTexts to these values that just came in
         lessonName = (EditText) findViewById(R.id.editText_lessonName);
         lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
         lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
         lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
-
 
         // posts to database
         btnPost = (Button) findViewById(R.id.button_submit);
@@ -75,7 +68,6 @@ public class InsertLesson extends Activity {
             }
 
             protected void insert() {
-
                 try {
                     String l_name = lessonName.getText().toString();
                     String l_phone = lessonDate.getText().toString();
@@ -142,13 +134,27 @@ public class InsertLesson extends Activity {
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-                    // TODO Auto-generated method stub
 
                     String mon;
-                    System.out.println("arg1: " + arg1);
-                    System.out.println("arg2: " + arg2);
-                    System.out.println("arg3: " + arg3);
-                    System.out.println(lessonDate.getText().toString());
+                    String dayofwk;
+
+                    // day of week
+                    if(arg3 == 3)
+                        dayofwk = "Mon";
+                    else if(arg3 == 4)
+                        dayofwk = "Tue";
+                    else if(arg3 == 5)
+                        dayofwk = "Wed";
+                    else if(arg3 == 6)
+                        dayofwk = "Thur";
+                    else if(arg3 == 7)
+                        dayofwk = "Fri";
+                    else if(arg3 == 8)
+                        dayofwk = "Sat";
+                    else if(arg3 == 9)
+                        dayofwk = "Sun";
+                    else
+                        dayofwk = "mon";
 
                     // this is used to display a better DOB format to the instructor
                     if(arg2 == 0)
@@ -176,22 +182,17 @@ public class InsertLesson extends Activity {
                     else if(arg2 == 11)
                         mon = "Dec";
                     else
-                        mon = "month";
+                        mon = "jan";
 
-                    showDate(arg1, mon, arg3);
+                    showDate(arg3, mon, dayofwk);
                 }
             };
 
-    private void showDate(int year, String mon, int day) {
+    private void showDate(int arg3, String mon, String dayofwk) {
         // sets textView of CLient dob to the calendar input
-        lessonDate.setText(new StringBuilder().append(day).append("-").append(mon).append("-").append(year));
+        lessonDate.setText(new StringBuilder().append(dayofwk).append(" - ").append(arg3).append(" - ").append(mon));
 
     }
-
-
-
-
-
 
     // An intent for the user to go back to the main screen.
     public void goBackScreen(View view) {
