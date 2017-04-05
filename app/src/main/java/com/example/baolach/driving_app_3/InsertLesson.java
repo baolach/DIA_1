@@ -18,8 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
 
-/**
- */
+
 public class InsertLesson extends Activity {
 
     EditText lessonName;
@@ -67,7 +66,7 @@ public class InsertLesson extends Activity {
                 }).start();
             }
 
-            protected void insert() {
+             void insert() {
                 try {
                     String l_name = lessonName.getText().toString();
                     String l_phone = lessonDate.getText().toString();

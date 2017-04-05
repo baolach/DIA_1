@@ -42,9 +42,6 @@ public class MapsActivity extends AppCompatActivity {
 
     EditText title, detail;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +52,9 @@ public class MapsActivity extends AppCompatActivity {
         // uses xml to show the map
         mv = (MapView) findViewById(R.id.map1);
         mvHelper = new MapViewHelper(mv);
-        //addListenerOnButton();
 
 
-        // mapview set to the listener
+        // sets home pin as limekiln road - need to set to current location
         mv.setOnStatusChangedListener(new OnStatusChangedListener() {
             @Override
             public void onStatusChanged(Object o, STATUS status) {
@@ -70,6 +66,24 @@ public class MapsActivity extends AppCompatActivity {
 
                 mvHelper.addMarkerGraphic(53.304679, -6.330082,title, detail, "",
                             ContextCompat.getDrawable(getApplicationContext(), R.drawable.tree40),false,0);
+
+                double[] lat = new double[3];
+                lat = new double[]{53.30632021510689, 53.30828189727125,53.30643561067037};
+
+                double[] lon = new double[3];
+                lon = new double[]{-6.333128989440999, -6.329502642852769,-6.328172267181346};
+
+
+
+                for(int i = 0; i <3 ; i++){
+                    // this is for the home pin - need to change to current location
+                    //mv.centerAndZoom(lat[i], lon[i], 16); // Limekiln road
+                    String newtitle = "Reverse";
+                    String newdetail = "Limekiln area";
+
+                    mvHelper.addMarkerGraphic(lat[i], lon[i],newtitle, newdetail, "",
+                            ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
+                }
 
 
             } // end setOnStatusChangedListener
@@ -88,14 +102,15 @@ public class MapsActivity extends AppCompatActivity {
 
                 // once a point is tapped, makes a new point calling geometryEngine
                 Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
-                double e = wgsPoint.getX();
-                double f = wgsPoint.getY();
+                double lon = wgsPoint.getX();
+                double lat = wgsPoint.getY();
+
                 //Point p = wgsPoint.getX();
 
-                System.out.println(e);
-                System.out.println(f);
-                System.out.println(pt);
-                System.out.println(mv);
+                System.out.println("lon: " +lon);
+                System.out.println("lat: " +lat);
+                System.out.println("pt: " +pt);
+                System.out.println("mv: " +mv);
 
 
 

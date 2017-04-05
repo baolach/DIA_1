@@ -76,8 +76,6 @@ public class Finances extends Activity
         clientComments.clear();
         clientId.clear();
 
-
-
         // creates variables to be shown and interacted with in the activity
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
         listView = (ListView) findViewById(R.id.listView_clients); // the listview ID in list_clients.xml

@@ -128,7 +128,7 @@
 
         android:textSize="11dp"
         android:textColor="@color/white"
-        android:background="@color/turq"
+        android:background="@color/dturq"
         android:onClick="setDate"
         android:layout_marginLeft="1dp"
 

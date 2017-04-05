@@ -24,19 +24,47 @@
 
         />
 
-    <ListView
-        android:id="@+id/listView_clients"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/linear_layout_two"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:divider="@android:color/white"
-        android:dividerHeight="0.5dp"
+        android:layout_below="@id/textView_client_name"
+        >
 
-        android:padding="10dp"
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
 
-        android:background="@color/grey"
-        android:layout_below="@+id/textView_client_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"/>
+            android:id="@+id/listView_clients"
+            android:divider="@android:color/white"
+            android:dividerHeight="0.5dp"
+
+            android:padding="10dp"
+
+            android:background="@color/grey"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"/>
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+
+            android:id="@+id/listView_expenses"
+            android:divider="@android:color/white"
+            android:dividerHeight="0.5dp"
+
+            android:padding="10dp"
+
+            android:background="@color/grey"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"/>
+
+
+
+    </RelativeLayout>
+
 
 
     <TextView
@@ -64,7 +92,7 @@
 
         android:id="@+id/textView_number_of_lessons"
 
-        android:layout_above="@+id/listView_clients"
+        android:layout_above="@+id/linear_layout_two"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="14dp"/>
 
@@ -98,8 +126,8 @@
         android:id="@+id/balance_paid"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginEnd="19dp"
-        android:layout_above="@+id/listView_clients"
+        android:layout_marginEnd="24dp"
+        android:layout_above="@+id/linear_layout_two"
         android:layout_toStartOf="@+id/textView_number_of_lessons"/>
 
 

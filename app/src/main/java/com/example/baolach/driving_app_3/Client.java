@@ -9,7 +9,7 @@ public class Client {
     private int id;
     private String name, phone, address, logno, driverno, dob, nooflessons, balancedue, comments;
 
-    public Client(int id, String name, String phone, String address, String logno, String driverno, String dob, String nooflessons, String balancedue, String comments, String dbid) {
+    public Client(int id, String name, String phone, String address, String logno, String driverno, String dob, String nooflessons, String balancedue, String comments) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -106,3 +106,7 @@ public class Client {
     }
 
 }
+
+
+
+
