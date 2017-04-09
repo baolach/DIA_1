@@ -25,11 +25,13 @@
     android:id="@+id/maps_btn"
     android:layout_below="@+id/website"
     android:layout_alignParentStart="true"
-    android:layout_alignEnd="@+id/admin_btn"
     android:background="@color/turq"
-    android:layout_margin="3dp"
 
-    />
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:layout_alignParentEnd="true"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -38,11 +40,13 @@
         android:id="@+id/locations_btn"
         android:layout_below="@+id/maps_btn"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/admin_btn"
         android:background="@color/turq"
-        android:layout_margin="3dp"
 
-        />
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_alignParentEnd="true"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,12 +54,14 @@
         android:id="@+id/google_maps_btn"
         android:layout_below="@+id/locations_btn"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/admin_btn"
-        android:layout_margin="3dp"
         android:background="@color/turq"
 
 
-        />
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_alignParentEnd="true"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,11 +69,13 @@
         android:id="@+id/finances_btn"
         android:layout_below="@+id/google_maps_btn"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/admin_btn"
         android:background="@color/turq"
-        android:layout_margin="3dp"
 
-        />
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_alignParentEnd="true"/>
 
     <!--<Button-->
         <!--android:layout_width="wrap_content"-->
@@ -86,13 +94,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin"
-        android:id="@+id/admin_btn"
-        android:layout_below="@+id/web_btn"
-        android:layout_alignParentStart="true"
-        android:background="@color/dturq"
-        android:textColor="@color/white"
+        android:text="ActiveSchoolOfMotoring.com"
+        android:id="@+id/web_btn"
+        android:onClick="web_btn"
 
+        android:background="@color/turq"
+
+        android:layout_below="@+id/finances_btn"
+        android:layout_alignParentStart="true"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="3dp"
@@ -102,98 +111,18 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ActiveSchoolOfMotoring.com"
-        android:id="@+id/web_btn"
-        android:onClick="web_btn"
+        android:text="Admin"
+        android:id="@+id/admin_btn"
+        android:background="@color/dturq"
+        android:textColor="@color/white"
 
-        android:background="@color/turq"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"
 
-        android:layout_below="@+id/finances_btn"
+        android:layout_below="@+id/web_btn"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/admin_btn"
-        android:layout_margin="3dp"/>
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="View my bikes"-->
-        <!--android:id="@+id/bikes_btn"-->
-        <!--android:layout_below="@+id/admin_btn"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:background="@color/dturq"-->
-        <!--android:textColor="@color/white"-->
-
-        <!--android:layout_marginLeft="3dp"-->
-        <!--android:layout_marginRight="3dp"-->
-        <!--android:layout_marginTop="3dp"-->
-        <!--android:layout_marginBottom="3dp"-->
-        <!--android:layout_alignParentEnd="true"/>-->
-
-
-
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Diary"-->
-        <!--android:id="@+id/diary_btn"-->
-        <!--android:layout_below="@+id/website"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignEnd="@+id/calender_btn"-->
-        <!--android:background="@color/turq"-->
-
-
-        <!--/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="New Lesson"-->
-        <!--android:id="@+id/new_lesson_btn"-->
-        <!--android:layout_below="@+id/diary_btn"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_margin="2dp"-->
-        <!--android:background="@color/turq"-->
-
-        <!--/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="List All Clients"-->
-        <!--android:id="@+id/clients_btn"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_margin="2dp"-->
-        <!--android:layout_below="@+id/new_lesson_btn"-->
-        <!--android:background="@color/turq"-->
-        <!--/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="New Client"-->
-        <!--android:id="@+id/new_client_btn"-->
-        <!--android:layout_below="@+id/clients_btn"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_margin="2dp"-->
-        <!--android:background="@color/turq"-->
-        <!--/>-->
-
-
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Calender"-->
-        <!--android:id="@+id/calender_btn"-->
-        <!--android:layout_marginLeft="2dp"-->
-        <!--android:layout_marginRight="2dp"-->
-        <!--android:layout_alignEnd="@+id/new_client_btn"-->
-        <!--android:layout_below="@+id/new_client_btn"-->
-        <!--android:layout_alignStart="@+id/new_client_btn"-->
-        <!--android:background="@color/turq"-->
-        <!--/>-->
-
+        android:layout_alignParentEnd="true"/>
 
 
 

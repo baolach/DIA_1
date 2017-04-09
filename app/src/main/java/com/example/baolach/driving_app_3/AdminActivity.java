@@ -51,7 +51,7 @@ public class AdminActivity extends Activity {
             {
 
                 Intent new_lesson_intent = new Intent(AdminActivity.this, SelectClient.class); // lists all lessoninfo
-                Toast.makeText(getBaseContext(), "Select who the lesson is with...", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Select who the lesson is with", Toast.LENGTH_LONG).show();
 
                 startActivity(new_lesson_intent);
             }

@@ -225,7 +225,6 @@ public class ClientInfo extends Activity {
             i.putExtra("thenumberoflessons", clientnooflessons);
             i.putExtra("thebalance", clientbalancedue);
             i.putExtra("theclientscomments", clientcomments);
-            i.putExtra("theclientscomments", clientid);
             i.putExtra("id", clientid);
 
 
@@ -266,11 +265,16 @@ public class ClientInfo extends Activity {
 
     public void clientLessons(View view) {
         try {
-            Intent nextScreen = new Intent(this, ClientLessons.class);
-            // pass the lesson name so we can do a select all with that mname
+            Intent i = new Intent(this, ClientLessons.class);
+            // pass the lesson name so we can do a select all with that name
+            System.out.println(" clientInfo intent before name and id are sent to ClientLessons");
+            System.out.println("clientname:" + clientname);
+            System.out.println("client id:" + clientid);
 
+            i.putExtra("theclientname", clientname);
+            i.putExtra("id", clientid);
 
-            startActivity(nextScreen);
+            startActivity(i);
             finish();
 
         } catch(Exception e) {

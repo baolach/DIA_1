@@ -236,11 +236,11 @@ public class ListClients extends Activity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-            }// end onCreate
+            }
 
-        }
+        } // end onPostExecute
 
-    }
+    } // end DOwnload
 
     private String parse(InputStream is, int len) throws IOException, UnsupportedEncodingException {
         return readIt(is);

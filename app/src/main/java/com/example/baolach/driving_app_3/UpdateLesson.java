@@ -130,6 +130,8 @@ public class UpdateLesson extends Activity {
                     insertdb.close(); // close connection must be done
                     conn.close();
 
+
+
                     // once inserted into database goes back to listLessons to show it in the db
                     runOnUiThread(new Runnable() {
                         public void run() {

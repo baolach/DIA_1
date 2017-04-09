@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -193,6 +194,10 @@ public class ListLessons extends Activity
         }
     }
 
+
+
+
+
     // parses the url and reads the JSON in as a string which is readable
     private String parse(InputStream is, int len) throws IOException {
         return readIt(is);
@@ -223,7 +228,8 @@ public class ListLessons extends Activity
     public void newLesson(View view)
     {
         try {
-            Intent client_name_intent = new Intent(this, InsertLesson.class);
+            Intent client_name_intent = new Intent(this, SelectClient.class);
+            Toast.makeText(getBaseContext(), "Select client for the lesson", Toast.LENGTH_LONG).show();
             startActivity(client_name_intent);
         } catch (Exception e) {
             e.printStackTrace();
