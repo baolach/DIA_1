@@ -25,7 +25,9 @@ public class InsertLesson extends Activity {
     EditText lessonTime;
     EditText lessonLocation;
     EditText lessonComments;
+
     private TextView lessonDate;
+    String clientname, clientid;// for the intent coming in
     private Button btnPost;
 
     // calendar
@@ -37,7 +39,28 @@ public class InsertLesson extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_lesson_details);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        // bundle captures the parameters from the intent fron SelectClient
+        if (bundle != null) {
+            clientname = bundle.getString("theclientname");
+            clientid = bundle.getString("id");
+            System.out.println("id sent:" + clientid);
+
+            // then set the editTexts to these values that just came in
+            lessonName = (EditText) findViewById(R.id.editText_lessonName);
+            // setting the editTexts the data that was passed in order to help the user know what they want to update
+            lessonName.setText(clientname);
+
+        } // end of bundle
+
+
+        lessonName = (EditText) findViewById(R.id.editText_lessonName);
         lessonDate = (TextView) findViewById(R.id.editText_lessonDate);
+        lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
+        lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
+        lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
+
 
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -45,11 +68,6 @@ public class InsertLesson extends Activity {
         day = calendar.get(Calendar.DAY_OF_MONTH);
         dayofweek = calendar.get(Calendar.DAY_OF_WEEK);
 
-        // then set the editTexts to these values that just came in
-        lessonName = (EditText) findViewById(R.id.editText_lessonName);
-        lessonTime = (EditText) findViewById(R.id.editText_lessonTime);
-        lessonLocation = (EditText) findViewById(R.id.editText_lessonLocation);
-        lessonComments = (EditText) findViewById(R.id.editText_lessonComments);
 
         // posts to database
         btnPost = (Button) findViewById(R.id.button_submit);
@@ -69,10 +87,15 @@ public class InsertLesson extends Activity {
              void insert() {
                 try {
                     String l_name = lessonName.getText().toString();
-                    String l_phone = lessonDate.getText().toString();
-                    String c_address = lessonTime.getText().toString();
-                    String c_log = lessonLocation.getText().toString();
-                    String c_d_no = lessonComments.getText().toString();
+                    System.out.println("l_name: " +l_name);
+                    String l_date = lessonDate.getText().toString();
+                    System.out.println("l_name: " +l_date);
+
+                    String l_time = lessonTime.getText().toString();
+                    System.out.println("l_time: " +l_time);
+
+                    String l_location = lessonLocation.getText().toString();
+                    String l_comments = lessonComments.getText().toString();
 
                     PreparedStatement insertdb = null;
                     Class.forName("org.postgresql.Driver");
@@ -83,10 +106,10 @@ public class InsertLesson extends Activity {
                     String insert = "insert into getdata_getlesson values (?,?,?,?,?)";
                     insertdb = conn.prepareStatement(insert);
                     insertdb.setString(1, l_name);
-                    insertdb.setString(2, l_phone);
-                    insertdb.setString(3, c_address);
-                    insertdb.setString(4,  c_log);
-                    insertdb.setString(5, c_d_no);
+                    insertdb.setString(2, l_date);
+                    insertdb.setString(3, l_time);
+                    insertdb.setString(4,  l_location);
+                    insertdb.setString(5, l_comments);
 
                     insertdb.execute();
                     insertdb.close(); // close connection must be done
@@ -113,7 +136,42 @@ public class InsertLesson extends Activity {
 
             }
         });
-    }
+    } // end onCreate
+
+
+
+//    public void spinner(View view)
+//    {
+//
+//        // dropdown list to select the client for the lesson
+//        // Spinner element
+//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+//
+//
+//
+//        // Spinner click listener
+//        //spinner.setOnItemSelectedListener(this);
+//        // Spinner Drop down elements
+//        List<String> categories = new ArrayList<String>();
+//        categories.add("Automobile");
+//        categories.add("Business Services");
+//        categories.add("Computers");
+//        categories.add("Education");
+//        categories.add("Personal");
+//        categories.add("Travel");
+//
+//        // Creating adapter for spinner
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+//
+//        // Drop down layout style - list view with radio button
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        // attaching data adapter to spinner
+//        spinner.setAdapter(dataAdapter);
+//
+//    }
+
+
 
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
@@ -153,7 +211,7 @@ public class InsertLesson extends Activity {
                     else if(arg3 == 9)
                         dayofwk = "Sun";
                     else
-                        dayofwk = "mon";
+                        dayofwk = "Wedd";
 
                     // this is used to display a better DOB format to the instructor
                     if(arg2 == 0)

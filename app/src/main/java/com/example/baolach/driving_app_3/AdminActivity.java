@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 // admin page showing the different admin options
 public class AdminActivity extends Activity {
@@ -49,7 +50,9 @@ public class AdminActivity extends Activity {
             public void onClick(View v)
             {
 
-                Intent new_lesson_intent = new Intent(AdminActivity.this, InsertLesson.class); // lists all lessoninfo
+                Intent new_lesson_intent = new Intent(AdminActivity.this, SelectClient.class); // lists all lessoninfo
+                Toast.makeText(getBaseContext(), "Select who the lesson is with...", Toast.LENGTH_LONG).show();
+
                 startActivity(new_lesson_intent);
             }
         });

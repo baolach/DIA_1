@@ -160,6 +160,7 @@ public class LessonInfo extends Activity {
         }
     }
 
+
     // when clicked brings you to the insertLesson page
     // passes the inputs in an intent and fills the editTexts with those values
     // then performs the insert again with those same params

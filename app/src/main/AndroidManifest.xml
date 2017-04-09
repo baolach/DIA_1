@@ -80,6 +80,11 @@
         <activity android:name=".UpdateLesson" />
         <activity android:name=".UpdateClient" />
         <activity android:name=".FinanceInfo" />
+        <activity android:name=".ClientLessons" />
+        <activity android:name=".SelectClient" />
+
+
+
 
 
 

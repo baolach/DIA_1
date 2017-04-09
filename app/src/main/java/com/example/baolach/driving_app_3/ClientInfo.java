@@ -176,10 +176,9 @@ public class ClientInfo extends Activity {
 
         }});
 
-/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////// sending the address to google maps
         addressTextView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                //System.out.println("Hello");
                 try {
                     String addr = addressTextView.getText().toString();
 //                    String webURL = "";
@@ -265,4 +264,22 @@ public class ClientInfo extends Activity {
         }
     }
 
+    public void clientLessons(View view) {
+        try {
+            Intent nextScreen = new Intent(this, ClientLessons.class);
+            // pass the lesson name so we can do a select all with that mname
+
+
+            startActivity(nextScreen);
+            finish();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
+
+// in order to link the lesson and client tables, when you go to make a new lesson, you should pick the client
+// from a dropdown list. this uses the same Id then

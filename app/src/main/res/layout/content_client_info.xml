@@ -274,6 +274,7 @@
         android:layout_height="wrap_content"
         android:text="Lessons"
         android:id="@+id/lessons_btn"
+        android:onClick="clientLessons"
 
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"

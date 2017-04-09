@@ -72,8 +72,6 @@ public class UpdateClient extends Activity {
 
             System.out.println("lognumber before its set to the editText: " + lognumber);
 
-
-
             // then set the editTexts to these values that just came in
             clientName = (EditText) findViewById(R.id.editText_clientName);
             clientPhone = (EditText) findViewById(R.id.editText_clientPhone);

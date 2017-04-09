@@ -37,7 +37,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:inputType="textCapSentences"
         android:nextFocusForward="@+id/lesson_date"
         android:layout_alignStart="@+id/editText_lessonLocation">
     <requestFocus />
@@ -66,7 +65,6 @@
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
         android:layout_alignParentEnd="true">
-        <requestFocus />
     </EditText>
 
     <Button
@@ -89,7 +87,6 @@
         android:id="@+id/editText_lessonName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/client_name"
         android:background="@color/turq"
         android:textColorHint="@color/white"
         android:layout_marginTop="14dp"
@@ -98,11 +95,9 @@
         android:padding="10dp"
         android:nextFocusForward="@+id/lesson_date"
 
-        android:digits="abcdeghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
-        android:inputType="textCapWords"
+        android:editable="false"
         android:layout_alignEnd="@+id/editText_lessonTime"
         android:layout_alignStart="@+id/editText_lessonTime">
-    <requestFocus />
     </EditText>
 
 
@@ -154,14 +149,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:inputType="textCapSentences"
         android:nextFocusForward="@+id/lesson_date"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
         android:layout_below="@+id/editText_lessonName"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/date">
-        <requestFocus />
     </TextView>
 
     <EditText
@@ -181,7 +174,6 @@
         android:layout_marginRight="1dp"
         android:layout_below="@+id/editText_lessonTime"
         android:layout_alignParentEnd="true">
-        <requestFocus />
     </EditText>
 
     <Button
@@ -202,4 +194,14 @@
         android:layout_above="@+id/editText_lessonTime"/>
 
 
+
 </RelativeLayout>
+
+<!--<Spinner-->
+<!--android:id="@+id/spinner"-->
+<!--android:layout_width="fill_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:prompt="@string/spinner_title"-->
+<!--android:layout_below="@+id/button_submit"-->
+<!--android:layout_alignStart="@+id/button_submit"-->
+<!--android:onClick="spinner"/>-->
