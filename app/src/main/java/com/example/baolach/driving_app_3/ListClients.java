@@ -120,7 +120,7 @@ public class ListClients extends Activity {
             }
         });
 
-    }
+    } // end onCreate
 
     // works in the background
     private class DownloadWebPageTask extends AsyncTask<String, Void, String> {
