@@ -123,7 +123,7 @@
         android:textColor="@color/white"
 
         android:id="@+id/TextView_lesson_date"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
         android:layout_above="@+id/listView_lessons"
         android:layout_alignEnd="@+id/home"
@@ -140,7 +140,7 @@
         android:id="@+id/TextView_lesson_time"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="42dp"
         android:layout_above="@+id/listView_lessons"
         android:layout_toEndOf="@+id/home"/>
 

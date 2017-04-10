@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -50,9 +51,11 @@ public class Finances extends Activity
     static ArrayList<String> clientId = new ArrayList<String>();
 
 
-    ListView listView;
-    ArrayList<Client> list;
+    ListView listView, listView2;
+    ArrayList<Client> list, list2;
     FinanceAdapter adapter = null;
+
+
 
 
     @Override
@@ -77,6 +80,19 @@ public class Finances extends Activity
         list = new ArrayList<>();
         adapter = new FinanceAdapter(this, R.layout.finance, list); // this sets adapter to the ClientAdapter which uses client.xml
         listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
+
+
+        String[] array = new String[]{"red", "blue", "green", "black", "white"};
+        ListView lView = (ListView) findViewById(R.id.listView_expenses);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array);
+        lView.setAdapter(adapter2);
+
+//        listView2 = (ListView) findViewById(R.id.listView_expenses); // the listview ID in list_clients.xml
+//        list2 = new ArrayList<>();
+//        adapter = new FinanceAdapter(this, R.layout.finance, list2); // this sets adapter to the ClientAdapter which uses client.xml
+//        listView2.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
+
 
         String url = "http://138.68.141.18:8006/clients/?format=json"; //urlText.getText().toString();
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -191,7 +207,7 @@ public class Finances extends Activity
 
                         int g = 0;// locates the position in the array for the list item
                         JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
-                        text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
+                        //text += "Name: " + object.getString("client_name") + ", Phone: \"" + object.getString("client_phone") + "\", Address: " + object.getString("client_address") + "\n\n";
                         String clientname = object.optString("client_name").toString();
                         String clientphone = object.optString("client_phone").toString();
                         String clientaddress = object.optString("client_address").toString();
