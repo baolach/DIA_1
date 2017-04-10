@@ -83,11 +83,10 @@ public class SelectClient extends Activity {
             System.out.println("No network available");
         }
 
-        // the list is generated and the variables added in onPostExecuted. Then if items cliked they are sent with the intent
+        // the list is generated and the variables added in onPostExecuted. Then if item is clicked they are sent with the intent
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int itemId = (int) id;
-                //String name = clientsName.get(itemId);
 
                 String clientname = clientsName.get(itemId);
                 String clientid = clientId.get(itemId);

@@ -99,8 +99,6 @@ public class ListClients extends Activity {
                 String comments = clientComments.get(itemId);
                 String clientid = clientId.get(itemId);
 
-
-
                 // creates new intent and sends over the client information when item is clicked
                 Intent i = new Intent(ListClients.this, ClientInfo.class);
                 i.putExtra("theclientname", clientname);
@@ -113,8 +111,6 @@ public class ListClients extends Activity {
                 i.putExtra("thebalance", balance);
                 i.putExtra("theclientscomments", comments);
                 i.putExtra("id", clientid);
-
-
                 startActivity(i);
 
             }
@@ -221,10 +217,7 @@ public class ListClients extends Activity {
 //                            months = (String[]) sortedMonthsList.toArray();
 //                        }
 
-                        // check if the info is getting through
-//                        System.out.println("##### ListClients.java");
-//                        System.out.println("##### clientname: " + clientname);
-//                        System.out.println("##### log no: " + logno);
+
 
 
 

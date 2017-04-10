@@ -43,4 +43,5 @@ dependencies {
     compile files('src/main/jniLibs/jcifs-1.3.17.jar')
     // compile 'com.google.android.gms:play-services-appindexing:10.0.1'
     compile files('postgresql-42.0.0.jre7.jar')
+    testCompile 'junit:junit:4.12'
 }

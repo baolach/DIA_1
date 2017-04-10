@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -45,7 +47,7 @@ public class LessonInfo extends Activity {
         TextView nameTextView = (TextView) findViewById(R.id.theclientname);
         TextView dateTextView = (TextView) findViewById(R.id.theclientphone);
         TextView timeTextView = (TextView) findViewById(R.id.theclientaddress);
-        TextView locationTextView = (TextView) findViewById(R.id.thelognumber);
+        final TextView locationTextView = (TextView) findViewById(R.id.thelognumber); // made final to make it clickable to pass the location to google maps
         TextView commentsTextView = (TextView) findViewById(R.id.thedrivernumber);
 
         nameTextView.setText(lessonname);
@@ -135,6 +137,23 @@ public class LessonInfo extends Activity {
 
             }
         }); // end onClickListener for delete
+
+        locationTextView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    String addr = locationTextView.getText().toString();
+
+                    Uri mapUri = Uri.parse("geo:0,0?q=" + Uri.encode(addr));
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    startActivity(mapIntent);
+
+                } catch (Exception e) {
+                    Log.e("Loading map", "map failed", e);
+                }
+
+            }});
+
     } // end onCreate
 
     public void goBackScreen(View view) {

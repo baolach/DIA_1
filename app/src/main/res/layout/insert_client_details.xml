@@ -164,7 +164,7 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
 
-        android:hint="Amount paid overall"
+        android:hint="Amount paid"
         android:layout_below="@+id/editText_clientNoOfLessons"
         android:layout_margin="1dp"
         android:layout_alignStart="@+id/editText_clientName"

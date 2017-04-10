@@ -30,7 +30,7 @@ public class ClientLessons extends Activity{
     ArrayList<Lesson> list;
     LessonAdapter adapter = null;
 
-    String clientname;
+    String clientname, clientid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,34 +59,25 @@ public class ClientLessons extends Activity{
         // bundle captures the parameters from ClientInfo the intent
         if (bundle != null) {
             clientname = bundle.getString("theclientname");
-            //clientid = bundle.getInt("id");
+            clientid = bundle.getString("id");
 
         }
         // now I want to do a select statement to list lessons with this name and id only
 
-
-
-        //new Thread(new Runnable() {
     Thread thread = new Thread() {
 
         public void run() {
             try {
-
-
-
                 PreparedStatement st = null;
                 Class.forName("org.postgresql.Driver");
-                //String url2 = "http://138.68.141.18:8006/lessons/?format=json";
                 String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
                 Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
                 // prepares the sql statement
-                String select = "select * from getdata_getlesson where lesson_name=?;";// AND id = ?;";
-                // String select = "select * from getdata_getlesson where lesson_name='" + clientname + "' AND id = '" + clientid + "';";
-
-
+                String select = "select * from getdata_getlesson where lesson_name=? ;" ; // AND id = ?;";
+                System.out.println("ln 77 select: " +select);
                 st = conn.prepareStatement(select);
                 st.setString(1, clientname);
-
+                //st.setString(2, clientid);
                 ResultSet rs = st.executeQuery();
 
                 while (rs.next()) {
@@ -99,7 +90,6 @@ public class ClientLessons extends Activity{
                     final String lessonid = rs.getString("id");
 
 
-
                     runOnUiThread(new Runnable() {
                         public void run() {
 
@@ -110,16 +100,12 @@ public class ClientLessons extends Activity{
                             lessonComments.add(lessoncomments);
                             lessonId.add(lessonid);
 
-
                             list.add(new Lesson(g, lessonname, lessondate, lessontime, lessonlocation, lessoncomments, lessonid));
                             adapter.notifyDataSetChanged();
 
                         }
                     });
-
-
                 }
-
 
                 st.close();
                 conn.close();

@@ -20,8 +20,6 @@ import java.sql.Statement;
 
 public class ClientInfo extends Activity {
 
-
-
     private Button btnDelete;
     String clientname, clientphone, clientaddress, clientlogno, clientdriverno, clientdob, clientnooflessons, clientbalancedue, clientcomments, clientid; // ocming from the intent from listClients
 
@@ -33,7 +31,7 @@ public class ClientInfo extends Activity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        // bundle captures the parameters form the intent
+        // bundle captures the parameters from the intent sent from listClients
         if (bundle != null) {
             clientname = bundle.getString("theclientname");
             clientphone = bundle.getString("theclientphone");
@@ -45,9 +43,6 @@ public class ClientInfo extends Activity {
             clientbalancedue = bundle.getString("thebalance");
             clientcomments = bundle.getString("theclientscomments");
             clientid= bundle.getString("id");
-
-
-
         }
 
         // apply to textViews
@@ -138,10 +133,6 @@ public class ClientInfo extends Activity {
                     e.printStackTrace();
                 }
                 System.out.println("Delete successful");
-
-
-
-
             }
         });
 
@@ -163,37 +154,28 @@ public class ClientInfo extends Activity {
 
         phoneTextView.setOnClickListener(new View.OnClickListener(){
           public void onClick(View v){
-              //System.out.println("Hello");
               try {
                   Intent callIntent = new Intent(Intent.ACTION_DIAL);
                   callIntent.setData(Uri.parse("tel:" + phoneTextView.getText().toString()));
                   startActivity(callIntent);
+
               } catch (ActivityNotFoundException activityException) {
-                  Log.e("Calling a Phone Number", "Call failed", activityException);
+                  Log.e("", "Call failed", activityException);
               } catch(SecurityException e){
                   e.printStackTrace();
               }
 
         }});
 
-///////////////////////////////////////////////////////////////////////////////////// sending the address to google maps
         addressTextView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 try {
                     String addr = addressTextView.getText().toString();
-//                    String webURL = "";
-//                    webURL += website;
-//                    Log.d("location", webURL);
-                    Uri uri = Uri.parse(addr);
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
+
+                    Uri mapUri = Uri.parse("geo:0,0?q=" + Uri.encode(addr));
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
                     startActivity(mapIntent);
-
-
-
-
-//                    Intent mapIntent = new Intent(Intent.ACTION_VIEW);
-//                    mapIntent.setData(Uri.parse("daddr:" + addressTextView.getText().toString())); // destination address
-//                    startActivity(mapIntent);
 
                 } catch (Exception e) {
                     Log.e("Loading map", "map failed", e);
@@ -201,8 +183,6 @@ public class ClientInfo extends Activity {
 
             }});
 
-
-/////////////////////////////////////////////////////////////////////////////////////
     } // end onCreate
 
 
@@ -226,12 +206,6 @@ public class ClientInfo extends Activity {
             i.putExtra("thebalance", clientbalancedue);
             i.putExtra("theclientscomments", clientcomments);
             i.putExtra("id", clientid);
-
-
-//            System.out.println("lognumber is: " +clientlogno );
-//            System.out.println("driver number is: " +clientdriverno );
-//
-
 
             startActivity(i);
             finish();
@@ -267,10 +241,6 @@ public class ClientInfo extends Activity {
         try {
             Intent i = new Intent(this, ClientLessons.class);
             // pass the lesson name so we can do a select all with that name
-            System.out.println(" clientInfo intent before name and id are sent to ClientLessons");
-            System.out.println("clientname:" + clientname);
-            System.out.println("client id:" + clientid);
-
             i.putExtra("theclientname", clientname);
             i.putExtra("id", clientid);
 
