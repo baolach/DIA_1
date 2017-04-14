@@ -129,9 +129,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:id="@+id/textview_client_phone"
+        android:layout_marginStart="30dp"
         android:layout_above="@+id/listView_clients"
-        android:layout_toEndOf="@+id/home"
-        android:layout_marginStart="46dp"/>
+        android:layout_toEndOf="@+id/home"/>
 
 
 </RelativeLayout>

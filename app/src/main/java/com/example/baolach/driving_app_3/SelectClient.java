@@ -257,7 +257,15 @@ public class SelectClient extends Activity {
             e.printStackTrace();
         }
     }
-
+    public void newClient(View view)
+    {
+        try {
+            Intent new_client_intent = new Intent(this, InsertClient.class);
+            startActivity(new_client_intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void goBackScreen(View view) {
 

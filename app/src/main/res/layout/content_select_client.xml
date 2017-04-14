@@ -28,7 +28,7 @@
         android:divider="@android:color/white"
         android:dividerHeight="0.5px"
 
-        android:background="@color/turq"
+        android:background="@color/grey"
 
         android:padding="10dp"
 

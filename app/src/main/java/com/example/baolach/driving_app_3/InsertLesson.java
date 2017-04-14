@@ -84,7 +84,7 @@ public class InsertLesson extends Activity {
                 }).start();
             }
 
-             void insert() {
+            void insert() {
                 try {
                     String l_name = lessonName.getText().toString();
                     System.out.println("l_name: " +l_name);
@@ -189,61 +189,61 @@ public class InsertLesson extends Activity {
     }
 
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+        @Override
+        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
 
-                    String mon;
-                    String dayofwk;
+            String mon;
+            String dayofwk;
 
-                    // day of week
-                    if(arg3 == 3)
-                        dayofwk = "Mon";
-                    else if(arg3 == 4)
-                        dayofwk = "Tue";
-                    else if(arg3 == 5)
-                        dayofwk = "Wed";
-                    else if(arg3 == 6)
-                        dayofwk = "Thur";
-                    else if(arg3 == 7)
-                        dayofwk = "Fri";
-                    else if(arg3 == 8)
-                        dayofwk = "Sat";
-                    else if(arg3 == 9)
-                        dayofwk = "Sun";
-                    else
-                        dayofwk = "Wedd";
+            // day of week
+            if(arg3 == 3)
+                dayofwk = "Mon";
+            else if(arg3 == 4)
+                dayofwk = "Tue";
+            else if(arg3 == 5)
+                dayofwk = "Wed";
+            else if(arg3 == 6)
+                dayofwk = "Thur";
+            else if(arg3 == 7)
+                dayofwk = "Fri";
+            else if(arg3 == 8)
+                dayofwk = "Sat";
+            else if(arg3 == 9)
+                dayofwk = "Sun";
+            else
+                dayofwk = "Wedd";
 
-                    // this is used to display a better DOB format to the instructor
-                    if(arg2 == 0)
-                        mon = "Jan";
-                    else if(arg2 == 1)
-                        mon = "Feb";
-                    else if(arg2 == 2)
-                        mon = "Mar";
-                    else if(arg2 == 3)
-                        mon = "Apr";
-                    else if(arg2 == 4)
-                        mon = "May";
-                    else if(arg2 == 5)
-                        mon = "June";
-                    else if(arg2 == 6)
-                        mon = "July";
-                    else if(arg2 == 7)
-                        mon = "Aug";
-                    else if(arg2 == 8)
-                        mon = "Sep";
-                    else if(arg2 == 9)
-                        mon = "Oct";
-                    else if(arg2 == 10)
-                        mon = "Nov";
-                    else if(arg2 == 11)
-                        mon = "Dec";
-                    else
-                        mon = "jan";
+            // this is used to display a better DOB format to the instructor
+            if(arg2 == 0)
+                mon = "Jan";
+            else if(arg2 == 1)
+                mon = "Feb";
+            else if(arg2 == 2)
+                mon = "Mar";
+            else if(arg2 == 3)
+                mon = "Apr";
+            else if(arg2 == 4)
+                mon = "May";
+            else if(arg2 == 5)
+                mon = "June";
+            else if(arg2 == 6)
+                mon = "July";
+            else if(arg2 == 7)
+                mon = "Aug";
+            else if(arg2 == 8)
+                mon = "Sep";
+            else if(arg2 == 9)
+                mon = "Oct";
+            else if(arg2 == 10)
+                mon = "Nov";
+            else if(arg2 == 11)
+                mon = "Dec";
+            else
+                mon = "jan";
 
-                    showDate(arg3, mon, dayofwk);
-                }
-            };
+            showDate(arg3, mon, dayofwk);
+        }
+    };
 
     private void showDate(int arg3, String mon, String dayofwk) {
         // sets textView of CLient dob to the calendar input
@@ -274,5 +274,3 @@ public class InsertLesson extends Activity {
     }
 
 }
-
-
