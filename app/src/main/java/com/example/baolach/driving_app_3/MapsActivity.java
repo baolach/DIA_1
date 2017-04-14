@@ -192,7 +192,11 @@ public class MapsActivity extends AppCompatActivity {
                 // if a button is selected and its in the radioGroup
                 if (null != selected && checkedId > -1)
                 {
-                    //Toast.makeText(MapsActivity.this, selected.getText(), Toast.LENGTH_SHORT).show(); // post to the screen what was selected
+
+//                    hillstart_btn.setOnCl
+
+
+
 
                     // posts to database
                     add_btn = (Button) findViewById(R.id.add_btn);

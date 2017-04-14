@@ -34,15 +34,18 @@
 
 
         android:layout_below="@+id/editText_clientName"
-        android:layout_alignStart="@+id/editText_clientName"
+        android:padding="7dp"
 
-        android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientAddress"
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="7dp"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -54,9 +57,7 @@
 
         android:hint="Driver Number"
         android:layout_below="@+id/editText_clientLogNo"
-        android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientDob"
-        android:layout_alignStart="@+id/editText_clientName"
         android:maxLength="9"
 
 
@@ -65,7 +66,12 @@
         android:padding="7dp"
         android:paddingLeft="20dp"
         android:inputType="number"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -78,7 +84,6 @@
 
         android:layout_below="@+id/editText_clientDriverNo"
         android:nextFocusDown="@+id/editText_clientNoOfLessons"
-        android:layout_alignStart="@+id/editText_clientName"
 
 
         android:layout_width="wrap_content"
@@ -89,6 +94,7 @@
         android:layout_marginRight="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/date">
 
         <!--android:onClick="setDate">-->
@@ -123,8 +129,6 @@
 
         android:hint="Number of Lessons"
         android:layout_below="@+id/editText_clientDob"
-        android:layout_margin="1dp"
-        android:layout_alignStart="@+id/editText_clientName"
 
 
         android:maxLength="2"
@@ -134,7 +138,12 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="number"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -146,15 +155,17 @@
 
         android:hint="Comments"
         android:layout_below="@+id/editText_clientBalance"
-        android:layout_alignStart="@+id/editText_clientName"
-        android:layout_margin="1dp"
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="textCapSentences"
         android:nextFocusForward="@+id/lesson_date"
-        >
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -166,8 +177,6 @@
 
         android:hint="Amount paid"
         android:layout_below="@+id/editText_clientNoOfLessons"
-        android:layout_margin="1dp"
-        android:layout_alignStart="@+id/editText_clientName"
 
         android:maxLength="3"
 
@@ -176,7 +185,12 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="number"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -201,7 +215,6 @@
         android:id="@+id/editText_clientAddress"
         android:background="@color/turq"
         android:textColorHint="@color/white"
-        android:layout_margin="1dp"
 
 
         android:hint="Address"
@@ -209,7 +222,6 @@
         android:layout_marginRight="1dp"
         android:layout_below="@+id/editText_clientPhone"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/editText_clientName"
         android:nextFocusDown="@+id/editText_clientLogNo"
 
         android:inputType="textCapSentences|textCapWords"
@@ -217,7 +229,9 @@
         android:layout_width="fill_parent"
         android:padding="7dp"
         android:nextFocusForward="@+id/lesson_date"
-        >
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -240,38 +254,6 @@
     android:layout_below="@+id/website"
     android:layout_alignStart="@+id/editText_clientPhone"/>
 
-
-    <EditText
-        android:id="@+id/editText_clientName"
-        android:hint="Client Name"
-
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-
-        android:layout_marginLeft="1dp"
-
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
-        android:layout_marginTop="14dp"
-
-
-        android:nextFocusDown="@+id/editText_clientPhone"
-        android:layout_below="@+id/home"
-        android:imeOptions="actionSend|flagNoEnterAction"
-        android:maxLines="4"
-
-
-        android:maxLength="50"
-
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="7dp"
-        android:inputType="textCapSentences|textCapWords"
-        android:nextFocusForward="@+id/lesson_date"
-        android:layout_alignParentStart="true">
-        <requestFocus />
-    </EditText>
 
     <Button
 
@@ -312,10 +294,40 @@
         android:padding="7dp"
         android:inputType="number"
         android:nextFocusForward="@+id/lesson_date"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_margin="1dp"
         android:layout_below="@+id/editText_clientAddress"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentStart="true">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_clientName"
+        android:hint="Client Name"
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="15dp"
+
+
+        android:nextFocusDown="@+id/editText_clientPhone"
+        android:imeOptions="actionSend|flagNoEnterAction"
+        android:maxLines="4"
+
+
+        android:maxLength="50"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="textCapSentences|textCapWords"
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 

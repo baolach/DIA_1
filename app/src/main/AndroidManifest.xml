@@ -30,15 +30,7 @@
         >
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-
-            >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            android:windowSoftInputMode="adjustResize|stateHidden">
         </activity>
         <activity
             android:name=".ClientInfo"
@@ -82,6 +74,21 @@
         <activity android:name=".FinanceInfo" />
         <activity android:name=".ClientLessons" />
         <activity android:name=".SelectClient" />
+
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Register" />
+
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
 
 
 

@@ -59,28 +59,8 @@
         android:inputType="textCapSentences"
 
         android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
-        android:layout_alignParentEnd="true">
-    </EditText>
-
-    <EditText
-        android:id="@+id/editText_lessonLocation"
-
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-
-        android:hint="Meeting location"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:inputType="textCapSentences|textCapWords|textAutoComplete"
-        android:nextFocusForward="@+id/editText_lessonLocation"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_below="@+id/editText_lessonTime"
         android:layout_alignParentEnd="true">
     </EditText>
 
@@ -95,7 +75,6 @@
         android:textColor="@color/white"
         android:layout_below="@+id/editText_lessonComments"
         android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
         android:layout_alignParentStart="true"/>
@@ -113,8 +92,8 @@
         android:nextFocusForward="@+id/lesson_date"
 
         android:editable="false"
-        android:layout_alignEnd="@+id/editText_lessonTime"
-        android:layout_alignStart="@+id/editText_lessonTime">
+        android:layout_alignStart="@+id/editText_lessonTime"
+        android:layout_alignParentEnd="true">
     </EditText>
 
 
@@ -193,6 +172,23 @@
         android:layout_alignParentEnd="true"
         android:layout_above="@+id/editText_lessonTime"/>
 
+    <EditText
+        android:id="@+id/editText_lessonLocation"
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+        android:hint="Meeting location"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:inputType="textCapSentences|textCapWords|textAutoComplete"
+        android:nextFocusForward="@+id/editText_lessonLocation"
+        android:layout_marginLeft="1dp"
+        android:layout_below="@+id/editText_lessonTime"
+        android:layout_alignParentEnd="true">
+    </EditText>
 
 
 </RelativeLayout>

@@ -65,15 +65,23 @@ public class InsertClient extends Activity {
         btnPost.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                // used for inserting into database
-                new Thread(new Runnable() {
+                if ( ( !clientName.getText().toString().equals("")) && ( !clientPhone.getText().toString().equals(""))
+                        && ( !clientLogNo.getText().toString().equals("")) && ( !clientDriverNo.getText().toString().equals(""))) {
 
-                    public void run() {
-                        insert();
-                    }
+                    new Thread(new Runnable() {
 
-                }).start();
+                        public void run() {
+                            insert();
+                        }
+
+                    }).start();
+                }else{
+                    Toast.makeText(getBaseContext(), "Client name, phone, log no or driver no cannot be null ", Toast.LENGTH_LONG).show();
+                }
+
             }
+
+
 
             protected void insert() {
 

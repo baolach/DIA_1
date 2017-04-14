@@ -74,14 +74,20 @@ public class InsertLesson extends Activity {
         btnPost.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                // used for inserting into database
-                new Thread(new Runnable() {
 
-                    public void run() {
-                        insert();
-                    }
+                if ( ( !lessonDate.getText().toString().equals("")) && ( !lessonTime.getText().toString().equals(""))
+                        && ( !lessonName.getText().toString().equals(""))){
+                    new Thread(new Runnable() {
 
-                }).start();
+                        public void run() {
+                            insert();
+                        }
+                    }).start();
+                }
+                else{
+                    Toast.makeText(getBaseContext(), "Date and Time cannot be null ", Toast.LENGTH_LONG).show();
+                }
+
             }
 
             void insert() {
@@ -139,40 +145,6 @@ public class InsertLesson extends Activity {
     } // end onCreate
 
 
-
-//    public void spinner(View view)
-//    {
-//
-//        // dropdown list to select the client for the lesson
-//        // Spinner element
-//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-//
-//
-//
-//        // Spinner click listener
-//        //spinner.setOnItemSelectedListener(this);
-//        // Spinner Drop down elements
-//        List<String> categories = new ArrayList<String>();
-//        categories.add("Automobile");
-//        categories.add("Business Services");
-//        categories.add("Computers");
-//        categories.add("Education");
-//        categories.add("Personal");
-//        categories.add("Travel");
-//
-//        // Creating adapter for spinner
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-//
-//        // Drop down layout style - list view with radio button
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        // attaching data adapter to spinner
-//        spinner.setAdapter(dataAdapter);
-//
-//    }
-
-
-
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
@@ -211,7 +183,7 @@ public class InsertLesson extends Activity {
             else if(arg3 == 9)
                 dayofwk = "Sun";
             else
-                dayofwk = "Wedd";
+                dayofwk = "Tues";
 
             // this is used to display a better DOB format to the instructor
             if(arg2 == 0)
@@ -242,8 +214,11 @@ public class InsertLesson extends Activity {
                 mon = "jan";
 
             showDate(arg3, mon, dayofwk);
+//            showDate(arg3, arg2, arg1);
+
         }
     };
+    //private void showDate(int arg3, int arg2, int arg1){
 
     private void showDate(int arg3, String mon, String dayofwk) {
         // sets textView of CLient dob to the calendar input
