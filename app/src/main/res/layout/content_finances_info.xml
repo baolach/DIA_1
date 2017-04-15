@@ -301,7 +301,7 @@
         android:textSize="11dp"
         android:padding="5dp"
         android:textColor="@color/white"
-
+        android:onClick="clientLessons"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="10dp"
         android:layout_alignBaseline="@+id/update_client_btn"

@@ -227,4 +227,18 @@ public class FinanceInfo extends Activity {
             e.printStackTrace();
         }
     }
+    public void clientLessons(View view) {
+        try {
+            Intent i = new Intent(this, ClientLessons.class);
+            // pass the lesson name so we can do a select all with that name
+            i.putExtra("theclientname", clientname);
+            i.putExtra("id", clientid);
+
+            startActivity(i);
+            finish();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -400,6 +400,16 @@ public class Finances extends Activity
         }
     }
 
+    public void newExpense(View view) {
+
+        try {
+            Intent new_expense = new Intent(Finances.this, InsertExpense.class);
+            startActivity(new_expense);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

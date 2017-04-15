@@ -181,9 +181,9 @@
         android:id="@+id/button"
         android:onClick="goBackScreen"
 
-        style="?android:attr/buttonStyleSmall"
+        style="@android:style/Widget.Material.Light.Button.Small"
         android:textSize="11dp"
-        android:background="@color/turq"
+        android:background="@color/dturq"
         android:maxWidth="100dp"
         android:minHeight="20dp"
         android:padding="5dp"
