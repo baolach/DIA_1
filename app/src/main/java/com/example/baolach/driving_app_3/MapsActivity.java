@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,10 +36,8 @@ public class MapsActivity extends AppCompatActivity {
     MapViewHelper mvHelper;
     Point pt;
 
-    private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button add_btn; // posts to db
-    String insertPoint;
 
     EditText title, detail;
 
@@ -54,17 +54,17 @@ public class MapsActivity extends AppCompatActivity {
 
         // sets home pin as limekiln road - need to set to current location
         mv.setOnStatusChangedListener(new OnStatusChangedListener() {
-            @Override
-            public void onStatusChanged(Object o, STATUS status) {
+                                          @Override
+                                          public void onStatusChanged(Object o, STATUS status) {
 
 
-                // this is for the home pin - need to change to current location
-                mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
-                String title = "Location";
-                String detail = "Limekiln Road";
+                                              // this is for the home pin - need to change to current location
+                                              mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
+                                              String title = "Location";
+                                              String detail = "Limekiln Road";
 
-                mvHelper.addMarkerGraphic(53.304679, -6.330082,title, detail, "",
-                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.tree40),false,0);
+                                              mvHelper.addMarkerGraphic(53.304679, -6.330082, title, detail, "",
+                                                      ContextCompat.getDrawable(getApplicationContext(), R.drawable.tree40), false, 0);
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -84,52 +84,12 @@ public class MapsActivity extends AppCompatActivity {
 //                            ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
 //                }
 
-                ////////////////////////////////////////////////////////////////////////////////
+                                              ////////////////////////////////////////////////////////////////////////////////
 
-                Thread thread = new Thread() {
-
-                    public void run() {
-                        try {
-
-                           PreparedStatement  st = null;
-                            Class.forName("org.postgresql.Driver");
-                            String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
-                            Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
-                            // prepares the sql statement
-                            String select = "select * from getdata_getlocation;"; //
-
-                            st = conn.prepareStatement(select);
-                            ResultSet rs = st.executeQuery();
-
-                            while (rs.next()) {
-                                final int g = 0;
-                                final String loType = rs.getString("location_type");
-                                final double loX = rs.getDouble("location_x");
-                                final double loY = rs.getDouble("location_y");
-
-                                // draws to the map
-                                mvHelper.addMarkerGraphic(loX, loY,loType,"add detail column to location type",R.drawable.pinimage,
-                                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
+                                          }
+                                      });
 
 
-                            }
-
-                            st.close();
-                            conn.close();
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                };
-                thread.start();
-
-
-
-            } // end setOnStatusChangedListener
-        });
 
 
         // if map clicked to add a pin
@@ -179,7 +139,7 @@ public class MapsActivity extends AppCompatActivity {
 
         // clears check box and outputs what button was click
         // I was to put this text in a variable and post it to the database in a locations table along with the location of a pin
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         radioGroup.clearCheck();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             @Override
@@ -187,18 +147,67 @@ public class MapsActivity extends AppCompatActivity {
                 final RadioButton selected = (RadioButton) group.findViewById(checkedId);
 
                 // if a button is selected and its in the radioGroup
-                if (null != selected && checkedId > -1)
-                {
+                if (null != selected && checkedId > -1) {
 
 
+                    Thread thread = new Thread() {
+
+                        public void run() {
+                            try {
+
+                                PreparedStatement st = null;
+                                Class.forName("org.postgresql.Driver");
+                                String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
+                                Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
+                                // prepares the sql statement
+                                String select = "select * from getdata_getlocation where location_type = '" + selected.getText().toString() + "';"; //
+                                System.out.println("select stmt: " + select);
+
+                                st = conn.prepareStatement(select);
+                                ResultSet rs = st.executeQuery();
+                                System.out.println("rs: " + rs);
+
+                                while (rs.next()) {
+                                    final int g = 0;
+                                    final String loType = rs.getString("location_type");
+                                    final double loX = rs.getDouble("location_x");
+                                    final double loY = rs.getDouble("location_y");
+
+//                                    System.out.println("loType: " + loType);
+//                                    System.out.println("loX: " + loX);
+//                                    System.out.println("loY: " + loY);
+
+
+                                    // draws to the map
+                                    mvHelper.addMarkerGraphic(loX, loY, loType, "add detail column to location type", R.drawable.pinimage,
+                                            ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20), false, 0);
+
+
+                                }
+
+                                st.close();
+                                conn.close();
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    };
+                    thread.start();
+
+                } // end if
+//
+                    ///////////////////////////
+                    // add
                     // posts to database
                     add_btn = (Button) findViewById(R.id.add_btn);
 
                     add_btn.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             // used for inserting into database
-                            new Thread(new Runnable()
-                            {
+                            new Thread(new Runnable() {
                                 public void run() {
                                     insert();
                                 }
@@ -210,8 +219,8 @@ public class MapsActivity extends AppCompatActivity {
 
                             try {
                                 String type = selected.getText().toString();
-//                                String loc_x = l.getText().toString();
-//                                String loc_y = selected.getText().toString();
+                                double loc_x = 53.30828189727125;
+                                double loc_y = -6.329502642852769;
 
                                 String insertPoint;
                                 // i need x and y to go into the db when adding a location by tap
@@ -223,11 +232,17 @@ public class MapsActivity extends AppCompatActivity {
                                 Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
                                 // prepares the sql statement
-                                String insert = "insert into getdata_getlocation values (?);";//, ?, ?)"; // , ?)";
+                                String insert = "insert into getdata_getlocation values (?, ?, ?) ;";//, ?, ?)"; // , ?)";
                                 insertdb = conn.prepareStatement(insert);
+                                System.out.println("insertdb: " + insertdb);
                                 insertdb.setString(1, type);
-//                                insertdb.setDouble(2, loc_x );
-//                                insertdb.setDouble(3, loc_y );
+                                System.out.println("type: " + type);
+
+                                insertdb.setDouble(2, loc_x );
+                                System.out.println("locx: " + loc_x);
+
+                                insertdb.setDouble(3, loc_y );
+                                System.out.println("locy: " + loc_y);
 
 
 
@@ -243,7 +258,6 @@ public class MapsActivity extends AppCompatActivity {
 
                                     }
                                 });
-                                System.out.println("type" + type);
 
 
                                 insertdb.close();
@@ -255,10 +269,9 @@ public class MapsActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
+
                         }
                     });
-
-                }
 
             }
         });
@@ -270,204 +283,44 @@ public class MapsActivity extends AppCompatActivity {
     } // end onCreate
 
 
+    // inflates the xml file, the gps image to the view
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.maps, menu);
 
+        return true;
+    }
 
-    // works in the background
-//    private class DownloadWebPageTask extends AsyncTask<String, Void, String> {
-//
-//        @Override
-//        protected String doInBackground(String... params) {
-//            try {
-//                System.out.println("DOWNLOAD URL: " + params[0]);
-//                return downloadURL(params[0]);
-//            } catch (IOException e) {
-//                return "Unable to retrieve web page. Check your URL";
-//            }
-//        }
+    // whatever menu item is clicked and performs case
+    @Override public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId(); // gets menu item id if there are more than 1
+        // in case I add other menu items later
+        switch (id) {
+            case R.id.my_gps:
+                // turn on/off the gps
+                if ( mv.getLocationDisplayManager().isStarted()){ // && id == R.id.my_gps) {
+                    Toast.makeText(getApplicationContext(), "GPS is de-activated!", Toast.LENGTH_SHORT).show();
+                    mv.getLocationDisplayManager().setShowLocation(false);
+                    mv.getLocationDisplayManager().stop();
+                    return true;
+                } else {
+                    Toast.makeText(getApplicationContext(), "GPS is activated!", Toast.LENGTH_SHORT).show();
+                    mv.getLocationDisplayManager().setShowLocation(true);
+                    mv.getLocationDisplayManager().start();
+                }
 
+            case R.id.clear:
+                mvHelper.removeAllGraphics();
 
-        // connects to send the GET request
-        // this is executed second then onPostExectute
-//        private String downloadURL(String myurl) throws IOException {
-//            InputStream is = null;
-//            int len = 5000;
-//
-//            try {
-//                URL url = new URL(myurl);
-//
-//                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//                conn.setReadTimeout(10000);
-//                conn.setConnectTimeout(15000);
-//                conn.setRequestMethod("GET");
-//                conn.setDoInput(true);
-//
-//                conn.connect();
-//                int response = conn.getResponseCode();
-//                Log.d("DEBUG", "Response code is " + response);
-//                is = conn.getInputStream();
-//                String content = parse(is, len);
-//                //String test = new DrawMap(content);
-//                return content;
-//            } finally {
-//                if (is != null)
-//                    is.close();
-//            }
-//        }
-//        protected void onPostExecute(String result) {
-//            // the url is declared in onCreate, here the JSONObject is created and the data from the JSON string from the url is added to the appropriate variable
-//                try {
-//                    JSONArray json = new JSONArray(result);
-//
-//
-//////////////////////////////////////////////////////////////////////// this works but it cant draw the points because its not in the onCreate
-//
-//                    // send this to the draw method to draw on the map the coordinates
-//                    //DrawMap drawM = new DrawMap();
-//                    double[] location_x = new double[5];
-//                    double[] location_y = new double[5];
-//
-//                    mv = (MapView) findViewById(R.id.map1);
-//                    mvHelper = new MapViewHelper(mv);
-//
-//                    System.out.println("result being read in from /locations/: " + json);
-//                    // pass locations to be drawn in another class in the onCreate
-//                    //DrawMap draw = new DrawMap(location_xy);
-//
-//                    // this forloop gets the data into the JSONArray json for each client lesson and displays in list
-//                    for (int i = 0; i < 3; i++) {
-//                        try {
-//
-//                            JSONObject object = json.getJSONObject(i); // reads the array into the JSONOBject object
-//                            String location_type = object.optString("type").toString();
-//                            String location_co = object.optString("coordinates").toString();
-//                            location_x[i] = object.optDouble("x");
-//                            location_y[i] = object.optDouble("y");
-//                            String location_id = object.optString("id").toString(); // id from the db is sent to keep unique
-//
-//
-//
-//                            System.out.println("location_type: " + location_type);
-//                            System.out.println("location_co: " + location_co);
-//                            System.out.println("id: " + location_id);
-//
-//
-//                            String newtitle = "Reverse";
-//                            String newdetail = "Limekiln area";
-//
-//                            mvHelper.addMarkerGraphic(location_x[i], location_y[i], newtitle, newdetail, "",
-//                                    ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20), false, 0);
-//
-//                            System.out.println("Lat- " + location_x[i]);
-//                            System.out.println("Lon- " + location_y[i]);
-//
-//                            //return sendPoints(location_x[],location_y[]);
-//
-//
-//                            //pt = mv.toMapPoint(location_x, location_y);
-////                        String title = "Reverse";
-////                        String detail = "Reverse around the corner";
-//
-////                        // once a point is tapped, makes a new point calling geometryEngine
-////                        Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
-////                        double lon = wgsPoint.getX();
-////                        double lat = wgsPoint.getY();
-//
-//                            // draws to the map
-////                        mvHelper.addMarkerGraphic(location_y, location_y,title,detail,R.drawable.car,
-////                                ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
-//
-////////////////////////////////////////////////////////////////////////
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    } // end for loop
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//
-//
-//        }
-//    }
-
-//    public class DrawMap(String content){
-//        void draw(String content) {
-//            //plot these on the map
-//            //System.out.println("location_x = " + location_xy);
-//            System.out.println("result" + content);
-//        }
-//    }
-
-
-    // GET REQUEST
-
-//    // parses the url and reads the JSON in as a string which is readable
-//    private String parse(InputStream is, int len) throws IOException {
-//        return readIt(is);
-//    }
-//
-//    private String readIt(InputStream is) {
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-//        StringBuilder sb = new StringBuilder();
-//
-//        String line = null;
-//        try {
-//            while ((line = reader.readLine()) != null) {
-//                sb.append(line).append('\n');
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                is.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return sb.toString();
-//    }
-//
-//
-//    // inflates the xml file, the gps image to the view
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.maps, menu);
-//
-//        return true;
-//    }
-//
-//    // whatever menu item is clicked and performs case
-//    @Override public boolean onOptionsItemSelected(MenuItem item)
-//    {
-//        int id = item.getItemId(); // gets menu item id if there are more than 1
-//        // in case I add other menu items later
-//        switch (id) {
-//            case R.id.my_gps:
-//                // turn on/off the gps
-//                if (id == R.id.my_gps && mv.getLocationDisplayManager().isStarted()) {
-//                    Toast.makeText(getApplicationContext(), "GPS is de-activated!", Toast.LENGTH_SHORT).show();
-//                    mv.getLocationDisplayManager().setShowLocation(false);
-//                    mv.getLocationDisplayManager().stop();
-//                    return true;
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "GPS is activated!", Toast.LENGTH_SHORT).show();
-//                    mv.getLocationDisplayManager().setShowLocation(true);
-//                    mv.getLocationDisplayManager().start();
-//                }
-//
-//            case R.id.clear:
-//                mvHelper.removeAllGraphics();
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     public void goBackScreen(View view) {
         try {
-            Intent lastScreen = new Intent(this, MainActivity.class);
+            Intent lastScreen = new Intent(MapsActivity.this, MainActivity.class);
             startActivity(lastScreen);
         } catch (Exception e) {
             e.printStackTrace();
@@ -477,36 +330,4 @@ public class MapsActivity extends AppCompatActivity {
 
 }
 
-
-
-//                String newPoint = wgsPoint.toString();
-//
-//                // splits this array in to the part before the "=" and after
-//                String[] result = newPoint.split("=");
-//                if (result.length != 2)
-//                {
-//                    // only interested in 1 and 2, result[3] is "com.esri.core.geometry.VertexDescription@7c5d0f85]" which we dont want
-//                    for (int i = 0; i < 2; i++)
-//                    {
-//                        System.out.println("point split:" + result[i]); // prints out to log so we can see whats produced
-//                    }
-//                }
-//
-//                //System.out.println("result[1]:" + result[1]); // check that this is just the coordinates
-//
-//                // now we need to split "[-6.334276974899407, 53.3099229738916], m_description" to just the coodinates
-//                String[] co = result[1].split(","); // result[2] is the coordinates plus ... m_description so we need to get rid of that
-//                if (co.length != 2)
-//                {
-//                    // only interested in 1 and 2, result[3] is "com.esri.core.geometry.VertexDescription@7c5d0f85]" which we dont want
-//                    for (int i = 0; i < 2; i++)
-//                    {
-//                        // should print out just the coordinates
-//                        System.out.println("co split:" + co[i]); // prints out to log so we can see whats produced
-//                    }
-//                }
-//
-//                // concatenate the array points so that they can be added into the database as coordinates (x,y)
-//                final String insertPoint = co[0].toString() + "," + co[1].toString();
-//                System.out.println("insertPoint:" + insertPoint);
 

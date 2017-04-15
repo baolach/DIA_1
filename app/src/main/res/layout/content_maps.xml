@@ -58,7 +58,7 @@
 
         style="?android:attr/buttonStyleSmall"
         android:textSize="11dp"
-        android:background="@color/turq"
+        android:background="@color/dturq"
         android:maxWidth="100dp"
         android:minHeight="20dp"
         android:padding="7dp"
