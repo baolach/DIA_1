@@ -6,21 +6,15 @@
 
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:id="@+id/client_name"
-
         android:padding="10dp"
-
-
         android:gravity="center"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"/>
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -33,7 +27,6 @@
         android:layout_alignParentEnd="true"/>
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/balance_paid"
@@ -44,6 +37,37 @@
         android:layout_marginEnd="89dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/amount"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+
+        android:layout_alignParentEnd="true"
+        android:id="@+id/date"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+
+        android:id="@+id/expenses"
+        android:layout_alignBottom="@+id/client_name"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/amount"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/balance_paid"
+        android:layout_toStartOf="@+id/balance_paid"/>
 
 
 </RelativeLayout>

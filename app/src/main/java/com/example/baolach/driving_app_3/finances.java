@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -24,6 +23,11 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /*
@@ -50,10 +54,19 @@ public class Finances extends Activity
     static ArrayList<String> clientComments = new ArrayList<String>();
     static ArrayList<String> clientId = new ArrayList<String>();
 
+    static ArrayList<String> expenseName = new ArrayList<String>();
+    static ArrayList<String> expenseAmount = new ArrayList<String>();
+    static ArrayList<String> expenseDate = new ArrayList<String>();
+    static ArrayList<String> expenseId = new ArrayList<String>();
+
+
 
     ListView listView, listView2;
-    ArrayList<Client> list, list2;
+    ArrayList<Client> list;
+    ArrayList<Expense> list2;
     FinanceAdapter adapter = null;
+    ExpenseAdapter adapter2 = null;
+
 
 
 
@@ -74,6 +87,12 @@ public class Finances extends Activity
         clientComments.clear();
         clientId.clear();
 
+        expenseName.clear();
+        expenseAmount.clear();
+        expenseDate.clear();
+        expenseId.clear();
+
+
         // creates variables to be shown and interacted with in the activity
         // sets up listView and Adapter to accept the data from the urlListView listView = (ListView) findViewById(R.id.listView_clients);
         listView = (ListView) findViewById(R.id.listView_clients); // the listview ID in list_clients.xml
@@ -81,12 +100,17 @@ public class Finances extends Activity
         adapter = new FinanceAdapter(this, R.layout.finance, list); // this sets adapter to the ClientAdapter which uses client.xml
         listView.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
 
+        listView2 = (ListView) findViewById(R.id.listView_expenses); // the listview ID in list_clients.xml
+        list2 = new ArrayList<>();
+        adapter2 = new ExpenseAdapter(this, R.layout.finance, list2); // this sets adapter to the ClientAdapter which uses client.xml
+        listView2.setAdapter(adapter2); // makes the listview in ListCLients activity output the adapter within the listView
 
-        String[] array = new String[]{"red", "blue", "green", "black", "white"};
-        ListView lView = (ListView) findViewById(R.id.listView_expenses);
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array);
-        lView.setAdapter(adapter2);
+
+//        String[] array = new String[]{"red", "blue", "green", "black", "white"};
+//        ListView lView = (ListView) findViewById(R.id.listView_expenses);
+//        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array);
+//        listView2.setAdapter(adapter2);
 
 //        listView2 = (ListView) findViewById(R.id.listView_expenses); // the listview ID in list_clients.xml
 //        list2 = new ArrayList<>();
@@ -141,7 +165,94 @@ public class Finances extends Activity
             }
         });
 
-    }
+        ////////////////////////
+
+
+        Thread thread = new Thread() {
+
+            public void run() {
+                try {
+
+
+
+                    PreparedStatement st = null;
+                    Class.forName("org.postgresql.Driver");
+                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
+                    Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
+                    // prepares the sql statement
+                    String select = "select * from getdata_getexpense;"; //
+
+                    st = conn.prepareStatement(select);
+//                  st.setString(1, expenseName);
+                    //st.setString(2, clientid);
+                    ResultSet rs = st.executeQuery();
+
+                    while (rs.next()) {
+                        final int g = 0;
+                        final String expensename = rs.getString("expense_name");
+                        final String expenseamount = rs.getString("expense_amount");
+                        final String expensedate = rs.getString("expense_date");
+                        final String expenseid = rs.getString("id");
+
+
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+
+                                expenseName.add(expensename);
+                                expenseAmount.add(expenseamount);
+                                expenseDate.add(expensedate);
+                                expenseId.add(expenseid);
+
+
+                                list2.add(new Expense(g, expensename, expenseamount, expensedate, expenseid));
+                                adapter2.notifyDataSetChanged();
+
+                            }
+                        });
+                    }
+
+                    st.close();
+                    conn.close();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        };
+        thread.start();
+
+
+        // dont think I need an listener, all the info is there
+//        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                // itemId keeps track of where in the list it is
+//                int itemId = (int) id;
+//
+//                String expensename = expenseName.get(itemId);
+//                String expenseamount = expenseAmount.get(itemId);
+//                String expensedate = expenseDate.get(itemId);
+//                String expenseid = expenseId.get(itemId);
+//
+//
+//                // creates new intent and sends over the lesson information when item is clicked
+//                // accepted by Bundle in LessonInfo
+//                Intent i = new Intent(Finances.this, ExpenseInfo.class);
+//                i.putExtra("theexpensename", expensename);
+//                i.putExtra("theexpenseamount", expenseamount);
+//                i.putExtra("theexpensedate", expensedate);
+//                i.putExtra("id", expenseid);
+//
+//
+//                startActivity(i);
+//
+//            }
+//        });
+
+
+
+    } // end onCreate
 
     // works in the background
     private class DownloadWebPageTask extends AsyncTask<String, Void, String> {

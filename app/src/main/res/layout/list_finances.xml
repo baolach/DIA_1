@@ -36,7 +36,6 @@
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="150dp"
-            android:layout_weight="0.3"
 
             android:id="@+id/listView_clients"
             android:divider="@android:color/white"
@@ -58,7 +57,21 @@
         >
 
         <TextView
-            android:text="Expenses"
+            android:text="Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:id="@+id/textView_date"
+
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignBaseline="@+id/textView_amount"
+            android:layout_alignBottom="@+id/textView_amount"
+            android:layout_alignParentEnd="true"/>
+
+        <TextView
+            android:text="@string/expenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView_expenses"
@@ -66,10 +79,11 @@
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"
 
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="18dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="14dp"
-            android:layout_margin="10dp"/>
+            android:layout_alignParentStart="true"/>
 
         <ListView
             android:layout_width="fill_parent"
@@ -78,7 +92,7 @@
             android:id="@+id/listView_expenses"
             android:divider="@android:color/white"
             android:dividerHeight="0.5dp"
-
+            android:layout_marginTop="10dp"
             android:padding="10dp"
 
             android:background="@color/dturq"
@@ -96,24 +110,10 @@
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_marginEnd="33dp"
             android:layout_alignBaseline="@+id/textView_expenses"
             android:layout_alignBottom="@+id/textView_expenses"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="93dp"/>
-
-        <TextView
-            android:text="Date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="22dp"
-            android:id="@+id/textView_date"
-
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_alignBaseline="@+id/textView_amount"
-            android:layout_alignBottom="@+id/textView_amount"
-            android:layout_alignParentEnd="true"/>
+            android:layout_toStartOf="@+id/textView_date"/>
 
 
     </RelativeLayout>
@@ -157,7 +157,7 @@
         android:onClick="goBackScreen"
         android:textSize="11dp"
         android:textColor="@color/white"
-        android:background="@color/turq"
+        android:background="@color/dturq"
         android:layout_below="@+id/website"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"

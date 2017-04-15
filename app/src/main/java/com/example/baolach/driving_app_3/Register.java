@@ -84,7 +84,7 @@ public class Register extends AppCompatActivity {
                         user_name = rset.getString("username");
                     }
 
-                    if(user != null && pass !=null) {
+                    if((user.equals("")) || (pass.equals(""))) {
                         runOnUiThread(new Runnable() {
                             public void run() {
 

@@ -22,7 +22,7 @@ public class Login extends AppCompatActivity {
 
     Button login, register;
     EditText username , password;
-    static String p,u;
+    static String passw,usern;
 
 
     @Override
@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
 
                 try
                 {
-                    final String user = username.getText().toString().toLowerCase().replace(" ", "");
+                    final String user = username.getText().toString().toLowerCase().replace(" ", ""); // replace gets rid of spaces
                     String pass= password.getText().toString().replace(" ", "");
 
                     PreparedStatement st = null;
@@ -72,13 +72,13 @@ public class Login extends AppCompatActivity {
 
                     while(rs.next())
                     {
-                        p = rs.getString("password");
-                        u = rs.getString("username").toLowerCase();
+                        passw = rs.getString("password");
+                        usern = rs.getString("username").toLowerCase(); // chagnes to lowercase to compare in the db
                     }
 
-                    if(u != null && user.equals(u))
+                    if(usern != null && user.equals(usern))
                     {
-                        if(p  != null && pass.equals(p))
+                        if(passw  != null && pass.equals(passw))
                         {
                             runOnUiThread(new Runnable() {
                                 public void run() {

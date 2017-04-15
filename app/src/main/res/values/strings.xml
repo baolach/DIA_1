@@ -26,6 +26,7 @@
     <string name="my_gps">gps</string>
     <string name="client_name">Client Name</string>
     <string name="phone">Phone</string>
+    <string name="expenses">Expenses</string>
 
 
 </resources>
