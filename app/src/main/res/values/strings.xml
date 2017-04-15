@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DIA_1</string>
+    <string name="app_name">Driving Instructor Assistor</string>
     <string name="action_settings">Settings</string>
     <string name="text">Book Table</string>
     <string name="submit">Submit</string>
@@ -26,7 +26,6 @@
     <string name="my_gps">gps</string>
     <string name="client_name">Client Name</string>
     <string name="phone">Phone</string>
-    <string name="spinner_title">AndroidSpinnerExample</string>
 
 
 </resources>

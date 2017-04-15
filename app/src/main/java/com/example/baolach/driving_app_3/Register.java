@@ -3,7 +3,6 @@ package com.example.baolach.driving_app_3;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,11 +18,11 @@ import java.sql.SQLException;
  * Created by Baolach on 14/04/2017.
  */
 
-public class Register extends AppCompatActivity{
+public class Register extends AppCompatActivity {
 
-    Button back,register;
-    EditText username , password, password2;//, email, first_name,surname,phone,street,town,county;
-    String u;
+    Button goback, register;
+    EditText username, password, confirmpassword;//, email, first_name,surname,phone,street,town,county;
+    String user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,109 +31,119 @@ public class Register extends AppCompatActivity{
 
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
-        password2 = (EditText) findViewById(R.id.password2);
+        confirmpassword = (EditText) findViewById(R.id.password2);
 
 
-        back.setOnClickListener(new View.OnClickListener(){
+        goback = (Button) findViewById(R.id.backBtn);
+        goback.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick (View v)
-            {
-                Intent back = new Intent(Register.this, Login.class);
-                startActivity(back);
+            public void onClick(View v) {
+                Intent goBack = new Intent(Register.this, Login.class);
+                startActivity(goBack);
                 finish();
+
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener(){
 
-            public void onClick (View v)
-            {
-                new Thread(new Runnable(){
+        register = (Button) findViewById(R.id.registerBtn);
+        register.setOnClickListener(new View.OnClickListener() {
 
-                    public void run()
-                    {
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+
+                    public void run() {
                         insert();
                     }
 
                 }).start();
 
             }
+
             protected void insert() {
 
-                try
-                {
-                    String user = username.getText().toString().toLowerCase();
-                    String pass= password.getText().toString();
-                    String pass2 = password2.getText().toString();
+                try {
+                    String user = username.getText().toString().toLowerCase().replace(" ", "");
+                    String pass = password.getText().toString();
+                    String pass2 = confirmpassword.getText().toString();
 
-                    PreparedStatement st = null;
-                    PreparedStatement st2 = null;
+                    PreparedStatement stmt = null;
+                    PreparedStatement stmt2 = null;
                     Class.forName("org.postgresql.Driver");
                     String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
+
+                    // selects usernae from db to make sure unique
                     String sql = "select username from getdata_getuser where username=?";
-                    st = conn.prepareStatement(sql);
-                    st.setString(1, user);
-                    ResultSet rs = st.executeQuery();
+                    stmt = conn.prepareStatement(sql);
+                    stmt.setString(1, user);
+                    ResultSet rset = stmt.executeQuery();
 
+                    // goes through db with whole loop
+                    while (rset.next()) {
+                        user_name = rset.getString("username");
+                    }
 
-                    while(rs.next())
-                    {
-                        u = rs.getString("username");
+                    if(user != null && pass !=null) {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+
+                                Toast.makeText(getBaseContext(), "Username or Password cannot be empty", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
                     }
-                    if(u != null && user.equals(u))
-                    {
-                        Toast.makeText(getBaseContext(), "User " + u + " already exist! Try different username!" , Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        if(pass != null && !pass.equals(pass2) && pass == " ")
-                        {
+                        // if username exists
+                        if (user != null && user.equals(user_name)) {
                             runOnUiThread(new Runnable() {
                                 public void run() {
 
-                                    Toast.makeText(getBaseContext(), "Passwords don't match! Try again!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getBaseContext(), "Username " + user_name + " already exists! Try a different one", Toast.LENGTH_LONG).show();
                                 }
                             });
-                        }
-                        else
-                        {
-                            String inss = "insert into getdata_getuser values (?,?,?,?,?,?,?,?,?)";
-                            st2 = conn.prepareStatement(inss);
-                            st2.setString(1,user);
-                            st2.setString(2,pass);
 
-                            st2.execute();
-                            st2.close();
-                            runOnUiThread(new Runnable() {
-                                public void run() {
+                        } else {
+                            if (!pass.equals(pass2) || pass.equals(" ")) {// if a password is entered && password doesnt match 2nd && not empty
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
 
-                                    Toast.makeText(getBaseContext(), "User Created! ", Toast.LENGTH_LONG).show();
-                                }
-                            });
+                                        Toast.makeText(getBaseContext(), "Passwords don't match! Try again!", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+
+                            } else {
+                                // insert new username and password into db
+                                String insertdb = "insert into getdata_getuser values (?,?)";
+                                stmt2 = conn.prepareStatement(insertdb);
+                                stmt2.setString(1, user);
+                                stmt2.setString(2, pass);
+
+                                stmt2.execute();
+                                stmt2.close();
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(getBaseContext(), "Account created! Login with your new account details ", Toast.LENGTH_LONG).show();
+                                        Intent login = new Intent(Register.this, Login.class);
+                                        startActivity(login);
+                                        finish();
+                                    }
+                                });
+                            }
                         }
-                    }
-                    st.close();
+                    //} // end if null
+
+                    stmt.close();
                     conn.close();
-                }
-                catch (ClassNotFoundException e)
-                {
+                } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
+
             }
 
         });
-    }
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent k = new Intent(Register.this, Login.class);
-            startActivity(k);
-            finish();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+
+    } // end onCreate
 }

@@ -29,8 +29,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        login = (Button) findViewById(R.id.login_button);
-        register = (Button) findViewById(R.id.register_button);
+        login = (Button) findViewById(R.id.loginBtn);
+        register = (Button) findViewById(R.id.registerBtn);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
 
@@ -126,6 +126,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent k = new Intent(Login.this, Register.class);
+                Toast.makeText(Login.this, "Create a username and password for your Driving Instructor Account", Toast.LENGTH_LONG).show();
                 startActivity(k);
                 finish();
             }
