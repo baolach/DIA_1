@@ -279,7 +279,7 @@
         android:minHeight="20dp"
         android:textSize="11dp"
         android:textColor="@color/white"
-        android:background="@color/turq"
+        android:background="@color/dturq"
         android:onClick="goBackScreen"
         android:layout_marginLeft="1dp"
         android:padding="5dp"

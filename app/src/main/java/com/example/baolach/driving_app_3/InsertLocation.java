@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -16,18 +15,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- * Created by Baolach on 16/04/2017.
- */
 
 public class InsertLocation extends Activity {
 
-    EditText locationType;
-    TextView locationX, locationY;
     EditText locationDetail;
     private Button btnPost;
-
-
     double locationx, locationy;// for the intent coming in
 
 
@@ -46,6 +38,7 @@ public class InsertLocation extends Activity {
 
         } // end of bundle
 
+        // selects the type of location to be added
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         radioGroup.clearCheck();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -56,93 +49,71 @@ public class InsertLocation extends Activity {
                 if (null != selected && checkedId > -1) {
                     System.out.println("selected: "+ selected.getText().toString());
 
-
-
                 }
 
+                locationDetail = (EditText) findViewById(R.id.editText_locationDetail);
 
-//        locationType = selected.getText().toString();
+                // posts to database
+                btnPost = (Button) findViewById(R.id.button_post);
+                btnPost.setOnClickListener(new View.OnClickListener() {
 
+                    public void onClick(View v) {
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    insert();
+                                }
+                            }).start();
 
-        locationDetail = (EditText) findViewById(R.id.editText_locationDetail);
+                    }
 
-        // posts to database
-        btnPost = (Button) findViewById(R.id.button_post);
-        btnPost.setOnClickListener(new View.OnClickListener() {
+                    void insert() {
+                        try {
 
-            public void onClick(View v) {
+                            String l_detail = locationDetail.getText().toString();
 
-//                if ( ( !locationType.getText().toString().equals("")) && ( !locationDetail.getText().toString().equals(""))){
-                    new Thread(new Runnable() {
+                            // inserts location into db
+                            PreparedStatement insertdb;
+                            Class.forName("org.postgresql.Driver");
+                            String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
+                            Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
 
-                        public void run() {
-                            insert();
+                            // prepares the sql statement
+                            String insert = "insert into getdata_getlocation values (?, ?, ?, ?) ;";
+                            insertdb = conn.prepareStatement(insert);
+                            System.out.println("insertdb: " + insertdb);
+
+                            insertdb.setString(1, selected.getText().toString()); // change to the selected radio button
+                            insertdb.setDouble(2, locationx );
+                            insertdb.setDouble(3, locationy );
+                            insertdb.setString(4, l_detail );
+
+                            insertdb.execute();
+                            insertdb.close(); // close connection must be done
+
+                            // once inserted into database goes back to maps to show it in the db
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(getBaseContext(), "Location added to database!", Toast.LENGTH_LONG).show();
+                                    Intent l = new Intent(InsertLocation.this, MapsActivity.class); //refreshes the map
+
+                                    startActivity(l);
+
+                                }
+                            });
+
+                            insertdb.close();
+                            conn.close();
+
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
                         }
-                    }).start();
-                //}
-//                else{
-//                    Toast.makeText(getBaseContext(), "Fields cannot be empty", Toast.LENGTH_LONG).show();
-//                }
 
-            }
-
-            void insert() {
-                try {
-                    //String l_type = locationType.getText().toString();
-                    //System.out.println("l_type: " +l_type);
-
-                    String l_detail = locationDetail.getText().toString();
-                    System.out.println("l_detail: " +l_detail);
-
-
-                    PreparedStatement insertdb;
-                    Class.forName("org.postgresql.Driver");
-                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
-                    Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
-
-                    // prepares the sql statement
-                    String insert = "insert into getdata_getlocation values (?, ?, ?, ?) ;";
-                    insertdb = conn.prepareStatement(insert);
-                    System.out.println("insertdb: " + insertdb);
-                    insertdb.setString(1, selected.getText().toString()); // change to the selected radio button
-
-                    insertdb.setDouble(2, locationx );
-//                    System.out.println("lat: " + lat);
-
-                    insertdb.setDouble(3, locationy );
-//                    System.out.println("lon: " + lon);
-                    insertdb.setString(4, l_detail );
-
-
-
-
-                    insertdb.execute();
-                    insertdb.close(); // close connection must be done
-
-                    // once inserted into database goes back to maps to show it in the db
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(getBaseContext(), "Location added to database! ", Toast.LENGTH_LONG).show();
-                            Intent l = new Intent(InsertLocation.this, MapsActivity.class); //refreshes the map
-                            startActivity(l);
-
-                        }
-                    });
-
-
-                    insertdb.close();
-                    conn.close();
-
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-            }
-        });
+                    }
+                });
+            } // end radio group
+        }); // end radio listner
 
     } // end onCreate
 

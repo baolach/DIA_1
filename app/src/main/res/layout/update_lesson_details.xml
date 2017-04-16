@@ -197,7 +197,7 @@
         android:maxWidth="20dp"
         android:minHeight="20dp"
         android:textSize="10dp"
-        android:background="@color/turq"
+        android:background="@color/dturq"
         android:textColor="@color/white"
         android:padding="5dp"
         android:layout_below="@+id/website"

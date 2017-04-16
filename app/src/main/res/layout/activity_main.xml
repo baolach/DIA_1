@@ -23,59 +23,14 @@
     android:layout_height="wrap_content"
     android:text="Maps"
     android:id="@+id/maps_btn"
-    android:layout_below="@+id/website"
+    android:layout_below="@+id/admin_btn"
     android:layout_alignParentStart="true"
     android:background="@color/turq"
 
-    android:layout_marginLeft="3dp"
-    android:layout_marginRight="3dp"
     android:layout_marginTop="3dp"
+
     android:layout_marginBottom="3dp"
     android:layout_alignParentEnd="true"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Locations"
-        android:id="@+id/locations_btn"
-        android:layout_below="@+id/maps_btn"
-        android:layout_alignParentStart="true"
-        android:background="@color/turq"
-
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:layout_alignParentEnd="true"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Directions"
-        android:id="@+id/google_maps_btn"
-        android:layout_below="@+id/locations_btn"
-        android:layout_alignParentStart="true"
-        android:background="@color/turq"
-
-
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:layout_alignParentEnd="true"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Finances"
-        android:id="@+id/finances_btn"
-        android:layout_below="@+id/google_maps_btn"
-        android:layout_alignParentStart="true"
-        android:background="@color/turq"
-
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:layout_alignParentEnd="true"/>
 
     <!--<Button-->
         <!--android:layout_width="wrap_content"-->
@@ -100,12 +55,40 @@
 
         android:background="@color/turq"
 
-        android:layout_below="@+id/finances_btn"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
+
+
+        android:layout_below="@+id/directions_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Directions"
+        android:id="@+id/directions_btn"
+        android:background="@color/turq"
+
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
+
+
+        android:layout_below="@+id/maps_btn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logout_btn"
+        android:background="@color/dturq"
+        android:textColor="@color/white"
+        android:layout_marginTop="3dp"
+
+        android:layout_below="@+id/web_btn"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"/>
 
     <Button
@@ -113,19 +96,16 @@
         android:layout_height="wrap_content"
         android:text="Admin"
         android:id="@+id/admin_btn"
-        android:background="@color/dturq"
-        android:textColor="@color/white"
+        android:background="@color/turq"
 
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="3dp"
 
-        android:layout_below="@+id/web_btn"
+
+
+        android:layout_below="@+id/website"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"/>
-
-
-
 
 
 </RelativeLayout>

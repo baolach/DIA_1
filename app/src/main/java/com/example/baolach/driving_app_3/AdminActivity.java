@@ -21,7 +21,7 @@ public class AdminActivity extends Activity {
         Button new_lesson_btn = (Button)findViewById(R.id.new_lesson_btn);
         Button list_clients_btn = (Button)findViewById(R.id.list_clients_btn);
         Button new_client_btn = (Button)findViewById(R.id.new_client_btn);
-        Button reminders_btn = (Button)findViewById(R.id.reminders_btn);
+        Button finances_btn = (Button)findViewById(R.id.finances_btn);
         Button back_screen_btn = (Button)findViewById(R.id.back_screen_btn);
 
 
@@ -74,13 +74,13 @@ public class AdminActivity extends Activity {
                 startActivity(new_client_intent);
             }
         });
-        reminders_btn.setOnClickListener(new View.OnClickListener()
+        finances_btn.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
 
-                Intent reminders_intent = new Intent(AdminActivity.this, Reminders.class); // lists all lessoninfo
-                startActivity(reminders_intent);
+                Intent finances_intent = new Intent(AdminActivity.this, Finances.class); // lists all lessoninfo
+                startActivity(finances_intent);
             }
         });
 

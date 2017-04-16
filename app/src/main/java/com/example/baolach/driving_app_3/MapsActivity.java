@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -38,10 +37,7 @@ public class MapsActivity extends AppCompatActivity {
     MapViewHelper mvHelper;
     Point pt;
 
-    private RadioButton radioButton;
     private Button add_btn; // posts to db
-
-    EditText title, detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +49,6 @@ public class MapsActivity extends AppCompatActivity {
         mv = (MapView) findViewById(R.id.map1);
         mvHelper = new MapViewHelper(mv);
 
-
-//        mv.getLocationDisplayManager().setShowLocation(true);
-//        mv.getLocationDisplayManager().start();
 
         // sets home pin as limekiln road - need to set to current location
         mv.setOnStatusChangedListener(new OnStatusChangedListener() {
@@ -93,9 +86,7 @@ public class MapsActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-
                             pt = mv.toMapPoint(x, y);
-
 
                             // once a point is tapped, makes a new point calling geometryEngine
                             Point wgsPoint = (Point) GeometryEngine.project(pt, mv.getSpatialReference(), SpatialReference.create(4326));
@@ -116,26 +107,10 @@ public class MapsActivity extends AppCompatActivity {
                                 });
                             }
 
-
-
-
-                            //Point p = wgsPoint.getX();
-
                             System.out.println("lon: " + lon);
                             System.out.println("lat: " + lat);
                             System.out.println("pt: " + pt);
                             System.out.println("mv: " + mv);
-
-
-//                                // draws to the map
-//                                mvHelper.addMarkerGraphic(wgsPoint.getY(), wgsPoint.getX(),title,detail,R.drawable.pinimage,
-//                                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
-//                            try {
-                                // when the point is tapped and add button clicked, it sends the intent to the insertLocation class to be edited and inserted
-
-//                            }catch(Exception e){
-//                                e.printStackTrace();
-//                            }
 
                         }
 
@@ -155,20 +130,6 @@ public class MapsActivity extends AppCompatActivity {
                     });
 
             } // end single tap
-
-            // when you click the picture you should be able to edit the title and detail
-//                mv.setOnGraphicClickListener(new OnGraphicClickListener() {
-//                    @Override
-//                    public void onGraphicClick(Graphic graphic) {
-//                        double gX, gY;
-//                        mvHelper.setShowGraphicCallout(false);
-//
-////                        Toast.makeText(ctx, String.valueOf(newPoint.getX()) + " "
-////                                + String.valueOf(newPoint.getY()), Toast.LENGTH_LONG).show();
-//                    }
-//                });
-
-
         });
 
         // clears check box and outputs what button was click
@@ -182,8 +143,6 @@ public class MapsActivity extends AppCompatActivity {
 
                 // if a button is selected and its in the radioGroup
                 if (null != selected && checkedId > -1) {
-
-
                     Thread thread = new Thread() {
 
                         public void run() {
@@ -208,12 +167,6 @@ public class MapsActivity extends AppCompatActivity {
                                     final double loY = rs.getDouble("location_y");
                                     final String loDetail = rs.getString("location_detail");
 
-
-//                                    System.out.println("loType: " + loType);
-//                                    System.out.println("loX: " + loX);
-//                                    System.out.println("loY: " + loY);
-
-
                                     // draws to the map
                                     mvHelper.addMarkerGraphic(loX, loY, loType, loDetail, R.drawable.pinimage,
                                             ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20), false, 0);
@@ -233,10 +186,6 @@ public class MapsActivity extends AppCompatActivity {
                     thread.start();
 
                 } // end if
-//
-                    ///////////////////////////
-
-
             }
         }); // end radioGroup
         // to enable map continuously
@@ -262,7 +211,7 @@ public class MapsActivity extends AppCompatActivity {
         switch (id) {
             case R.id.my_gps:
                 // turn on/off the gps
-                if (mv.getLocationDisplayManager().isStarted()){ // && id == R.id.my_gps) {
+                if (mv.getLocationDisplayManager().isStarted()){
                     Toast.makeText(getApplicationContext(), "GPS is de-activated!", Toast.LENGTH_SHORT).show();
                     mv.getLocationDisplayManager().setShowLocation(false);
                     mv.getLocationDisplayManager().stop();
