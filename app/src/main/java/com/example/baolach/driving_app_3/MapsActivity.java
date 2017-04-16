@@ -2,6 +2,8 @@ package com.example.baolach.driving_app_3;
 // this is the locations tab on the main screen - this will show the hillstart/turns locations etc once clicked
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -60,6 +62,9 @@ public class MapsActivity extends AppCompatActivity {
             @Override
             public void onStatusChanged(Object o, STATUS status) {
                 // this is for the home pin - need to change to current location
+
+                //Envelope myEnv = new Envelope(-6.31925242098891271,53.30991193101343,-6.31925242098891271,53.3049648969255259); mv.setExtent(myEnv);
+
                 mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
                 String title = "Location";
                 String detail = "Limekiln Road";
@@ -76,23 +81,24 @@ public class MapsActivity extends AppCompatActivity {
         mv.setOnSingleTapListener(new OnSingleTapListener() {
             @Override
             public void onSingleTap(final float x, final float y) {
-
-                ///////////////////////////
-
-                // add
                 // posts to database
                 add_btn = (Button) findViewById(R.id.add_btn);
 
-                add_btn.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        // used for inserting into database
-                        new Thread(new Runnable() {
-                            public void run() {
-                                insert();
+                // confirms the instructor wants to add this location
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                builder.setTitle("Are you sure you want to add this location to your database?");
+                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // used for inserting into database
+                                new Thread(new Runnable() {
+                                    public void run() {
+                                        insert();
+                                    }
+
+                                }).start();
                             }
 
-                        }).start();
-                    }
 
                     protected void insert() {
 
@@ -168,10 +174,18 @@ public class MapsActivity extends AppCompatActivity {
                     }
                 });
 
-
-                ////////////////////
-
-
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                         // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+                add_btn.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        builder.show();
+                    }
+                });
 
             } // end single tap
 
@@ -258,9 +272,6 @@ public class MapsActivity extends AppCompatActivity {
 
             }
         }); // end radioGroup
-        radioGroup.clearCheck();
-
-
         // to enable map continuously
         mv.enableWrapAround(true);
 
