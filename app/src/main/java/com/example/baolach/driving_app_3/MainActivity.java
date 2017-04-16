@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 // Main screen showing buttons
 public class MainActivity extends Activity
@@ -30,6 +31,7 @@ public class MainActivity extends Activity
             {
 
                 Intent maps = new Intent(MainActivity.this, MapsActivity.class); // Once clicked goes to map activity
+                Toast.makeText(getApplicationContext(), "To add location tap a the point on the map and select add", Toast.LENGTH_LONG).show();
                 startActivity(maps);
                 finish();
             }

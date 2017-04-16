@@ -87,6 +87,8 @@
 
         <activity android:name=".Register" />
         <activity android:name=".InsertExpense" />
+        <activity android:name=".InsertLocation" />
+
 
 
 

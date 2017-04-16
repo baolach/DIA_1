@@ -70,7 +70,7 @@ public class InsertLesson extends Activity {
 
 
         // posts to database
-        btnPost = (Button) findViewById(R.id.button_submit);
+        btnPost = (Button) findViewById(R.id.button_post);
         btnPost.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {

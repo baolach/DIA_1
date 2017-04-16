@@ -81,111 +81,78 @@ public class MapsActivity extends AppCompatActivity {
         mv.setOnSingleTapListener(new OnSingleTapListener() {
             @Override
             public void onSingleTap(final float x, final float y) {
-                // posts to database
-                add_btn = (Button) findViewById(R.id.add_btn);
 
-                // confirms the instructor wants to add this location
-                final AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
-                builder.setTitle("Are you sure you want to add this location to your database?");
-                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // used for inserting into database
-                                new Thread(new Runnable() {
+                    // posts to database
+                    add_btn = (Button) findViewById(R.id.add_btn);
+
+                    // confirms the instructor wants to add this location
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                    builder.setTitle("Are you sure you want to add this location to your database?");
+                    builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                            pt = mv.toMapPoint(x, y);
+
+
+                            // once a point is tapped, makes a new point calling geometryEngine
+                            Point wgsPoint = (Point) GeometryEngine.project(pt, mv.getSpatialReference(), SpatialReference.create(4326));
+                            final Double lon = wgsPoint.getX();
+                            final Double lat = wgsPoint.getY();
+
+                            if(lat != null){
+                                Intent i = new Intent(MapsActivity.this, InsertLocation.class);
+                                i.putExtra("thelocationx", lat);
+                                i.putExtra("thelocationy", lon);
+                                startActivity(i);
+                                finish();
+                            }else{
+                                runOnUiThread(new Runnable() {
                                     public void run() {
-                                        insert();
+                                        Toast.makeText(getBaseContext(), "You must select a coordinate", Toast.LENGTH_SHORT).show();
                                     }
-
-                                }).start();
+                                });
                             }
 
 
-                    protected void insert() {
 
-                        try {
-                            // this is when you're adding new pins
-                            // I want these added to the database
-                            pt = mv.toMapPoint(x, y);
-                            String title = "Reverse";
-                            String detail = "Reverse around the corner";
-
-                            // once a point is tapped, makes a new point calling geometryEngine
-                            Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
-                            final double lon = wgsPoint.getX();
-                            final double lat = wgsPoint.getY();
 
                             //Point p = wgsPoint.getX();
 
-                            System.out.println("lon: " +lon);
-                            System.out.println("lat: " +lat);
+                            System.out.println("lon: " + lon);
+                            System.out.println("lat: " + lat);
                             System.out.println("pt: " + pt);
                             System.out.println("mv: " + mv);
 
 
-                            // draws to the map
-                            mvHelper.addMarkerGraphic(wgsPoint.getY(), wgsPoint.getX(),title,detail,R.drawable.pinimage,
-                                    ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
+//                                // draws to the map
+//                                mvHelper.addMarkerGraphic(wgsPoint.getY(), wgsPoint.getX(),title,detail,R.drawable.pinimage,
+//                                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
+//                            try {
+                                // when the point is tapped and add button clicked, it sends the intent to the insertLocation class to be edited and inserted
 
+//                            }catch(Exception e){
+//                                e.printStackTrace();
+//                            }
 
-                            PreparedStatement insertdb;
-                            Class.forName("org.postgresql.Driver");
-                            String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
-                            Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
-
-                            // prepares the sql statement
-                            String insert = "insert into getdata_getlocation values (?, ?, ?) ;";
-                            insertdb = conn.prepareStatement(insert);
-                            System.out.println("insertdb: " + insertdb);
-                            insertdb.setString(1, title); // change to the selected radio button
-                            System.out.println("type: " + title);
-
-                            insertdb.setDouble(2, lat );
-                            System.out.println("lat: " + lat);
-
-                            insertdb.setDouble(3, lon );
-                            System.out.println("lon: " + lon);
-
-
-
-                            insertdb.execute();
-                            insertdb.close(); // close connection must be done
-
-                            // once inserted into database goes back to maps to show it in the db
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    Toast.makeText(getBaseContext(), "Location added to database! ", Toast.LENGTH_LONG).show();
-                                    Intent l = new Intent(MapsActivity.this, MapsActivity.class); //refreshes the map
-                                    startActivity(l);
-
-                                }
-                            });
-
-
-                            insertdb.close();
-                            conn.close();
-
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
                         }
 
+                    });
 
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                         // Do nothing
-                        dialog.dismiss();
-                    }
-                });
-                add_btn.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        builder.show();
-                    }
-                });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing
+                            dialog.dismiss();
+                        }
+                    });
+                    add_btn.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            builder.show();
+                        }
+                    });
 
             } // end single tap
 
@@ -239,6 +206,8 @@ public class MapsActivity extends AppCompatActivity {
                                     final String loType = rs.getString("location_type");
                                     final double loX = rs.getDouble("location_x");
                                     final double loY = rs.getDouble("location_y");
+                                    final String loDetail = rs.getString("location_detail");
+
 
 //                                    System.out.println("loType: " + loType);
 //                                    System.out.println("loX: " + loX);
@@ -246,10 +215,8 @@ public class MapsActivity extends AppCompatActivity {
 
 
                                     // draws to the map
-                                    mvHelper.addMarkerGraphic(loX, loY, loType, "add detail column to location type", R.drawable.pinimage,
+                                    mvHelper.addMarkerGraphic(loX, loY, loType, loDetail, R.drawable.pinimage,
                                             ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20), false, 0);
-
-
 
                                 }
 

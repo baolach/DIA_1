@@ -1,9 +1,20 @@
 package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * Created by Baolach on 16/04/2017.
@@ -14,141 +25,148 @@ public class InsertLocation extends Activity {
     EditText locationType;
     TextView locationX, locationY;
     EditText locationDetail;
+    private Button btnPost;
+
+
+    double locationx, locationy;// for the intent coming in
+
 
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.insert_location_details);
-//
-//        Intent intent = getIntent();
-//        Bundle bundle = intent.getExtras();
-//        // bundle captures the parameters from the intent fron SelectClient
-//        if (bundle != null) {
-//            locationtype = bundle.getString("thelocationtype");
-//            locationx = bundle.getString("thelocationx");
-//            locationy = bundle.getString("thelocationy");
-//            locationdetail = = bundle.getString("thelocationdetail");
-//
-//            System.out.println("id sent:" + clientid);
-//
-//            // then set the editTexts to these values that just came in
-////            locationType = (EditText) findViewById(R.id.editText_locationType);
-//            locationX = (TextView) findViewById(R.id.editText_locationX);
-//            locationY = (TextView) findViewById(R.id.editText_locationY);
-////            locationDetail = (EditText) findViewById(R.id.editText_locationDetail);
-//
-//            locationX.setText(locationx);
-//            locationY.setText(locationy);
-//
-//        } // end of bundle
-//
-//        locationType = (EditText) findViewById(R.id.editText_lessonName);
-//        locationDetail = (EditText) findViewById(R.id.editText_lessonTime);
-//
-//
-//        // confirms the instructor wants to add this location
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
-//        builder.setTitle("Are you sure you want to add this location to your database?");
-//        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                // used for inserting into database
-//                new Thread(new Runnable() {
-//                    public void run() {
-//                        insert();
-//                    }
-//
-//                }).start();
-//            }
-//
-//
-//            protected void insert() {
-//
-//                try {
-//                    // this is when you're adding new pins
-//                    // I want these added to the database
-//                    pt = mv.toMapPoint(x, y);
-//                    String title = "Reverse";
-//                    String detail = "Reverse around the corner";
-//
-//                    // once a point is tapped, makes a new point calling geometryEngine
-//                    Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(), SpatialReference.create(4326));
-//                    final double lon = wgsPoint.getX();
-//                    final double lat = wgsPoint.getY();
-//
-//                    //Point p = wgsPoint.getX();
-//
-//                    System.out.println("lon: " +lon);
-//                    System.out.println("lat: " +lat);
-//                    System.out.println("pt: " + pt);
-//                    System.out.println("mv: " + mv);
-//
-//
-//                    // draws to the map
-//                    mvHelper.addMarkerGraphic(wgsPoint.getY(), wgsPoint.getX(),title,detail,R.drawable.pinimage,
-//                            ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
-//
-//
-//                    PreparedStatement insertdb;
-//                    Class.forName("org.postgresql.Driver");
-//                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
-//                    Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
-//
-//                    // prepares the sql statement
-//                    String insert = "insert into getdata_getlocation values (?, ?, ?) ;";
-//                    insertdb = conn.prepareStatement(insert);
-//                    System.out.println("insertdb: " + insertdb);
-//                    insertdb.setString(1, title); // change to the selected radio button
-//                    System.out.println("type: " + title);
-//
-//                    insertdb.setDouble(2, lat );
-//                    System.out.println("lat: " + lat);
-//
-//                    insertdb.setDouble(3, lon );
-//                    System.out.println("lon: " + lon);
-//
-//
-//
-//                    insertdb.execute();
-//                    insertdb.close(); // close connection must be done
-//
-//                    // once inserted into database goes back to maps to show it in the db
-//                    runOnUiThread(new Runnable() {
-//                        public void run() {
-//                            Toast.makeText(getBaseContext(), "Location added to database! ", Toast.LENGTH_LONG).show();
-//                            Intent l = new Intent(MapsActivity.this, MapsActivity.class); //refreshes the map
-//                            startActivity(l);
-//
-//                        }
-//                    });
-//
-//
-//                    insertdb.close();
-//                    conn.close();
-//
-//                } catch (ClassNotFoundException e) {
-//                    e.printStackTrace();
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.insert_location_details);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        // bundle captures the parameters from the intent from mapsactivity
+        if (bundle != null) {
+            // only need the coordinates so I can set the locationa and add type and details
+            locationx = bundle.getDouble("thelocationx");
+            locationy = bundle.getDouble("thelocationy");
+
+        } // end of bundle
+
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup.clearCheck();
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                final RadioButton selected = (RadioButton) group.findViewById(checkedId);
+                // if a button is selected and its in the radioGroup
+                if (null != selected && checkedId > -1) {
+                    System.out.println("selected: "+ selected.getText().toString());
+
+
+
+                }
+
+
+//        locationType = selected.getText().toString();
+
+
+        locationDetail = (EditText) findViewById(R.id.editText_locationDetail);
+
+        // posts to database
+        btnPost = (Button) findViewById(R.id.button_post);
+        btnPost.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+//                if ( ( !locationType.getText().toString().equals("")) && ( !locationDetail.getText().toString().equals(""))){
+                    new Thread(new Runnable() {
+
+                        public void run() {
+                            insert();
+                        }
+                    }).start();
+                //}
+//                else{
+//                    Toast.makeText(getBaseContext(), "Fields cannot be empty", Toast.LENGTH_LONG).show();
 //                }
-//
-//
-//            }
-//        });
-//
-//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                // Do nothing
-//                dialog.dismiss();
-//            }
-//        });
-//        add_btn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                builder.show();
-//            }
-//        });
+
+            }
+
+            void insert() {
+                try {
+                    //String l_type = locationType.getText().toString();
+                    //System.out.println("l_type: " +l_type);
+
+                    String l_detail = locationDetail.getText().toString();
+                    System.out.println("l_detail: " +l_detail);
+
+
+                    PreparedStatement insertdb;
+                    Class.forName("org.postgresql.Driver");
+                    String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
+                    Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
+
+                    // prepares the sql statement
+                    String insert = "insert into getdata_getlocation values (?, ?, ?, ?) ;";
+                    insertdb = conn.prepareStatement(insert);
+                    System.out.println("insertdb: " + insertdb);
+                    insertdb.setString(1, selected.getText().toString()); // change to the selected radio button
+
+                    insertdb.setDouble(2, locationx );
+//                    System.out.println("lat: " + lat);
+
+                    insertdb.setDouble(3, locationy );
+//                    System.out.println("lon: " + lon);
+                    insertdb.setString(4, l_detail );
+
+
+
+
+                    insertdb.execute();
+                    insertdb.close(); // close connection must be done
+
+                    // once inserted into database goes back to maps to show it in the db
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getBaseContext(), "Location added to database! ", Toast.LENGTH_LONG).show();
+                            Intent l = new Intent(InsertLocation.this, MapsActivity.class); //refreshes the map
+                            startActivity(l);
+
+                        }
+                    });
+
+
+                    insertdb.close();
+                    conn.close();
+
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+            }
+        });
 
     } // end onCreate
+
+    // An intent for the user to go back to the main screen.
+    public void goBackScreen(View view) {
+        try {
+            Intent lastScreen = new Intent(this, MapsActivity.class);
+            startActivity(lastScreen);
+            finish();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void home(View view)
+    {
+        try {
+            Intent home_intent = new Intent(this, MainActivity.class);
+            startActivity(home_intent);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

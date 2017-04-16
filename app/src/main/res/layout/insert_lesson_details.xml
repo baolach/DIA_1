@@ -65,7 +65,7 @@
     </EditText>
 
     <Button
-        android:id="@+id/button_submit"
+        android:id="@+id/button_post"
         android:layout_width="fill_parent"
 
         android:layout_height="40dp"
@@ -118,7 +118,8 @@
         android:layout_marginRight="10dp"
         android:layout_alignTop="@+id/button"
         android:layout_toEndOf="@+id/button"
-        android:layout_marginStart="11dp"/>
+        android:layout_marginStart="11dp"
+        android:layout_above="@+id/editText_lessonName"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -130,7 +131,7 @@
         android:maxWidth="20dp"
         android:minHeight="20dp"
         android:textSize="10dp"
-        android:background="@color/turq"
+        android:background="@color/dturq"
         android:textColor="@color/white"
         android:padding="5dp"
         android:layout_below="@+id/website"

@@ -111,7 +111,7 @@
         android:maxWidth="20dp"
         android:minHeight="20dp"
         android:textSize="10dp"
-        android:background="@color/turq"
+        android:background="@color/dturq"
         android:textColor="@color/white"
         android:layout_marginBottom="10dp"
         android:layout_above="@+id/list_lessons_btn"
