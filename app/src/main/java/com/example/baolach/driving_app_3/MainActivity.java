@@ -31,6 +31,7 @@ public class MainActivity extends Activity
 
                 Intent maps = new Intent(MainActivity.this, MapsActivity.class); // Once clicked goes to map activity
                 startActivity(maps);
+                finish();
             }
         });
 
@@ -41,6 +42,8 @@ public class MainActivity extends Activity
                 Intent locations_intent = new Intent(MainActivity.this, AndroidGPSTrackingActivity.class); // inserts new lesson
                 //setContentView(R.layout.content_maps);
                 startActivity(locations_intent);
+                finish();
+
             }
         });
 
@@ -50,9 +53,8 @@ public class MainActivity extends Activity
             {
                 Intent traffic_intent = new Intent(MainActivity.this, TrafficActivity.class);
                 startActivity(traffic_intent);
-
-
-                //Intent clients_intent = new Intent(MainActivity.this, HttpURLConnectionExample.class); // goes to diary activity and calls the list clients activity
+                finish();
+               //Intent clients_intent = new Intent(MainActivity.this, HttpURLConnectionExample.class); // goes to diary activity and calls the list clients activity
                 //startActivity(clients_intent);
             }
         });

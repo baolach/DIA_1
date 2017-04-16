@@ -57,20 +57,6 @@
         >
 
         <TextView
-            android:text="Date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="22dp"
-            android:id="@+id/textView_date"
-
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_alignBaseline="@+id/textView_amount"
-            android:layout_alignBottom="@+id/textView_amount"
-            android:layout_alignParentEnd="true"/>
-
-        <TextView
             android:text="@string/expenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,6 +86,19 @@
             android:layout_alignParentStart="true"/>
 
         <TextView
+            android:text="Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="31dp"
+            android:id="@+id/textView_date"
+
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_above="@+id/listView_expenses"
+            android:layout_alignParentEnd="true"/>
+
+        <TextView
             android:text="Amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,7 +109,7 @@
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginEnd="51dp"
+            android:layout_marginEnd="39dp"
             android:layout_above="@+id/listView_expenses"
             android:layout_toStartOf="@+id/textView_date"/>
 

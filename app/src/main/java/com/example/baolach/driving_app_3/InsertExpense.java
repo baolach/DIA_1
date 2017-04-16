@@ -1,8 +1,10 @@
 package com.example.baolach.driving_app_3;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +17,6 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Calendar;
 
 /**
@@ -39,9 +40,6 @@ public class InsertExpense extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_expense_details);
 
-
-
-
         expenseName = (EditText) findViewById(R.id.editText_expenseName);
         expenseAmount = (EditText) findViewById(R.id.editText_expenseAmount);
         expenseDate = (TextView) findViewById(R.id.editText_expenseDate);
@@ -56,10 +54,13 @@ public class InsertExpense extends Activity {
 
         // posts to database
         btnPost = (Button) findViewById(R.id.button_submit);
-        btnPost.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
-                // makes sure no null values
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure you want to add this to your business expenses?");
+        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 if ( ( !expenseName.getText().toString().equals("")) && ( !expenseDate.getText().toString().equals(""))
                         && ( !expenseAmount.getText().toString().equals(""))){
                     new Thread(new Runnable() {
@@ -110,12 +111,25 @@ public class InsertExpense extends Activity {
                     insertdb.close();
                     conn.close();
 
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        btnPost.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                builder.show();
             }
         });
     } // end onCreate
@@ -140,57 +154,7 @@ public class InsertExpense extends Activity {
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
 
-            String mon;
-            String dayofwk;
-
-            // day of week
-            if(arg3 == 3)
-                dayofwk = "Mon";
-            else if(arg3 == 4)
-                dayofwk = "Tue";
-            else if(arg3 == 5)
-                dayofwk = "Wed";
-            else if(arg3 == 6)
-                dayofwk = "Thur";
-            else if(arg3 == 7)
-                dayofwk = "Fri";
-            else if(arg3 == 8)
-                dayofwk = "Sat";
-            else if(arg3 == 9)
-                dayofwk = "Sun";
-            else
-                dayofwk = "Tues";
-
-            // this is used to display a better DOB format to the instructor
-            if(arg2 == 0)
-                mon = "Jan";
-            else if(arg2 == 1)
-                mon = "Feb";
-            else if(arg2 == 2)
-                mon = "Mar";
-            else if(arg2 == 3)
-                mon = "Apr";
-            else if(arg2 == 4)
-                mon = "May";
-            else if(arg2 == 5)
-                mon = "June";
-            else if(arg2 == 6)
-                mon = "July";
-            else if(arg2 == 7)
-                mon = "Aug";
-            else if(arg2 == 8)
-                mon = "Sep";
-            else if(arg2 == 9)
-                mon = "Oct";
-            else if(arg2 == 10)
-                mon = "Nov";
-            else if(arg2 == 11)
-                mon = "Dec";
-            else
-                mon = "jan";
-
-//            showDate(arg3, mon, dayofwk);
-            showDate(arg3, arg2, arg1);
+           showDate(arg3, arg2, arg1);
 
         }
     };
@@ -198,8 +162,7 @@ public class InsertExpense extends Activity {
     private void showDate(int arg3, int arg2, int arg1){
 //    private void showDate(int arg3, String mon, String dayofwk) {
         // sets textView of CLient dob to the calendar input
-//        expenseDate.setText(new StringBuilder().append(dayofwk).append(" - ").append(arg3).append(" - ").append(mon));
-        expenseDate.setText(new StringBuilder().append(arg3).append(" - ").append(arg2).append(" - ").append(arg1));
+        expenseDate.setText(new StringBuilder().append(arg3).append("-").append(arg2).append("-").append(arg1));
 
 
     }

@@ -29,15 +29,6 @@
         android:textColorHint="@color/white"
         android:textColor="@color/white"/>
 
-    <Button
-        android:text="Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/loginBtn"
-        android:layout_alignEnd="@+id/password"
-        android:id="@+id/registerBtn"
-        android:background="@color/turq"/>
-
 
     <ImageView
         android:id="@+id/imageView3"
@@ -52,10 +43,10 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/username"
-        android:hint="Username"
+        android:hint="@string/username"
         android:textColorHint="@color/white"
         android:layout_marginTop="178dp"
         android:layout_alignParentTop="true"
@@ -69,10 +60,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:layout_marginTop="20dp"
         android:id="@+id/loginBtn"
         android:background="@color/turq"
         android:textAlignment="gravity"
-        android:layout_below="@+id/password"
+        android:layout_alignBaseline="@+id/registerBtn"
+        android:layout_alignBottom="@+id/registerBtn"
         android:layout_alignStart="@+id/password"/>
+
+    <Button
+        android:text="Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/registerBtn"
+        android:background="@color/dturq"
+        android:textColor="@color/white"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/password"
+        android:layout_alignEnd="@+id/password"/>
 </RelativeLayout>

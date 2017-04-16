@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Created by Baolach on 14/04/2017.
@@ -67,6 +66,11 @@ public class Register extends AppCompatActivity {
                     String pass = password.getText().toString();
                     String pass2 = confirmpassword.getText().toString();
 
+                    System.out.println("user: " + user);
+                    System.out.println("pass: " + pass);
+                    System.out.println("pass2: " + pass2);
+
+
                     PreparedStatement stmt = null;
                     PreparedStatement stmt2 = null;
                     Class.forName("org.postgresql.Driver");
@@ -84,17 +88,10 @@ public class Register extends AppCompatActivity {
                         user_name = rset.getString("username");
                     }
 
-                    if((user.equals("")) || (pass.equals(""))) {
-                        runOnUiThread(new Runnable() {
-                            public void run() {
+                    if((!user.equals("")) && (!pass.equals("")) && (!pass2.equals(""))) {
 
-                                Toast.makeText(getBaseContext(), "Username or Password cannot be empty", Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                    }
                         // if username exists
-                        if (user != null && user.equals(user_name)) {
+                        if (user.equals(user_name)) {
                             runOnUiThread(new Runnable() {
                                 public void run() {
 
@@ -107,7 +104,7 @@ public class Register extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     public void run() {
 
-                                        Toast.makeText(getBaseContext(), "Passwords don't match! Try again!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getBaseContext(), "Passwords don't match! Try again", Toast.LENGTH_LONG).show();
                                     }
                                 });
 
@@ -130,13 +127,20 @@ public class Register extends AppCompatActivity {
                                 });
                             }
                         }
-                    //} // end if null
+                    } // end if null
+                    else{
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+
+                                Toast.makeText(getBaseContext(), "Fields cannot be empty", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+                    }
 
                     stmt.close();
                     conn.close();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 

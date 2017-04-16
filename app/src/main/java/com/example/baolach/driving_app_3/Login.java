@@ -83,11 +83,10 @@ public class Login extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 public void run() {
 
-                                    Toast.makeText(getBaseContext(), " User "+ user + " logged in ! ", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getBaseContext(), " Welcome "+ user + "!", Toast.LENGTH_SHORT).show();
                                 }
                             });
                             Intent mainActivity = new Intent(Login.this, MainActivity.class);
-                            mainActivity.putExtra("Name", username.getText().toString());
                             startActivity(mainActivity);
                             finish();
                         }
@@ -95,7 +94,7 @@ public class Login extends AppCompatActivity {
                         {
                             runOnUiThread(new Runnable() {
                                 public void run() {
-                                    Toast.makeText(getBaseContext(), "Password doesn't match ! " , Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getBaseContext(), "Incorrect password" , Toast.LENGTH_LONG).show();
                                 }
                             });
                         }
@@ -105,7 +104,7 @@ public class Login extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             public void run() {
 
-                                Toast.makeText(getBaseContext(), " User does not exist ! ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), "User does not exist! Please Register", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -126,7 +125,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent k = new Intent(Login.this, Register.class);
-                Toast.makeText(Login.this, "Create a username and password for your Driving Instructor Account", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, "Create new username and password for your Driving Instructor Account", Toast.LENGTH_LONG).show();
                 startActivity(k);
                 finish();
             }
