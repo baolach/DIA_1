@@ -52,19 +52,19 @@ public class MapsActivity extends AppCompatActivity {
         mvHelper = new MapViewHelper(mv);
 
 
+//        mv.getLocationDisplayManager().setShowLocation(true);
+//        mv.getLocationDisplayManager().start();
+
         // sets home pin as limekiln road - need to set to current location
         mv.setOnStatusChangedListener(new OnStatusChangedListener() {
-                                          @Override
-                                          public void onStatusChanged(Object o, STATUS status) {
-
-
-                                              // this is for the home pin - need to change to current location
-                                              mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
-                                              String title = "Location";
-                                              String detail = "Limekiln Road";
-
-                                              mvHelper.addMarkerGraphic(53.304679, -6.330082, title, detail, "",
-                                                      ContextCompat.getDrawable(getApplicationContext(), R.drawable.tree40), false, 0);
+            @Override
+            public void onStatusChanged(Object o, STATUS status) {
+                // this is for the home pin - need to change to current location
+                mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
+                String title = "Location";
+                String detail = "Limekiln Road";
+                mvHelper.addMarkerGraphic(53.304679, -6.330082, title, detail, "",
+                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.tree40), false, 0);
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -86,8 +86,8 @@ public class MapsActivity extends AppCompatActivity {
 
                                               ////////////////////////////////////////////////////////////////////////////////
 
-                                          }
-                                      });
+            }
+        });
 
 
 
@@ -299,7 +299,7 @@ public class MapsActivity extends AppCompatActivity {
         switch (id) {
             case R.id.my_gps:
                 // turn on/off the gps
-                if ( mv.getLocationDisplayManager().isStarted()){ // && id == R.id.my_gps) {
+                if (mv.getLocationDisplayManager().isStarted()){ // && id == R.id.my_gps) {
                     Toast.makeText(getApplicationContext(), "GPS is de-activated!", Toast.LENGTH_SHORT).show();
                     mv.getLocationDisplayManager().setShowLocation(false);
                     mv.getLocationDisplayManager().stop();
