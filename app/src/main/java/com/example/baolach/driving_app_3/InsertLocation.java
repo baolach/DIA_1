@@ -80,7 +80,6 @@ public class InsertLocation extends Activity {
                             // prepares the sql statement
                             String insert = "insert into getdata_getlocation values (?, ?, ?, ?) ;";
                             insertdb = conn.prepareStatement(insert);
-                            System.out.println("insertdb: " + insertdb);
 
                             insertdb.setString(1, selected.getText().toString()); // change to the selected radio button
                             insertdb.setDouble(2, locationx );

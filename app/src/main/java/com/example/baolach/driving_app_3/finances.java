@@ -30,16 +30,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/*
-when finances button is clicked on mainActivity - the FinancesCursorAdapter is loaded which lists
-the clients (ListClients activity) but still in the FinancesActivity
-Then you must select the client and ContentFinancesInfo.xml shows the client's payment history when the client is pressed
-I need another button on the Finances activity to bring you to the payments section
-insert_finance_details.xml - maybe should be UPDATE finance details and be a button option on the ContentFinancesInfo.xml
-So maybe it arrives at the client table exactly the same as if the listClients>ClientInfo was selected
-But there will be a paymentsActivity which shows just the payment history rather than all the client info
-list_finances.xml is connect to Finances.java Activity but lists the clientnames.xml which shows the client name and log number
-*/
+
 public class Finances extends Activity
 {
 
@@ -59,17 +50,11 @@ public class Finances extends Activity
     static ArrayList<String> expenseDate = new ArrayList<String>();
     static ArrayList<String> expenseId = new ArrayList<String>();
 
-
-
     ListView listView, listView2;
     ArrayList<Client> list;
     ArrayList<Expense> list2;
     FinanceAdapter adapter = null;
     ExpenseAdapter adapter2 = null;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,18 +91,6 @@ public class Finances extends Activity
         listView2.setAdapter(adapter2); // makes the listview in ListCLients activity output the adapter within the listView
 
 
-
-//        String[] array = new String[]{"red", "blue", "green", "black", "white"};
-//        ListView lView = (ListView) findViewById(R.id.listView_expenses);
-//        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array);
-//        listView2.setAdapter(adapter2);
-
-//        listView2 = (ListView) findViewById(R.id.listView_expenses); // the listview ID in list_clients.xml
-//        list2 = new ArrayList<>();
-//        adapter = new FinanceAdapter(this, R.layout.finance, list2); // this sets adapter to the ClientAdapter which uses client.xml
-//        listView2.setAdapter(adapter); // makes the listview in ListCLients activity output the adapter within the listView
-
-
         String url = "http://138.68.141.18:8006/clients/?format=json"; //urlText.getText().toString();
         ConnectivityManager connmgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connmgr.getActiveNetworkInfo();
@@ -145,8 +118,6 @@ public class Finances extends Activity
                 String comments = clientComments.get(itemId);
                 String clientid = clientId.get(itemId);
 
-
-
                 // creates new intent and sends over the client information when item is clicked
                 Intent i = new Intent(Finances.this, FinanceInfo.class);
                 i.putExtra("theclientname", clientname);
@@ -165,26 +136,20 @@ public class Finances extends Activity
             }
         });
 
-        ////////////////////////
-
 
         Thread thread = new Thread() {
 
             public void run() {
                 try {
 
-
-
                     PreparedStatement st = null;
                     Class.forName("org.postgresql.Driver");
                     String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
                     // prepares the sql statement
-                    String select = "select * from getdata_getexpense;"; //
+                    String select = "select * from getdata_getexpense;";
 
                     st = conn.prepareStatement(select);
-//                  st.setString(1, expenseName);
-                    //st.setString(2, clientid);
                     ResultSet rs = st.executeQuery();
 
                     while (rs.next()) {
@@ -202,7 +167,6 @@ public class Finances extends Activity
                                 expenseAmount.add(expenseamount);
                                 expenseDate.add(expensedate);
                                 expenseId.add(expenseid);
-
 
                                 list2.add(new Expense(g, expensename, expenseamount, expensedate, expenseid));
                                 adapter2.notifyDataSetChanged();
@@ -288,11 +252,7 @@ public class Finances extends Activity
                 Log.d("DEBUG", "Response code is " + response);
 
                 is = conn.getInputStream();
-                //System.out.println(" ########### input stream: " + is);
-
-
                 String content = parse(is, len);
-                // System.out.println(" ########### content: " + content); // this is the content of the url - ie. the data - this is passed to onPostExectute as result
 
                 return content;
 
@@ -344,11 +304,6 @@ public class Finances extends Activity
 
                         list.add(new Client(g, clientname, clientphone, clientaddress, logno, driverno, dob, nooflessons, balancedue, comments, clientid ));
                         adapter.notifyDataSetChanged();
-
-
-//                        System.out.println("##### Finances.java");
-//                        System.out.println("##### clientname: " + clientname);
-//                        System.out.println("##### balance due: " + balancedue);
 
 
                     } catch (JSONException e) {

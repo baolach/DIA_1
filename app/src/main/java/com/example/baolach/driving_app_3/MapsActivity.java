@@ -50,19 +50,16 @@ public class MapsActivity extends AppCompatActivity {
         mvHelper = new MapViewHelper(mv);
 
 
-        // sets home pin as limekiln road - need to set to current location
         mv.setOnStatusChangedListener(new OnStatusChangedListener() {
             @Override
             public void onStatusChanged(Object o, STATUS status) {
                 // this is for the home pin - need to change to current location
 
-                //Envelope myEnv = new Envelope(-6.31925242098891271,53.30991193101343,-6.31925242098891271,53.3049648969255259); mv.setExtent(myEnv);
-
-                mv.centerAndZoom(53.304679, -6.330082, 16); // Limekiln road
-                String title = "Location";
-                String detail = "Limekiln Road";
-                mvHelper.addMarkerGraphic(53.304679, -6.330082, title, detail, "",
-                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.tree40), false, 0);
+                mv.centerAndZoom(53.304679, -6.330082, 16); // change to kevin street
+//                String title = "Location";
+//                String detail = "Limekiln Road";
+//                mvHelper.addMarkerGraphic(53.304679, -6.330082, title, detail, "",
+//                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.tree40), false, 0);
 
             }
         });
@@ -75,20 +72,19 @@ public class MapsActivity extends AppCompatActivity {
             @Override
             public void onSingleTap(final float x, final float y) {
 
-                    // posts to database
-                add_btn = (Button) findViewById(R.id.add_btn);
 
-                // on click, draw the pin but dont add to the database until the user clicks add - double check this works
+                // on click, draw the pin but dont add to the database until the user clicks add
                 pt = mv.toMapPoint(x, y);
                 // once a point is tapped, makes a new point calling geometryEngine
-                Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
-                // draws to the map
-                mvHelper.addMarkerGraphic(wgsPoint.getY(), wgsPoint.getX(),"","",R.drawable.pinimage,
-                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
+                Point wgsPoint = (Point) GeometryEngine.project(pt, mv.getSpatialReference(), SpatialReference.create(4326));
+                // draws to the map and waits to be added
+                mvHelper.addMarkerGraphic(wgsPoint.getY(), wgsPoint.getX(), "", "", R.drawable.pinimage,
+                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20), false, 0);
 
 
-
-                // confirms the instructor wants to add this location
+                // posts to database
+                add_btn = (Button) findViewById(R.id.add_btn);
+                    // confirms the instructor wants to add this location
                     final AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
                     builder.setTitle("Are you sure you want to add this location to your database?");
                     builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
@@ -103,24 +99,19 @@ public class MapsActivity extends AppCompatActivity {
                             final Double lon = wgsPoint.getX();
                             final Double lat = wgsPoint.getY();
 
-                            if(lat != null){
+                            if (lat != 0.0f) {
                                 Intent i = new Intent(MapsActivity.this, InsertLocation.class);
                                 i.putExtra("thelocationx", lat);
                                 i.putExtra("thelocationy", lon);
                                 startActivity(i);
                                 finish();
-                            }else{
+                            } else {
                                 runOnUiThread(new Runnable() {
                                     public void run() {
                                         Toast.makeText(getBaseContext(), "You must select a coordinate", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
-
-                            System.out.println("lon: " + lon);
-                            System.out.println("lat: " + lat);
-                            System.out.println("pt: " + pt);
-                            System.out.println("mv: " + mv);
 
                         }
 
@@ -139,11 +130,11 @@ public class MapsActivity extends AppCompatActivity {
                         }
                     });
 
+
             } // end single tap
         });
 
         // clears check box and outputs what button was click
-        // I was to put this text in a variable and post it to the database in a locations table along with the location of a pin
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         radioGroup.clearCheck();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
@@ -171,7 +162,6 @@ public class MapsActivity extends AppCompatActivity {
                                 System.out.println("rs: " + rs);
 
                                 while (rs.next()) {
-                                    final int g = 0;
                                     final String loType = rs.getString("location_type");
                                     final double loX = rs.getDouble("location_x");
                                     final double loY = rs.getDouble("location_y");

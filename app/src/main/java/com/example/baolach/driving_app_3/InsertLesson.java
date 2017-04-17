@@ -93,13 +93,8 @@ public class InsertLesson extends Activity {
             void insert() {
                 try {
                     String l_name = lessonName.getText().toString();
-                    System.out.println("l_name: " +l_name);
                     String l_date = lessonDate.getText().toString();
-                    System.out.println("l_name: " +l_date);
-
                     String l_time = lessonTime.getText().toString();
-                    System.out.println("l_time: " +l_time);
-
                     String l_location = lessonLocation.getText().toString();
                     String l_comments = lessonComments.getText().toString();
 

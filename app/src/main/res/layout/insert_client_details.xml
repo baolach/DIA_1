@@ -160,6 +160,7 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="textCapSentences"
+        android:digits="0123456789 !?()-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:nextFocusForward="@+id/lesson_date"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
@@ -216,6 +217,7 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
 
+        android:digits="0123456789 !?()-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
         android:hint="Address"
         android:layout_marginLeft="1dp"
@@ -312,6 +314,7 @@
         android:layout_marginRight="1dp"
         android:layout_marginTop="15dp"
 
+        android:digits=" '-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
         android:nextFocusDown="@+id/editText_clientPhone"
         android:imeOptions="actionSend|flagNoEnterAction"
