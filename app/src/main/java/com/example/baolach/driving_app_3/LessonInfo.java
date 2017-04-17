@@ -154,6 +154,21 @@ public class LessonInfo extends Activity {
 
             }});
 
+
+        nameTextView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try{
+                    // send the name to the listClients which will then go to clientinfo based on the name
+                    Intent i = new Intent(LessonInfo.this, ListClients.class);
+                    startActivity(i);
+                    finish();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }});
+
     } // end onCreate
 
     public void goBackScreen(View view) {

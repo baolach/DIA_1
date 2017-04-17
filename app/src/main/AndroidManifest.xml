@@ -68,11 +68,6 @@
             android:label="@string/title_activity_finances"
             >
         </activity>
-        <activity
-            android:name=".InsertFinances"
-            android:label="@string/title_activity_finances"
-            >
-        </activity>
         <activity android:name=".Reminders" />
         <activity android:name=".TrafficActivity" />
         <activity android:name=".UpdateLesson" />

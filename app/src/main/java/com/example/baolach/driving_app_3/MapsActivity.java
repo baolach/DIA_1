@@ -76,9 +76,19 @@ public class MapsActivity extends AppCompatActivity {
             public void onSingleTap(final float x, final float y) {
 
                     // posts to database
-                    add_btn = (Button) findViewById(R.id.add_btn);
+                add_btn = (Button) findViewById(R.id.add_btn);
 
-                    // confirms the instructor wants to add this location
+                // on click, draw the pin but dont add to the database until the user clicks add - double check this works
+                pt = mv.toMapPoint(x, y);
+                // once a point is tapped, makes a new point calling geometryEngine
+                Point wgsPoint =  (Point) GeometryEngine.project(pt,mv.getSpatialReference(),SpatialReference.create(4326));
+                // draws to the map
+                mvHelper.addMarkerGraphic(wgsPoint.getY(), wgsPoint.getX(),"","",R.drawable.pinimage,
+                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.pin20),false,0);
+
+
+
+                // confirms the instructor wants to add this location
                     final AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
                     builder.setTitle("Are you sure you want to add this location to your database?");
                     builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {

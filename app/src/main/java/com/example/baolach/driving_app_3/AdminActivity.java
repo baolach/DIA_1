@@ -23,6 +23,8 @@ public class AdminActivity extends Activity {
         Button new_client_btn = (Button)findViewById(R.id.new_client_btn);
         Button finances_btn = (Button)findViewById(R.id.finances_btn);
         Button back_screen_btn = (Button)findViewById(R.id.back_screen_btn);
+        Button email_btn = (Button)findViewById(R.id.email_btn);
+
 
 
         back_screen_btn.setOnClickListener(new View.OnClickListener()
@@ -83,6 +85,18 @@ public class AdminActivity extends Activity {
                 startActivity(finances_intent);
             }
         });
+        email_btn.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("message/rfc822");
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 }

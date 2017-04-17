@@ -270,7 +270,7 @@ public class SelectClient extends Activity {
     public void goBackScreen(View view) {
 
         try {
-            Intent lastScreen = new Intent(this, AdminActivity.class);
+            Intent lastScreen = new Intent(this, ListLessons.class);
             startActivity(lastScreen);
         } catch(Exception e) {
             e.printStackTrace();

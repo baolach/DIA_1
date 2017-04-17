@@ -41,7 +41,7 @@ public class ListClients extends Activity {
     static ArrayList<String> clientComments = new ArrayList<String>();
     static ArrayList<String> clientId = new ArrayList<String>();
 
-
+    String lessonname; // for the intent
     ListView listView;
     ArrayList<Client> list;
     ClientAdapter adapter = null;
@@ -51,7 +51,6 @@ public class ListClients extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_clients); // shows the listView in ListClients activity
-
 
         clientsName.clear();
         clientsPhone.clear();
@@ -86,6 +85,7 @@ public class ListClients extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int itemId = (int) id;
+                System.out.println("ListClients - listView Listener - id: " + id);
                 //String name = clientsName.get(itemId);
 
                 String clientname = clientsName.get(itemId);

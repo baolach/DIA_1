@@ -71,7 +71,7 @@ public class InsertExpense extends Activity {
                     }).start();
                 }
                 else{
-                    Toast.makeText(getBaseContext(), "Values cannot be empty ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Fields cannot be empty ", Toast.LENGTH_LONG).show();
                 }
 
             }

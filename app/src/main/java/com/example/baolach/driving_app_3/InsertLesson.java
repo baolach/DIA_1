@@ -85,7 +85,7 @@ public class InsertLesson extends Activity {
                     }).start();
                 }
                 else{
-                    Toast.makeText(getBaseContext(), "Date and Time cannot be null ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Date and Time cannot be empty ", Toast.LENGTH_LONG).show();
                 }
 
             }
