@@ -168,6 +168,7 @@ public class Finances extends Activity
                                 expenseDate.add(expensedate);
                                 expenseId.add(expenseid);
 
+                                // adds to the arrayList and sent to adapter to be outputted
                                 list2.add(new Expense(g, expensename, expenseamount, expensedate, expenseid));
                                 adapter2.notifyDataSetChanged();
 

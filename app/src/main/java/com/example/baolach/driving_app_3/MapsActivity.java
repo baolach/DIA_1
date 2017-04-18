@@ -55,11 +55,13 @@ public class MapsActivity extends AppCompatActivity {
             public void onStatusChanged(Object o, STATUS status) {
                 // this is for the home pin - need to change to current location
 
-                mv.centerAndZoom(53.304679, -6.330082, 16); // change to kevin street
-//                String title = "Location";
-//                String detail = "Limekiln Road";
-//                mvHelper.addMarkerGraphic(53.304679, -6.330082, title, detail, "",
-//                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.tree40), false, 0);
+                mv.centerAndZoom(53.304679, -6.330082, 16); // home
+//                mv.centerAndZoom(53.337203, -6.267371, 16); // change to kevin street
+//
+//                String title = "Kevin Street";
+//                String detail = "College Campus";
+//                mvHelper.addMarkerGraphic(53.337203, -6.267371, title, detail, "",
+//                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.loc), false, 0);
 
             }
         });

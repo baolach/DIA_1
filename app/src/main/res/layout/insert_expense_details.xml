@@ -25,6 +25,7 @@
         android:id="@+id/editText_expenseName"
 
         android:hint="Expense"
+        android:digits="0123456789 !?()-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

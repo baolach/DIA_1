@@ -73,8 +73,9 @@ public class ClientLessons extends Activity{
                 String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
                 Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
                 // prepares the sql statement
+
                 String select = "select * from getdata_getlesson where lesson_name=? ;" ; // AND id = ?;";
-                System.out.println("ln 77 select: " +select);
+
                 st = conn.prepareStatement(select);
                 st.setString(1, clientname);
                 //st.setString(2, clientid);
