@@ -74,7 +74,6 @@ public class MapsActivity extends AppCompatActivity {
             @Override
             public void onSingleTap(final float x, final float y) {
 
-
                 // on click, draw the pin but dont add to the database until the user clicks add
                 pt = mv.toMapPoint(x, y);
                 // once a point is tapped, makes a new point calling geometryEngine
@@ -100,6 +99,8 @@ public class MapsActivity extends AppCompatActivity {
                             Point wgsPoint = (Point) GeometryEngine.project(pt, mv.getSpatialReference(), SpatialReference.create(4326));
                             final Double lon = wgsPoint.getX();
                             final Double lat = wgsPoint.getY();
+
+                            // if location not equal to 0 and the add button is clicked - this handles this error
 
                             if (lat != 0.0f) {
                                 Intent i = new Intent(MapsActivity.this, InsertLocation.class);

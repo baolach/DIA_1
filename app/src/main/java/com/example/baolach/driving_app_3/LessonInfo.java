@@ -44,9 +44,9 @@ public class LessonInfo extends Activity {
         }
 
         // apply to textViews in LessonInfo but dont need id
-        TextView nameTextView = (TextView) findViewById(R.id.theclientname);
-        TextView dateTextView = (TextView) findViewById(R.id.theclientphone);
-        TextView timeTextView = (TextView) findViewById(R.id.theclientaddress);
+        TextView nameTextView = (TextView) findViewById(R.id.theexpensename);
+        TextView dateTextView = (TextView) findViewById(R.id.theexpenseamount);
+        TextView timeTextView = (TextView) findViewById(R.id.theexpensedate);
         final TextView locationTextView = (TextView) findViewById(R.id.thelognumber); // made final to make it clickable to pass the location to google maps
         TextView commentsTextView = (TextView) findViewById(R.id.thedrivernumber);
 

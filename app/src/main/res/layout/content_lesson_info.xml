@@ -19,27 +19,27 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="date"
         android:textColor="@color/white"
-        android:id="@+id/theclientphone"
+        android:id="@+id/theexpenseamount"
         android:layout_alignWithParentIfMissing="false"
 
         android:layout_marginRight="10dp"
         android:layout_marginTop="17dp"
-        android:layout_below="@+id/theclientname"
-        android:layout_alignStart="@+id/theclientname"/>
+        android:layout_below="@+id/theexpensename"
+        android:layout_alignStart="@+id/theexpensename"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Time"
-        android:id="@+id/textView3"
+        android:id="@+id/textview_date"
 
 
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginRight="10dp"
-        android:layout_alignBaseline="@+id/theclientaddress"
-        android:layout_alignBottom="@+id/theclientaddress"
+        android:layout_alignBaseline="@+id/theexpensedate"
+        android:layout_alignBottom="@+id/theexpensedate"
         />
 
     <TextView
@@ -52,7 +52,7 @@
 
         android:layout_marginRight="10dp"
         android:layout_above="@+id/thedrivernumber"
-        android:layout_alignStart="@+id/theclientname"
+        android:layout_alignStart="@+id/theexpensename"
 
         android:maxLines="1"
         android:ellipsize="marquee"
@@ -70,12 +70,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="time"
         android:textColor="@color/white"
-        android:id="@+id/theclientaddress"
+        android:id="@+id/theexpensedate"
 
         android:layout_marginRight="10dp"
         android:layout_marginTop="14dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/theclientname"/>
+        android:layout_below="@+id/textview_amount"
+        android:layout_alignStart="@+id/theexpensename"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/textView4"
-        android:layout_alignStart="@+id/theclientname"
+        android:layout_alignStart="@+id/theexpensename"
 
 
         android:maxLines="5"
@@ -103,14 +103,14 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Date"
-        android:id="@+id/textView2"
+        android:id="@+id/textview_amount"
 
 
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:layout_alignBaseline="@+id/theclientphone"
-        android:layout_alignBottom="@+id/theclientphone"
-        android:layout_alignStart="@+id/textView"/>
+        android:layout_alignBaseline="@+id/theexpenseamount"
+        android:layout_alignBottom="@+id/theexpenseamount"
+        android:layout_alignStart="@+id/textview_expense"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -132,8 +132,8 @@
         android:textStyle="bold"
         android:layout_marginRight="10dp"
         android:layout_marginTop="18dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignStart="@+id/textView"/>
+        android:layout_below="@+id/textview_date"
+        android:layout_alignStart="@+id/textview_expense"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
 
         android:layout_alignBaseline="@+id/thedrivernumber"
         android:layout_alignBottom="@+id/thedrivernumber"
-        android:layout_alignStart="@+id/textView"
+        android:layout_alignStart="@+id/textview_expense"
 />
 
     <Button
@@ -202,19 +202,19 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name"
 
-        android:id="@+id/textView"
+        android:id="@+id/textview_expense"
 
 
         android:textColor="@color/white"
         android:textStyle="bold"
 
         android:layout_marginRight="10dp"
-        android:layout_alignBaseline="@+id/theclientname"
-        android:layout_alignBottom="@+id/theclientname"
+        android:layout_alignBaseline="@+id/theexpensename"
+        android:layout_alignBottom="@+id/theexpensename"
         android:layout_alignParentStart="true"/>
 
     <TextView
-        android:id="@+id/theclientname"
+        android:id="@+id/theexpensename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -270,7 +270,7 @@
 
 
         android:layout_marginLeft="5dp"
-        android:layout_above="@+id/theclientname"
+        android:layout_above="@+id/theexpensename"
         android:layout_toEndOf="@+id/delete_client_btn"
         android:layout_marginStart="11dp"/>
 

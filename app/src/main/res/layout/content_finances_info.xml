@@ -50,13 +50,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Phone"
-        android:id="@+id/textView2"
+        android:id="@+id/textview_amount"
         android:textColor="@color/white"
         android:textStyle="bold"
 
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/textView"/>
+        android:layout_below="@+id/textview_expense"
+        android:layout_alignStart="@+id/textview_expense"/>
 
 
     <TextView
@@ -64,11 +64,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Address"
-        android:id="@+id/theclientaddress"
+        android:id="@+id/theexpensedate"
         android:textColor="@color/white"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignStart="@+id/theclientname"
+        android:layout_alignBaseline="@+id/textview_date"
+        android:layout_alignBottom="@+id/textview_date"
+        android:layout_alignStart="@+id/theexpensename"
 
         android:maxLines="1"
         android:ellipsize="marquee"
@@ -86,12 +86,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Phone"
-        android:id="@+id/theclientphone"
+        android:id="@+id/theexpenseamount"
         android:textColor="@color/white"
         android:textStyle="bold|italic"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignStart="@+id/theclientaddress"
+        android:layout_alignBaseline="@+id/textview_amount"
+        android:layout_alignBottom="@+id/textview_amount"
+        android:layout_alignStart="@+id/theexpensedate"
 
         android:ellipsize="marquee"
         android:layout_width="fill_parent"
@@ -115,8 +115,8 @@
 
 
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"/>
+        android:layout_below="@+id/textview_date"
+        android:layout_alignStart="@+id/textview_date"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
         android:textColor="@color/white"
         android:layout_alignBaseline="@+id/textView4"
         android:layout_alignBottom="@+id/textView4"
-        android:layout_alignStart="@+id/theclientaddress"
+        android:layout_alignStart="@+id/theexpensedate"
         android:maxLines="1"
         />
 
@@ -249,11 +249,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Address"
-        android:id="@+id/textView3"
+        android:id="@+id/textview_date"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/textView2"/>
+        android:layout_alignStart="@+id/textview_amount"/>
 
     <TextView
         android:text="balance"
@@ -313,7 +313,7 @@
 
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Client Name"
-        android:id="@+id/theclientname"
+        android:id="@+id/theexpensename"
         android:textColor="@color/white"
         android:layout_width="fill_parent"
 
@@ -322,7 +322,7 @@
         android:maxLines="1"
         android:scrollbars="horizontal"
 
-        android:layout_above="@+id/textView2"
+        android:layout_above="@+id/textview_amount"
         android:layout_alignStart="@+id/update_client_btn"/>
 
     <TextView
@@ -367,7 +367,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name"
-        android:id="@+id/textView"
+        android:id="@+id/textview_expense"
         android:textStyle="bold"
 
         android:textColor="@color/white"

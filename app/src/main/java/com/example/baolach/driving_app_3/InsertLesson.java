@@ -159,26 +159,11 @@ public class InsertLesson extends Activity {
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
 
+            // arg 1 is date
+            // arg 2 is month
+            // arg3 is year
             String mon;
             String dayofwk;
-
-            // day of week
-            if(arg3 == 3)
-                dayofwk = "Mon";
-            else if(arg3 == 4)
-                dayofwk = "Tue";
-            else if(arg3 == 5)
-                dayofwk = "Wed";
-            else if(arg3 == 6)
-                dayofwk = "Thur";
-            else if(arg3 == 7)
-                dayofwk = "Fri";
-            else if(arg3 == 8)
-                dayofwk = "Sat";
-            else if(arg3 == 9)
-                dayofwk = "Sun";
-            else
-                dayofwk = "Tues";
 
             // this is used to display a better DOB format to the instructor
             if(arg2 == 0)
@@ -207,6 +192,24 @@ public class InsertLesson extends Activity {
                 mon = "Dec";
             else
                 mon = "jan";
+
+            // day of week
+            if(arg3 == 3)
+                dayofwk = "Mon";
+            else if(arg3 == 4)
+                dayofwk = "Tue";
+            else if(arg3 == 5)
+                dayofwk = "Wed";
+            else if(arg3 == 6)
+                dayofwk = "Thur";
+            else if(arg3 == 7)
+                dayofwk = "Fri";
+            else if(arg3 == 8)
+                dayofwk = "Sat";
+            else if(arg3 == 9)
+                dayofwk = "Sun";
+            else
+                dayofwk = "Tues";
 
             showDate(arg3, mon, dayofwk);
 //            showDate(arg3, arg2, arg1);

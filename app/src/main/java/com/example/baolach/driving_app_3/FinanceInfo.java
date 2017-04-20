@@ -52,9 +52,9 @@ public class FinanceInfo extends Activity {
         }
 
         // apply to textViews
-        TextView nameTextView = (TextView) findViewById(R.id.theclientname);
-        final TextView phoneTextView = (TextView) findViewById(R.id.theclientphone);
-        final TextView addressTextView = (TextView) findViewById(R.id.theclientaddress);
+        TextView nameTextView = (TextView) findViewById(R.id.theexpensename);
+        final TextView phoneTextView = (TextView) findViewById(R.id.theexpenseamount);
+        final TextView addressTextView = (TextView) findViewById(R.id.theexpensedate);
         TextView lognoTextView = (TextView) findViewById(R.id.thelognumber);
         TextView drivernoTextView = (TextView) findViewById(R.id.thedrivernumber);
         TextView dobTextView = (TextView) findViewById(R.id.thedob);
@@ -115,7 +115,6 @@ public class FinanceInfo extends Activity {
                     System.out.println("About to delete: " + clientlogno);
 
                     String sql = "DELETE from getdata_getclient where log_no= '" + clientlogno + "';" ;
-                    //Toast.makeText(getBaseContext(), "Client deleted from database! ", Toast.LENGTH_LONG).show();
 
                     deletedb.executeUpdate(sql);
                     conn.commit();

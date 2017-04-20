@@ -136,6 +136,29 @@ public class Finances extends Activity
             }
         });
 
+        // onClick listner for expenses list
+        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int itemId = (int) id;
+                //String name = clientsName.get(itemId);
+
+                String expenses = expenseName.get(itemId);
+                String amount = expenseAmount.get(itemId);
+                String date = expenseDate.get(itemId);
+                String expenseid = expenseId.get(itemId);
+
+                // creates new intent and sends over the client information when item is clicked
+                Intent i = new Intent(Finances.this, ExpenseInfo.class);
+                i.putExtra("theexpensename", expenses);
+                i.putExtra("theexpenseamount", amount);
+                i.putExtra("theexpensedate", date);
+                i.putExtra("theexpenseid", expenseid);
+
+                startActivity(i);
+
+            }
+        });
+
 
         Thread thread = new Thread() {
 
@@ -147,7 +170,7 @@ public class Finances extends Activity
                     String url = "jdbc:postgresql://138.68.141.18:5432/fypdia2"; // uses driver to interact with database
                     Connection conn = DriverManager.getConnection(url, "root", "Cassie2007"); // connects to database
                     // prepares the sql statement
-                    String select = "select * from getdata_getexpense;";
+                    String select = "select * from getdata_getexpense ORDER BY expense_date ASC;";
 
                     st = conn.prepareStatement(select);
                     ResultSet rs = st.executeQuery();
