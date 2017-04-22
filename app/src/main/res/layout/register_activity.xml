@@ -38,13 +38,14 @@
 
     <EditText
         android:id="@+id/username"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Username"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:inputType="textEmailAddress"
+        android:inputType="text|textCapSentences"
         android:layout_marginTop="164dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">

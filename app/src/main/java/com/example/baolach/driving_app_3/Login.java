@@ -14,10 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by Baolach on 14/04/2017.
- */
-
 public class Login extends AppCompatActivity {
 
     Button login, register;
@@ -39,7 +35,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 new Thread(new Runnable(){
 
                     public void run()
@@ -48,15 +43,13 @@ public class Login extends AppCompatActivity {
                     }
 
                 }).start();
-
-
             }
 
-            protected void authenticate() {
+            void authenticate() {
 
                 try
                 {
-                    final String user = username.getText().toString().toLowerCase().replace(" ", ""); // replace gets rid of spaces
+                    final String user = username.getText().toString().replace(" ", ""); // replace gets rid of spaces
                     String pass= password.getText().toString().replace(" ", "");
 
                     PreparedStatement st = null;
@@ -73,7 +66,7 @@ public class Login extends AppCompatActivity {
                     while(rs.next())
                     {
                         passw = rs.getString("password");
-                        usern = rs.getString("username").toLowerCase(); // chagnes to lowercase to compare in the db
+                        usern = rs.getString("username"); // changes to lowercase to compare in the db
                     }
 
                     if(usern != null && user.equals(usern))
@@ -104,7 +97,7 @@ public class Login extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             public void run() {
 
-                                Toast.makeText(getBaseContext(), "User does not exist! Please Register", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), "User does not exist. Please Register", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }

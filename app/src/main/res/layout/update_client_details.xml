@@ -57,16 +57,19 @@
 
         android:hint="Log Number"
         android:layout_below="@+id/editText_clientAddress"
-        android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientDriverNo"
-        android:layout_alignStart="@+id/editText_clientName"
         android:maxLength="5"
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="number"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -78,9 +81,7 @@
 
         android:hint="Driver Number"
         android:layout_below="@+id/editText_clientLogNo"
-        android:layout_margin="1dp"
         android:nextFocusDown="@+id/editText_clientDob"
-        android:layout_alignStart="@+id/editText_clientName"
         android:maxLength="9"
 
 
@@ -88,7 +89,12 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="number"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -114,52 +120,6 @@
         android:layout_alignBottom="@+id/editText_clientDob"/>
 
     <EditText
-        android:id="@+id/editText_clientNoOfLessons"
-
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-
-
-        android:hint="Number of Lessons"
-        android:layout_below="@+id/editText_clientDob"
-        android:layout_margin="1dp"
-        android:layout_alignStart="@+id/editText_clientName"
-
-
-        android:maxLength="2"
-
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="7dp"
-        android:inputType="number"
-        android:nextFocusForward="@+id/lesson_date">
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/editText_clientComments"
-
-        android:background="@color/turq"
-        android:textColorHint="@color/white"
-        android:digits="0123456789 !?()-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-        android:hint="Comments"
-        android:layout_below="@+id/editText_clientBalance"
-        android:layout_alignStart="@+id/editText_clientName"
-        android:layout_margin="1dp"
-        android:maxLines="1"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="7dp"
-        android:inputType="textCapSentences"
-        android:nextFocusForward="@+id/lesson_date"
-        >
-        <requestFocus />
-    </EditText>
-
-    <EditText
         android:id="@+id/editText_clientBalance"
 
         android:background="@color/turq"
@@ -167,8 +127,6 @@
 
         android:hint="Balance"
         android:layout_below="@+id/editText_clientNoOfLessons"
-        android:layout_margin="1dp"
-        android:layout_alignStart="@+id/editText_clientName"
 
         android:maxLength="3"
 
@@ -177,7 +135,12 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="number"
-        android:nextFocusForward="@+id/lesson_date">
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -189,20 +152,21 @@
         android:text="Update"
         android:layout_below="@+id/editText_clientComments"
         android:layout_alignParentEnd="true"
-        android:layout_margin="1dp"
 
         android:background="@color/dturq"
         android:textColor="@color/white"
-        android:layout_alignStart="@+id/editText_clientName"
 
 
-        />
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true"/>
 
     <EditText
         android:id="@+id/editText_clientAddress"
         android:background="@color/turq"
         android:textColorHint="@color/white"
-        android:layout_margin="1dp"
 
         android:digits="0123456789 !?()-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -211,7 +175,6 @@
         android:layout_marginRight="1dp"
         android:layout_below="@+id/editText_clientPhone"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/editText_clientName"
         android:nextFocusDown="@+id/editText_clientLogNo"
         android:maxLines="1"
 
@@ -221,7 +184,9 @@
         android:padding="7dp"
         android:inputType="textCapSentences"
         android:nextFocusForward="@+id/lesson_date"
-        >
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -277,6 +242,7 @@
 
         android:layout_marginRight="1dp"
         android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
 
 
         android:layout_marginTop="14dp"
@@ -296,7 +262,7 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:nextFocusForward="@+id/lesson_date"
-        >
+        android:layout_alignParentStart="true">
         <requestFocus />
     </EditText>
 
@@ -306,16 +272,16 @@
         android:textColorHint="@color/white"
 
         android:nextFocusDown="@+id/editText_clientNoOfLessons"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="1dp"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:inputType="number"
         android:nextFocusForward="@+id/lesson_date"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
+
 
         android:layout_below="@+id/editText_clientDriverNo"
         android:layout_alignParentStart="true"
@@ -323,6 +289,53 @@
         <!--android:onClick="setDate">-->
         <requestFocus />
     </TextView>
+
+    <EditText
+        android:id="@+id/editText_clientNoOfLessons"
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+
+
+        android:hint="Number of Lessons"
+
+
+        android:maxLength="2"
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="number"
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/editText_clientDob"
+        android:layout_alignParentStart="true">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_clientComments"
+
+        android:background="@color/turq"
+        android:textColorHint="@color/white"
+        android:digits="0123456789 !?()-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+        android:hint="Comments"
+        android:maxLines="1"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:inputType="textCapSentences"
+        android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/editText_clientBalance"
+        android:layout_alignParentEnd="true">
+        <requestFocus />
+    </EditText>
 
 
 </RelativeLayout>

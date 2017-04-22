@@ -31,8 +31,8 @@
         android:hint="Time"
 
         android:layout_below="@+id/editText_lessonDate"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
 
         android:nextFocusForward="@+id/lesson_date"
         android:inputType="time"
@@ -60,8 +60,8 @@
         android:digits="0123456789 !?()-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:layout_alignParentEnd="true">
     </EditText>
 
@@ -87,11 +87,10 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
         android:layout_marginTop="14dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="2dp"
         android:layout_below="@+id/button"
         android:padding="10dp"
         android:nextFocusForward="@+id/lesson_date"
-
         android:editable="false"
         android:layout_alignStart="@+id/editText_lessonTime"
         android:layout_alignParentEnd="true">
@@ -148,6 +147,9 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:nextFocusForward="@+id/lesson_date"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
         android:layout_below="@+id/editText_lessonName"
@@ -182,6 +184,8 @@
 
         android:hint="Meeting location"
         android:digits="0123456789 !?()-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

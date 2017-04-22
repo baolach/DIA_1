@@ -27,7 +27,9 @@
         android:id="@+id/password"
         android:hint="Password"
         android:textColorHint="@color/white"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" >
+        <requestFocus />
+    </EditText>
 
 
     <ImageView
@@ -43,7 +45,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="textCapSentences"
         android:ems="10"
         android:id="@+id/username"
         android:hint="@string/username"
@@ -51,7 +53,11 @@
         android:layout_marginTop="178dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white">
+        android:textColor="@color/white"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:nextFocusForward="@+id/password"
+
+        >
         <requestFocus />
     </EditText>
 

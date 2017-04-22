@@ -28,6 +28,7 @@
     <string name="phone">Phone</string>
     <string name="expenses">Expenses</string>
     <string name="username">Username</string>
+    <string name="date">date</string>
 
 
 </resources>

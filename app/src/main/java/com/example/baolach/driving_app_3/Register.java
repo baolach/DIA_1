@@ -62,7 +62,7 @@ public class Register extends AppCompatActivity {
             protected void insert() {
 
                 try {
-                    String user = username.getText().toString().toLowerCase().replace(" ", "");
+                    String user = username.getText().toString().replace(" ", "");
                     String pass = password.getText().toString();
                     String pass2 = confirmpassword.getText().toString();
 

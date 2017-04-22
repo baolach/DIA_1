@@ -27,7 +27,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete"
+        android:text="Delete Expense"
         android:id="@+id/delete_client_btn"
         android:paddingLeft="7dp"
         android:paddingRight="7dp"
@@ -39,7 +39,7 @@
         android:padding="5dp"
         android:textColor="@color/white"
 
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_alignBaseline="@+id/button"
         android:layout_alignBottom="@+id/button"
@@ -89,26 +89,7 @@
         android:singleLine="true"
         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update "
-        android:id="@+id/update_client_btn"
-        android:onClick="update"
-        style="?android:attr/buttonStyleSmall"
-        android:background="@color/turq"
-        android:maxWidth="100dp"
-        android:minHeight="20dp"
-        android:textSize="11dp"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:paddingLeft="7dp"
-        android:paddingRight="7dp"
-
-        android:layout_marginLeft="5dp"
-        android:layout_alignBaseline="@+id/delete_client_btn"
-        android:layout_alignBottom="@+id/delete_client_btn"
-        android:layout_toEndOf="@+id/delete_client_btn"/>
+    "/>
 
 
     <Button
@@ -174,6 +155,26 @@
         android:layout_below="@+id/delete_client_btn"
         android:layout_alignStart="@+id/button"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Expense"
+        android:id="@+id/update_client_btn"
+        android:onClick="update"
+        style="?android:attr/buttonStyleSmall"
+        android:background="@color/turq"
+        android:maxWidth="100dp"
+        android:minHeight="20dp"
+        android:textSize="11dp"
+        android:maxEms="10"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_alignBaseline="@+id/delete_client_btn"
+        android:layout_alignBottom="@+id/delete_client_btn"
+        android:layout_toEndOf="@+id/delete_client_btn"/>
+
     <TextView
         android:layout_height="wrap_content"
 
@@ -182,16 +183,13 @@
         android:id="@+id/theexpensename"
         android:textColor="@color/white"
         android:layout_width="fill_parent"
-
-
-
         android:maxLines="1"
         android:scrollbars="horizontal"
 
+        android:layout_marginStart="22dp"
         android:layout_alignBaseline="@+id/textview_expense"
         android:layout_alignBottom="@+id/textview_expense"
-        android:layout_alignStart="@+id/update_client_btn"
-        android:layout_marginStart="20dp"/>
+        android:layout_alignStart="@+id/update_client_btn"/>
 
 
 </RelativeLayout>
