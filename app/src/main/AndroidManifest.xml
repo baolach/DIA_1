@@ -48,7 +48,6 @@
                   android:windowSoftInputMode="stateVisible"
             />
         <activity android:name=".ListLessons" />
-        <activity android:name=".Calender" />
         <activity android:name=".WebActivity" />
         <activity android:name=".AdminActivity" />
 
@@ -58,7 +57,6 @@
             android:label="@string/title_activity_finances"
             >
         </activity>
-        <activity android:name=".Reminders" />
         <activity android:name=".TrafficActivity" />
         <activity android:name=".UpdateLesson" />
         <activity android:name=".UpdateClient" />
@@ -97,9 +95,6 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" >
-        </activity>
-        <activity
-            android:name=".AndroidGPSTrackingActivity" >
         </activity>
 
 
