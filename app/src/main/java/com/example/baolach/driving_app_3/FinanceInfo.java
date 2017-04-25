@@ -48,7 +48,6 @@ public class FinanceInfo extends Activity {
             clientcomments = bundle.getString("theclientscomments");
             clientid= bundle.getString("id");
 
-
         }
 
         // apply to textViews

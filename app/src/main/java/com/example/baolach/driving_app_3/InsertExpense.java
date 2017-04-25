@@ -126,6 +126,7 @@ public class InsertExpense extends Activity {
             }
         });
 
+        // shows the builder if insert button pressed
         btnPost.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {

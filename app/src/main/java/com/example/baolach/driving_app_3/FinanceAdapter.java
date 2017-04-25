@@ -9,10 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Baolach on 04/02/2017.
- */
-
 public class FinanceAdapter extends BaseAdapter {
 
     private Context context;
@@ -64,8 +60,6 @@ public class FinanceAdapter extends BaseAdapter {
             holder.no_of_lessons = (TextView) row.findViewById(R.id.no_of_lessons);
             holder.balance_due = (TextView) row.findViewById(R.id.balance_paid);
             holder.comments = (TextView) row.findViewById(R.id.comments);
-
-
 
             row.setTag(holder);
         }

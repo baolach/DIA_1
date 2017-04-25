@@ -8,6 +8,7 @@ import android.os.Bundle;
 public class WebActivity extends AppCompatActivity
 {
 
+    // links ot the website once clicked
     @Override
     public void onCreate(Bundle website)
     {

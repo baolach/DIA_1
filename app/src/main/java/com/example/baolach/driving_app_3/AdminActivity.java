@@ -26,7 +26,6 @@ public class AdminActivity extends Activity {
         Button email_btn = (Button)findViewById(R.id.email_btn);
 
 
-
         back_screen_btn.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)

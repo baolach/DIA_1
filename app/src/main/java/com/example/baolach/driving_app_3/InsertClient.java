@@ -172,7 +172,7 @@ public class InsertClient extends Activity {
                     System.out.println("arg3: " + arg3);
                     System.out.println(clientDob.getText().toString());
 
-                    // this is used to display a better DOB format to the instructor
+                    // this is used to display a better DOB format to the instructor in words rather than numbers
                     if(arg2 == 0)
                         mon = "Jan";
                     else if(arg2 == 1)

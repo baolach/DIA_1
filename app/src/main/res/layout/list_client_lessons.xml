@@ -15,19 +15,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="20dp"
-
         />
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="@string/goBack"
         android:textColor="@color/white"
         android:id="@+id/button"
         android:onClick="goBackScreen"
-
         style="?android:attr/buttonStyleSmall"
         android:textSize="11dp"
         android:background="@color/dturq"
@@ -35,8 +32,6 @@
         android:minHeight="20dp"
         android:padding="5dp"
         android:layout_marginRight="5dp"
-
-
         android:layout_above="@+id/textView_client_name"
         android:layout_alignParentStart="true"/>
 
@@ -46,22 +41,17 @@
         android:layout_height="wrap_content"
         android:divider="@android:color/white"
         android:dividerHeight="0.85px"
-
-
         android:background="@color/turq"
         android:textColor="@color/white"
         android:layout_below="@+id/textView_client_name"
-
         android:layout_marginTop="8dp"/>
 
     <Button
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Lesson"
         android:id="@+id/new_lesson"
         android:onClick="newLesson"
-
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="150dp"
@@ -69,22 +59,17 @@
         android:textSize="11dp"
         android:textColor="@color/white"
         android:padding="5dp"
-
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-
-
         android:layout_below="@+id/website"
         android:layout_toEndOf="@+id/button"/>
 
     <Button
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Home"
         android:id="@+id/home"
         android:onClick="home"
-
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="150dp"
@@ -92,12 +77,10 @@
         android:textSize="11dp"
         android:textColor="@color/white"
         android:padding="5dp"
-
         android:layout_marginLeft="5dp"
         android:layout_marginRight="10dp"
         android:layout_below="@+id/website"
         android:layout_toEndOf="@+id/new_lesson"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,9 +89,7 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         android:id="@+id/textView_client_name"
-
         android:layout_marginRight="10dp"
-
         android:layout_marginStart="13dp"
         android:layout_below="@+id/new_lesson"
         android:layout_alignStart="@+id/listView_lessons"
@@ -121,7 +102,6 @@
         android:text="Date"
         android:textStyle="bold"
         android:textColor="@color/white"
-
         android:id="@+id/TextView_lesson_date"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
@@ -136,7 +116,6 @@
         android:text="Time"
         android:textStyle="bold"
         android:textColor="@color/white"
-
         android:id="@+id/TextView_lesson_time"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"

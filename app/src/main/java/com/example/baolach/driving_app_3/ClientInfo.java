@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -24,7 +23,7 @@ public class ClientInfo extends Activity {
     private Button btnDelete;
     String clientname, clientphone, clientaddress, clientlogno, clientdriverno, clientdob, clientnooflessons, clientbalancedue, clientcomments, clientid; // ocming from the intent from listClients
 
-    Point p; // for popup
+    //Point p; // for popup
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,79 +205,6 @@ public class ClientInfo extends Activity {
     } // end onCreate
 
 
-//    // Get the x and y position after the button is draw on screen
-//// (It's important to note that we can't get the position in the onCreate(),
-//// because at that stage most probably the view isn't drawn yet, so it will return (0, 0))
-//    public void onWindowFocusChanged(boolean hasFocus) {
-//
-//        int[] location = new int[2];
-//
-//        // Get the x, y location and store it in the location[] array
-//        // location[0] = x, location[1] = y.
-//
-//        //Initialize the Point with x, and y positions
-//        p = new Point();
-//        p.x = location[0];
-//        p.y = location[1];
-//    }
-//
-//    // The method that displays the popup.
-//    private void showPopup(final Activity context, Point p) {
-//        int popupWidth = 800;
-//        int popupHeight = 300;
-//
-//        // Inflate the popup_layout.xml
-//        LinearLayout viewGroup = (LinearLayout) context.findViewById(R.id.popup);
-//        LayoutInflater layoutInflater = (LayoutInflater) context
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View layout = layoutInflater.inflate(R.layout.popup_layout, viewGroup);
-//
-//
-//
-//
-//        // Creating the PopupWindow
-//        final PopupWindow popup = new PopupWindow(context);
-//        popup.setContentView(layout);
-//        popup.setWidth(popupWidth);
-//        popup.setHeight(popupHeight);
-//        popup.setFocusable(true);
-//
-//        TextView pcommentsTextView = null; // = (TextView) findViewById(R.id.textView10);
-//        ((TextView)pcommentsTextView.findViewById(R.id.textView10)).setText("test");
-//        //pcommentsTextView.showAtLocation();
-////        pcommentsTextView.setText(clientcomments);
-//
-//        // Some offset to align the popup a bit to the right, and a bit down, relative to button's position.
-//        int OFFSET_X = 5;
-//        int OFFSET_Y = 50;
-//
-//        // Clear the default translucent background
-//        popup.setBackgroundDrawable(new BitmapDrawable());
-//
-//        // Displaying the popup at the specified location, + offsets.
-//        popup.showAtLocation(layout, Gravity.BOTTOM, p.x + OFFSET_X, p.y + OFFSET_Y);
-//
-//        // Getting a reference to Close button, and close the popup when clicked.
-//        Button close = (Button) layout.findViewById(R.id.close);
-//        close.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                popup.dismiss();
-//            }
-//        });
-//    } // end show popUp
-
-
-
-
-
-
-
-
-
-
-
     // when clicked brings you to the insertLesson page
     // passes the inputs in an intent and fills the editTexts with those values
     // then performs the insert again with those same params
@@ -347,5 +273,3 @@ public class ClientInfo extends Activity {
 
 }
 
-// in order to link the lesson and client tables, when you go to make a new lesson, you should pick the client
-// from a dropdown list. this uses the same Id then

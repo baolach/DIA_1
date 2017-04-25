@@ -210,17 +210,6 @@ public class ListClients extends Activity {
                         adapter.notifyDataSetChanged();
 
 
-//                        private void sortAscending () {
-//                            List<String> sortedMonthsList = Arrays.asList(months);
-//                            Collections.sort(sortedMonthsList);
-//
-//                            months = (String[]) sortedMonthsList.toArray();
-//                        }
-
-
-
-
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

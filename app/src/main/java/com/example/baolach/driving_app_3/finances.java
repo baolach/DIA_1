@@ -136,7 +136,7 @@ public class Finances extends Activity
             }
         });
 
-        // onClick listner for expenses list
+        // onClick listener for expenses list
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int itemId = (int) id;
@@ -210,34 +210,6 @@ public class Finances extends Activity
 
         };
         thread.start();
-
-
-        // dont think I need an listener, all the info is there
-//        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                // itemId keeps track of where in the list it is
-//                int itemId = (int) id;
-//
-//                String expensename = expenseName.get(itemId);
-//                String expenseamount = expenseAmount.get(itemId);
-//                String expensedate = expenseDate.get(itemId);
-//                String expenseid = expenseId.get(itemId);
-//
-//
-//                // creates new intent and sends over the lesson information when item is clicked
-//                // accepted by Bundle in LessonInfo
-//                Intent i = new Intent(Finances.this, ExpenseInfo.class);
-//                i.putExtra("theexpensename", expensename);
-//                i.putExtra("theexpenseamount", expenseamount);
-//                i.putExtra("theexpensedate", expensedate);
-//                i.putExtra("id", expenseid);
-//
-//
-//                startActivity(i);
-//
-//            }
-//        });
-
 
 
     } // end onCreate

@@ -30,8 +30,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Time"
         android:id="@+id/textview_date"
-
-
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginRight="10dp"
@@ -46,14 +44,11 @@
         android:text="location"
         android:textColor="@color/white"
         android:id="@+id/thelognumber"
-
         android:layout_marginRight="10dp"
         android:layout_above="@+id/thedrivernumber"
         android:layout_alignStart="@+id/theexpensename"
-
         android:maxLines="1"
         android:ellipsize="marquee"
-
         android:marqueeRepeatLimit="2"
         android:scrollHorizontally="true"
         android:focusable="true"
@@ -68,7 +63,6 @@
         android:text="time"
         android:textColor="@color/white"
         android:id="@+id/theexpensedate"
-
         android:layout_marginRight="10dp"
         android:layout_marginTop="14dp"
         android:layout_below="@+id/textview_amount"
@@ -82,13 +76,10 @@
         android:textColor="@color/white"
         android:id="@+id/thedrivernumber"
         android:layout_alignWithParentIfMissing="false"
-
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/textView4"
         android:layout_alignStart="@+id/theexpensename"
-
-
         android:maxLines="5"
         android:scrollbars="horizontal"
 
@@ -101,8 +92,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Date"
         android:id="@+id/textview_amount"
-
-
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_alignBaseline="@+id/theexpenseamount"
@@ -114,7 +103,6 @@
         android:layout_height="112dp"
         android:id="@+id/website"
         android:src="@drawable/active5"
-
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"/>
 
@@ -124,7 +112,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Location"
         android:id="@+id/textView4"
-
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginRight="10dp"
@@ -139,11 +126,8 @@
         android:text="Comments"
         android:id="@+id/textView5"
         android:layout_marginTop="18dp"
-
         android:textColor="@color/white"
         android:textStyle="bold"
-
-
         android:layout_alignBaseline="@+id/thedrivernumber"
         android:layout_alignBottom="@+id/thedrivernumber"
         android:layout_alignStart="@+id/textview_expense"
@@ -155,8 +139,6 @@
         android:text="Update Lesson"
         android:id="@+id/update_lesson_btn"
         android:onClick="update"
-
-
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="100dp"
@@ -164,7 +146,6 @@
         android:textSize="11dp"
         android:padding="5dp"
         android:textColor="@color/white"
-
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_alignBaseline="@+id/button"
@@ -177,7 +158,6 @@
         android:text="@string/goBack"
         android:id="@+id/button"
         android:onClick="goBackScreen"
-
         style="@android:style/Widget.Material.Light.Button.Small"
         android:textSize="11dp"
         android:background="@color/dturq"
@@ -185,10 +165,7 @@
         android:minHeight="20dp"
         android:padding="5dp"
         android:layout_marginRight="5dp"
-
         android:textColor="@color/white"
-
-
         android:layout_marginTop="24dp"
         android:layout_below="@+id/website"
         android:layout_alignParentStart="true"/>
@@ -198,13 +175,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name"
-
         android:id="@+id/textview_expense"
-
-
         android:textColor="@color/white"
         android:textStyle="bold"
-
         android:layout_marginRight="10dp"
         android:layout_alignBaseline="@+id/theexpensename"
         android:layout_alignBottom="@+id/theexpensename"
@@ -217,13 +190,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="name"
         android:textColor="@color/white"
-
         android:layout_marginTop="31dp"
-
-
         android:maxLines="1"
         android:scrollbars="horizontal"
-
         android:layout_below="@+id/update_lesson_btn"
         android:layout_toEndOf="@+id/textView5"
         android:layout_marginStart="23dp"/>
@@ -233,7 +202,6 @@
         android:layout_height="wrap_content"
         android:text="Delete Lesson"
         android:id="@+id/delete_client_btn"
-
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="100dp"
@@ -242,9 +210,6 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:onClick="Delete"
-
-
-
         android:layout_marginLeft="5dp"
         android:layout_alignBaseline="@+id/update_lesson_btn"
         android:layout_alignBottom="@+id/update_lesson_btn"
@@ -256,7 +221,6 @@
         android:text="Home"
         android:id="@+id/home"
         android:onClick="home"
-
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="100dp"
@@ -264,8 +228,6 @@
         android:textSize="11dp"
         android:padding="5dp"
         android:textColor="@color/white"
-
-
         android:layout_marginLeft="5dp"
         android:layout_above="@+id/theexpensename"
         android:layout_toEndOf="@+id/delete_client_btn"

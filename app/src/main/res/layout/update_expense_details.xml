@@ -23,10 +23,8 @@
     <EditText
 
         android:id="@+id/editText_expenseName"
-
         android:hint="Expense"
         android:digits="0123456789 !?()-,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/turq"
@@ -37,10 +35,7 @@
         android:padding="10dp"
         android:nextFocusForward="@+id/lesson_date"
         android:inputType="textCapSentences"
-
-
         android:layout_alignParentEnd="true"
-
         android:layout_alignStart="@+id/editText_expenseAmount">
         <requestFocus/>
     </EditText>
@@ -53,7 +48,6 @@
         android:text="Home"
         android:id="@+id/home"
         android:onClick="home"
-
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="150dp"
@@ -61,7 +55,6 @@
         android:textSize="11dp"
         android:textColor="@color/white"
         android:padding="5dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_alignTop="@+id/button"
@@ -90,7 +83,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/date"
-
         android:text="Calendar"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
@@ -106,9 +98,7 @@
     <Button
         android:id="@+id/button_submit"
         android:layout_width="fill_parent"
-
         android:layout_height="40dp"
-
         android:text="UPDATE"
         android:background="@color/dturq"
         android:textColor="@color/white"
@@ -117,7 +107,6 @@
         android:layout_alignParentEnd="true"/>
 
     <EditText
-
         android:id="@+id/editText_expenseAmount"
         android:inputType="number"
         android:hint="Amount paid"
@@ -128,7 +117,6 @@
         android:layout_marginBottom="2dp"
         android:padding="10dp"
         android:nextFocusForward="@+id/lesson_date"
-
         android:layout_below="@+id/editText_expenseName"
         android:layout_alignStart="@+id/editText_expenseDate">
     </EditText>
@@ -138,7 +126,6 @@
         android:background="@color/turq"
         android:textColorHint="@color/white"
         android:hint="Date of Expense"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="13dp"

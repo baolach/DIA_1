@@ -14,9 +14,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-/**
- * Created by Baolach on 17/04/2017.
- */
 
 public class ExpenseInfo extends Activity {
 
@@ -51,8 +48,6 @@ public class ExpenseInfo extends Activity {
         expenseTextView.setText(expensename);
         amountTextView.setText(expenseamount);
         dateTextView.setText(expensedate);
-
-
 
 //        // needed for scrollbar on name
 //        nameTextView.setMovementMethod(new ScrollingMovementMethod());

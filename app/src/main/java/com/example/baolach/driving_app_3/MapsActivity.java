@@ -55,8 +55,8 @@ public class MapsActivity extends AppCompatActivity {
             public void onStatusChanged(Object o, STATUS status) {
                 // this is for the home pin - need to change to current location
 
-                mv.centerAndZoom(53.304679, -6.330082, 16); // home
-//                mv.centerAndZoom(53.337203, -6.267371, 16); // change to kevin street
+//                mv.centerAndZoom(53.304679, -6.330082, 16);
+                mv.centerAndZoom(53.337203, -6.267371, 16);
 //
 //                String title = "Kevin Street";
 //                String detail = "College Campus";

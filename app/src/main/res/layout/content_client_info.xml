@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:text="Delete Client"
         android:id="@+id/delete_client_btn"
-
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="100dp"
@@ -29,7 +28,6 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:onClick="Delete"
-
         android:layout_marginRight="5dp"
         android:layout_marginLeft="10dp"
         android:layout_alignBaseline="@+id/button"
@@ -45,7 +43,6 @@
         android:id="@+id/textview_amount"
         android:textColor="@color/white"
         android:textStyle="bold"
-
         android:layout_marginTop="16dp"
         android:layout_below="@+id/textview_expense"
         android:layout_alignStart="@+id/textview_expense"/>
@@ -61,10 +58,8 @@
         android:layout_alignBaseline="@+id/textview_date"
         android:layout_alignBottom="@+id/textview_date"
         android:layout_alignStart="@+id/theexpensename"
-
         android:maxLines="1"
         android:ellipsize="marquee"
-
         android:marqueeRepeatLimit="2"
         android:scrollHorizontally="true"
         android:focusable="true"
@@ -84,7 +79,6 @@
         android:layout_alignBaseline="@+id/textview_amount"
         android:layout_alignBottom="@+id/textview_amount"
         android:layout_alignStart="@+id/theexpensedate"
-
         android:ellipsize="marquee"
         android:layout_width="fill_parent"
         android:marqueeRepeatLimit="2"
@@ -104,8 +98,6 @@
         android:id="@+id/textView4"
         android:textColor="@color/white"
         android:textStyle="bold"
-
-
         android:layout_marginTop="20dp"
         android:layout_below="@+id/textview_date"
         android:layout_alignStart="@+id/textview_date"/>
@@ -239,7 +231,6 @@
     <TextView
         android:text="balance"
         android:id="@+id/thebalance"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -262,8 +253,6 @@
         android:textSize="11dp"
         android:padding="5dp"
         android:textColor="@color/white"
-
-
         android:layout_marginLeft="5dp"
         android:layout_alignBaseline="@+id/delete_client_btn"
         android:layout_alignBottom="@+id/delete_client_btn"
@@ -275,7 +264,6 @@
         android:text="Lessons"
         android:id="@+id/lessons_btn"
         android:onClick="clientLessons"
-
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="100dp"
@@ -283,7 +271,6 @@
         android:textSize="11dp"
         android:padding="5dp"
         android:textColor="@color/white"
-
         android:layout_marginRight="5dp"
         android:layout_marginLeft="10dp"
         android:layout_alignBaseline="@+id/update_client_btn"
@@ -298,12 +285,8 @@
         android:id="@+id/theexpensename"
         android:textColor="@color/white"
         android:layout_width="fill_parent"
-
-
-
         android:maxLines="1"
         android:scrollbars="horizontal"
-
         android:layout_above="@+id/textview_amount"
         android:layout_alignStart="@+id/update_client_btn"/>
 
@@ -316,11 +299,8 @@
         android:textColor="@color/white"
         android:maxLines="1"
         android:scrollbars="vertical"
-
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/thebalance"
-
-
         />
 
     <Button
@@ -329,7 +309,6 @@
         android:text="@string/goBack"
         android:id="@+id/button"
         android:onClick="goBackScreen"
-
         style="?android:attr/buttonStyleSmall"
         android:textSize="11dp"
         android:background="@color/dturq"
@@ -337,8 +316,6 @@
         android:minHeight="20dp"
         android:padding="5dp"
         android:textColor="@color/white"
-
-
         android:layout_marginTop="22dp"
         android:layout_below="@+id/website"
         android:layout_alignParentStart="true"
@@ -349,7 +326,6 @@
         android:layout_height="112dp"
         android:id="@+id/website"
         android:src="@drawable/active5"
-
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"/>
 
@@ -371,9 +347,7 @@
         android:text="Name"
         android:id="@+id/textview_expense"
         android:textStyle="bold"
-
         android:textColor="@color/white"
-
         android:layout_marginTop="24dp"
         android:layout_below="@+id/delete_client_btn"
         android:layout_alignStart="@+id/button"/>

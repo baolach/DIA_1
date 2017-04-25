@@ -5,9 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by Baolach on 27/03/2017.
- */
+// brings user to Google Maps where the instructor insserts a location and driections are given along
+// with traffic alerts. This activity is also opened when an address of any sort is clicked where
+// the address is passed and displayed on the map
 
 public class TrafficActivity extends AppCompatActivity{
     @Override

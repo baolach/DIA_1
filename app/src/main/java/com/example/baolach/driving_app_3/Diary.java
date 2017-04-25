@@ -7,10 +7,7 @@ import android.view.View;
 
 
 
-/**
- * this activity will list the lessoninfo
-
- */
+// renamed to ListLessons
 public class Diary extends Activity {
 
 

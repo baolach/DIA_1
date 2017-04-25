@@ -13,9 +13,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- * Created by Baolach on 14/04/2017.
- */
+
+// Registers an account in order to log into app
 
 public class Register extends AppCompatActivity {
 

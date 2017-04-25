@@ -59,9 +59,6 @@ public class ExpenseAdapter extends BaseAdapter{
             holder.expense_amount = (TextView) row.findViewById(R.id.amount);
             holder.expense_date = (TextView) row.findViewById(R.id.date);
 
-
-
-
             row.setTag(holder);
         }
         else

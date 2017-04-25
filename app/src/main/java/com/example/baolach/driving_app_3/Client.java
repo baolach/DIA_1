@@ -20,11 +20,7 @@ public class Client {
         this.nooflessons = nooflessons;
         this.balancedue = balancedue;
         this.comments = comments;
-
-
-
     }
-
 
     public String getDriverno() {
         return driverno;

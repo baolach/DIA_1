@@ -85,8 +85,6 @@ public class UpdateClient extends Activity {
 
             System.out.println("lognumber after its set to the editText: " + clientLogNo);
 
-//            System.out.println("Insert lesson after intent is sent- lessonName: " + lessonName);
-//            System.out.println("Insert lesson after intent is sent- lessonname: " + lessonName);
 
             // setting the editTexts the data that was passed in order to help the user know what they want to update
             clientName.setText(clientname);
@@ -98,9 +96,6 @@ public class UpdateClient extends Activity {
             clientNoOfLessons.setText(numberoflessons);
             clientBalance.setText(balancedue);
             clientsComments.setText(comments);
-
-
-
 
             System.out.println("data successfully entered again");
 
@@ -124,8 +119,6 @@ public class UpdateClient extends Activity {
 
                 }).start();
             }
-
-
 
             protected void insert() {
 

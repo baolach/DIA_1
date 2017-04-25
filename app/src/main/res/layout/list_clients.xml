@@ -17,7 +17,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="20dp"
-
         />
 
 
@@ -27,12 +26,8 @@
         android:layout_height="wrap_content"
         android:divider="@android:color/white"
         android:dividerHeight="0.5px"
-
         android:background="@color/turq"
-
         android:padding="10dp"
-
-
         android:layout_below="@+id/textView_client_name"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"/>
@@ -44,7 +39,6 @@
         android:text="@string/goBack"
         android:id="@+id/button"
         android:onClick="goBackScreen"
-
         style="@android:style/Widget.Material.Light.Button.Small"
         android:textSize="11dp"
         android:background="@color/dturq"
@@ -53,7 +47,6 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:layout_marginRight="5dp"
-
         android:layout_below="@+id/website"
         android:layout_alignParentStart="true"/>
 
@@ -63,9 +56,6 @@
     android:text="New Client"
     android:id="@+id/new_client"
     android:onClick="newClient"
-
-
-
     style="?android:attr/buttonStyleSmall"
     android:background="@color/turq"
     android:maxWidth="100dp"
@@ -73,20 +63,17 @@
     android:textSize="11dp"
     android:padding="5dp"
     android:textColor="@color/white"
-
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_below="@+id/website"
     android:layout_toEndOf="@+id/button"/>
 
     <Button
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Home"
         android:id="@+id/home"
         android:onClick="home"
-
         style="?android:attr/buttonStyleSmall"
         android:background="@color/turq"
         android:maxWidth="150dp"
@@ -94,7 +81,6 @@
         android:textSize="11dp"
         android:textColor="@color/white"
         android:padding="5dp"
-
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_below="@+id/website"
@@ -103,14 +89,11 @@
     <TextView
         android:id="@+id/textView_client_name"
         android:text="Name"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white"
         android:textStyle="bold"
-
-
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="16dp"
@@ -125,7 +108,6 @@
         android:text="Phone"
         android:textColor="@color/white"
         android:textStyle="bold"
-
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:id="@+id/textview_client_phone"

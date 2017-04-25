@@ -31,7 +31,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/balance_paid"
         android:gravity="center"
-
         android:elegantTextHeight="false"
         android:padding="10dp"
         android:layout_marginEnd="89dp"
@@ -46,7 +45,6 @@
         android:layout_marginLeft="20dp"
         android:gravity="center"
         android:padding="10dp"
-
         android:layout_alignParentEnd="true"
         android:id="@+id/date"/>
 
@@ -55,7 +53,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-
         android:id="@+id/expenses"
         android:layout_alignBottom="@+id/client_name"
         />

@@ -25,9 +25,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-/**
- * Created by Baolach on 09/04/2017.
- */
+// this activity selects the client for the lesson
+// this is to avoid lessons being set for clients without any contact information
 
 public class SelectClient extends Activity {
 
@@ -192,19 +191,6 @@ public class SelectClient extends Activity {
 
                         list.add(new Client(g, clientname, clientphone, clientaddress, logno, driverno, dob, nooflessons, balancedue, comments, clientid));
                         adapter.notifyDataSetChanged();
-
-
-//                        private void sortAscending () {
-//                            List<String> sortedMonthsList = Arrays.asList(months);
-//                            Collections.sort(sortedMonthsList);
-//
-//                            months = (String[]) sortedMonthsList.toArray();
-//                        }
-
-                        // check if the info is getting through
-//                        System.out.println("##### ListClients.java");
-//                        System.out.println("##### clientname: " + clientname);
-//                        System.out.println("##### log no: " + logno);
 
 
 

@@ -78,7 +78,6 @@ public class ClientLessons extends Activity{
 
                 st = conn.prepareStatement(select);
                 st.setString(1, clientname);
-                //st.setString(2, clientid);
                 ResultSet rs = st.executeQuery();
 
                 while (rs.next()) {

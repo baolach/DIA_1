@@ -1,8 +1,6 @@
 package com.example.baolach.driving_app_3;
 
-/**
- * Created by Baolach on 21/02/2017.
- */
+// class gets the current location with lat and lon
 
 import android.app.AlertDialog;
 import android.app.Service;
@@ -216,110 +214,8 @@ public class GPSTracker extends Service implements LocationListener {
     public IBinder onBind(Intent intent) {
         return null;
     }
-    /////////////////
 
 
-
-//    }public void tryGetLocation() {
-//
-//        GPSTracker MyCurrentLocation;
-//        MyCurrentLocation = new MyCurrentLocation(this);
-//
-//        if (MyCurrentLocation.canGetLocation()) {
-//
-//            try {
-//
-//                double longitude = MyCurrentLocation.getLongitude();
-//                double latitude = MyCurrentLocation.getLatitude();
-//
-////                Log.w("Long", "" + longitude);
-////                Log.w("Lat", "" + latitude);
-//
-//                if (longitude != 0.0 && latitude != 0.0) {
-//
-//
-//                    // 54.636725, -8.444537 Donegal
-//
-//                    //54.251501, -8.474764 Sligo
-//                    // longitude = -8.474764;
-//                    // latitude = 54.251501;
-//
-//                            /*
-//                            * Country
-//                            * SubAdmin - County - Local if SubAdmin has null value
-//                            * Address - Town - area
-//                            * */
-//
-//
-//                    Geocoder geocoder;
-//                    List<Address> addresses;
-//                    geocoder = new Geocoder(this, Locale.getDefault());
-//
-//                    addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-//
-//                    String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineInde
-//                    String city = addresses.get(0).getLocality();
-//                    String state = addresses.get(0).getAdminArea();
-//                    String country = addresses.get(0).getCountryName();
-//                    String postalCode = addresses.get(0).getPostalCode();
-//                    String knownName = addresses.get(0).getFeatureName();
-//                    String locality = addresses.get(0).getLocality();
-//                    String subAdminArea = addresses.get(0).getSubAdminArea();
-//                    String value3 = addresses.get(0).getSubLocality();
-//                    String value4 = addresses.get(0).getPremises();
-//
-//                          /*  Toast.makeText(this, "Country: " + country +
-//                                            "\nbla" + state+
-//                                            "\naddress: " + address +
-//                                            "\ncity: " + city +
-//                                            "\nknownName: " + knownName +
-//                                            "\nPostcode: " + postalCode +
-//                                            "\nLocal: " + locality +
-//                                            "\nSubAdmin: " +subAdminArea +
-//                                            "\nSubLoc: " + value3 +
-//                                            "\nPremises: " + value4 +
-//                                            "\nLongitude: " + longitude +
-//                                            "\nLatitude: " + latitude,
-//                                Toast.LENGTH_SHORT).show();
-//*/
-//
-//                    countryTextView.setText(country);
-//                    countryTextView.setTextColor(Color.RED);
-//
-//                    try {
-//
-//                        Log.e("LOC", addresses.toString());
-//
-//                        if(state != null) {
-//                            countyTextView.setText(state);
-//                        } else if (subAdminArea != null) {
-//                            countyTextView.setText(subAdminArea);
-//                        } else if (locality != null) {
-//                            countyTextView.setText(locality);
-//                        }
-//                        countyTextView.setTextColor(Color.RED);
-//
-//                        if (city.equals(locality) | city.equals(subAdminArea)) {
-//                            townText.setText(address);
-//                        } else {
-//                            townText.setText(city);
-//                        }
-//                        townText.setTextColor(Color.RED);
-//
-//                        Toast.makeText(this, "Current location and date set", Toast.LENGTH_SHORT).show();
-//
-//                    } catch (NullPointerException e) {
-//                        // Toast.makeText(this, "Location and date not set", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//        } else {
-//            mMyCurrentLocation.showSettingsDialog();
-//        }
 
 }
 
