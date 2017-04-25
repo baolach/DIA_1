@@ -112,8 +112,6 @@
         android:background="@color/dturq"
         android:onClick="setDate"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
 
         android:layout_alignEnd="@+id/editText_clientDriverNo"
         android:layout_alignTop="@+id/editText_clientDob"
@@ -192,28 +190,6 @@
 
 
     <Button
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:id="@+id/home"
-        android:onClick="home"
-
-        style="?android:attr/buttonStyleSmall"
-        android:background="@color/turq"
-        android:maxWidth="150dp"
-        android:minHeight="20dp"
-        android:textSize="11dp"
-        android:textColor="@color/white"
-        android:padding="5dp"
-
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_below="@+id/website"
-        android:layout_toEndOf="@+id/button"/>
-
-    <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -272,8 +248,8 @@
         android:textColorHint="@color/white"
 
         android:nextFocusDown="@+id/editText_clientNoOfLessons"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
         android:layout_marginLeft="1dp"
 
         android:layout_width="wrap_content"
@@ -302,7 +278,8 @@
 
         android:maxLength="2"
 
-
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
@@ -324,7 +301,8 @@
 
         android:hint="Comments"
         android:maxLines="1"
-
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
@@ -336,6 +314,28 @@
         android:layout_alignParentEnd="true">
         <requestFocus />
     </EditText>
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:id="@+id/home"
+        android:onClick="home"
+
+        style="?android:attr/buttonStyleSmall"
+        android:background="@color/turq"
+        android:maxWidth="150dp"
+        android:minHeight="20dp"
+        android:textSize="11dp"
+        android:textColor="@color/white"
+        android:padding="5dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_below="@+id/website"
+        android:layout_toEndOf="@+id/button"/>
 
 
 </RelativeLayout>
